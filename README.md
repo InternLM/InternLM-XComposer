@@ -108,7 +108,7 @@ InternLM-XComposer-VL achieves SOTAs on both test and dev split. See more detail
 MMBench Test Split
 </p>
 
-<center>
+<div align='center'>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -118,7 +118,7 @@ MMBench Test Split
 |   4  |  WeMM   |      InternLM-7B      | 69.0 |
 |   5  |     mPLUG-Owl     |    LLaMA2 7B            |  68.5 |
 
-</center>
+</div>
 
 <p align="center">
     <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
