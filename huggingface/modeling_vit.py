@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import torch.utils.checkpoint as checkpoint
 from timm.models.layers import drop_path, to_2tuple, trunc_normal_
 
-from modeling_utils import download_cached_file
+from .modeling_utils import download_cached_file
 
 
 def _cfg(url='', **kwargs):
