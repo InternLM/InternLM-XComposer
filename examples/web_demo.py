@@ -4,8 +4,6 @@ import re
 import gradio as gr
 
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
-os.environ["https_proxy"] = 'http://proxy.sensetime.com:3128'
-# os.environ["http_proxy"] = 'http://proxy.sensetime.com:3128'
 import time
 import copy
 import shutil
@@ -22,7 +20,7 @@ from demo_asset.assets.css_html_js import custom_css
 from demo_asset.gradio_patch import Chatbot as grChatbot
 from demo_asset.serve_utils import Stream, Iteratorize
 from demo_asset.conversation import CONV_VISION_7132_v2, StoppingCriteriaSub
-from demo_asset.baidu import search_imgs, download_image_thread
+from demo_asset.download import download_image_thread
 
 max_section = 60
 no_change_btn = gr.Button.update()
@@ -45,9 +43,9 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        self.llm_model = AutoModel.from_pretrained('chat',
+        self.llm_model = AutoModel.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat/',
                                                    trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained('chat',
+        tokenizer = AutoTokenizer.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat/',
                                                   trust_remote_code=True)
         self.llm_model.llama_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
@@ -412,7 +410,7 @@ class Demo_UI:
 
         return md_show, gallery, btn_show, cap_textbox, cap_search
 
-    def search_image(self, text, use_api, index):
+    def search_image(self, text, index):
         index = int(index)
         if text == '':
             return gr.Gallery.update()
@@ -422,19 +420,8 @@ class Demo_UI:
         else:
             self.show_ids[index] = 1
         self.caps[index] = text
-        if use_api:
-            print('use api to get url')
-            urls = search_imgs(text, 4)
-            print(urls[0])
-            print('download image with url')
-            download_image_thread(urls,
-                                  folder='articles/' + self.title,
-                                  index=self.show_ids[index] * 1000 + index,
-                                  num_processes=4)
-            print('image downloaded')
-        else:
-            idxs = self.get_images_xlab(text, index, self.ex_idxs)
-            self.ex_idxs.extend(idxs)
+        idxs = self.get_images_xlab(text, index, self.ex_idxs)
+        self.ex_idxs.extend(idxs)
 
         img_list = [('articles/{}/temp_{}_{}.png'.format(
             self.title, self.show_ids[index] * 1000 + index,
@@ -789,7 +776,6 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                              label='Max output tokens')
                         msi = gr.Checkbox(label='Model selects images')
                         random = gr.Checkbox(label='Do_sample')
-                        use_api = gr.Checkbox(label='API')
 
                 with gr.Column(scale=1):
                     gr.Examples(
@@ -862,7 +848,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                              ])
                     cap_searchs[i].click(demo_ui.search_image,
                                          inputs=[
-                                             cap_textboxs[i], use_api,
+                                             cap_textboxs[i],
                                              gr.Number(value=i, visible=False)
                                          ],
                                          outputs=gallerys[i])
