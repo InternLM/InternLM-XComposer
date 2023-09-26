@@ -14,7 +14,6 @@ from torchvision.transforms.functional import InterpolationMode
 from PIL import Image
 
 from .modeling_perceive_sampler import BertConfig, BertLMHeadModel
-from .configuration_InternLM_XComposer import InternLMXComposerConfig
 from .modeling_vit import *
 from .modeling_InternLM import *
 from .modeling_utils import *
@@ -63,25 +62,26 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         self.flag_image_start.requires_grad = False
         self.flag_image_end.requires_grad = False
 
-        llama_lora = config.llama_lora
-        self.llama_lora = llama_lora
-        setattr(LlamaForCausalLM, 'lora_cfg', llama_lora)
+        internlm_lora = config.internlm_lora
+        self.internlm_lora = internlm_lora
+        setattr(InternLMForCausalLM, 'lora_cfg', internlm_lora)
 
         if int(torch.__version__[0]) == 1:
-            self.llama_model = LlamaForCausalLM._from_config(config).to(
+            self.internlm_model = InternLMForCausalLM._from_config(config).to(
                 torch.float16)
         else:
             assert int(torch.__version__[0]) == 2
             # speed up init llm
             with torch.device('meta'):
-                self.llama_model = LlamaForCausalLM._from_config(config)
-            self.llama_model.to_empty(device=config.device).to(torch.float16)
-        for n, m in self.llama_model.named_modules():
+                self.internlm_model = InternLMForCausalLM._from_config(config)
+            self.internlm_model.to_empty(device=config.device).to(
+                torch.float16)
+        for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
                 m.float()
 
-        self.llama_proj = nn.Linear(self.Qformer.config.hidden_size,
-                                    self.llama_model.config.hidden_size)
+        self.internlm_proj = nn.Linear(self.Qformer.config.hidden_size,
+                                       self.internlm_model.config.hidden_size)
         print('Done')
 
         self.vis_processor = transforms.Compose([
@@ -159,14 +159,15 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
                 encoder_attention_mask=image_atts,
                 return_dict=True,
             )
-            inputs_llama = self.llama_proj(query_output.last_hidden_state)
-            inputs_llama = torch.cat([
-                self.flag_image_start.expand(inputs_llama.shape[0], -1, -1),
-                inputs_llama,
-                self.flag_image_end.expand(inputs_llama.shape[0], -1, -1)
+            inputs_internlm = self.internlm_proj(
+                query_output.last_hidden_state)
+            inputs_internlm = torch.cat([
+                self.flag_image_start.expand(inputs_internlm.shape[0], -1, -1),
+                inputs_internlm,
+                self.flag_image_end.expand(inputs_internlm.shape[0], -1, -1)
             ],
-                                     dim=1)
-        return inputs_llama
+                                        dim=1)
+        return inputs_internlm
 
     def encode_text(self, text, add_special_tokens=False):
         text_token_ids = self.tokenizer(
@@ -174,7 +175,7 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
             return_tensors='pt',
             add_special_tokens=add_special_tokens,
         ).input_ids.to(self.device)
-        text_embeds = self.llama_model.model.embed_tokens(text_token_ids)
+        text_embeds = self.internlm_model.model.embed_tokens(text_token_ids)
         return text_embeds
 
     def decode_text(self, out_embeds):
@@ -200,8 +201,8 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         text_embeds = self.encode_text(text)
         img_embeds = self.encode_img(image)
         prompt_embeds = self.wrap_prompt(text_embeds, img_embeds)
-        out_embeds = self.llama_model.generate(inputs_embeds=prompt_embeds,
-                                               **self.get_gen_args(**kwargs))
+        out_embeds = self.internlm_model.generate(
+            inputs_embeds=prompt_embeds, **self.get_gen_args(**kwargs))
         out_text = self.decode_text(out_embeds)
         return out_text
 
@@ -211,14 +212,14 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         prompt_embeds = self.wrap_prompt(text_embeds,
                                          img_embeds,
                                          history=history)
-        out_embeds = self.llama_model.generate(inputs_embeds=prompt_embeds,
-                                               **self.get_gen_args(**kwargs))
+        out_embeds = self.internlm_model.generate(
+            inputs_embeds=prompt_embeds, **self.get_gen_args(**kwargs))
         out_text = self.decode_text(out_embeds)
 
         # trunc at eoh and eoa
         clean_out_text_token_ids = self.tokenizer(
             out_text, return_tensors='pt').input_ids.to(self.device)
-        clean_out_text_embeds = self.llama_model.model.embed_tokens(
+        clean_out_text_embeds = self.internlm_model.model.embed_tokens(
             clean_out_text_token_ids)
         clean_prompt_embeds = self.wrap_prompt(text_embeds,
                                                img_embeds,

@@ -5,12 +5,10 @@ import gradio as gr
 
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
 import time
-import copy
 import shutil
 import requests
-from PIL import Image, ImageFile
+from PIL import ImageFile
 import torch
-import torchvision.transforms as T
 import transformers
 from transformers import StoppingCriteriaList, AutoTokenizer, AutoModel
 
@@ -43,19 +41,19 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        self.llm_model = AutoModel.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat/',
+        self.llm_model = AutoModel.from_pretrained('chat/',
                                                    trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat/',
+        tokenizer = AutoTokenizer.from_pretrained('chat/',
                                                   trust_remote_code=True)
-        self.llm_model.llama_tokenizer = tokenizer
+        self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
         self.llm_model.eval().to('cuda')
         self.device = 'cuda'
         print(f" load model done: ", type(self.llm_model))
 
-        self.eoh = self.llm_model.llama_tokenizer.decode(
+        self.eoh = self.llm_model.internlm_tokenizer.decode(
             torch.Tensor([103027]), skip_special_tokens=True)
-        self.eoa = self.llm_model.llama_tokenizer.decode(
+        self.eoa = self.llm_model.internlm_tokenizer.decode(
             torch.Tensor([103028]), skip_special_tokens=True)
 
         self.vis_processor = self.llm_model.vis_processor
@@ -91,14 +89,14 @@ class Demo_UI:
         return idxs
 
     def generate(self, text, random, beam, max_length, repetition):
-        input_tokens = self.llm_model.llama_tokenizer(
+        input_tokens = self.llm_model.internlm_tokenizer(
             text, return_tensors="pt",
             add_special_tokens=True).to(self.llm_model.device)
-        img_embeds = self.llm_model.llama_model.model.embed_tokens(
+        img_embeds = self.llm_model.internlm_model.model.embed_tokens(
             input_tokens.input_ids)
         with torch.no_grad():
             with self.llm_model.maybe_autocast():
-                outputs = self.llm_model.llama_model.generate(
+                outputs = self.llm_model.internlm_model.generate(
                     inputs_embeds=img_embeds,
                     stopping_criteria=self.stopping_criteria,
                     do_sample=random,
@@ -106,7 +104,7 @@ class Demo_UI:
                     max_length=max_length,
                     repetition_penalty=float(repetition),
                 )
-        output_text = self.llm_model.llama_tokenizer.decode(
+        output_text = self.llm_model.internlm_tokenizer.decode(
             outputs[0][1:], add_special_tokens=False)
         output_text = output_text.split('<TOKENS_UNUSED_1>')[0]
         return output_text
@@ -194,7 +192,7 @@ class Demo_UI:
             prompt_embeds.append(
                 self.encode_text('\n\n<TOKENS_UNUSED_0> <|Bot|>:最合适的图是'))
             prompt_embeds = torch.cat(prompt_embeds, dim=1)
-            out_embeds = self.llama_model.generate(
+            out_embeds = self.internlm_model.generate(
                 inputs_embeds=prompt_embeds,
                 do_sample=False,
                 num_beams=5,
@@ -285,10 +283,10 @@ class Demo_UI:
         if article_stream_output:
             text = ' <|User|>:根据给定标题写一个图文并茂，不重复的文章：{}\n'.format(
                 title) + self.eoh + ' <|Bot|>:'
-            input_tokens = self.llm_model.llama_tokenizer(
+            input_tokens = self.llm_model.internlm_tokenizer(
                 text, return_tensors="pt",
                 add_special_tokens=True).to(self.llm_model.device)
-            img_embeds = self.llm_model.llama_model.model.embed_tokens(
+            img_embeds = self.llm_model.internlm_model.model.embed_tokens(
                 input_tokens.input_ids)
             generate_params = dict(
                 inputs_embeds=img_embeds,
@@ -297,17 +295,17 @@ class Demo_UI:
                 stopping_criteria=self.stopping_criteria,
                 repetition_penalty=float(repetition),
                 max_length=text_num,
-                bos_token_id=self.llm_model.llama_tokenizer.bos_token_id,
-                eos_token_id=self.llm_model.llama_tokenizer.eos_token_id,
-                pad_token_id=self.llm_model.llama_tokenizer.pad_token_id,
+                bos_token_id=self.llm_model.internlm_tokenizer.bos_token_id,
+                eos_token_id=self.llm_model.internlm_tokenizer.eos_token_id,
+                pad_token_id=self.llm_model.internlm_tokenizer.pad_token_id,
             )
             output_text = "▌"
             with self.generate_with_streaming(**generate_params) as generator:
                 for output in generator:
-                    decoded_output = self.llm_model.llama_tokenizer.decode(
+                    decoded_output = self.llm_model.internlm_tokenizer.decode(
                         output[1:])
                     if output[-1] in [
-                            self.llm_model.llama_tokenizer.eos_token_id
+                            self.llm_model.internlm_tokenizer.eos_token_id
                     ]:
                         break
                     output_text = decoded_output.replace('\n', '\n\n') + "▌"
@@ -500,14 +498,14 @@ class Demo_UI:
             img_list
         ) + 1, "Unmatched numbers of image placeholders and images."
         seg_tokens = [
-            self.llm_model.llama_tokenizer(seg,
-                                           return_tensors="pt",
-                                           add_special_tokens=i == 0).to(
-                                               self.device).input_ids
+            self.llm_model.internlm_tokenizer(seg,
+                                              return_tensors="pt",
+                                              add_special_tokens=i == 0).to(
+                                                  self.device).input_ids
             for i, seg in enumerate(prompt_segs)
         ]
         seg_embs = [
-            self.llm_model.llama_model.model.embed_tokens(seg_t)
+            self.llm_model.internlm_model.model.embed_tokens(seg_t)
             for seg_t in seg_tokens
         ]
         mixed_embs = [
@@ -553,7 +551,7 @@ class Demo_UI:
         kwargs["stopping_criteria"].append(Stream(callback_func=callback))
         with torch.no_grad():
             with self.llm_model.maybe_autocast():
-                self.llm_model.llama_model.generate(**kwargs)
+                self.llm_model.internlm_model.generate(**kwargs)
 
     def generate_with_streaming(self, **kwargs):
         return Iteratorize(self.generate_with_callback, kwargs, callback=None)
@@ -580,17 +578,17 @@ class Demo_UI:
                 stopping_criteria=self.stopping_criteria,
                 repetition_penalty=float(repetition_penalty),
                 max_length=max_output_tokens,
-                bos_token_id=self.llm_model.llama_tokenizer.bos_token_id,
-                eos_token_id=self.llm_model.llama_tokenizer.eos_token_id,
-                pad_token_id=self.llm_model.llama_tokenizer.pad_token_id,
+                bos_token_id=self.llm_model.internlm_tokenizer.bos_token_id,
+                eos_token_id=self.llm_model.internlm_tokenizer.eos_token_id,
+                pad_token_id=self.llm_model.internlm_tokenizer.pad_token_id,
             )
             state.messages[-1][-1] = "▌"
             with self.generate_with_streaming(**generate_params) as generator:
                 for output in generator:
-                    decoded_output = self.llm_model.llama_tokenizer.decode(
+                    decoded_output = self.llm_model.internlm_tokenizer.decode(
                         output[1:])
                     if output[-1] in [
-                            self.llm_model.llama_tokenizer.eos_token_id
+                            self.llm_model.internlm_tokenizer.eos_token_id
                     ]:
                         break
                     state.messages[-1][-1] = decoded_output + "▌"
@@ -601,7 +599,7 @@ class Demo_UI:
             yield (state, state.to_gradio_chatbot()) + (enable_btn, ) * 2
             return
         else:
-            outputs = self.llm_model.llama_model.generate(
+            outputs = self.llm_model.internlm_model.generate(
                 inputs_embeds=embs,
                 max_new_tokens=max_output_tokens,
                 stopping_criteria=self.stopping_criteria,
@@ -609,15 +607,15 @@ class Demo_UI:
                 #temperature=float(temperature),
                 do_sample=do_sample,
                 repetition_penalty=float(repetition_penalty),
-                bos_token_id=self.llm_model.llama_tokenizer.bos_token_id,
-                eos_token_id=self.llm_model.llama_tokenizer.eos_token_id,
-                pad_token_id=self.llm_model.llama_tokenizer.pad_token_id,
+                bos_token_id=self.llm_model.internlm_tokenizer.bos_token_id,
+                eos_token_id=self.llm_model.internlm_tokenizer.eos_token_id,
+                pad_token_id=self.llm_model.internlm_tokenizer.pad_token_id,
             )
 
             output_token = outputs[0]
             if output_token[0] == 0:
                 output_token = output_token[1:]
-            output_text = self.llm_model.llama_tokenizer.decode(
+            output_text = self.llm_model.internlm_tokenizer.decode(
                 output_token, add_special_tokens=False)
             print(output_text)
             output_text = output_text.split('<TOKENS_UNUSED_1>')[

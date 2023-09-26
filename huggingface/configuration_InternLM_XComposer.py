@@ -33,7 +33,7 @@ class InternLMXComposerConfig(PretrainedConfig):
         intern_converted_llm=True,
         kqvo_bias=True,
         device='cuda',
-        llama_lora=None,
+        internlm_lora=None,
         **kwargs,
     ):
         self.vocab_size = vocab_size
@@ -49,7 +49,7 @@ class InternLMXComposerConfig(PretrainedConfig):
         self.bias = bias
         self.num_query_token = num_query_token
         self.num_quant = num_quant
-        self.llama_lora = llama_lora
+        self.internlm_lora = internlm_lora
         self.kqvo_bias = kqvo_bias
         self.intern_converted_llm = intern_converted_llm
         self.device = device
