@@ -59,9 +59,6 @@ We evaluate InternLM-VL on five multimodal benchmarks: [MMBench](https://opencom
 
 InternLM-VL outperforms existing vision-language large models on **all the five benchmarks**, demonstrating stronger multilingual comprehension ability.
 
-<p align="center">
-    <img src="performance_radar.png" width="600"/>
-<p>
 
 ### MME Benchmark
 
@@ -70,10 +67,10 @@ InternLM-VL outperforms existing vision-language large models on **all the five 
 InternLM-VL achieves SOTAs on overall performance evaluation. See more details on [HERE](eval_mm/mme/EVAL_MME.md).
 
 <p align="center">
-    <img src="eval_mm/mme/perception.jpg" width="600"/>
+    <img src="eval_mm/mme/perception.PNG" width="600"/>
 <p>
 <p align="center">
-    <img src="eval_mm/mme/cognition.jpg" width="600"/>
+    <img src="eval_mm/mme/cognition.PNG" width="600"/>
 <p>
 
 
@@ -82,11 +79,11 @@ InternLM-VL achieves SOTAs on overall performance evaluation. See more details o
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. See more details on [HERE](eval_mm/mmbench/EVAL_MMBench.md).
 
 <p align="center">
-    <img src="performance_mmbench.png" width="600"/>
+    <img src="eval_mm/mmbench/mmbench.PNG" width="1000"/>
 <p>
 
 <p align="center">
-    <img src="performance_mmbench_cn.png" width="600"/>
+    <img src="eval_mm/mmbench/mmbench_cn.PNG" width="1000"/>
 <p>
 
   - InternLM-VL performs **SOTA**.
@@ -98,15 +95,15 @@ InternLM-VL achieves SOTAs on overall performance evaluation. See more details o
 InternLM-VL achieves SOTAs on this benchmark for images.
 
 <p align="center">
-    <img src="eval_mm/seed_bench/leaderboard.jpg"/>
+    <img src="eval_mm/seed_bench/seed_bench.PNG" width="1000"/>
 <p>
 
-### ChineseBench
+### ChineseCultureBench
 
-[ChineseBench]() is a benchmark for chinese language and knowledge comprehension. See more details on [HERE](eval_mm/seed_bench/EVAL_SEED.md).
+[ChineseCultureBench]() is a benchmark for chinese language and knowledge comprehension. See more details on [HERE](eval_mm/seed_bench/EVAL_SEED.md).
 
 <p align="center">
-    <img src="performance_chinese-bench.png" width="600"/>
+    <img src="eval_mm/mmbench/ccbench.PNG" width="1000"/>
 <p>
 
 - InternLM-VL performs **SOTA** on chinese language and knowledge.
