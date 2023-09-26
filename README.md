@@ -75,7 +75,7 @@ Overall Performance
 <p>
 
 
-<p align="center">
+<center>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -85,7 +85,8 @@ Overall Performance
 |   4  |    Skywork-MM   |      Skywork-MM-13B      | 1775.5 |
 |   5  |       BLIVA     |    FlanT5xxl             | 1669.2 |
 
-<p>
+</center>
+
 
 
 <p align="center">
@@ -107,7 +108,7 @@ InternLM-XComposer-VL achieves SOTAs on both test and dev split. See more detail
 MMBench Test Split
 <p>
 
-<p align="center">
+<center>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -117,7 +118,7 @@ MMBench Test Split
 |   4  |  WeMM   |      InternLM-7B      | 69.0 |
 |   5  |     mPLUG-Owl     |    LLaMA2 7B            |  68.5 |
 
-<p>
+</center>
 
 <p align="center">
     <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
@@ -127,7 +128,7 @@ MMBench Test Split
 MMBench-CN Test Split
 <p>
 
-<p align="center">
+<center>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -137,7 +138,7 @@ MMBench-CN Test Split
 |   4  |    VosualGLM   | ChatGLM 6B | 25.6 |
 |   5  |    mPLUG-Owl | LLaMA2 7B  | 24.9 |
 
-<p>
+</center>
 
 <p align="center">
     <img src="evaluation/mmbench/mmbench_cn.PNG" width="1000"/>
@@ -154,7 +155,7 @@ InternLM-VL achieves SOTAs on this benchmark for images.
 SeedBench Image Evaluation
 <p>
 
-<p align="center">
+<center>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -164,7 +165,7 @@ SeedBench Image Evaluation
 |   4  |    InstructBLIP-Vicuna   |        Vicuna 7B  | 58.8 |
 |   5  |    InstructBLIP   |     Flan-T5-XL  | 57.8 |
 
-<p>
+</center>
 
 <p align="center">
     <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
@@ -178,7 +179,7 @@ SeedBench Image Evaluation
 CCBench Performance
 <p>
 
-<p align="center">
+<center>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -188,7 +189,7 @@ CCBench Performance
 |   3  |    InstructBLIP       |        Vicuna 7B  | 12.1 |
 |   4  |    VosualGLM   | ChatGLM 6B | 9.2  |
 
-<p>
+</center>
 
 <p align="center">
     <img src="evaluation/mmbench/ccbench.PNG" width="1000"/>
