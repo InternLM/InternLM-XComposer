@@ -31,8 +31,6 @@ for sample in tqdm(seed_bench):
             'answer': sample['answer'] ,
     }
     answer_list.append(answer_record)
-    if len(answer_list) > 200:
-        break
 
 score = 0
 for i, answer_record in enumerate(answer_list):
