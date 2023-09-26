@@ -3,9 +3,9 @@ import os
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
 from utils import generate_answer_with_ppl, SeedDataset
-seed_bench = SeedDataset('/mnt/petrelfs/share_data/fangyixiao/mm_data_protocol/SEED-Bench/data/SEED-Bench-image')
+seed_bench = SeedDataset('PATH TO SEED IMAGE')
 
-tgt_dir = '/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_performance'
+tgt_dir = 'PATH TO MODEL'
 hf_tokenizer = AutoTokenizer.from_pretrained(tgt_dir, trust_remote_code=True)
 hf_model = AutoModel.from_pretrained(tgt_dir, trust_remote_code=True)
 hf_model.cuda()
@@ -31,6 +31,8 @@ for sample in tqdm(seed_bench):
             'answer': sample['answer'] ,
     }
     answer_list.append(answer_record)
+    if len(answer_list) > 200:
+        break
 
 score = 0
 for i, answer_record in enumerate(answer_list):

@@ -101,7 +101,7 @@ class SeedDataset(Dataset):
                  cc3m_path,
                  ):
         self.cc3m_path = cc3m_path
-        temps = json.load(open('/mnt/petrelfs/share_data/fangyixiao/mm_data_protocol/SEED-Bench/data/SEED-Bench.json', 'r'))
+        temps = json.load(open('PATH TO SEED JSON', 'r'))
         self.samples = [temp for temp in temps['questions'] if temp['data_type'] == 'image']
         self.q_types = {}
         for k, v in temps['question_type'].items():
