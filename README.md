@@ -42,9 +42,9 @@ We release InternLM-XComposer series in two versions:
 
 
 ## News and Updates
-* ```2023.8.27``` 🎉🎉🎉 The evaluation code of **InternLM-XComposer-VL-7B** are publicly available.
-* ```2023.8.27``` 🎉🎉🎉 **InternLM-XComposer-7B** and **InternLM-XComposer-VL-7B** are publicly available on ModelScope and Hugging Face. 
-* ```2023.8.27``` 🎉🎉🎉 We release a [technical report]() for more details of our model series.
+* ```2023.9.27``` 🎉🎉🎉 The evaluation code of **InternLM-XComposer-VL-7B** are publicly available.
+* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-7B** and **InternLM-XComposer-VL-7B** are publicly available on ModelScope and Hugging Face. 
+* ```2023.9.27``` 🎉🎉🎉 We release a [technical report]() for more details of our model series.
 <br>
 
 ## Evaluation
