@@ -41,10 +41,10 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        self.llm_model = AutoModel.from_pretrained('chat/',
-                                                   trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained('chat/',
-                                                  trust_remote_code=True)
+        self.llm_model = AutoModel.from_pretrained(
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
         self.llm_model.eval().to('cuda')
