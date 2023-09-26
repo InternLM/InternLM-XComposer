@@ -13,7 +13,6 @@ from torch.nn import CrossEntropyLoss
 from transformers.activations import ACT2FN
 from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutputWithPast
 from transformers.modeling_utils import PreTrainedModel
-from transformers.utils import add_start_docstrings
 from transformers.utils import logging
 
 from modeling_utils import LoRALinear
@@ -22,7 +21,6 @@ from .configuration_InternLM_XComposer import InternLMXComposerConfig
 logger = logging.get_logger(__name__)
 
 _CONFIG_FOR_DOC = "InternLMXComposerConfig"
-""" PyTorch LLaMA model."""
 
 
 class ApplyRotaryEmbQKV_(torch.autograd.Function):
