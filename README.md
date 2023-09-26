@@ -197,8 +197,8 @@ If you find our paper and code useful in your research, please consider giving a
 ```BibTeX
 @article{InternLM-XComposer,
   title={InternLM-XComposer: A Vision-Language Large Model for Advanced Text-image Comprehension and Composition},
-  author={},
-  journal={},
+  author={Zhang and Pan, Dong and Xiaoyi, Wang and Bin, Cao and Yuhang, Xu and Chao, Ouyang and Linke, Zhao and Zhiyuan, Ding and Shuangrui, Zhang and Songyang, Duan and Haodong, Yan and Hang, Zhang and Xinyue, Li and Wei, Li and Jingwen, Chen and Kai, He and Conghui, Zhang and Xingcheng, Qiao and Yu, Lin and Dahua, Wang and Jiaqi},
+  journal={arXiv preprint},
   year={2023}
 }
 ```
