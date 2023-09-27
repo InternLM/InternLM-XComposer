@@ -228,35 +228,46 @@ model.tokenizer = tokenizer
 image = 'examples/images/aiyinsitan.jpg'
 
 # Single-Turn Pure-Text Dialogue
-text = '请介绍下爱因斯坦的生平'
+text = 'Please introduce Einstein.'
 response = model.generate(text)
-# '阿尔伯特·爱因斯坦（Albert Einstein，1879年3月14日－1955年4月18日），德国裔瑞士籍物理学家。他创立了现代物理学的两大支柱理论：
-# 相对论和量子力学， 而质能等价公式E=mc2便是他的相对论思想的明证，因而被公认为是继伽利略、牛顿之后最伟大的物理学家。
-# 1999年，爱因斯坦被美国《时代周刊》评选为20世纪的“世纪人物”，他在物理学上的贡献，使他在世界各地受到人们的尊敬。'
+print(response)
+# 'Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, 
+# one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence 
+# on the philosophy of science. In 1921, Einstein was awarded the Nobel Prize in Physics "for his services to 
+# theoretical physics, and especially for his discovery of the law of the photoelectric effect.'
+
 
 # Single-Turn Text-Image Dialogue
-text = '请问这张图片里面的人是谁？并介绍下他。'
+text = 'Please introduce the person in this picture in detail.'
 image = 'examples/images/aiyinsitan.jpg'
 response = model.generate(text, image)
-# 图片中的男子是阿尔伯特·爱因斯坦（Albert Einstein），一位著名的物理学家和理论物理学家。他于1879年3月14日出生于德国巴登-符腾堡州的乌尔姆市，
-# 1955 年4月18日逝世于美国新泽西州普林斯顿市。爱因斯坦在20世纪初提出了狭义相对论和广义相对论，对现代物理学的发展产生了深远影响。
+print(response)
+# 'The person in the picture is Albert Einstein, a renowned theoretical physicist and one of the most influential 
+# scientists of the 20th century. He was born on March 14, 1879, in Ulm, Germany, and died on April 18, 1955, 
+# in Princeton, New Jersey.'
+
 
 # Multi-Turn Text-Image Dialogue
 # 1st turn
-text = '图片里面的是谁？'
+text = 'Who is in the picture?'
 response, history = model.chat(text=text, image=image, history=None)
-# 阿尔伯特·爱因斯坦。
+print(response)
+# 'Albert Einstein is in the picture.'
 
 # 2nd turn
-text = '他有哪些成就?'
+text = 'What are his achievements?'
 response, history = model.chat(text=text, image=None, history=history)
-# 阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一，他提出了狭义相对论和广义相对论，对现代物理学的发展产生了深远影响。
-# 此外，他还提出了著名的质能方程E=mc²，为核能的开发提供了理论基础。
+print(response)
+# 'Albert Einstein was a German-born theoretical physicist who developed the general theory of relativity, 
+# one of the two pillars of modern physics (alongside quantum mechanics). He is best known for his mass–energy 
+# equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), and his explanation of 
+# the photoelectric effect, both of which are examples of his special and general theories of relativity.'
 
 # 3rd turn
-text = '他是最伟大的物理学家吗?'
+text = 'Is he the greatest physicist?'
 response, history = model.chat(text=text, image=None, history=history)
-# 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。
+print(response)
+# 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
 ```
 
 ## Demo
