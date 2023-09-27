@@ -9,7 +9,7 @@
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="">🤗</a>&nbsp | Technical Report <a href="">  📄 <a>
+        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a>&nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 <a>
 
 <!-- [English](./README.md) | [简体中文](./README_zh.md) -->
 
@@ -47,7 +47,7 @@ We release InternLM-XComposer series in two versions:
 ## News and Updates
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
 * ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-7B** and **InternLM-XComposer-VL-7B** are publicly available on ModelScope and Hugging Face. 
-* ```2023.9.27``` 🎉🎉🎉 We release a [technical report]() for more details of our model series.
+* ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
 <br>
 
 ## Evaluation
@@ -108,7 +108,7 @@ InternLM-XComposer-VL achieves SOTAs on both test and dev split. See more detail
 MMBench Test Split
 </p>
 
-<center>
+<div align='center'>
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
@@ -118,7 +118,7 @@ MMBench Test Split
 |   4  |  WeMM   |      InternLM-7B      | 69.0 |
 |   5  |     mPLUG-Owl     |    LLaMA2 7B            |  68.5 |
 
-</center>
+</div>
 
 <p align="center">
     <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
@@ -278,11 +278,13 @@ python examples/web_demo.py
 If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil: :)
 
 ```BibTeX
-@article{InternLM-XComposer,
-  title={InternLM-XComposer: A Vision-Language Large Model for Advanced Text-image Comprehension and Composition},
-  author={Zhang and Pan, Dong and Xiaoyi, Wang and Bin, Cao and Yuhang, Xu and Chao, Ouyang and Linke, Zhao and Zhiyuan, Ding and Shuangrui, Zhang and Songyang, Duan and Haodong, Yan and Hang, Zhang and Xinyue, Li and Wei, Li and Jingwen, Chen and Kai, He and Conghui, Zhang and Xingcheng, Qiao and Yu, Lin and Dahua, Wang and Jiaqi},
-  journal={arXiv preprint},
-  year={2023}
+@misc{zhang2023internlmxcomposer,
+      title={InternLM-XComposer: A Vision-Language Large Model for Advanced Text-image Comprehension and Composition}, 
+      author={Pan Zhang and Xiaoyi Dong Bin Wang and Yuhang Cao and Chao Xu and Linke Ouyang and Zhiyuan Zhao and Shuangrui Ding and Songyang Zhang and Haodong Duan and Hang Yan and Xinyue Zhang and Wei Li and Jingwen Li and Kai Chen and Conghui He and Xingcheng Zhang and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      year={2023},
+      eprint={2309.15112},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
 

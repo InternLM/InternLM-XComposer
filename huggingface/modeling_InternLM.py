@@ -15,8 +15,8 @@ from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutpu
 from transformers.modeling_utils import PreTrainedModel
 from transformers.utils import logging
 
-from modeling_utils import LoRALinear
 from .configuration_InternLM_XComposer import InternLMXComposerConfig
+from .modeling_utils import LoRALinear
 
 logger = logging.get_logger(__name__)
 
