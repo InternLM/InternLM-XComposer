@@ -11,7 +11,7 @@
 <div align="center">
         InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a>&nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 <a>
 
-<!-- [English](./README.md) | [简体中文](./README_zh.md) -->
+[English](./README.md) | [简体中文](./README_CN.md)
 
 </div>
 
@@ -29,7 +29,7 @@
     3. **Image Retrieval and Selection**: It select image candidates and identify the image that optimally complements the content.
 
 - **Comprehension with Rich Multilingual Knowledge**: The text-image comprehension is empowered by training on extensive multi-modal multilingual concepts with carefully crafted strategies, resulting in a deep understanding of visual content.
-- **Strong performance**: It consistently achieves state-of-the-art results across various benchmarks for vision-language large models, including [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) (English), [MMBench](https://opencompass.org.cn/leaderboard-multimodal) (English), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) (English), [CCBench](https://opencompass.org.cn/leaderboard-multimodal)(Chinese), and [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) (Chineese).
+- **Strong performance**: It consistently achieves state-of-the-art results across various benchmarks for vision-language large models, including [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) (English), [MMBench](https://opencompass.org.cn/leaderboard-multimodal) (English), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) (English), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal)(Chinese), and [CCBench](https://opencompass.org.cn/leaderboard-multimodal)(Chinese).
 
 We release InternLM-XComposer series in two versions:
 
@@ -99,9 +99,9 @@ Overall Performance
 
 ### MMBench & MMBench-CN
 
-[MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. 
+[MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) is the Chinese language version of MMBench.
 
-InternLM-XComposer-VL achieves SOTAs on both test and dev split. See more details on [HERE](evaluation/mmbench/MMBench.md).
+InternLM-XComposer-VL achieves SOTAs on the test split of both MMBench and MMBench-CN. See more details on [HERE](evaluation/mmbench/MMBench.md).
 
 
 <p align="center">
@@ -121,7 +121,7 @@ MMBench Test Split
 </div>
 
 <p align="center">
-    <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
+    <img src="evaluation/mmbench/mmbench_en.PNG" width="1000"/>
 </p>
 
 <p align="center">
@@ -141,14 +141,14 @@ MMBench-CN Test Split
 </div>
 
 <p align="center">
-    <img src="evaluation/mmbench/mmbench_cn.PNG" width="1000"/>
+    <img src="evaluation/mmbench/mmbench_cn_en.PNG" width="1000"/>
 </p>
 
 ### SEED-Bench
 
 [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) is a multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs, covering 12 evaluation dimensions including both **image** and **video** understanding. See more details on [HERE](evaluation/seed_bench/SEED.md).
 
-InternLM-VL achieves SOTAs on this benchmark for images.
+InternLM-XComposer-VL achieves SOTAs on this benchmark for images.
 
 
 <p align="center">
@@ -192,7 +192,7 @@ CCBench Performance
 </div>
 
 <p align="center">
-    <img src="evaluation/mmbench/ccbench.PNG" width="1000"/>
+    <img src="evaluation/mmbench/ccbench_en.PNG" width="1000"/>
 </p>
 
 ## Requirements
