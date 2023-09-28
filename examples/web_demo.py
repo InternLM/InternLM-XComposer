@@ -44,12 +44,10 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        #self.llm_model = AutoModel.from_pretrained(
-        #    'internlm/internlm-xcomposer-7b', trust_remote_code=True)
-        #tokenizer = AutoTokenizer.from_pretrained(
-        #    'internlm/internlm-xcomposer-7b', trust_remote_code=True)
-        self.llm_model = AutoModel.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
+        self.llm_model = AutoModel.from_pretrained(
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
         self.llm_model.eval().to('cuda')
@@ -60,6 +58,8 @@ class Demo_UI:
             torch.Tensor([103027]), skip_special_tokens=True)
         self.eoa = self.llm_model.internlm_tokenizer.decode(
             torch.Tensor([103028]), skip_special_tokens=True)
+        self.soi_id = len(tokenizer) - 1
+        self.soi_token = '<SOI_TOKEN>'
 
         self.vis_processor = self.llm_model.vis_processor
         self.device = 'cuda'
@@ -75,6 +75,7 @@ class Demo_UI:
         self.stopping_criteria = StoppingCriteriaList(
             [StoppingCriteriaSub(stops=stop_words_ids)])
         self.r2 = re.compile(r'<Seg[0-9]*>')
+        self.max_txt_len = 1680
 
     def reset(self):
         self.output_text = ''
@@ -175,40 +176,127 @@ class Demo_UI:
         caps = self.generate_cap(text_sections, locs, progress)
         return caps
 
-    def model_select_image(self, out_text, caps, root, progress):
+    def interleav_wrap(self, img_embeds, text):
+        batch_size = img_embeds.shape[0]
+        im_len = img_embeds.shape[1]
+        text = text[0]
+        text = text.replace('<Img>', '')
+        text = text.replace('</Img>', '')
+        parts = text.split('<ImageHere>')
+        assert batch_size + 1 == len(parts)
+        warp_tokens = []
+        warp_embeds = []
+        warp_attns = []
+        soi = (torch.ones([1, 1]) * self.soi_id).long().to(img_embeds.device)
+        soi_embeds = self.llm_model.internlm_model.model.embed_tokens(soi)
+        temp_len = 0
+
+        for idx, part in enumerate(parts):
+            if len(part) > 0:
+                part_tokens = self.llm_model.internlm_tokenizer(
+                    part, return_tensors="pt",
+                    add_special_tokens=False).to(img_embeds.device)
+                part_embeds = self.llm_model.internlm_model.model.embed_tokens(
+                    part_tokens.input_ids)
+
+                warp_tokens.append(part_tokens.input_ids)
+                warp_embeds.append(part_embeds)
+                temp_len += part_embeds.shape[1]
+            if idx < batch_size:
+                warp_tokens.append(soi.expand(-1, img_embeds[idx].shape[0]))
+                # warp_tokens.append(soi.expand(-1, img_embeds[idx].shape[0] + 1))
+                # warp_embeds.append(soi_embeds) ### 1, 1, C
+                warp_embeds.append(img_embeds[idx].unsqueeze(0))  ### 1, 34, C
+                temp_len += im_len
+
+            if temp_len > self.max_txt_len:
+                break
+
+        warp_embeds = torch.cat(warp_embeds, dim=1)
+
+        return warp_embeds[:, :self.max_txt_len].to(img_embeds.device)
+
+    def align_text(self, samples):
+        text_new = []
+        text = [t + self.eoa + ' </s>' for t in samples["text_input"]]
+        for i in range(len(text)):
+            temp = text[i]
+            temp = temp.replace('###Human', '<|User|>')
+            temp = temp.replace('### Human', '<|User|>')
+            temp = temp.replace('<|User|> :', '<|User|>:')
+            temp = temp.replace('<|User|>: ', '<|User|>:')
+            temp = temp.replace('<|User|>', ' <|User|>')
+
+            temp = temp.replace('###Assistant', '<|Bot|>')
+            temp = temp.replace('### Assistant', '<|Bot|>')
+            temp = temp.replace('<|Bot|> :', '<|Bot|>:')
+            temp = temp.replace('<|Bot|>: ', '<|Bot|>:')
+            temp = temp.replace('<|Bot|>', self.eoh + ' <|Bot|>')
+            if temp.find('<|User|>') > temp.find('<|Bot|>'):
+                temp = temp.replace(' <|User|>', self.eoa + ' <|User|>')
+            text_new.append(temp)
+            #print (temp)
+        return text_new
+
+    def model_select_image(self, output_text, caps, root, progress):
         print('model_select_image')
+        pre_text = ''
         pre_img = []
         pre_text_list = []
         ans2idx = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-        selected = dict()
-        for i, text in progress.tqdm(enumerate(out_text.split('\n')), desc="image selection"):
-            if i not in caps:
-                continue
-            images = copy.deepcopy(pre_img)
-            for j in range(4):
-                img_path = os.path.join(
-                    root, f'temp_{self.show_ids[i] * 1000 + i}_{j}.png')
-                images.append(img_path)
-            instruct = ' <|User|>:根据给定上下文和候选图像，选择合适的配图：\n\n候选图像包括:'
-            prompt_embeds = [self.llm_model.encode_text(instruct)]
-            options = ['A', '\nB', '\nC', '\nD']
-            for option, img in zip(options, images):
-                option_embed = self.llm_model.encode_text(option)
-                img_embed = self.llm_model.encode_img(img)
-                prompt_embeds.extend([option_embed, img_embed])
-            prompt_embeds.append(
-                self.llm_model.encode_text('\n\n<TOKENS_UNUSED_0> <|Bot|>:最合适的图是'))
-            prompt_embeds = torch.cat(prompt_embeds, dim=1)
-            out_embeds = self.llm_model.internlm_model.generate(
-                inputs_embeds=prompt_embeds,
-                do_sample=False,
-                num_beams=5,
-                max_length=10,
-                repetition_penalty=1.,
-            )
-            out_option = self.llm_model.decode_text(out_embeds)
-            answer = out_option[1] if out_text[0] == ' ' else out_option[0]
-            selected[i] = ans2idx[answer]
+        selected = {k: 0 for k in caps.keys()}
+        for i, text in enumerate(output_text.split('\n')):
+            pre_text += text + '\n'
+            if i in caps:
+                images = copy.deepcopy(pre_img)
+                for j in range(4):
+                    image = Image.open(
+                        os.path.join(
+                            root, f'temp_{self.show_ids[i] * 1000 + i}_{j}.png'
+                        )).convert("RGB")
+                    image = self.vis_processor(image)
+                    images.append(image)
+                images = torch.stack(images, dim=0)
+
+                pre_text_list.append(pre_text)
+                pre_text = ''
+
+                images = images.cuda()
+                instruct = ' <|User|>:根据给定上下文和候选图像，选择合适的配图：'
+                input_text = '<ImageHere>'.join(
+                    pre_text_list
+                ) + '\n\n候选图像包括: A.<ImageHere>\nB.<ImageHere>\nC.<ImageHere>\nD.<ImageHere>\n\n<TOKENS_UNUSED_0> <|Bot|>:最合适的图是'
+                input_text = instruct + input_text
+                samples = {}
+                samples['text_input'] = [input_text]
+                self.llm_model.debug_flag = 0
+                with torch.no_grad():
+                    with torch.cuda.amp.autocast():
+                        img_embeds = self.llm_model.encode_img(images)
+                        input_text = self.align_text(samples)
+                        img_embeds = self.interleav_wrap(
+                            img_embeds, input_text)
+                bos = torch.ones(
+                    [1, 1]) * self.llm_model.internlm_tokenizer.bos_token_id
+                bos = bos.long().to(images.device)
+                meta_embeds = self.llm_model.internlm_model.model.embed_tokens(
+                    bos)
+                inputs_embeds = torch.cat([meta_embeds, img_embeds], dim=1)
+
+                with torch.cuda.amp.autocast():
+                    outputs = self.llm_model.internlm_model.generate(
+                        inputs_embeds=inputs_embeds[:, :-2],
+                        do_sample=False,
+                        num_beams=5,
+                        max_length=10,
+                        repetition_penalty=1.,
+                    )
+                out_text = self.llm_model.internlm_tokenizer.decode(
+                    outputs[0][1:], add_special_tokens=False)
+
+                answer = out_text[1] if out_text[0] == ' ' else out_text[0]
+                pre_img.append(images[len(pre_img) + ans2idx[answer]].cpu())
+                selected[i] = ans2idx[answer]
         return selected
 
     def show_md(self, text_sections, title, caps, selected, show_cap=False):
@@ -779,7 +867,8 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                              value=1000.0,
                                              step=1.0,
                                              label='Max output tokens')
-                        msi = gr.Checkbox(value=True, label='Model selects images')
+                        msi = gr.Checkbox(value=True,
+                                          label='Model selects images')
                         random = gr.Checkbox(label='Do_sample')
 
                 with gr.Column(scale=1):
