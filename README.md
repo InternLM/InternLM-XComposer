@@ -47,9 +47,11 @@ We release InternLM-XComposer series in two versions:
 
 
 
-https://github.com/InternLM/InternLM-XComposer/assets/22662425/c47eb874-1e72-4cd0-a6a9-c9049bd8037e
+
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/51f749a5-49ce-4f33-95d5-8ef1ff019246
 
 
+Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/blob/main/README_CN.md#demo) for the demo of the Chinese version.
 
 
 
