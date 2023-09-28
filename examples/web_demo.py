@@ -1,13 +1,16 @@
 import os
 import re
+import sys
+sys.path.insert(0, '.')
+sys.path.insert(0, '..')
 
 import gradio as gr
-
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
+import copy
 import time
 import shutil
 import requests
-from PIL import ImageFile
+from PIL import Image, ImageFile
 import torch
 import transformers
 from transformers import StoppingCriteriaList, AutoTokenizer, AutoModel
@@ -41,10 +44,12 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        self.llm_model = AutoModel.from_pretrained(
-            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained(
-            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+        #self.llm_model = AutoModel.from_pretrained(
+        #    'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+        #tokenizer = AutoTokenizer.from_pretrained(
+        #    'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+        self.llm_model = AutoModel.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained('/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
         self.llm_model.eval().to('cuda')
@@ -170,36 +175,38 @@ class Demo_UI:
         caps = self.generate_cap(text_sections, locs, progress)
         return caps
 
-    def model_select_image(self, out_text, caps, root, show_ids):
+    def model_select_image(self, out_text, caps, root, progress):
         print('model_select_image')
+        pre_img = []
+        pre_text_list = []
         ans2idx = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
         selected = dict()
-        for i, text in enumerate(out_text.split('\n')):
+        for i, text in progress.tqdm(enumerate(out_text.split('\n')), desc="image selection"):
             if i not in caps:
                 continue
-            images = []
+            images = copy.deepcopy(pre_img)
             for j in range(4):
                 img_path = os.path.join(
-                    root, f'temp_{show_ids[i] * 1000 + i}_{j}.png')
+                    root, f'temp_{self.show_ids[i] * 1000 + i}_{j}.png')
                 images.append(img_path)
             instruct = ' <|User|>:根据给定上下文和候选图像，选择合适的配图：\n\n候选图像包括:'
-            prompt_embeds = [self.encode_text(instruct)]
+            prompt_embeds = [self.llm_model.encode_text(instruct)]
             options = ['A', '\nB', '\nC', '\nD']
             for option, img in zip(options, images):
-                option_embed = self.encode_text(option)
-                img_embed = self.encode_img(img)
+                option_embed = self.llm_model.encode_text(option)
+                img_embed = self.llm_model.encode_img(img)
                 prompt_embeds.extend([option_embed, img_embed])
             prompt_embeds.append(
-                self.encode_text('\n\n<TOKENS_UNUSED_0> <|Bot|>:最合适的图是'))
+                self.llm_model.encode_text('\n\n<TOKENS_UNUSED_0> <|Bot|>:最合适的图是'))
             prompt_embeds = torch.cat(prompt_embeds, dim=1)
-            out_embeds = self.internlm_model.generate(
+            out_embeds = self.llm_model.internlm_model.generate(
                 inputs_embeds=prompt_embeds,
                 do_sample=False,
                 num_beams=5,
                 max_length=10,
                 repetition_penalty=1.,
             )
-            out_option = self.decode_text(out_embeds)
+            out_option = self.llm_model.decode_text(out_embeds)
             answer = out_option[1] if out_text[0] == ' ' else out_option[0]
             selected[i] = ans2idx[answer]
         return selected
@@ -772,7 +779,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                              value=1000.0,
                                              step=1.0,
                                              label='Max output tokens')
-                        msi = gr.Checkbox(label='Model selects images')
+                        msi = gr.Checkbox(value=True, label='Model selects images')
                         random = gr.Checkbox(label='Do_sample')
 
                 with gr.Column(scale=1):

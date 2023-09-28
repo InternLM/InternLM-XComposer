@@ -40,6 +40,15 @@
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
+## Demo
+
+
+
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f41-a5df-796680fa56cd
+
+
+
+
 
 
 ## 更新消息

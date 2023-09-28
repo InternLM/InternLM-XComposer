@@ -46,6 +46,14 @@ We release InternLM-XComposer series in two versions:
 ## Demo
 
 
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
+
+
+
+
+Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/blob/main/README_CN.md#demo) for the demo of the Chinese version.
+
+
 
 ## News and Updates
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
