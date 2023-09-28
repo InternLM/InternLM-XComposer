@@ -47,7 +47,10 @@ We release InternLM-XComposer series in two versions:
 
 
 
-https://github.com/InternLM/InternLM-XComposer/assets/22662425/8442676e-4de9-45ec-bb0d-90f1f8813e98
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/c47eb874-1e72-4cd0-a6a9-c9049bd8037e
+
+
+
 
 
 
