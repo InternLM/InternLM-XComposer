@@ -43,6 +43,10 @@ We release InternLM-XComposer series in two versions:
 <p> -->
 
 
+## Demo
+
+https://github.com/panzhang0212/interleaved_io/blob/main/InternLM-XComposer_cps.mp4
+
 
 ## News and Updates
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
@@ -269,8 +273,6 @@ response, history = model.chat(text=text, image=None, history=history)
 print(response)
 # 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
 ```
-
-## Demo
 
 ### Web UI
 
