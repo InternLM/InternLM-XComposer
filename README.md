@@ -45,7 +45,10 @@ We release InternLM-XComposer series in two versions:
 
 ## Demo
 
-https://github.com/panzhang0212/interleaved_io/raw/main/InternLM-XComposer_cps.mp4
+<video width="320" height="240" controls>
+  <source src="https://github.com/panzhang0212/interleaved_io/raw/main/InternLM-XComposer_cps.mp4" type="video/mp4">
+</video>
+
 
 
 ## News and Updates
