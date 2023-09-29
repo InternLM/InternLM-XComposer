@@ -33,8 +33,10 @@
 
 We release InternLM-XComposer series in two versions:
 
-- [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b): The pretrained VLLM model with InternLM as the initialization of the LLM, achieving strong performance on various multimodal benchmarks, e.g., MME Benchmark, MMBench Seed-Bench, CCBench, and MMBench-CN.
-- [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b): The finetuned VLLM for *Interleaved Text-Image Composition* and *LLM-based AI assistant*.
+- [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b): The pretrained and multi-task trained VLLM model with InternLM as the initialization of the LLM, achieving strong performance on various multimodal benchmarks, e.g., MME Benchmark, MMBench Seed-Bench, CCBench, and MMBench-CN.
+- [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b): The further instruction tuned VLLM for *Interleaved Text-Image Composition* and *LLM-based AI assistant*.
+
+Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for more details.
   <br>
 
 <!-- 
