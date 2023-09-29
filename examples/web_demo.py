@@ -48,6 +48,7 @@ class Demo_UI:
             'internlm/internlm-xcomposer-7b', trust_remote_code=True)
         tokenizer = AutoTokenizer.from_pretrained(
             'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
         self.llm_model.eval().to('cuda')
@@ -848,7 +849,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                        scale=1)
 
             with gr.Row():
-                with gr.Column(scale=2):
+                with gr.Column(scale=1):
                     with gr.Accordion("Advanced Settings",
                                       open=False,
                                       visible=True) as parameter_article:
@@ -873,8 +874,8 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
 
                 with gr.Column(scale=1):
                     gr.Examples(
-                        examples=[["我的海南自驾游"],
-                                  ["My Hainan self-driving tour"]],
+                        examples=[["又见敦煌"], ["星链新闻稿"], ["如何养好一只宠物"],
+                                  ["Shanghai Travel Guide in English"], ["Travel guidance of London in English"], ["Advertising for Genshin Impact in English"]],
                         inputs=[title],
                     )
 
@@ -1060,4 +1061,4 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
     demo.queue(concurrency_count=8, status_update_rate=10, api_open=False)
 
 if __name__ == "__main__":
-    demo.launch(share=True, server_name="0.0.0.0", server_port=11111)
+    demo.launch(share=True, server_name="0.0.0.0", server_port=10111)
