@@ -112,7 +112,8 @@ Overall Performance
 
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) is the Chinese language version of MMBench.
 
-InternLM-XComposer-VL achieves SOTAs on the test split of both MMBench and MMBench-CN. See more details on [HERE](evaluation/mmbench/MMBench.md).
+InternLM-XComposer-VL a
+chieves SOTAs on the test split of both MMBench and MMBench-CN. See more details on [HERE](evaluation/mmbench/MMBench.md).
 
 
 <p align="center">
@@ -285,12 +286,16 @@ print(response)
 
 We provide code for users to build a web UI demo.
 
+<p align="center">
+    <img src="demo_asset/assets/UI_en.png" width="800"/>
+</p>
+
 Please run the command below:
 
 ```
 python examples/web_demo.py
 ```
-
+The user guidance of UI demo is given in [HERE](demo_asset/demo.md).
 <br>
 
 ## Citation
