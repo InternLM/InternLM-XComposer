@@ -1066,4 +1066,4 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
     demo.queue(concurrency_count=8, status_update_rate=10, api_open=False)
 
 if __name__ == "__main__":
-    demo.launch(share=True, server_name="0.0.0.0", server_port=10111)
+    demo.launch(share=True, server_name="0.0.0.0", server_port=11111)
