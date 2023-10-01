@@ -1,0 +1,23 @@
+# Configuration for Cog ⚙️
+# Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
+
+build:
+  gpu: true
+  python_version: "3.9"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+    - "ninja-build"
+  python_packages:
+    - "xlsxwriter==3.1.2"
+    - "sentencepiece==0.1.99"
+    - "transformers==4.33.3"
+    - "torch==2.0.1"
+    - "pillow==10.0.1"
+    - "torchvision==0.15.2"
+    - ipython
+    - "timm==0.4.12"
+    - "einops==0.6.1"
+  run:
+    - git clone https://github.com/Dao-AILab/flash-attention.git && cd flash-attention && python setup.py install && cd csrc/rotary && pip install -e .
+predict: "predict.py:Predictor"
