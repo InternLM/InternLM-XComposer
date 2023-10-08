@@ -295,8 +295,8 @@ torch.set_grad_enabled(False)
 
 # init model and tokenizer
 model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
-model = AutoModel.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True).cuda().eval()
-tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True)
+model = AutoModel.from_pretrained(model_dir, trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 model.tokenizer = tokenizer
 
 # example image
