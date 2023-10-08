@@ -9,7 +9,7 @@
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a>&nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 <a>
+        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a> &nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a> &nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -31,8 +31,8 @@
 
 我们开源的浦语·灵笔包括两个版本:
 
-- [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b): 基于书生·浦语大语言模型的多模态预训练和多任务训练模型，在多种评测上表现出杰出性能, 例如：MME Benchmark, MMBench Seed-Bench, CCBench, MMBench-CN.
-- [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b): 面向 *图文交错文章创作* 和 *智能对话* 的微调模型。
+- **InternLM-XComposer-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a>: 基于书生·浦语大语言模型的多模态预训练和多任务训练模型，在多种评测上表现出杰出性能, 例如：MME Benchmark, MMBench Seed-Bench, CCBench, MMBench-CN.
+- **InternLM-XComposer-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a>: 面向 *图文交错文章创作* 和 *智能对话* 的微调模型。
  
 更多方法细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf)．
   <br>
@@ -54,8 +54,9 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 
 ## 更新消息
+* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
 * ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源.
-* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-7B** 和 **InternLM-XComposer-VL-7B** 已在Hugging Face开源. 
+* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源. 
 * ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf).
 <br>
 
