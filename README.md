@@ -285,7 +285,7 @@ print(response)
 # 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
 ```
 
-#### 🤗 ModelScope
+#### 🤖 ModelScope
 
 ```python
 import torch

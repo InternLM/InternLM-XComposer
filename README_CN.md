@@ -274,7 +274,7 @@ print(response)
 # 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。
 ```
 
-#### 🤗 ModelScope
+#### 🤖 ModelScope
 
 ```python
 import torch
