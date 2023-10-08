@@ -44,14 +44,10 @@ def get_urls(caption, exclude):
 
 class Demo_UI:
     def __init__(self):
-        # self.llm_model = AutoModel.from_pretrained(
-        #     'internlm/internlm-xcomposer-7b', trust_remote_code=True)
-        # tokenizer = AutoTokenizer.from_pretrained(
-        #     'internlm/internlm-xcomposer-7b', trust_remote_code=True)
         self.llm_model = AutoModel.from_pretrained(
-            '/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
         tokenizer = AutoTokenizer.from_pretrained(
-            '/mnt/petrelfs/share_data/dongxiaoyi/share_models/release_chat', trust_remote_code=True)
+            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
 
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
