@@ -304,13 +304,19 @@ print(response)
 
 ### Web UI
 
-我们提供了一个轻松搭建 web UI demo 的代码.
+我们提供了一个轻松搭建 Web UI demo 的代码.
+
+<p align="center">
+    <img src="demo_asset/assets/UI_en.png" width="800"/>
+</p>
+
 
 请运行以下代码
 
 ```
 python examples/web_demo.py
 ```
+更多信息请参考 Web UI [用户指南](demo_asset/demo.md).
 
 <br>
 
