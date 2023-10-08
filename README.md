@@ -285,6 +285,33 @@ print(response)
 # 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
 ```
 
+#### 🤗 ModelScope
+
+```python
+import torch
+from modelscope import snapshot_download, AutoModel, AutoTokenizer
+
+torch.set_grad_enabled(False)
+
+# init model and tokenizer
+model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
+model = AutoModel.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True)
+model.tokenizer = tokenizer
+
+# example image
+image = 'examples/images/aiyinsitan.jpg'
+
+# Single-Turn Pure-Text Dialogue
+text = 'Please introduce Einstein.'
+response = model.generate(text)
+print(response)
+# 'Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, 
+# one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence 
+# on the philosophy of science. In 1921, Einstein was awarded the Nobel Prize in Physics "for his services to 
+# theoretical physics, and especially for his discovery of the law of the photoelectric effect.'
+```
+
 ### Web UI
 
 We provide code for users to build a web UI demo.

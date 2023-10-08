@@ -274,6 +274,32 @@ print(response)
 # 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。
 ```
 
+#### 🤗 ModelScope
+
+```python
+import torch
+from modelscope import snapshot_download, AutoModel, AutoTokenizer
+
+torch.set_grad_enabled(False)
+
+# init model and tokenizer
+model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
+model = AutoModel.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True)
+model.tokenizer = tokenizer
+
+# example image
+image = 'examples/images/aiyinsitan.jpg'
+
+# Single-Turn Pure-Text Dialogue
+text = '请介绍下爱因斯坦的生平'
+response = model.generate(text)
+print(response)
+# '阿尔伯特·爱因斯坦（Albert Einstein，1879年3月14日－1955年4月18日），德国裔瑞士籍物理学家。他创立了现代物理学的两大支柱理论：
+# 相对论和量子力学， 而质能等价公式E=mc2便是他的相对论思想的明证，因而被公认为是继伽利略、牛顿之后最伟大的物理学家。
+# 1999年，爱因斯坦被美国《时代周刊》评选为20世纪的“世纪人物”，他在物理学上的贡献，使他在世界各地受到人们的尊敬。'
+```
+
 ## Demo
 
 ### Web UI
