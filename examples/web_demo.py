@@ -72,6 +72,8 @@ class Demo_UI:
             torch.tensor([46323]).to(self.device),  ### new setting
             torch.tensor([103027]).to(self.device),  ### new setting
             torch.tensor([103028]).to(self.device),  ### new setting
+            torch.tensor([333]).to(self.device),  ### <|User|>
+            torch.tensor([497]).to(self.device),  ### <|User|>
         ]
         self.stopping_criteria = StoppingCriteriaList(
             [StoppingCriteriaSub(stops=stop_words_ids)])
@@ -684,7 +686,7 @@ class Demo_UI:
                     decoded_output = self.llm_model.internlm_tokenizer.decode(
                         output[1:])
                     if output[-1] in [
-                            self.llm_model.internlm_tokenizer.eos_token_id
+                            self.llm_model.internlm_tokenizer.eos_token_id, 333, 497
                     ]:
                         break
                     state.messages[-1][-1] = decoded_output + "▌"
