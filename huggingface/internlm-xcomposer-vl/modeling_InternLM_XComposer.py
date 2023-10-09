@@ -74,14 +74,13 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
             # speed up init llm
             with torch.device('meta'):
                 self.internlm_model = InternLMForCausalLM._from_config(config)
-            self.internlm_model.to_empty(device=config.device).to(
-                torch.float16)
+            self.internlm_model.to_empty(device=config.device).to(torch.float16)
         for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
                 m.float()
 
         self.internlm_proj = nn.Linear(self.Qformer.config.hidden_size,
-                                       self.internlm_model.config.hidden_size)
+                                    self.internlm_model.config.hidden_size)
         print('Done')
 
         self.vis_processor = transforms.Compose([
@@ -126,11 +125,11 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         encoder_config.add_cross_attention = True
         encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
-        if pretrain:
-            Qformer = BertLMHeadModel.from_pretrained("bert-base-uncased",
-                                                      config=encoder_config)
-        else:
-            Qformer = BertLMHeadModel(config=encoder_config)
+        # if pretrain:
+        #     Qformer = BertLMHeadModel.from_pretrained("bert-base-uncased",
+        #                                               config=encoder_config)
+        # else:
+        Qformer = BertLMHeadModel(config=encoder_config)
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size))
         query_tokens.data.normal_(mean=0.0,
@@ -159,14 +158,13 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
                 encoder_attention_mask=image_atts,
                 return_dict=True,
             )
-            inputs_internlm = self.internlm_proj(
-                query_output.last_hidden_state)
+            inputs_internlm = self.internlm_proj(query_output.last_hidden_state)
             inputs_internlm = torch.cat([
                 self.flag_image_start.expand(inputs_internlm.shape[0], -1, -1),
                 inputs_internlm,
                 self.flag_image_end.expand(inputs_internlm.shape[0], -1, -1)
             ],
-                                        dim=1)
+                                      dim=1)
         return inputs_internlm
 
     def encode_text(self, text, add_special_tokens=False):
@@ -201,8 +199,8 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         text_embeds = self.encode_text(text)
         img_embeds = self.encode_img(image)
         prompt_embeds = self.wrap_prompt(text_embeds, img_embeds)
-        out_embeds = self.internlm_model.generate(
-            inputs_embeds=prompt_embeds, **self.get_gen_args(**kwargs))
+        out_embeds = self.internlm_model.generate(inputs_embeds=prompt_embeds,
+                                                **self.get_gen_args(**kwargs))
         out_text = self.decode_text(out_embeds)
         return out_text
 
@@ -212,8 +210,8 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         prompt_embeds = self.wrap_prompt(text_embeds,
                                          img_embeds,
                                          history=history)
-        out_embeds = self.internlm_model.generate(
-            inputs_embeds=prompt_embeds, **self.get_gen_args(**kwargs))
+        out_embeds = self.internlm_model.generate(inputs_embeds=prompt_embeds,
+                                                **self.get_gen_args(**kwargs))
         out_text = self.decode_text(out_embeds)
 
         # trunc at eoh and eoa

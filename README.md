@@ -9,7 +9,7 @@
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a>&nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 <a>
+        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a> &nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a> &nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -33,8 +33,8 @@
 
 We release InternLM-XComposer series in two versions:
 
-- [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b): The pretrained and multi-task trained VLLM model with InternLM as the initialization of the LLM, achieving strong performance on various multimodal benchmarks, e.g., MME Benchmark, MMBench Seed-Bench, CCBench, and MMBench-CN.
-- [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b): The further instruction tuned VLLM for *Interleaved Text-Image Composition* and *LLM-based AI assistant*.
+- **InternLM-XComposer-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a>: The pretrained and multi-task trained VLLM model with InternLM as the initialization of the LLM, achieving strong performance on various multimodal benchmarks, e.g., MME Benchmark, MMBench Seed-Bench, CCBench, and MMBench-CN.
+- **InternLM-XComposer-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* and *LLM-based AI assistant*.
 
 Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for more details.
   <br>
@@ -58,8 +58,9 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 
 ## News and Updates
+* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**. 
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
-* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-7B** and **InternLM-XComposer-VL-7B** are publicly available on ModelScope and Hugging Face. 
+* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**. 
 * ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
 <br>
 
@@ -282,6 +283,33 @@ text = 'Is he the greatest physicist?'
 response, history = model.chat(text=text, image=None, history=history)
 print(response)
 # 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
+```
+
+#### 🤖 ModelScope
+
+```python
+import torch
+from modelscope import snapshot_download, AutoModel, AutoTokenizer
+
+torch.set_grad_enabled(False)
+
+# init model and tokenizer
+model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
+model = AutoModel.from_pretrained(model_dir, trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
+model.tokenizer = tokenizer
+
+# example image
+image = 'examples/images/aiyinsitan.jpg'
+
+# Single-Turn Pure-Text Dialogue
+text = 'Please introduce Einstein.'
+response = model.generate(text)
+print(response)
+# 'Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, 
+# one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence 
+# on the philosophy of science. In 1921, Einstein was awarded the Nobel Prize in Physics "for his services to 
+# theoretical physics, and especially for his discovery of the law of the photoelectric effect.'
 ```
 
 ### Web UI

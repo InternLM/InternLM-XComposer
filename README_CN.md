@@ -9,7 +9,7 @@
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a>&nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a>&nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 <a>
+        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a> &nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a> &nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -31,8 +31,8 @@
 
 我们开源的浦语·灵笔包括两个版本:
 
-- [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b): 基于书生·浦语大语言模型的多模态预训练和多任务训练模型，在多种评测上表现出杰出性能, 例如：MME Benchmark, MMBench Seed-Bench, CCBench, MMBench-CN.
-- [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b): 面向 *图文交错文章创作* 和 *智能对话* 的微调模型。
+- **InternLM-XComposer-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a>: 基于书生·浦语大语言模型的多模态预训练和多任务训练模型，在多种评测上表现出杰出性能, 例如：MME Benchmark, MMBench Seed-Bench, CCBench, MMBench-CN.
+- **InternLM-XComposer-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a>: 面向 *图文交错文章创作* 和 *智能对话* 的微调模型。
  
 更多方法细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf)．
   <br>
@@ -54,8 +54,9 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 
 ## 更新消息
+* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
 * ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源.
-* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-7B** 和 **InternLM-XComposer-VL-7B** 已在Hugging Face开源. 
+* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源. 
 * ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf).
 <br>
 
@@ -273,17 +274,49 @@ print(response)
 # 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。
 ```
 
+#### 🤖 ModelScope
+
+```python
+import torch
+from modelscope import snapshot_download, AutoModel, AutoTokenizer
+
+torch.set_grad_enabled(False)
+
+# init model and tokenizer
+model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
+model = AutoModel.from_pretrained(model_dir, trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
+model.tokenizer = tokenizer
+
+# example image
+image = 'examples/images/aiyinsitan.jpg'
+
+# Single-Turn Pure-Text Dialogue
+text = '请介绍下爱因斯坦的生平'
+response = model.generate(text)
+print(response)
+# '阿尔伯特·爱因斯坦（Albert Einstein，1879年3月14日－1955年4月18日），德国裔瑞士籍物理学家。他创立了现代物理学的两大支柱理论：
+# 相对论和量子力学， 而质能等价公式E=mc2便是他的相对论思想的明证，因而被公认为是继伽利略、牛顿之后最伟大的物理学家。
+# 1999年，爱因斯坦被美国《时代周刊》评选为20世纪的“世纪人物”，他在物理学上的贡献，使他在世界各地受到人们的尊敬。'
+```
+
 ## Demo
 
 ### Web UI
 
-我们提供了一个轻松搭建 web UI demo 的代码.
+我们提供了一个轻松搭建 Web UI demo 的代码.
+
+<p align="center">
+    <img src="demo_asset/assets/UI_en.png" width="800"/>
+</p>
+
 
 请运行以下代码
 
 ```
 python examples/web_demo.py
 ```
+更多信息请参考 Web UI [用户指南](demo_asset/demo.md).
 
 <br>
 
