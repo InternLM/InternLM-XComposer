@@ -325,7 +325,7 @@ We provide code for users to build a web UI demo.
     <img src="demo_asset/assets/UI_en.png" width="800"/>
 </p>
 
-Please run the command below (GPU memory >= 32GB):
+Please run the command below (GPU memory >= 32GB, Recommended):
 
 ```
 python examples/web_demo.py

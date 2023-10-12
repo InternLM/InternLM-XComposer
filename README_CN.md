@@ -315,7 +315,7 @@ print(response)
 </p>
 
 
-请运行以下代码（需要>=32GB显存的GPU）
+请运行以下代码（需要>=32GB显存的GPU, 推荐）
 
 ```
 python examples/web_demo.py
