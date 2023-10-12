@@ -325,14 +325,14 @@ We provide code for users to build a web UI demo.
     <img src="demo_asset/assets/UI_en.png" width="800"/>
 </p>
 
-Please run the command below (Used for GPU with more than 32GB of memory):
+Please run the command below (GPU memory >= 32GB):
 
 ```
 python examples/web_demo.py
 ```
 The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
 
-To run the 4-bit demo (Used for GPU with less than 12GB of memory), The dependency of 4-bit inference is given in [HERE](docs/install.md).:
+To run the 4-bit demo (GPU memory >= 12GB), The dependency of 4-bit inference is given in [HERE](docs/install.md).:
 ```
 python examples/web_demo_4bit.py
 ```

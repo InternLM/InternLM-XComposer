@@ -483,7 +483,7 @@ class Demo_UI:
         else:
             return components + [enable_btn] * 2
 
-    def adjust_img(self, img_num, progress=gr.Progress):
+    def adjust_img(self, img_num, progress=gr.Progress()):
         text_sections = self.output_text.split('\n')
         idx_text_sections = [
             f'<Seg{i}>' + ' ' + it + '\n' for i, it in enumerate(text_sections)
