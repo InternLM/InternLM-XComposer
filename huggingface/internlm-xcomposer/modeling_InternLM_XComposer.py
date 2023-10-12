@@ -101,15 +101,8 @@ conversation
 
         self.tokenizer = None
 
-    @property
-    def eoh(self):
-        return self.tokenizer.decode(torch.Tensor([103027]),
-                                     skip_special_tokens=True)
-
-    @property
-    def eoa(self):
-        return self.tokenizer.decode(torch.Tensor([103028]),
-                                     skip_special_tokens=True)
+        self.eoh = '<TOKENS_UNUSED_0>'  # end of human
+        self.eoa = '<TOKENS_UNUSED_1>'  # end of assistant
 
     def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
