@@ -46,7 +46,7 @@ def get_urls(caption, exclude):
     return urls, idx
 
 
-class OPTGPTQForCausalLM(BaseGPTQForCausalLM):
+class InternLMXComposerQForCausalLM(BaseGPTQForCausalLM):
     layers_block_name = "internlm_model.model.layers"
     outside_layer_modules = [
         'query_tokens', 'flag_image_start', 'flag_image_end', 'visual_encoder', 'Qformer',
@@ -64,7 +64,7 @@ class OPTGPTQForCausalLM(BaseGPTQForCausalLM):
 
 class Demo_UI:
     def __init__(self, folder):
-        self.llm_model = OPTGPTQForCausalLM.from_quantized(folder, trust_remote_code=True)
+        self.llm_model = InternLMXComposerQForCausalLM.from_quantized(folder, device='cuda:0', trust_remote_code=True)
         tokenizer = AutoTokenizer.from_pretrained(folder, trust_remote_code=True)
 
         self.llm_model.internlm_tokenizer = tokenizer
