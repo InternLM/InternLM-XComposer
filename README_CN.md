@@ -322,12 +322,16 @@ python examples/web_demo.py
 ```
 更多信息请参考 Web UI [用户指南](demo_asset/demo.md)。 如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
 
-请运行以下代码，使用4bit量化模型（需要>=12GB显存的GPU）,使用4-bit需要的额外依赖包见 [依赖包](docs/install_CN.md):
+<br>
+
+## 量化
+我们提供4bit量化模型来缓解模型的内存需求。 要运行4bit模型（GPU内存> = 12GB），您需要首先安装相应的[依赖包](docs/install_CN.md)，然后执行以下脚本进行聊天和网页演示：
 ```
+# 4-bit chat
+python examples/example_chat_4bit.py
+# 4-bit web demo
 python examples/web_demo_4bit.py
 ```
-如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
-<br>
 
 ## 引用
 

@@ -332,11 +332,14 @@ python examples/web_demo.py
 ```
 The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
 
-To run the 4-bit demo (GPU memory >= 12GB), The dependency of 4-bit inference is given in [HERE](docs/install.md).:
+## Quantilization
+We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](docs/install.md), then execute the follows scripts for chat and web demo:
 ```
+# 4-bit chat
+python examples/example_chat_4bit.py
+# 4-bit web demo
 python examples/web_demo_4bit.py
 ```
-If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
 <br>
 
 ## Citation
