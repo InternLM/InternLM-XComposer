@@ -251,10 +251,11 @@ image = 'examples/images/aiyinsitan.jpg'
 text = 'Please introduce Einstein.'
 response = model.generate(text)
 print(response)
-# 'Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, 
-# one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence 
-# on the philosophy of science. In 1921, Einstein was awarded the Nobel Prize in Physics "for his services to 
-# theoretical physics, and especially for his discovery of the law of the photoelectric effect.'
+# Albert Einstein was a German-born theoretical physicist who developed the general theory of relativity, one of the 
+# two pillars of modern physics (alongside quantum mechanics). He is best known for his mass–energy equivalence 
+# formula E = mc2 (which has been dubbed "the world's most famous equation"), and his explanation of the photoelectric 
+# effect, both of which are examples of his special and general theories of relativity. Einstein is widely regarded as 
+# one of the most influential physicists of all time.
 
 
 # Single-Turn Text-Image Dialogue
@@ -262,9 +263,9 @@ text = 'Please introduce the person in this picture in detail.'
 image = 'examples/images/aiyinsitan.jpg'
 response = model.generate(text, image)
 print(response)
-# 'The person in the picture is Albert Einstein, a renowned theoretical physicist and one of the most influential 
-# scientists of the 20th century. He was born on March 14, 1879, in Ulm, Germany, and died on April 18, 1955, 
-# in Princeton, New Jersey.'
+# The person in the picture is Albert Einstein, a renowned theoretical physicist and one of the most influential 
+# scientists of the 20th century. He is depicted in a black and white portrait, wearing a suit and tie, and has a 
+# serious expression on his face.
 
 
 # Multi-Turn Text-Image Dialogue
@@ -272,22 +273,22 @@ print(response)
 text = 'Who is in the picture?'
 response, history = model.chat(text=text, image=image, history=None)
 print(response)
-# 'Albert Einstein is in the picture.'
+# Albert Einstein is in the picture.
 
 # 2nd turn
 text = 'What are his achievements?'
 response, history = model.chat(text=text, image=None, history=history)
 print(response)
-# 'Albert Einstein was a German-born theoretical physicist who developed the general theory of relativity, 
+# Albert Einstein was a German-born theoretical physicist who developed the general theory of relativity, 
 # one of the two pillars of modern physics (alongside quantum mechanics). He is best known for his mass–energy 
 # equivalence formula E = mc2 (which has been dubbed "the world's most famous equation"), and his explanation of 
-# the photoelectric effect, both of which are examples of his special and general theories of relativity.'
+# the photoelectric effect, both of which are examples of his special and general theories of relativity.
 
 # 3rd turn
 text = 'Is he the greatest physicist?'
 response, history = model.chat(text=text, image=None, history=history)
 print(response)
-# 'Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time'
+# Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time.
 ```
 
 #### 🤖 ModelScope
@@ -311,10 +312,11 @@ image = 'examples/images/aiyinsitan.jpg'
 text = 'Please introduce Einstein.'
 response = model.generate(text)
 print(response)
-# 'Albert Einstein was a German-born theoretical physicist. He developed the general theory of relativity, 
-# one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence 
-# on the philosophy of science. In 1921, Einstein was awarded the Nobel Prize in Physics "for his services to 
-# theoretical physics, and especially for his discovery of the law of the photoelectric effect.'
+# Albert Einstein was a German-born theoretical physicist who developed the general theory of relativity, one of the 
+# two pillars of modern physics (alongside quantum mechanics). He is best known for his mass–energy equivalence 
+# formula E = mc2 (which has been dubbed "the world's most famous equation"), and his explanation of the photoelectric 
+# effect, both of which are examples of his special and general theories of relativity. Einstein is widely regarded as 
+# one of the most influential physicists of all time.
 ```
 
 ### Web UI
