@@ -19,3 +19,9 @@ pip3 install torch torchvision torchaudio
 ```bash
 pip install transformers==4.30.2 timm==0.4.12 sentencepiece==0.1.99 gradio==3.44.4 markdown2==2.4.10 xlsxwriter==3.1.2 einops
 ```
+
+### 可选: 4-bit测试额外需要安装的包
+
+```bash
+pip install auto_gptq transformers==4.33.1
+```

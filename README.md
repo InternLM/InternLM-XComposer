@@ -62,6 +62,7 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 
 ## News and Updates
+* ```2023.10.12``` 🎉🎉🎉 4-bit demo is supported, model files are available in [Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit).
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**. 
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
 * ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**. 
@@ -324,12 +325,18 @@ We provide code for users to build a web UI demo.
     <img src="demo_asset/assets/UI_en.png" width="800"/>
 </p>
 
-Please run the command below:
+Please run the command below (Used for GPU with more than 32GB of memory):
 
 ```
 python examples/web_demo.py
 ```
-The user guidance of UI demo is given in [HERE](demo_asset/demo.md).
+The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
+
+To run the 4-bit demo (Used for GPU with less than 12GB of memory), The dependency of 4-bit inference is given in [HERE](docs/install.md).:
+```
+python examples/web_demo_4bit.py
+```
+If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
 <br>
 
 ## Citation

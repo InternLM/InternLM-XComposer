@@ -57,6 +57,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 
 ## 更新消息
+* ```2023.10.12``` 🎉🎉🎉 支持4比特量化Demo， 模型文件可从[Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit) 获取
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
 * ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源.
 * ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源. 
@@ -314,13 +315,18 @@ print(response)
 </p>
 
 
-请运行以下代码
+请运行以下代码（需要>=32GB显存的GPU）
 
 ```
 python examples/web_demo.py
 ```
-更多信息请参考 Web UI [用户指南](demo_asset/demo.md).
+更多信息请参考 Web UI [用户指南](demo_asset/demo.md)。 如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
 
+请运行以下代码，使用4bit量化模型（需要>=12GB显存的GPU）,使用4-bit需要的额外依赖包见 [依赖包](docs/install_CN.md):
+```
+python examples/web_demo_4bit.py
+```
+如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
 <br>
 
 ## 引用

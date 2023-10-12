@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, '.')
 sys.path.insert(0, '..')
 
+import argparse
 import gradio as gr
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
 import copy
@@ -43,11 +44,9 @@ def get_urls(caption, exclude):
 
 
 class Demo_UI:
-    def __init__(self):
-        self.llm_model = AutoModel.from_pretrained(
-            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
-        tokenizer = AutoTokenizer.from_pretrained(
-            'internlm/internlm-xcomposer-7b', trust_remote_code=True)
+    def __init__(self, folder):
+        self.llm_model = AutoModel.from_pretrained(folder, trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(folder, trust_remote_code=True)
 
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
@@ -295,8 +294,13 @@ class Demo_UI:
                 out_text = self.llm_model.internlm_tokenizer.decode(
                     outputs[0][1:], add_special_tokens=False)
 
-                answer = out_text[1] if out_text[0] == ' ' else out_text[0]
-                pre_img.append(images[len(pre_img) + ans2idx[answer]].cpu())
+                try:
+                    answer = out_text[1] if out_text[0] == ' ' else out_text[0]
+                    pre_img.append(images[len(pre_img) + ans2idx[answer]].cpu())
+                except:
+                    print('Select fail, use first image')
+                    answer = 'A'
+                    pre_img.append(images[len(pre_img) + ans2idx[answer]].cpu())
                 selected[i] = ans2idx[answer]
         return selected
 
@@ -813,7 +817,11 @@ def change_language(lang):
            [chat_textbox, submit_btn, regenerate_btn, clear_btn]
 
 
-demo_ui = Demo_UI()
+parser = argparse.ArgumentParser()
+parser.add_argument("--folder", default='internlm/internlm-xcomposer-7b')
+parser.add_argument("--private", default=False, action='store_true')
+args = parser.parse_args()
+demo_ui = Demo_UI(args.folder)
 
 with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as demo:
     with gr.Row():
@@ -1062,4 +1070,8 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
     demo.queue(concurrency_count=8, status_update_rate=10, api_open=False)
 
 if __name__ == "__main__":
-    demo.launch(share=True, server_name="0.0.0.0", server_port=11111)
+    if args.private:
+        demo.launch(share=False, server_name="127.0.0.1", server_port=11111)
+    else:
+        demo.launch(share=True, server_name="0.0.0.0", server_port=11111)
+
