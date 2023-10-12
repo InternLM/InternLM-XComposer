@@ -64,7 +64,7 @@ class OPTGPTQForCausalLM(BaseGPTQForCausalLM):
 
 class Demo_UI:
     def __init__(self, folder):
-        self.llm_model = AutoModel.from_pretrained(folder, trust_remote_code=True)
+        self.llm_model = OPTGPTQForCausalLM.from_quantized(folder, trust_remote_code=True)
         tokenizer = AutoTokenizer.from_pretrained(folder, trust_remote_code=True)
 
         self.llm_model.internlm_tokenizer = tokenizer
