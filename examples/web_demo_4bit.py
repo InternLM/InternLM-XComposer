@@ -839,7 +839,7 @@ def change_language(lang):
            [chat_textbox, submit_btn, regenerate_btn, clear_btn]
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--folder", default='internlm/internlm-xcomposer-7b')
+parser.add_argument("--folder", default='internlm/internlm-xcomposer-7b-4bit')
 parser.add_argument("--private", default=False, action='store_true')
 args = parser.parse_args()
 demo_ui = Demo_UI(args.folder)
