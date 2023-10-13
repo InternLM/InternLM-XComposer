@@ -828,13 +828,13 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
         with gr.Column(scale=20):
             #gr.HTML("""<h1 align="center" id="space-title" style="font-size:35px;">🤗 浦语·灵笔 (InternLM-XComposer)</h1>""")
             gr.HTML(
-                """<h1 align="center"><img src="https://raw.githubusercontent.com/panzhang0212/interleaved_io/main/logo.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 200px;" /></a> </h1>"""
+                """<h1 align="center"><img src="https://raw.githubusercontent.com/InternLM/InternLM-XComposer/main/logo-en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
             )
         with gr.Column(scale=1, min_width=100):
             lang_btn = gr.Button("中文")
 
     with gr.Tabs(elem_classes="tab-buttons") as tabs:
-        with gr.TabItem("📝 创作图文并茂文章 (Write Interleaved-text-image Article)"):
+        with gr.TabItem("📝 Write Interleaved-text-image Article (创作图文并茂文章)"):
             with gr.Row():
                 title = gr.Textbox(
                     label=
@@ -969,7 +969,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                  add_delete_btns + cap_textboxs + cap_searchs +
                                  editers)
 
-        with gr.TabItem("💬 多模态对话 (Multimodal Chat)", elem_id="chat", id=0):
+        with gr.TabItem("💬 Multimodal Chat (多模态对话)", elem_id="chat", id=0):
             chat_state = gr.State()
             img_list = gr.State()
             with gr.Row():
@@ -1067,7 +1067,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                 [beam, repetition, text_num, msi, random, img_num, adjust_btn] + cap_searchs + editers +\
                                 [save_btn, save_file] + [parameter_row, chat_max_output_tokens, chat_num_beams, chat_repetition_penalty, chat_do_sample] +\
                                 [chat_textbox, submit_btn, regenerate_btn, clear_btn])
-    demo.queue(concurrency_count=8, status_update_rate=10, api_open=False)
+    demo.queue(concurrency_count=1, status_update_rate=10, api_open=False)
 
 if __name__ == "__main__":
     if args.private:
