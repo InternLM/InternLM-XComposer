@@ -65,10 +65,6 @@ class Demo_UI:
         self.device = 'cuda'
 
         stop_words_ids = [
-            torch.tensor([943]).to(self.device),
-            torch.tensor([2917, 44930]).to(self.device),
-            torch.tensor([45623]).to(self.device),  ### new setting
-            torch.tensor([46323]).to(self.device),  ### new setting
             torch.tensor([103027]).to(self.device),  ### new setting
             torch.tensor([103028]).to(self.device),  ### new setting
         ]
