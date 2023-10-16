@@ -283,14 +283,15 @@ class Demo_UI:
                     bos)
                 inputs_embeds = torch.cat([meta_embeds, img_embeds], dim=1)
 
-                with torch.cuda.amp.autocast():
-                    outputs = self.llm_model.internlm_model.generate(
-                        inputs_embeds=inputs_embeds[:, :-2],
-                        do_sample=False,
-                        num_beams=5,
-                        max_length=10,
-                        repetition_penalty=1.,
-                    )
+                with torch.no_grad():
+                    with torch.cuda.amp.autocast():
+                        outputs = self.llm_model.internlm_model.generate(
+                            inputs_embeds=inputs_embeds[:, :-2],
+                            do_sample=False,
+                            num_beams=5,
+                            max_length=10,
+                            repetition_penalty=1.,
+                        )
                 out_text = self.llm_model.internlm_tokenizer.decode(
                     outputs[0][1:], add_special_tokens=False)
 
