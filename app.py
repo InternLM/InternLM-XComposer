@@ -94,15 +94,17 @@ class Demo_UI:
         print('image downloaded')
         return idxs
 
-    def generate(self, text, random, beam, max_length, repetition):
+    def generate(self, text, random, beam, max_length, repetition, use_inputs=False):
         input_tokens = self.llm_model.internlm_tokenizer(
             text, return_tensors="pt",
             add_special_tokens=True).to(self.llm_model.device)
         img_embeds = self.llm_model.internlm_model.model.embed_tokens(
             input_tokens.input_ids)
+        inputs = input_tokens.input_ids if use_inputs else None
         with torch.no_grad():
             with self.llm_model.maybe_autocast():
                 outputs = self.llm_model.internlm_model.generate(
+                    inputs=inputs,
                     inputs_embeds=img_embeds,
                     stopping_criteria=self.stopping_criteria,
                     do_sample=random,
@@ -489,6 +491,32 @@ class Demo_UI:
         self.caps = caps
         return components
 
+    def generate_insert_cap(self, text_sections, pos):
+        pasts = ''
+        for idx, po in enumerate(sorted(self.caps.keys())):
+            if po < pos + 2:
+                cap_text = self.caps[po]
+                if idx == 0:
+                    pasts = f'现在<Seg{po}>后插入图像对应的标题是"{cap_text}"， '
+                else:
+                    pasts += f'<Seg{po}>后插入图像对应的标题是"{cap_text}"， '
+
+        full_txt = ''.join(text_sections[:pos + 2])
+        pasts = pasts[:-2] + '。'
+        input_text = f' <|User|>: 给定文章"{full_txt}" {pasts}给出适合在<Seg{pos}>后插入的图像对应的标题。' + ' \n<TOKENS_UNUSED_0> <|Bot|>: 标题是"'
+        print(input_text)
+
+        cap_text = self.generate(input_text,
+                                 random=False,
+                                 beam=1,
+                                 max_length=100 + len(input_text),
+                                 repetition=5.,
+                                 use_inputs=True)
+        print(cap_text)
+        cap_text = cap_text.split('<|Bot|>: 标题是"')[1].split('"')[0].strip()
+
+        return cap_text
+    
     def add_delete_image(self, text, status, index):
         index = int(index)
         if status == '\U0001f5d1\uFE0F':
@@ -501,10 +529,24 @@ class Demo_UI:
             cap_textbox = gr.Textbox.update(visible=False)
             cap_search = gr.Button.update(visible=False)
         else:
+            text_sections = self.output_text.split('\n')
+            idx_text_sections = [f'<Seg{i}>' + ' ' + it + '\n' for i, it in enumerate(text_sections)]
+            caps = self.generate_insert_cap(idx_text_sections, index)
+            self.caps[index] = caps
+            self.selected[index] = 0
+            if index in self.show_ids:
+                self.show_ids[index] += 1
+            else:
+                self.show_ids[index] = 1
+            self.get_images_xlab(caps, index, self.ex_idxs)
+
+            img_list = [('articles/{}/temp_{}_{}.png'.format(self.title, self.show_ids[index] * 1000 + index,
+                j), 'articles/{}/temp_{}_{}.png'.format(self.title, self.show_ids[index] * 1000 + index, j)) for j in range(4)]
+
             md_show = gr.Markdown.update()
-            gallery = gr.Gallery.update(visible=True, value=[])
+            gallery = gr.Gallery.update(visible=True, value=img_list)
             btn_show = gr.Button.update(value='\U0001f5d1\uFE0F')
-            cap_textbox = gr.Textbox.update(visible=True)
+            cap_textbox = gr.Textbox.update(visible=True, value=caps)
             cap_search = gr.Button.update(visible=True)
 
         return md_show, gallery, btn_show, cap_textbox, cap_search
