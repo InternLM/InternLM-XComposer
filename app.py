@@ -669,8 +669,9 @@ class Demo_UI:
                     None) + (no_change_btn, ) * 2
 
         if image is not None:
-            image_pt = self.vis_processor(image).unsqueeze(0).to(0)
-            image_emb = self.llm_model.encode_img(image_pt)
+            with torch.no_grad():
+                image_pt = self.vis_processor(image).unsqueeze(0).to(0)
+                image_emb = self.llm_model.encode_img(image_pt)
             img_list.append(image_emb)
 
             state.append_message(state.roles[0],
