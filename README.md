@@ -16,7 +16,7 @@
 </div>
 
 <p align="center">
-    Thanks the community for 3rd-party <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a> and <a href="https://replicate.com/cjwbw/internlm-xcomposer" target="_blank">Replicate Demo</a>
+    Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a> and <a href="https://replicate.com/cjwbw/internlm-xcomposer" target="_blank">Replicate Demo</a>
 </p>
 
 <p align="center">
