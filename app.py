@@ -531,7 +531,10 @@ class Demo_UI:
         else:
             text_sections = self.output_text.split('\n')
             idx_text_sections = [f'<Seg{i}>' + ' ' + it + '\n' for i, it in enumerate(text_sections)]
-            caps = self.generate_insert_cap(idx_text_sections, index)
+            try:
+                caps = self.generate_insert_cap(idx_text_sections, index)
+            except:
+                caps = text_sections[index][-50:]
             self.caps[index] = caps
             self.selected[index] = 0
             if index in self.show_ids:
