@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo-en.png" width="400"/>
+    <img src="logo-en.png" width="650"/>
 </p>
 <p align="center">
     <b><font size="6">InternLM-XComposer</font></b>
