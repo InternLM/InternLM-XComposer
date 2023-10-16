@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo.png" width="400"/>
+    <img src="logo-en.png" width="650"/>
 </p>
 <p align="center">
     <b><font size="6">InternLM-XComposer</font></b>
@@ -17,11 +17,11 @@
 </div>
 
 <p align="center">
-    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://github.com/InternLM/InternLM/assets/25839884/a6aad896-7232-4220-ac84-9e070c2633ce" target="_blank">WeChat</a>
+    Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a> and <a href="https://replicate.com/cjwbw/internlm-xcomposer" target="_blank">Replicate Demo</a>
 </p>
 
 <p align="center">
-    Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM-XComposer/pull/37">HuggingFace Demo </a> and <a href="https://github.com/InternLM/InternLM-XComposer/pull/9" target="_blank">Replicate Demo</a>
+    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://github.com/InternLM/InternLM/assets/25839884/a6aad896-7232-4220-ac84-9e070c2633ce" target="_blank">WeChat</a>
 </p>
 
 <br>
