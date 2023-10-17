@@ -103,6 +103,13 @@ conversation
 
         self.eoh = '<TOKENS_UNUSED_0>'  # end of human
         self.eoa = '<TOKENS_UNUSED_1>'  # end of assistant
+        stop_words_ids = [
+            torch.tensor([103027]).to(config.device),
+            torch.tensor([103028]).to(config.device),
+        ]
+        stopping_criteria = StoppingCriteriaList(
+            [StoppingCriteriaSub(stops=stop_words_ids)])
+        self.gen_config['stopping_criteria'] = stopping_criteria
 
     def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
