@@ -81,8 +81,8 @@ conversation
             # speed up init llm
             with torch.device('meta'):
                 self.internlm_model = InternLMForCausalLM._from_config(config)
-            self.internlm_model.to_empty(device=config.device).to(
-                torch.float16)
+            self.internlm_model.to_empty(device='cpu').to(torch.float16)
+            self.internlm_model.to(config.device)
         for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
                 m.float()
