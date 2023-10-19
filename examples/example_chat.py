@@ -1,11 +1,24 @@
+import sys
+sys.path.insert(0, '.')
+sys.path.insert(0, '..')
+import argparse
 import torch
 from transformers import AutoModel, AutoTokenizer
+from examples.utils import auto_configure_device_map
 
 torch.set_grad_enabled(False)
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--num_gpus", default=1, type=int)
+args = parser.parse_args()
 
 # init model and tokenizer
 model = AutoModel.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True).cuda().eval()
+if args.num_gpus > 1:
+    from accelerate import dispatch_model
+    device_map = auto_configure_device_map(args.num_gpus)
+    model = dispatch_model(model, device_map=device_map)
+
 tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True)
 model.tokenizer = tokenizer
 

@@ -23,6 +23,7 @@ from demo_asset.gradio_patch import Chatbot as grChatbot
 from demo_asset.serve_utils import Stream, Iteratorize
 from demo_asset.conversation import CONV_VISION_7132_v2, StoppingCriteriaSub
 from demo_asset.download import download_image_thread
+from examples.utils import auto_configure_device_map
 
 max_section = 60
 no_change_btn = gr.Button.update()
@@ -44,13 +45,17 @@ def get_urls(caption, exclude):
 
 
 class Demo_UI:
-    def __init__(self, folder):
-        self.llm_model = AutoModel.from_pretrained(folder, trust_remote_code=True)
+    def __init__(self, folder, num_gpus=1):
+        self.llm_model = AutoModel.from_pretrained(folder, trust_remote_code=True).cuda().eval()
+        if num_gpus > 1:
+            from accelerate import dispatch_model
+            device_map = auto_configure_device_map(args.num_gpus)
+            self.llm_model = dispatch_model(self.llm_model, device_map=device_map)
         tokenizer = AutoTokenizer.from_pretrained(folder, trust_remote_code=True)
 
         self.llm_model.internlm_tokenizer = tokenizer
         self.llm_model.tokenizer = tokenizer
-        self.llm_model.eval().to('cuda')
+        #self.llm_model.eval().to('cuda')
         self.device = 'cuda'
         print(f" load model done: ", type(self.llm_model))
 
@@ -864,8 +869,9 @@ def change_language(lang):
 parser = argparse.ArgumentParser()
 parser.add_argument("--folder", default='internlm/internlm-xcomposer-7b')
 parser.add_argument("--private", default=False, action='store_true')
+parser.add_argument("--num_gpus", default=1, type=int)
 args = parser.parse_args()
-demo_ui = Demo_UI(args.folder)
+demo_ui = Demo_UI(args.folder, args.num_gpus)
 
 with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as demo:
     with gr.Row():

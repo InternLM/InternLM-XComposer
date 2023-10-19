@@ -67,6 +67,7 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 
 ## News and Updates
+* ```2023.10.19``` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
 * ```2023.10.12``` 🎉🎉🎉 4-bit demo is supported, model files are available in [Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit).
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**. 
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
@@ -350,6 +351,15 @@ We provide 4-bit quantized models to ease the memory requirement of the models. 
 python examples/example_chat_4bit.py
 # 4-bit web demo
 python examples/web_demo_4bit.py
+```
+
+## Inference on Multiple GPUs
+If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, then execute the follows scripts for chat and web demo:
+```
+# chat with 2 GPUs
+python examples/example_chat.py --num_gpus 2
+# web demo with 2 GPUs
+python examples/web_demo.py --num_gpus 2
 ```
 <br>
 

@@ -57,6 +57,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 
 ## 更新消息
+* ```2023.10.19``` 🎉🎉🎉 支持多卡测试，多卡Demo. 两张4090显卡可部署全量Demo.
 * ```2023.10.12``` 🎉🎉🎉 支持4比特量化Demo， 模型文件可从[Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit) 获取
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
 * ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源.
@@ -338,6 +339,15 @@ python examples/web_demo.py
 python examples/example_chat_4bit.py
 # 4-bit web demo
 python examples/web_demo_4bit.py
+```
+
+## 多GPU测试
+如果你有多张 GPU，但是每张 GPU 的显存大小都不足以容纳完整的模型，那么可以将模型切分在多张GPU上。首先安装 accelerate: pip install accelerate，然后执行以下脚本进行聊天和网页演示：
+```
+# chat with 2 GPUs
+python examples/example_chat.py --num_gpus 2
+# web demo with 2 GPUs
+python examples/web_demo.py --num_gpus 2
 ```
 
 ## 引用
