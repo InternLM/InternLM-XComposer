@@ -81,8 +81,8 @@ conversation
             # speed up init llm
             with torch.device('meta'):
                 self.internlm_model = InternLMForCausalLM._from_config(config)
-            self.internlm_model.to_empty(device=config.device).to(
-                torch.float16)
+            self.internlm_model.to_empty(device='cpu').to(torch.float16)
+            self.internlm_model.to(config.device)
         for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
                 m.float()
@@ -103,6 +103,13 @@ conversation
 
         self.eoh = '<TOKENS_UNUSED_0>'  # end of human
         self.eoa = '<TOKENS_UNUSED_1>'  # end of assistant
+        stop_words_ids = [
+            torch.tensor([103027]).to(config.device),
+            torch.tensor([103028]).to(config.device),
+        ]
+        stopping_criteria = StoppingCriteriaList(
+            [StoppingCriteriaSub(stops=stop_words_ids)])
+        self.gen_config['stopping_criteria'] = stopping_criteria
 
     def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
