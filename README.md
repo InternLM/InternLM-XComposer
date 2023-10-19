@@ -363,6 +363,18 @@ python examples/web_demo.py --num_gpus 2
 ```
 <br>
 
+## Calculate TFLOPs and Params
+Required package
+```pip install calflops```
+
+```
+# text = 'Please introduce the person in this picture in detail.'
+# image = 'examples/images/aiyinsitan.jpg'
+python examples/example_params_and_flops.py
+```
+The expected output is FLOPs: 17.6 TFLOPS, Params: 8.8 B.
+
+
 ## Citation
 
 If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil: :)
