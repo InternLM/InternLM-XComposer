@@ -354,7 +354,7 @@ python examples/web_demo_4bit.py
 ```
 
 ## Inference on Multiple GPUs
-If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, then execute the follows scripts for chat and web demo:
+If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, execute the follows scripts for chat and web demo:
 ```
 # chat with 2 GPUs
 python examples/example_chat.py --num_gpus 2
