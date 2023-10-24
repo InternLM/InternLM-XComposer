@@ -870,6 +870,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--folder", default='internlm/internlm-xcomposer-7b')
 parser.add_argument("--private", default=False, action='store_true')
 parser.add_argument("--num_gpus", default=1, type=int)
+parser.add_argument("--port", default=11111, type=int)
 args = parser.parse_args()
 demo_ui = Demo_UI(args.folder, args.num_gpus)
 
@@ -1121,7 +1122,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
 
 if __name__ == "__main__":
     if args.private:
-        demo.launch(share=False, server_name="127.0.0.1", server_port=11111)
+        demo.launch(share=False, server_name="127.0.0.1", server_port=args.port)
     else:
-        demo.launch(share=True, server_name="0.0.0.0", server_port=11111)
+        demo.launch(share=True, server_name="0.0.0.0", server_port=args.port)
 
