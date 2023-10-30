@@ -90,14 +90,11 @@ We evaluate InternLM-XComposer-VL on seven multimodal benchmarks: [MME Benchmark
 
 InternLM-XComposer-VL outperforms existing vision-language large models on **all the seven benchmarks**, demonstrating stronger multilingual comprehension ability.
 
-<details>
-  <summary>
-    <b>MME Benchmark</b>
-  </summary>
+### MME Benchmark
 
 [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) is a comprehensive evaluation benchmark for multimodal large language models. It measures both perception and cognition abilities on a total of 14 subtasks, including existence, count, position, color, poster, celebrity, scene, landmark, artwork, OCR, commonsense reasoning, numerical calculation, text translation, and code reasoning.
 
-InternLM-XComposer-VL achieves SOTAs on overall performance evaluation. See more details on [HERE](evaluation/mme/MME_Bench.md).
+  InternLM-XComposer-VL achieves SOTAs on overall performance evaluation. See more details on [HERE](evaluation/mme/MME_Bench.md).
 
 
 <p align="center">
@@ -118,7 +115,10 @@ Overall Performance
 </div>
 
 
-
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mme/perception.PNG" width="600"/>
 </p>
@@ -128,10 +128,8 @@ Overall Performance
 </details>
 
 
-<details>
-  <summary>
-    <b>MMBench & MMBench-CN</b>
-  </summary>
+
+### MMBench & MMBench-CN
 
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) is the Chinese language version of MMBench.
 
@@ -155,9 +153,14 @@ MMBench Test Split
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/mmbench_en.PNG" width="1000"/>
 </p>
+</details>
 
 <p align="center">
 MMBench-CN Test Split
@@ -175,16 +178,17 @@ MMBench-CN Test Split
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/mmbench_cn_en.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>SEED-Bench</b>
-  </summary>
+### SEED-Bench
 
 [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) is a multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs, covering 12 evaluation dimensions including both **image** and **video** understanding. See more details on [HERE](evaluation/seed_bench/SEED.md).
 
@@ -207,16 +211,18 @@ SeedBench Image Evaluation
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>CCBench</b>
-  </summary>
+
+### CCBench
 
 [CCBench](https://opencompass.org.cn/leaderboard-multimodal) is a multimodal benchmark for chinese cultural comprehension. See more details on [HERE](evaluation/mmbench/MMBench.md).
 
@@ -236,16 +242,18 @@ CCBench Performance
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/ccbench_en.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>Q-Bench</b>
-  </summary>
+
+### Q-Bench
 
 [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) is a benchmark for general-purpose foundation models on low-level vision.
 
@@ -264,15 +272,17 @@ Q-Bench Performance
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/qbench/overall.png" width="1000"/>
 </p>
 </details>
 
-<details>
-  <summary>
-    <b>Tiny LVLM</b>
-  </summary>
+
+### Tiny LVLM
 
 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) is an ability-level multimodal dataset split derived from the LVLM-eHub.
 
@@ -291,6 +301,10 @@ Tiny LVLM Performance
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
 </p>

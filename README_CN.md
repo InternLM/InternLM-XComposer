@@ -80,10 +80,8 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 InternLM-XComposer-VL 在**全部7个评测**上均超过其他多模态大模型，表现出强大的多模态理解能力。
 
-<details>
-  <summary>
-    <b>MME Benchmark</b>
-  </summary>
+
+### MME Benchmark
 
 [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) 是一个针对多模态大模型设计的多模态评测，关注模型的感知和认知能力，包括14个子任务。
 
@@ -108,7 +106,10 @@ InternLM-XComposer-VL 在感知和认知能力的综合性能上超过其他多�
 </div>
 
 
-
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mme/perception.PNG" width="600"/>
 </p>
@@ -118,10 +119,8 @@ InternLM-XComposer-VL 在感知和认知能力的综合性能上超过其他多�
 </details>
 
 
-<details>
-  <summary>
-    <b>MMBench & MMBench-CN</b>
-  </summary>
+
+### MMBench & MMBench-CN
 
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) 提供精心收集的多模态评测题目和使用ChatGPT的循环评估策略，包括了20个能力项。MMBench 还提供了中文版的 MMBench-CN 用于测试模型的中文能力。
 
@@ -144,9 +143,14 @@ MMBench 测试集性能
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
 </p>
+</details>
 
 <p align="center">
 MMBench-CN 测试集性能
@@ -164,16 +168,18 @@ MMBench-CN 测试集性能
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/mmbench_cn.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>SEED-Bench</b>
-  </summary>
+
+### SEED-Bench
 
 [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) 提供包括人工标注的1.9万道多模态多选题目的多模态评测, 覆盖12个评测为度。SEED-Bench同时提供 *图像* 和 *视频* 理解能力评测。点击查看[更多信息](evaluation/seed_bench/SEED.md).
 
@@ -196,16 +202,18 @@ SeedBench 图像理解评测
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>CCBench</b>
-  </summary>
+
+### CCBench
 
 [CCBench](https://opencompass.org.cn/leaderboard-multimodal) 针对中国文化理解设计的多模态评测. 点击查看[更多信息](evaluation/seed_bench/MMBench.md).
 
@@ -225,16 +233,18 @@ CCBench 评测
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/mmbench/ccbench.PNG" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>Q-Bench</b>
-  </summary>
+
+### Q-Bench
 
 [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 是一个用于测试多模态大模型的low-level视觉能力的评测。
 
@@ -253,16 +263,18 @@ Q-Bench 评测
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/qbench/overall.png" width="1000"/>
 </p>
 </details>
 
 
-<details>
-  <summary>
-    <b>Tiny LVLM</b>
-  </summary>
+
+### Tiny LVLM
 
 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 是一个从LVLM-eHub拆分出来的，多能力层次的多模态评测。
 
@@ -281,6 +293,10 @@ Tiny LVLM 评测
 
 </div>
 
+<details>
+  <summary>
+    <b>leaderboard</b>
+  </summary>
 <p align="center">
     <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
 </p>
