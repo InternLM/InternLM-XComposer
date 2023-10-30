@@ -158,13 +158,13 @@ MMBench-CN 测试集性能
 
 <div align='center'>
 
-| 排名 |      模型      |          版本         |  分数  |
-|:----:|:---------------:|:------------------------:|:-------:|
+| 排名 |          模型           |          版本         |  分数  |
+|:----:|:---------------------:|:------------------------:|:-------:|
 | ️  1  | InternLM-XComposer-VL | InternLM-7B | 72.4 |
-|   2  |    QWen-VL-Chat | Qwen-7B | 56.3 |
-|   3  |    LLaVA       | LLaMA 7B  |36.6 |
-|   4  |    VosualGLM   | ChatGLM 6B | 25.6 |
-|   5  |    mPLUG-Owl | LLaMA2 7B  | 24.9 |
+|   2  |     QWen-VL-Chat      | Qwen-7B | 56.3 |
+|   3  |         LLaVA         | LLaMA 7B  |36.6 |
+|   4  |       VisualGLM       | ChatGLM 6B | 25.6 |
+|   5  |       mPLUG-Owl       | LLaMA2 7B  | 24.9 |
 
 </div>
 
@@ -223,13 +223,13 @@ CCBench 评测
 
 <div align="center">
 
-| 排名 |      模型      |          版本         |  分数  |
-|:----:|:---------------:|:------------------------:|:-------:|
+| 排名 |          模型           |          版本         |  分数  |
+|:----:|:---------------------:|:------------------------:|:-------:|
 | ️  1  | InternLM-XComposer-VL | InternLM-7B | 47.6 |
-|   2  |    QWen-VL-Chat | Qwen-7B | 39.3 |
-|   3  |    mPLUG-Owl | LLaMA2 7B  | 12.9 |
-|   3  |    InstructBLIP       |        Vicuna 7B  | 12.1 |
-|   4  |    VosualGLM   | ChatGLM 6B | 9.2  |
+|   2  |     QWen-VL-Chat      | Qwen-7B | 39.3 |
+|   3  |       mPLUG-Owl       | LLaMA2 7B  | 12.9 |
+|   3  |     InstructBLIP      |        Vicuna 7B  | 12.1 |
+|   4  |       VisualGLM       | ChatGLM 6B | 9.2  |
 
 </div>
 
@@ -284,11 +284,11 @@ Tiny LVLM 评测
 
 <div align="center">
 
-| 排名 |      模型      |          版本         |  分数  | 
+| 排名 |          模型           |          版本         |  分数  | 
 |:----:|:---------------------:|:------------:|:------:|
 | ️  1 | InternLM-XComposer-VL | InternLM-7B  | 322.51 |
 |  2   |         Bard          |     Bard     | 319.59 |
-|  3   |     Qweb-VL-Chat      | Qwen-VL-Chat | 316.81 |
+|  3   |     Qwen-VL-Chat      | Qwen-VL-Chat | 316.81 |
 
 
 </div>
