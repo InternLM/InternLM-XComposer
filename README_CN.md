@@ -57,6 +57,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 
 ## 更新消息
+* ```2023.10.30``` 🎉🎉🎉 灵笔在[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 和 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 取得了第一名.
 * ```2023.10.19``` 🎉🎉🎉 支持多卡测试，多卡Demo. 两张4090显卡可部署全量Demo.
 * ```2023.10.12``` 🎉🎉🎉 支持4比特量化Demo， 模型文件可从[Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit) 获取
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
@@ -67,18 +68,22 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 ## 评测
 
-我们在5个多模态评测上测试 InternLM-XComposer-VL 的性能，包括英文评测 [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) 和中文评测 [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [CCBench](https://opencompass.org.cn/leaderboard-multimodal).
+我们在7个多模态评测上测试 InternLM-XComposer-VL 的性能，包括英文评测 [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 和中文评测 [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [CCBench](https://opencompass.org.cn/leaderboard-multimodal).
 
    - [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): 包括14个子任务的多模态模型全面评测。
    - [MMBench](https://opencompass.org.cn/leaderboard-multimodal): 提供精心收集的多模态评测题目和使用ChatGPT的循环评估策略的多模态评测。
    - [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal): 简体中文版本问题和答案的 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) 评测。
    - [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard): 包括人工标注的1.9万道多模态多选题目的多模态评测。
    - [CCBench](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): 针对中国文化理解的中文多模态评测。
+   - [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards): 评测多模态大模型的low-level视觉能力。
+   - [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation): 从LVLM-eHub拆分出来的，多能力层次的多模态评测。
 
-InternLM-XComposer-VL 在**全部5个评测**上均超过其他多模态大模型，表现出强大的多模态理解能力。
+InternLM-XComposer-VL 在**全部7个评测**上均超过其他多模态大模型，表现出强大的多模态理解能力。
 
-
-### MME Benchmark
+<details>
+  <summary>
+    <b>MME Benchmark</b>
+  </summary>
 
 [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) 是一个针对多模态大模型设计的多模态评测，关注模型的感知和认知能力，包括14个子任务。
 
@@ -110,9 +115,13 @@ InternLM-XComposer-VL 在感知和认知能力的综合性能上超过其他多�
 <p align="center">
     <img src="evaluation/mme/cognition.PNG" width="600"/>
 </p>
+</details>
 
 
-### MMBench & MMBench-CN
+<details>
+  <summary>
+    <b>MMBench & MMBench-CN</b>
+  </summary>
 
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) 提供精心收集的多模态评测题目和使用ChatGPT的循环评估策略，包括了20个能力项。MMBench 还提供了中文版的 MMBench-CN 用于测试模型的中文能力。
 
@@ -158,8 +167,13 @@ MMBench-CN 测试集性能
 <p align="center">
     <img src="evaluation/mmbench/mmbench_cn.PNG" width="1000"/>
 </p>
+</details>
 
-### SEED-Bench
+
+<details>
+  <summary>
+    <b>SEED-Bench</b>
+  </summary>
 
 [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) 提供包括人工标注的1.9万道多模态多选题目的多模态评测, 覆盖12个评测为度。SEED-Bench同时提供 *图像* 和 *视频* 理解能力评测。点击查看[更多信息](evaluation/seed_bench/SEED.md).
 
@@ -185,8 +199,13 @@ SeedBench 图像理解评测
 <p align="center">
     <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
 </p>
+</details>
 
-### CCBench
+
+<details>
+  <summary>
+    <b>CCBench</b>
+  </summary>
 
 [CCBench](https://opencompass.org.cn/leaderboard-multimodal) 针对中国文化理解设计的多模态评测. 点击查看[更多信息](evaluation/seed_bench/MMBench.md).
 
@@ -209,6 +228,64 @@ CCBench 评测
 <p align="center">
     <img src="evaluation/mmbench/ccbench.PNG" width="1000"/>
 </p>
+</details>
+
+
+<details>
+  <summary>
+    <b>Q-Bench</b>
+  </summary>
+
+[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 是一个用于测试多模态大模型的low-level视觉能力的评测。
+
+<p align="center">
+Q-Bench 评测
+</p>
+
+<div align="center">
+
+|  排名  |           A1：感知 (dev)            |           A1：感知 (test)           |              A2: 描述              |                  A3: 评估                  | 
+|:----:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:----------------------------------------:|
+| ️  1 | InternLM-XComposer-VL<br/>0.6535 | InternLM-XComposer-VL<br/>0.6435 | InternLM-XComposer-VL<br/>4.21/6 | InternLM-XComposer-VL<br/>(0.542, 0.581) |
+|  2   |    LLaVA-v1.5-13B<br/>0.6214     |   InstrucBLIP-T5-XL<br/>0.6194   |       Kosmos-2<br/>4.03/6        |        Qwen-VL<br/>(0.475, 0.506)        |
+|  3   |   InstrucBLIP-T5-XL<br/>0.6147   |        Qwen-VL<br/>0.6167        |       mPLUG-Owl<br/>3.94/6       |    LLaVA-v1.5-13B<br/>(0.444, 0.473)     |
+
+
+</div>
+
+<p align="center">
+    <img src="evaluation/qbench/overall.png" width="1000"/>
+</p>
+</details>
+
+
+<details>
+  <summary>
+    <b>Tiny LVLM</b>
+  </summary>
+
+[Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 是一个从LVLM-eHub拆分出来的，多能力层次的多模态评测。
+
+<p align="center">
+Tiny LVLM 评测
+</p>
+
+<div align="center">
+
+| 排名 |      模型      |          版本         |  分数  | 
+|:----:|:---------------------:|:------------:|:------:|
+| ️  1 | InternLM-XComposer-VL | InternLM-7B  | 322.51 |
+|  2   |         Bard          |     Bard     | 319.59 |
+|  3   |     Qweb-VL-Chat      | Qwen-VL-Chat | 316.81 |
+
+
+</div>
+
+<p align="center">
+    <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
+</p>
+</details>
+
 
 ## 环境要求
 
@@ -226,7 +303,11 @@ CCBench 评测
 
 我们提供了一个简单实用的 🤗 Transformers 版本 InternLM-XComposer 的使用案例。
 
-#### 🤗 Transformers
+<details>
+  <summary>
+    <b>🤗 Transformers</b>
+  </summary>
+
 
 ```python
 import torch
@@ -282,8 +363,14 @@ response, history = model.chat(text=text, image=None, history=history)
 print(response)
 # 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。他提出了狭义相对论和广义相对论，为现代物理学的发展做出了巨大的贡献。
 ```
+</details>
 
-#### 🤖 ModelScope
+
+<details>
+  <summary>
+    <b>🤖 ModelScope</b>
+  </summary>
+
 
 ```python
 import torch
@@ -311,10 +398,10 @@ print(response)
 # 1933年，爱因斯坦因为他的犹太血统而受到纳粹党的迫害，被迫离开德国。他最终定居在美国，并在那里度过了他的余生。1955年4月18日，爱因斯坦在普林斯顿去世，享年76岁。
 # 爱因斯坦的贡献对现代物理学产生了深远的影响，他被认为是20世纪最伟大的科学家之一。
 ```
+</details>
 
-## Demo
 
-### Web UI
+## Web UI
 
 我们提供了一个轻松搭建 Web UI demo 的代码.
 
@@ -329,8 +416,6 @@ print(response)
 python examples/web_demo.py
 ```
 更多信息请参考 Web UI [用户指南](demo_asset/demo.md)。 如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
-
-<br>
 
 ## 量化
 我们提供4bit量化模型来缓解模型的内存需求。 要运行4bit模型（GPU内存> = 12GB），您需要首先安装相应的[依赖包](docs/install_CN.md)，然后执行以下脚本进行聊天和网页演示：
@@ -349,6 +434,7 @@ python examples/example_chat.py --num_gpus 2
 # web demo with 2 GPUs
 python examples/web_demo.py --num_gpus 2
 ```
+<br>
 
 ## 引用
 

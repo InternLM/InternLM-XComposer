@@ -67,6 +67,7 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 
 ## News and Updates
+* ```2023.10.30``` 🎉🎉🎉 InternLM-XComposer-VL achieved the top 1 ranking in both [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) and [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation).
 * ```2023.10.19``` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
 * ```2023.10.12``` 🎉🎉🎉 4-bit demo is supported, model files are available in [Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit).
 * ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**. 
@@ -77,18 +78,22 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 ## Evaluation
 
-We evaluate InternLM-XComposer-VL on five multimodal benchmarks: [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) in the English language, [CCBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) in the simplified chinese language.
+We evaluate InternLM-XComposer-VL on seven multimodal benchmarks: [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) in the English language, [CCBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) in the simplified chinese language.
 
    - [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): A comprehensive evaluation benchmark for multimodal large language models with 14 subtasks.
    - [MMBench](https://opencompass.org.cn/leaderboard-multimodal): A comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT.
    - [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal): A simplified chinese language version of [MMBench](https://opencompass.org.cn/leaderboard-multimodal).
    - [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard): A multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs.
    - [CCBench](): A multimodal benchmark for chinese cultural comprehension.
+   - [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards): A benchmark for general-purpose foundation models on low-level vision.
+   - [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation): An ability-level multimodal dataset split derived from the LVLM-eHub.
 
-InternLM-XComposer-VL outperforms existing vision-language large models on **all the five benchmarks**, demonstrating stronger multilingual comprehension ability.
+InternLM-XComposer-VL outperforms existing vision-language large models on **all the seven benchmarks**, demonstrating stronger multilingual comprehension ability.
 
-
-### MME Benchmark
+<details>
+  <summary>
+    <b>MME Benchmark</b>
+  </summary>
 
 [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) is a comprehensive evaluation benchmark for multimodal large language models. It measures both perception and cognition abilities on a total of 14 subtasks, including existence, count, position, color, poster, celebrity, scene, landmark, artwork, OCR, commonsense reasoning, numerical calculation, text translation, and code reasoning.
 
@@ -120,9 +125,13 @@ Overall Performance
 <p align="center">
     <img src="evaluation/mme/cognition.PNG" width="600"/>
 </p>
+</details>
 
 
-### MMBench & MMBench-CN
+<details>
+  <summary>
+    <b>MMBench & MMBench-CN</b>
+  </summary>
 
 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) is the Chinese language version of MMBench.
 
@@ -169,8 +178,13 @@ MMBench-CN Test Split
 <p align="center">
     <img src="evaluation/mmbench/mmbench_cn_en.PNG" width="1000"/>
 </p>
+</details>
 
-### SEED-Bench
+
+<details>
+  <summary>
+    <b>SEED-Bench</b>
+  </summary>
 
 [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) is a multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs, covering 12 evaluation dimensions including both **image** and **video** understanding. See more details on [HERE](evaluation/seed_bench/SEED.md).
 
@@ -196,10 +210,15 @@ SeedBench Image Evaluation
 <p align="center">
     <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
 </p>
+</details>
 
-### CCBench
 
-[CCBench](https://opencompass.org.cn/leaderboard-multimodal) is a multimodal benchmark for chinese cultural comprehension. See more details on [HERE](evaluation/seed_bench/MMBench.md).
+<details>
+  <summary>
+    <b>CCBench</b>
+  </summary>
+
+[CCBench](https://opencompass.org.cn/leaderboard-multimodal) is a multimodal benchmark for chinese cultural comprehension. See more details on [HERE](evaluation/mmbench/MMBench.md).
 
 <p align="center">
 CCBench Performance
@@ -209,17 +228,74 @@ CCBench Performance
 
 | Rank |      Model      |          Version         |  Score  |
 |:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 47.6 |
-|   2  |    QWen-VL-Chat | Qwen-7B | 39.3 |
-|   3  |    mPLUG-Owl | LLaMA2 7B  | 12.9 |
-|   3  |    InstructBLIP       |        Vicuna 7B  | 12.1 |
-|   4  |    VosualGLM   | ChatGLM 6B | 9.2  |
+| ️  1 | InternLM-XComposer-VL | InternLM-7B | 47.6 |
+|  2   |    QWen-VL-Chat | Qwen-7B | 39.3 |
+|  3   |    mPLUG-Owl | LLaMA2 7B  | 12.9 |
+|  4   |    InstructBLIP       |        Vicuna 7B  | 12.1 |
+|  5   |    VosualGLM   | ChatGLM 6B | 9.2  |
 
 </div>
 
 <p align="center">
     <img src="evaluation/mmbench/ccbench_en.PNG" width="1000"/>
 </p>
+</details>
+
+
+<details>
+  <summary>
+    <b>Q-Bench</b>
+  </summary>
+
+[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) is a benchmark for general-purpose foundation models on low-level vision.
+
+<p align="center">
+Q-Bench Performance
+</p>
+
+<div align="center">
+
+| Rank |       A1：Perception (dev)        |       A1：Perception (test)       |         A2: Description          | A3: Assessment | 
+|:----:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------:|
+| ️  1 | InternLM-XComposer-VL<br/>0.6535 | InternLM-XComposer-VL<br/>0.6435 | InternLM-XComposer-VL<br/>4.21/6 | InternLM-XComposer-VL<br/>(0.542, 0.581) |
+|  2   |    LLaVA-v1.5-13B<br/>0.6214     |   InstrucBLIP-T5-XL<br/>0.6194   |       Kosmos-2<br/>4.03/6        | Qwen-VL<br/>(0.475, 0.506) |
+|  3   |   InstrucBLIP-T5-XL<br/>0.6147   |        Qwen-VL<br/>0.6167        |       mPLUG-Owl<br/>3.94/6       | LLaVA-v1.5-13B<br/>(0.444, 0.473) |
+
+
+</div>
+
+<p align="center">
+    <img src="evaluation/qbench/overall.png" width="1000"/>
+</p>
+</details>
+
+<details>
+  <summary>
+    <b>Tiny LVLM</b>
+  </summary>
+
+[Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) is an ability-level multimodal dataset split derived from the LVLM-eHub.
+
+<p align="center">
+Tiny LVLM Performance
+</p>
+
+<div align="center">
+
+| Rank |         Model         |   Version    | Score  | 
+|:----:|:---------------------:|:------------:|:------:|
+| ️  1 | InternLM-XComposer-VL | InternLM-7B  | 322.51 |
+|  2   |         Bard          |     Bard     | 319.59 |
+|  3   |     Qweb-VL-Chat      | Qwen-VL-Chat | 316.81 |
+
+
+</div>
+
+<p align="center">
+    <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
+</p>
+</details>
+
 
 ## Requirements
 
@@ -237,7 +313,10 @@ Please refer to the [installation instructions](docs/install.md)
 
 We provide a simple example to show how to use InternLM-XComposer with 🤗 Transformers.
 
-#### 🤗 Transformers
+<details>
+  <summary>
+    <b>🤗 Transformers</b>
+  </summary>
 
 ```python
 import torch
@@ -296,8 +375,13 @@ response, history = model.chat(text=text, image=None, history=history)
 print(response)
 # Yes, Albert Einstein is widely regarded as one of the greatest physicists of all time.
 ```
+</details>
 
-#### 🤖 ModelScope
+
+<details>
+  <summary>
+    <b>🤖 ModelScope</b>
+  </summary>
 
 ```python
 import torch
@@ -324,8 +408,9 @@ print(response)
 # effect, both of which are examples of his special and general theories of relativity. Einstein is widely regarded as 
 # one of the most influential physicists of all time.
 ```
+</details>
 
-### Web UI
+## Web UI
 
 
 Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM-XComposer/pull/37">HuggingFace Demo </a> and <a href="https://github.com/InternLM/InternLM-XComposer/pull/9" target="_blank">Replicate Demo</a>
@@ -361,7 +446,6 @@ python examples/example_chat.py --num_gpus 2
 # web demo with 2 GPUs
 python examples/web_demo.py --num_gpus 2
 ```
-<br>
 
 ## Calculate TFLOPs and Params
 Required package
@@ -373,7 +457,7 @@ Required package
 python examples/example_params_and_flops.py
 ```
 The expected output is FLOPs: 17.6 TFLOPS, Params: 8.8 B.
-
+<br>
 
 ## Citation
 
