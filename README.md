@@ -90,6 +90,10 @@ We evaluate InternLM-XComposer-VL on seven multimodal benchmarks: [MME Benchmark
 
 InternLM-XComposer-VL outperforms existing vision-language large models on **all the seven benchmarks**, demonstrating stronger multilingual comprehension ability.
 
+<p align="center">
+    <img src="evaluation/polar%20v3.png" width="600"/>
+</p>
+
 ### MME Benchmark
 
 [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) is a comprehensive evaluation benchmark for multimodal large language models. It measures both perception and cognition abilities on a total of 14 subtasks, including existence, count, position, color, poster, celebrity, scene, landmark, artwork, OCR, commonsense reasoning, numerical calculation, text translation, and code reasoning.

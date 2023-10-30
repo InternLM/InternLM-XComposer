@@ -80,6 +80,9 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 InternLM-XComposer-VL 在**全部7个评测**上均超过其他多模态大模型，表现出强大的多模态理解能力。
 
+<p align="center">
+    <img src="evaluation/polar%20v3.png" width="600"/>
+</p>
 
 ### MME Benchmark
 
