@@ -28,6 +28,14 @@
 - [ ] Web demo of ShareGPT4V-7B
 - [ ] Checkpoints of ShareGPT4V-7B
 
+## 🤖 Model Zoo
+
+| Name | LLM | Checkpoint | LLaVA-Bench-Wild | MME-perception | MME-cognition | MMBench | MMBench-CN | SEED-image | MM-Vet | QBench | SQA-image | VQA-v2 | VizWiz |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ShareGPT4V-7B | Vicuna-7B | [TBD]() | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
+
+
+
 ## 🛠️Usage
 
 ### Environment Set Up
