@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo.png" style="vertical-align: -10px;" :height="52px" width="52px"> ShareGPT4V: Improving Large Multi-modal Models with Better Captions
+# <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -10px;" :height="50px" width="50px"> ShareGPT4V: Improving Large Multi-modal Models with Better Captions
 
 ---
 
