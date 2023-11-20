@@ -20,6 +20,7 @@
 
 ## 📜 News
 [2023/11/20] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
+
 [2023/11/20] The [paper]() and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
