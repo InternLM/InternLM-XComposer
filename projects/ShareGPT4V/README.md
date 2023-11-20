@@ -1,10 +1,10 @@
-# <img src="resources/logo.png" style="vertical-align: -10px;" :height="52px" width="52px"> ShareGPT4V: Improving Large Multi-modal Models with Better Captions
+# <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo.png" style="vertical-align: -10px;" :height="52px" width="52px"> ShareGPT4V: Improving Large Multi-modal Models with Better Captions
 
 ---
 
 🚀🚀🚀 Official implementation of **ShareGPT4V: Improving Large Multi-modal Models with Better Captions**.
 <p align="center">
-  <img src="./resources/teaser.png">
+  <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/teaser.png">
 </p>
 
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Conghui He](https://conghui.github.io/), [Jiaqi Wang](https://myownskyw7.github.io/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Dahua Lin📧](http://dahua.site/)
