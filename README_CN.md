@@ -45,14 +45,6 @@
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
-<details>
-  <summary>
-    <b> 我们组其他多模态工作 </b>
-</summary>
-
-#### [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) : Improving Large Multi-modal Models with Better Captions
-</details>
-
 
 ## Demo
 
@@ -74,6 +66,16 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 * ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源. 
 * ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf).
 <br>
+
+</br>
+
+## 我们组的多模态工作
+
+> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
+
+> [**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+
+</br>
 
 ## 评测
 
