@@ -52,11 +52,6 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
-### Multimodal Projects of Our Team
-
-> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
-
-> [**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
 
 ## Demo
 
@@ -78,8 +73,15 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 * ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
 * ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**. 
 * ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
-<br>
+</br>
 
+## Multimodal Projects of Our Team
+
+> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
+
+> [**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+
+</br>
 
 ## Evaluation
 
