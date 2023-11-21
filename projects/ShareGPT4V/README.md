@@ -10,7 +10,7 @@
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Conghui He](https://conghui.github.io/), [Jiaqi Wang](https://myownskyw7.github.io/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Dahua Lin📧](http://dahua.site/)
 
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory
-- **Resources**: [[Arxiv]]() [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space]()]
+- **Resources**: [[Paper]](ShareGPT4V.pdf) [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space]()]
 
 ## 💡 Highlights
 - 🔥 A **large-scale** **highly descriptive** image-text dataset
@@ -21,7 +21,7 @@
 ## 📜 News
 [2023/11/20] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
 
-[2023/11/20] The [paper]() and [project page](https://ShareGPT4V.github.io/) are released!
+[2023/11/20] The [paper](ShareGPT4V.pdf) and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
 - [ ] Training and evaluation code for ShareGPT4V-7B
