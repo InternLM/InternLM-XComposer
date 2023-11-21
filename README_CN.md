@@ -45,6 +45,15 @@
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
+<details>
+  <summary>
+    <b> 我们组其他多模态工作 </b>
+</summary>
+
+####[ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) : Improving Large Multi-modal Models with Better Captions
+</details>
+
+
 ## Demo
 
 

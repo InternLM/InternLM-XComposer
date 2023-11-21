@@ -28,7 +28,6 @@
 
 
 
-
 **InternLM-XComposer** is a vision-language large model (VLLM) based on [InternLM](https://github.com/InternLM/InternLM/tree/main) for advanced text-image comprehension and composition. InternLM-XComposer has several appealing properties:
 
 - **Interleaved Text-Image Composition**: InternLM-XComposer can effortlessly generate coherent and contextual articles that seamlessly integrate images, providing a more engaging and immersive reading experience. The interleaved text-image composition is implemented in following steps:
@@ -53,6 +52,13 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
+<details>
+  <summary>
+    <b> Other Multimodal Projects of Our Team </b>
+</summary>
+
+####[ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) : Improving Large Multi-modal Models with Better Captions
+</details>
 
 ## Demo
 
@@ -75,6 +81,7 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 * ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**. 
 * ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
 <br>
+
 
 ## Evaluation
 
