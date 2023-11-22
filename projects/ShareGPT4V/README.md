@@ -10,7 +10,7 @@
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Conghui He](https://conghui.github.io/), [Jiaqi Wang](https://myownskyw7.github.io/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Dahua Lin📧](http://dahua.site/)
 
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory
-- **Resources**: [[Paper]](ShareGPT4V.pdf) [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space]()]
+- **Resources**: [[Paper](https://arxiv.org/pdf/2311.12793.pdf)] [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space]()]
 
 ## 💡 Highlights
 - 🔥 A **large-scale** **highly descriptive** image-text dataset
@@ -21,7 +21,7 @@
 ## 📜 News
 [2023/11/20] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
 
-[2023/11/20] The [paper](ShareGPT4V.pdf) and [project page](https://ShareGPT4V.github.io/) are released!
+[2023/11/20] The [paper]([ShareGPT4V.pdf](https://arxiv.org/pdf/2311.12793.pdf)) and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
 - [ ] Training and evaluation code for ShareGPT4V-7B
@@ -76,10 +76,11 @@ Your Project Path
 ## ✒️ Citation
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
 ```bibtex
-@article{chen2023sharegpt4v,
-      title={ShareGPT4V: Improving Large Multi-modal Models with Better Captions}, 
-      author={Lin Chen and Jinsong Li and Xiaoyi Dong and Pan Zhang and Conghui He and Jiaqi Wang and Feng Zhao and Dahua Lin},
+@misc{chen2023sharegpt4v,
+      title={ShareGPT4V: Improving Large Multi-Modal Models with Better Captions}, 
+      author={Lin Chen and Jisong Li and Xiaoyi Dong and Pan Zhang and Conghui He and Jiaqi Wang and Feng Zhao and Dahua Lin},
       year={2023},
+      eprint={2311.12793},
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
