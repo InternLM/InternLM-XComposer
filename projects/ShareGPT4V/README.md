@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -10px;" :height="50px" width="50px"> ShareGPT4V: Improving Large Multi-modal Models with Better Captions
 
-⭐️ [**Star to follow our team's projects !**](https://github.com/InternLM/InternLM-XComposer/tree/main)
+⭐️ [**Star to follow our team's projects !**](https://github.com/InternLM/InternLM-XComposer)
 
 ---
 
