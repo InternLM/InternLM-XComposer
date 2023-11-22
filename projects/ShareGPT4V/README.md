@@ -12,7 +12,7 @@
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Conghui He](https://conghui.github.io/), [Jiaqi Wang](https://myownskyw7.github.io/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Dahua Lin📧](http://dahua.site/)
 
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory
-- **Resources**: [[Paper](https://arxiv.org/pdf/2311.12793.pdf)] [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space]()]
+- **Resources**: [[Paper](https://arxiv.org/pdf/2311.12793.pdf)] [[Project Page](https://ShareGPT4V.github.io/)] [[Demo]()] [[Data](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo]()] [[🤗Space](https://huggingface.co/Lin-Chen/ShareGPT4V-7B)]
 
 ## 💡 Highlights
 - 🔥 A **large-scale** **highly descriptive** image-text dataset
