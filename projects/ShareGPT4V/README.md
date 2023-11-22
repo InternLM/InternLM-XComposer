@@ -49,7 +49,7 @@ Follow [LLaVA-1.5](https://github.com/haotian-liu/LLaVA) to set up the code and 
 
 Our captions data are available at [ShareGPT4V](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) in the JSON format.
 
-In addition to preparing the datasets specified in LLaVA-1.5, it is necessary to procure the [SAM](https://ai.meta.com/datasets/segment-anything-downloads/) dataset and various [web data](https://drive.google.com/drive/folders/1tCUQ-sq6vdshZVkF0ZeF3K4eztkXJgax?usp=sharing). Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
+In addition to preparing the datasets specified in [LLaVA-1.5](https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md), it is necessary to procure the [SAM](https://ai.meta.com/datasets/segment-anything-downloads/) dataset (Only the first 50 parquets have been used so far.) and various [web data](https://drive.google.com/drive/folders/1tCUQ-sq6vdshZVkF0ZeF3K4eztkXJgax?usp=sharing). Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
 
 ```none
 Your Project Path
