@@ -12,7 +12,7 @@
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Conghui He](https://conghui.github.io/), [Jiaqi Wang](https://myownskyw7.github.io/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Dahua Lin📧](http://dahua.site/)
 
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory
-- **Resources**: [[Paper](https://arxiv.org/pdf/2311.12793.pdf)] [[Project Page](https://ShareGPT4V.github.io/)] [[<img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -10px;" :height="20px" width="20px">ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Demo]()] [[Model Zoo]()] [[🤗Space](https://huggingface.co/Lin-Chen/ShareGPT4V-7B)]
+- **Resources**: [[Paper](https://arxiv.org/pdf/2311.12793.pdf)] [[Project Page](https://ShareGPT4V.github.io/)] [[<img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -10px;" :height="20px" width="20px">ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V)] [[Model Zoo](https://huggingface.co/Lin-Chen/ShareGPT4V-7B)] [[OpenXLab Demo](https://openxlab.org.cn/apps/detail/xiaoachenyo/ShareGPT4V-7B)] [[🤗HuggingFace demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B)]
 
 ## 💡 Highlights
 - 🔥 A **large-scale** **highly descriptive** image-text dataset
@@ -21,20 +21,22 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
+[2023/11/20] [Web demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B) and [checkpoint](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) are available now!💥
+
 [2023/11/20] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
 
 [2023/11/20] The [paper]([ShareGPT4V.pdf](https://arxiv.org/pdf/2311.12793.pdf)) and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
 - [ ] Training and evaluation code for ShareGPT4V-7B
-- [ ] Web demo of ShareGPT4V-7B
-- [ ] Checkpoints of ShareGPT4V-7B
+- [x] Web demo of ShareGPT4V-7B
+- [x] Checkpoints of ShareGPT4V-7B
 
 ## 🤖 Model Zoo
 
 | Name | LLM | Checkpoint | LLaVA-Bench-Wild | MME-perception | MME-cognition | MMBench | MMBench-CN | SEED-image | MM-Vet | QBench | SQA-image | VQA-v2 | VizWiz |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ShareGPT4V-7B | Vicuna-7B | [TBD]() | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
+| ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
 
 
 
