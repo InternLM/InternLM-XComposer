@@ -22,6 +22,7 @@
 
 ## 📜 News
 [2023/11/23] We release code to build your local demo of ShareGPT4V-7B!💥
+
 [2023/11/22] [Web demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B) and [checkpoint](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) are available now!💥
 
 [2023/11/21] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
