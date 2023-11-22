@@ -21,6 +21,7 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
+[2023/11/23] We release code to build your local demo of ShareGPT4V-7B!💥
 [2023/11/22] [Web demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B) and [checkpoint](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) are available now!💥
 
 [2023/11/21] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
@@ -29,7 +30,7 @@
 
 ## 👨‍💻 Todo
 - [ ] Training and evaluation code for ShareGPT4V-7B
-- [x] Web demo of ShareGPT4V-7B
+- [x] Web demo and local demo of ShareGPT4V-7B
 - [x] Checkpoints of ShareGPT4V-7B
 
 ## 🤖 Model Zoo
@@ -38,12 +39,43 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
 
-
-
 ## 🛠️Usage
 
+### Build Local Demo
+First, prepare the environment.
+
+```
+# Create env
+conda create -n sharegpt4v python=3.10 -y
+conda activate sharegpt4v
+
+cd projects/ShareGPT4V/
+
+# Clone llava 
+git clone https://github.com/haotian-liu/LLaVA.git
+cd LLaVA & pip install -e .
+
+# You may get warning due to the gradio version. Do not worry about it.
+pip install gradio==4.5.0 
+```
+
+Then, you should update only one line in the builder script of the vision encoder to enable loading fine-tuned vision tower:
+```python
+# replace line 8 in llava/model/multimodal_encoder/builder.py with following line:
+  if is_absolute_path_exists or vision_tower.startswith("openai") or vision_tower.startswith("laion") or "ShareGPT4V" in vision_tower:
+```
+
+Finally, you can build your local demo by:
+```
+# move to ShareGPT4V/ from LLaVA/
+cd ..
+
+# run script
+python app.py
+```
+
 ### Environment Set Up
-Follow [LLaVA-1.5](https://github.com/haotian-liu/LLaVA) to set up the code and environment.
+Follow [LLaVA-1.5](https://github.com/haotian-liu/LLaVA) to set up the code and environment. Remember to update only one line in the builder script of the vision encoder to enable loading fine-tuned vision tower.
 
 ### Data Preparation
 
