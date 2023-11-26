@@ -1,0 +1,56 @@
+{
+  "_name_or_path": "chat",
+  "architectures": [
+    "InternLMXComposerForCausalLM"
+  ],
+  "auto_map": {
+    "AutoConfig": "configuration_InternLM_XComposer.InternLMXComposerConfig",
+    "AutoModel": "modeling_InternLM_XComposer.InternLMXComposerForCausalLM",
+    "AutoModelForCausalLM": "modeling_InternLM_XComposer.InternLMXComposerForCausalLM"
+  },
+  "bias": true,
+  "bos_token_id": 1,
+  "device": "cuda",
+  "eos_token_id": 2,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "intern_converted_llm": true,
+  "internlm_lora": {
+    "freeze": false,
+    "learn_param": [
+      "q",
+      "v",
+      "ffn"
+    ],
+    "lora_alpha": 256,
+    "lora_dropout": 0.05,
+    "lora_r": 256
+  },
+  "kqvo_bias": true,
+  "lora_cfg": {
+    "freeze": false,
+    "learn_param": [
+      "q",
+      "v",
+      "ffn"
+    ],
+    "lora_alpha": 256,
+    "lora_dropout": 0.05,
+    "lora_r": 256
+  },
+  "max_position_embeddings": 2048,
+  "model_type": "InternLMXComposer",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "num_quant": 32,
+  "num_query_token": 64,
+  "pad_token_id": -1,
+  "rms_norm_eps": 1e-05,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float32",
+  "transformers_version": "4.30.2",
+  "use_cache": true,
+  "vocab_size": 103168
+}

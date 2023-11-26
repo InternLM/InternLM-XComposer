@@ -26,6 +26,13 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
     config_class = InternLMXComposerConfig
     _auto_class = "AutoModelForCausalLM"
 
+    meta_instruction = """meta instruction
+You are an AI assistant whose name is 浦语.
+- 浦语 is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.
+- 浦语 can understand and communicate fluently in the language chosen by the user such as English and 中文.
+conversation
+"""
+
     gen_config = dict(
         num_beams=5,
         do_sample=False,
@@ -33,7 +40,7 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
         repetition_penalty=1.5,
         length_penalty=1.0,
         temperature=1.0,
-        max_new_tokens=200,
+        max_new_tokens=500,
     )
 
     def __init__(self, config):
@@ -74,8 +81,8 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
             # speed up init llm
             with torch.device('meta'):
                 self.internlm_model = InternLMForCausalLM._from_config(config)
-            self.internlm_model.to_empty(device=config.device).to(
-                torch.float16)
+            self.internlm_model.to_empty(device='cpu').to(torch.float16)
+            self.internlm_model.to(config.device)
         for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
                 m.float()
@@ -94,15 +101,15 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
 
         self.tokenizer = None
 
-    @property
-    def eoh(self):
-        return self.tokenizer.decode(torch.Tensor([103027]),
-                                     skip_special_tokens=True)
-
-    @property
-    def eoa(self):
-        return self.tokenizer.decode(torch.Tensor([103028]),
-                                     skip_special_tokens=True)
+        self.eoh = '<TOKENS_UNUSED_0>'  # end of human
+        self.eoa = '<TOKENS_UNUSED_1>'  # end of assistant
+        stop_words_ids = [
+            torch.tensor([103027]).to(config.device),
+            torch.tensor([103028]).to(config.device),
+        ]
+        stopping_criteria = StoppingCriteriaList(
+            [StoppingCriteriaSub(stops=stop_words_ids)])
+        self.gen_config['stopping_criteria'] = stopping_criteria
 
     def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
@@ -120,17 +127,13 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
                      vision_width,
                      cross_attention_freq=2,
                      pretrain=True):
-        encoder_config = BertConfig.from_pretrained("bert-base-uncased")
+        encoder_config = BertConfig()
         encoder_config.encoder_width = vision_width
         # insert cross-attention layer every other block
         encoder_config.add_cross_attention = True
         encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
-        if pretrain:
-            Qformer = BertLMHeadModel.from_pretrained("bert-base-uncased",
-                                                      config=encoder_config)
-        else:
-            Qformer = BertLMHeadModel(config=encoder_config)
+        Qformer = BertLMHeadModel(config=encoder_config)
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size))
         query_tokens.data.normal_(mean=0.0,
@@ -237,7 +240,13 @@ class InternLMXComposerForCausalLM(PreTrainedModel):
                     history=None,
                     add_special=True):
         if add_special:
-            prompt_segs = [' <|User|>:', f'\n{self.eoh} <|Bot|>:']
+            if history is None:
+                prompt_segs = [
+                    self.meta_instruction + ' <|User|>:',
+                    f'\n{self.eoh} <|Bot|>:'
+                ]
+            else:
+                prompt_segs = [' <|User|>:', f'\n{self.eoh} <|Bot|>:']
         else:
             prompt_segs = [' <|User|>:', ' <|Bot|>:']  # used in wrap history
         prompt_seg_embeds = []
