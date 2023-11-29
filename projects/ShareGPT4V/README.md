@@ -119,7 +119,7 @@ If you find our work helpful for your research, please consider giving a star тн
 ```bibtex
 @misc{chen2023sharegpt4v,
       title={ShareGPT4V: Improving Large Multi-Modal Models with Better Captions}, 
-      author={Lin Chen and Jisong Li and Xiaoyi Dong and Pan Zhang and Conghui He and Jiaqi Wang and Feng Zhao and Dahua Lin},
+      author={Lin Chen and Jinsong Li and Xiaoyi Dong and Pan Zhang and Conghui He and Jiaqi Wang and Feng Zhao and Dahua Lin},
       year={2023},
       eprint={2311.12793},
       archivePrefix={arXiv},
