@@ -23,7 +23,7 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
-[2023/12/13] Local ShareCaptioner is available now! You can utilize it to generate high-quality captions for your dataset with batch inference. 🚀
+[2023/12/13] Local ShareCaptioner is available now! You can utilize it to generate high-quality captions for your dataset with batch inference.
 
 [2023/11/23] We release the [web demo](https://huggingface.co/spaces/Lin-Chen/Share-Captioner) of general Share-Captioner!💥
 
