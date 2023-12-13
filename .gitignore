@@ -122,5 +122,9 @@ work_dirs/
 *.py~
 *.sh~
 
-# LLaVA
-LLaVA
+# ShareGPT4V
+pretrained
+share4v.egg-info
+wandb
+checkpoints
+playground/data/eval/

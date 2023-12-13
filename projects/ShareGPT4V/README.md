@@ -24,7 +24,9 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
-[2023/12/13] **Local ShareCaptioner** is available now! You can utilize it to generate high-quality captions for your dataset with batch inference by directly run **share-cap_batch_infer.py**.
+[2023/12/13] Training and evaluation code is available.
+
+[2023/12/13] **Local ShareCaptioner** is available now! You can utilize it to generate high-quality captions for your dataset with batch inference by directly run `tools/share-cap_batch_infer.py`.
 
 [2023/11/23] We release the [web demo](https://huggingface.co/spaces/Lin-Chen/Share-Captioner) of general Share-Captioner!💥
 
@@ -37,7 +39,7 @@
 [2023/11/20] The [paper]([ShareGPT4V.pdf](https://arxiv.org/pdf/2311.12793.pdf)) and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
-- [ ] Training and evaluation code for ShareGPT4V-7B
+- [x] Training and evaluation code for ShareGPT4V-7B
 - [x] Local ShareCaptioner
 - [x] Web demo and local demo of ShareGPT4V-7B
 - [x] Checkpoints of ShareGPT4V-7B
@@ -48,71 +50,70 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
 
-## 🛠️Usage
+## Install
 
-### Build Local Demo
-First, prepare the environment.
+```bash
+git clone https://github.com/InternLM/InternLM-XComposer --depth=1
+cd projects/ShareGPT4V
+conda create -n share4v python=3.10 -y
+conda activate share4v
 
-```
-# Create env
-conda create -n sharegpt4v python=3.10 -y
-conda activate sharegpt4v
-
-cd projects/ShareGPT4V/
-
-# Clone llava 
-git clone https://github.com/haotian-liu/LLaVA.git
-cd LLaVA & pip install -e .
-
-# You may get warning due to the gradio version. Do not worry about it.
-pip install gradio==4.5.0 
+pip install --upgrade pip
+pip install -e .
+pip install -e ".[train]"
+pip install flash-attn --no-build-isolation
 ```
 
-Then, you should update only one line in the builder script of the vision encoder to enable loading fine-tuned vision tower:
-```python
-# replace line 8 in llava/model/multimodal_encoder/builder.py with following line:
-  if is_absolute_path_exists or vision_tower.startswith("openai") or vision_tower.startswith("laion") or "ShareGPT4V" in vision_tower:
+## Demo
+You can build your local demo by:
 ```
-
-Finally, you can build your local demo by:
-```
-# move to ShareGPT4V/ from LLaVA/
-cd ..
-
 # run script
-python app.py
+python tools/app.py
 ```
 
-### Environment Set Up
-Follow [LLaVA-1.5](https://github.com/haotian-liu/LLaVA) to set up the code and environment. Remember to update only one line in the builder script of the vision encoder to enable loading fine-tuned vision tower.
+## Data Preparation
 
-### Data Preparation
+You should follow this instruction [Data.md](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V/projects/ShareGPT4V/docs/Data.md) to manage the datasets. Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
 
-Our captions data are available at [ShareGPT4V](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) in the JSON format.
+## Train
 
-In addition to preparing the datasets specified in [LLaVA-1.5](https://github.com/haotian-liu/LLaVA/blob/main/docs/Data.md), it is necessary to procure the [SAM](https://ai.meta.com/datasets/segment-anything-downloads/) dataset (Only the first 51 (i.e., 0-50) parquets have been used so far.) and various [web data](https://drive.google.com/drive/folders/1tCUQ-sq6vdshZVkF0ZeF3K4eztkXJgax?usp=sharing). Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
+ShareGPT4V model training consists of two stages: (1) feature alignment stage: use our ShareGPT4V-PT dataset with 1.2M ShareCaptioner-generated high-quality image-text pairs to finetune the vision encoder, projector, and the LLM to align the textual and visual modalities; (2) visual instruction tuning stage: finetune the projector and LLM to teach the model to follow multimodal instructions.
 
-```none
-Your Project Path
-├── ...
-├── data
-│   ├── llava
-│   │   ├── llava_pretrain
-│   │   │   ├── images
-│   ├── coco
-│   │   ├── train2017
-│   ├── sam
-│   │   ├── images
-│   ├── share_textvqa
-│   │   ├── images
-│   ├── web-celebrity
-│   │   ├── images
-│   ├── web-landmark
-│   │   ├── images
-│   ├── wikiart
-│   │   ├── images
-├── ...
-```
+To train on fewer GPUs, you can reduce the `per_device_train_batch_size` and increase the `gradient_accumulation_steps` accordingly. Always keep the global batch size the same: `per_device_train_batch_size x gradient_accumulation_steps x num_gpus`.
+
+### Hyperparameters
+We use a similar set of hyperparameters as LLaVA-v1.5 in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.
+
+1. Pretraining
+
+| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ShareGPT4V-7B | 256 | 2e-5 | 1 | 2048 | 0 |
+
+2. Finetuning
+
+| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ShareGPT4V-7B | 128 | 2e-5 | 1 | 2048 | 0 |
+
+### Pretrain
+
+More details **TBD**.
+
+You can run `projects/ShareGPT4V/scripts/sharegpt4v/slurm_pretrain_7b.sh` to pretrain the model.
+
+### Finetune
+
+More details **TBD**.
+
+You can run `projects/ShareGPT4V/scripts/sharegpt4v/slurm_finetune_7b.sh` to finetune the model.
+
+## Evaluation
+
+To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.
+
+See [Evaluation.md](). **TBD**
+
 
 ## ❤️ Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
