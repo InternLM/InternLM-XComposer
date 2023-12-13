@@ -26,7 +26,6 @@ block_css = """
 """
 title_markdown = ("""
 # 🐬 ShareGPT4V: Improving Large Multi-modal Models with Better Captions
-### 🔊 Notice: The demo of Share-Captioner will soon be supported. Stay tune for updates!
 [[Project Page](https://sharegpt4v.github.io/)] [[Code](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V)] | 📚 [[Paper](https://arxiv.org/pdf/2311.12793.pdf)]
 """)
 tos_markdown = ("""

@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--model-name", type=str,
-                        default="/mnt/petrelfs/chenlin/MLLM/ShareCaptioner")
+                        default="Lin-Chen/ShareCaptioner")
     parser.add_argument("--images-file", type=str, default="images_to_describe.json",
                         help="a list, each element is a string for image path")
     parser.add_argument("--save-path", type=str, default="captions.json")
