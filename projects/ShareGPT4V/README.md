@@ -82,7 +82,7 @@ ShareGPT4V model training consists of two stages: (1) feature alignment stage: u
 To train on fewer GPUs, you can reduce the `per_device_train_batch_size` and increase the `gradient_accumulation_steps` accordingly. Always keep the global batch size the same: `per_device_train_batch_size x gradient_accumulation_steps x num_gpus`.
 
 ### Hyperparameters
-We use a similar set of hyperparameters as LLaVA-v1.5 in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.
+We use a similar set of hyperparameters as ShareGPT4V-7B in finetuning.  Both hyperparameters used in pretraining and finetuning are provided below.
 
 1. Pretraining
 
