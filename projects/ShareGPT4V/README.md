@@ -76,7 +76,7 @@ python tools/app.py
 
 ## Data Preparation
 
-You should follow this instruction [Data.md](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V/projects/ShareGPT4V/docs/Data.md) to manage the datasets. Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
+You should follow this instruction [Data.md](https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Data.md) to manage the datasets. Currently, we provide direct download access to the web data. However, to avoid potential disputes, we plan to release URLs for these datasets rather than the raw data in the near future.
 
 ## Train
 
@@ -119,7 +119,7 @@ In our setup we used 16 A100 (80G) GPUs and the whole pre-training process laste
 
 To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.
 
-See [Evaluation.md](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V/projects/ShareGPT4V/docs/Evaluation.md).
+See [Evaluation.md](https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/Evaluation.md).
 
 ## ❤️ Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
