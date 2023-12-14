@@ -24,6 +24,8 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
+[2023/12/14] We release the ShareGPT4V-13B model. Have fun!🚀
+
 [2023/12/13] Training and evaluation code is available.
 
 [2023/12/13] **Local ShareCaptioner** is available now! You can utilize it to generate high-quality captions for your dataset with batch inference by directly run `tools/share-cap_batch_infer.py`.
@@ -46,9 +48,12 @@
 
 ## 🤖 Model Zoo
 
-| Name | LLM | Checkpoint | LLaVA-Bench-Wild | MME-perception | MME-cognition | MMBench | MMBench-CN | SEED-image | MM-Vet | QBench | SQA-image | VQA-v2 | VizWiz | GQA |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 | 63.3 |
+See more details in [ModelZoo.md](https://github.com/InternLM/InternLM-XComposer/blob/main/projects/ShareGPT4V/docs/ModelZoo.md). 
+
+| Name | LLM | Checkpoint | LLaVA-Bench-Wild | MME-perception | MME-cognition | MMBench | MMBench-CN | SEED-image | MM-Vet | QBench | SQA-image | VQA-v2 | VizWiz | GQA | TextVQA |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 | 63.3 | 60.4 |
+| ShareGPT4V-13B | Vicuna-13B | [ShareGPT4V-13B](https://huggingface.co/Lin-Chen/ShareGPT4V-13B) | 79.9 | 1618.7 | 303.2 | 68.5 | 63.7 | 70.8 | 43.1 | 65.2 | 71.2 | 81.0 | 55.6 | 64.8 | 62.2 |
 
 ## Quick Usage
 
