@@ -56,7 +56,49 @@ See more details in [ModelZoo.md](https://github.com/InternLM/InternLM-XComposer
 | ShareGPT4V-13B | Vicuna-13B | [ShareGPT4V-13B](https://huggingface.co/Lin-Chen/ShareGPT4V-13B) | 79.9 | 1618.7 | 303.2 | 68.5 | 63.7 | 70.8 | 43.1 | 65.2 | 71.2 | 81.0 | 55.6 | 64.8 | 62.2 |
 
 ## Quick Usage
+<details>
+<summary>Example Code</summary>
 
+```Python
+from share4v.model.builder import load_pretrained_model
+from share4v.mm_utils import get_model_name_from_path
+from share4v.eval.run_share4v import eval_model
+
+model_path = "Lin-Chen/ShareGPT4V-7B"
+
+tokenizer, model, image_processor, context_len = load_pretrained_model(
+    model_path=model_path,
+    model_base=None,
+    model_name=get_model_name_from_path(model_path)
+)
+```
+
+Check out the details wth the `load_pretrained_model` function in `share4v/model/builder.py`.
+
+You can also use the `eval_model` function in `share4v/eval/run_llava.py` to get the output easily. By doing so, you can use this code on Colab directly after downloading this repository.
+
+``` python
+model_path = "Lin-Chen/ShareGPT4V-7B"
+prompt = "What is the most common catchphrase of the character on the right?"
+image_file = "examples/breaking_bad.png"
+
+args = type('Args', (), {
+    "model_path": model_path,
+    "model_base": None,
+    "model_name": get_model_name_from_path(model_path),
+    "query": prompt,
+    "conv_mode": None,
+    "image_file": image_file,
+    "sep": ",",
+    "temperature": 0,
+    "top_p": None,
+    "num_beams": 1,
+    "max_new_tokens": 512
+})()
+
+eval_model(args)
+```
+</details>
 
 ## Install
 
