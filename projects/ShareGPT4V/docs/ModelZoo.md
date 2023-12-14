@@ -26,5 +26,5 @@ These are projector and LLM weights we have pretrained. You can use these weight
 
 | Base LLM | Vision Encoder | Projection | Pretrain Data | Pretraining schedule | Download |
 |----------|----------------|---------------|----------------------|----------|----------|
-| Vicuna-13B-v1.5 | CLIP-L-336px-ft-l12 | MLP-2x | ShareGPT4V-PT-1.2M | 1e | [projector and LLM](https://huggingface.co/Lin-Chen/ShareGPT4V-13B_Pretrained_vit-large336-l12_vicuna-7b-v1.5) |
+| Vicuna-13B-v1.5 | CLIP-L-336px-ft-l12 | MLP-2x | ShareGPT4V-PT-1.2M | 1e | [projector and LLM](https://huggingface.co/Lin-Chen/ShareGPT4V-13B_Pretrained_vit-large336-l12_vicuna-13b-v1.5) |
 | Vicuna-7B-v1.5 | CLIP-L-336px-ft-l12 | MLP-2x | ShareGPT4V-PT-1.2M | 1e | [projector and LLM](https://huggingface.co/Lin-Chen/ShareGPT4V-7B_Pretrained_vit-large336-l12_vicuna-7b-v1.5) |
