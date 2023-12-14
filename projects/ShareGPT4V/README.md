@@ -50,6 +50,9 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ShareGPT4V-7B | Vicuna-7B | [ShareGPT4V-7B](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) | 72.6 | 1567.4 | 376.4 | 68.8 | 62.2 | 69.7 | 37.6 | 63.4 | 68.4 | 80.6 | 57.2 |
 
+## Quick Usage
+
+
 ## Install
 
 ```bash
@@ -98,22 +101,25 @@ We use a similar set of hyperparameters as ShareGPT4V-7B in finetuning.  Both hy
 
 ### Pretrain
 
-More details **TBD**.
+First, you should download the [MLP projector](https://huggingface.co/liuhaotian/llava-v1.5-mlp2x-336px-pretrain-vicuna-7b-v1.5/tree/main) pretrained by LLaVA-1.5 with LAION-CC-SBU-558K. Because a rough modality alignment process is beneficial before using high quality detailed captions for modality alignment.
 
-You can run `projects/ShareGPT4V/scripts/sharegpt4v/slurm_pretrain_7b.sh` to pretrain the model.
+You can run `projects/ShareGPT4V/scripts/sharegpt4v/slurm_pretrain_7b.sh` to pretrain the model. Remember to specify the projector path in the script. In this stage, we fine-tuned the second half of the vision encoder's blocks, projector, and LLM.
+
+In our setup we used 16 A100 (80G) GPUs and the whole pre-training process lasted about 12 hours. You can adjust the number of gradient accumulation steps to reduce the number of GPUs.
 
 ### Finetune
 
-More details **TBD**.
+In this stage, we finetune the projector and LLM with sharegpt4v_mix665k_cap23k_coco-ap9k_lcs3k_sam9k_div2k.json. 
 
 You can run `projects/ShareGPT4V/scripts/sharegpt4v/slurm_finetune_7b.sh` to finetune the model.
+
+In our setup we used 16 A100 (80G) GPUs and the whole pre-training process lasted about 7 hours. You can adjust the number of gradient accumulation steps to reduce the number of GPUs.
 
 ## Evaluation
 
 To ensure the reproducibility, we evaluate the models with greedy decoding. We do not evaluate using beam search to make the inference process consistent with the chat demo of real-time outputs.
 
-See [Evaluation.md](). **TBD**
-
+See [Evaluation.md](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V/projects/ShareGPT4V/docs/Evaluation.md).
 
 ## ❤️ Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
