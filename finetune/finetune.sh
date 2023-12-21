@@ -2,10 +2,9 @@
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 DIR=`pwd`
 
-# MODEL="/mnt/petrelfs/share_data/dongxiaoyi/share_models/debug_chat_merge/"
-MODEL="merged_lora"
-VL_DATA="/mnt/petrelfs/share_data/dongxiaoyi/share_data/jsons/llava_50k_absPath.json"
-TXT_DATA="/mnt/petrelfs/share_data/dongxiaoyi/share_data/zhihu_clean/zhihu_convs/alpaca.json"
+MODEL="model name or path"
+VL_DATA="path of vl data"
+TXT_DATA="path of text data"
 
 GPUS_PER_NODE=8
 NNODES=1
