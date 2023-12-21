@@ -16,6 +16,11 @@ from transformers.utils import logging
 from .configuration_InternLM_XComposer import InternLMXComposerConfig
 from .modeling_utils import LoRALinear
 
+try:
+    import rotary_emb
+except Exception as e:
+    print('Please following docs/install.md to install rotary_emb if you want to do fine-tuning')
+
 logger = logging.get_logger(__name__)
 
 _CONFIG_FOR_DOC = "InternLMXComposerConfig"
@@ -31,7 +36,6 @@ def rotary_embed(x1, x2, cos, sin, conj):
 
 
 class LegacyApplyRotaryEmbQKV_(torch.autograd.Function):
-
     @staticmethod
     def forward(ctx, qkv, cos, sin, cos_k=None, sin_k=None, interleaved=False):
         """
@@ -51,18 +55,26 @@ class LegacyApplyRotaryEmbQKV_(torch.autograd.Function):
         assert seqlen <= rotary_seqlen
         cos_k = cos if cos_k is None else cos_k
         sin_k = sin if sin_k is None else sin_k
-        assert sin.shape == cos_k.shape == sin_k.shape == (rotary_seqlen, rotary_dim // 2)
+        assert sin.shape == cos_k.shape == sin_k.shape == (rotary_seqlen,
+                                                           rotary_dim // 2)
         q_ro = qkv[:, :, 0, :, :rotary_dim]
-        q1, q2 = q_ro.chunk(2, dim=-1) if not interleaved else (q_ro[..., ::2], q_ro[..., 1::2])
+        q1, q2 = q_ro.chunk(2, dim=-1) if not interleaved else (q_ro[..., ::2],
+                                                                q_ro[...,
+                                                                     1::2])
         # rotary_emb.apply_rotary(q1, q2, rearrange(cos[:seqlen], 's d -> s 1 d'),
         #                         rearrange(sin[:seqlen], 's d -> s 1 d'), q1, q2, False)
-        q1, q2 = rotary_embed(q1, q2, rearrange(cos[:seqlen], 's d -> s 1 d'), rearrange(sin[:seqlen], 's d -> s 1 d'), False)
+        q1, q2 = rotary_embed(q1, q2, rearrange(cos[:seqlen], 's d -> s 1 d'),
+                              rearrange(sin[:seqlen], 's d -> s 1 d'), False)
         qkv[:, :, 0, :, :rotary_dim] = torch.cat([q1, q2], dim=-1)
         k_ro = qkv[:, :, 1, :, :rotary_dim]
-        k1, k2 = k_ro.chunk(2, dim=-1) if not interleaved else (k_ro[..., ::2], k_ro[..., 1::2])
+        k1, k2 = k_ro.chunk(2, dim=-1) if not interleaved else (k_ro[..., ::2],
+                                                                k_ro[...,
+                                                                     1::2])
         # rotary_emb.apply_rotary(k1, k2, rearrange(cos_k[:seqlen], 's d -> s 1 d'),
         #                         rearrange(sin_k[:seqlen], 's d -> s 1 d'), k1, k2, False)
-        k1, k2 = rotary_embed(k1, k2, rearrange(cos_k[:seqlen], 's d -> s 1 d'), rearrange(sin_k[:seqlen], 's d -> s 1 d'), False)
+        k1, k2 = rotary_embed(k1, k2, rearrange(cos_k[:seqlen],
+                                                's d -> s 1 d'),
+                              rearrange(sin_k[:seqlen], 's d -> s 1 d'), False)
         qkv[:, :, 1, :, :rotary_dim] = torch.cat([k1, k2], dim=-1)
         ctx.save_for_backward(cos, sin, cos_k, sin_k)
         ctx.interleaved = interleaved
@@ -75,16 +87,67 @@ class LegacyApplyRotaryEmbQKV_(torch.autograd.Function):
         rotary_dim = cos.shape[-1]
         rotary_dim *= 2
         dq_ro = dqkv[:, :, 0, :, :rotary_dim]
-        dq1, dq2 = (dq_ro.chunk(2, dim=-1) if not ctx.interleaved
-                    else (dq_ro[..., ::2], dq_ro[..., 1::2]))
-        rotary_emb.apply_rotary(dq1, dq2, rearrange(cos[:seqlen], 's d -> s 1 d'),
-                                rearrange(sin[:seqlen], 's d -> s 1 d'), dq1, dq2, True)
+        dq1, dq2 = (dq_ro.chunk(2, dim=-1) if not ctx.interleaved else
+                    (dq_ro[..., ::2], dq_ro[..., 1::2]))
+        rotary_emb.apply_rotary(dq1, dq2,
+                                rearrange(cos[:seqlen], 's d -> s 1 d'),
+                                rearrange(sin[:seqlen], 's d -> s 1 d'), dq1,
+                                dq2, True)
         dk_ro = dqkv[:, :, 1, :, :rotary_dim]
-        dk1, dk2 = (dk_ro.chunk(2, dim=-1) if not ctx.interleaved
-                    else (dk_ro[..., ::2], dk_ro[..., 1::2]))
-        rotary_emb.apply_rotary(dk1, dk2, rearrange(cos_k[:seqlen], 's d -> s 1 d'),
-                                rearrange(sin_k[:seqlen], 's d -> s 1 d'), dk1, dk2, True)
+        dk1, dk2 = (dk_ro.chunk(2, dim=-1) if not ctx.interleaved else
+                    (dk_ro[..., ::2], dk_ro[..., 1::2]))
+        rotary_emb.apply_rotary(dk1, dk2,
+                                rearrange(cos_k[:seqlen], 's d -> s 1 d'),
+                                rearrange(sin_k[:seqlen], 's d -> s 1 d'), dk1,
+                                dk2, True)
         return dqkv, None, None, None, None, None
+
+
+class ApplyRotaryEmbQKV_(torch.autograd.Function):
+    """
+    ApplyRotaryEmbQKV_
+    """
+    @staticmethod
+    def forward(ctx, qkv, cos, sin, cos_k=None, sin_k=None):
+        """
+            qkv: (total, 3, nheads, headdim)
+            cos, sin: (seqlen, rotary_dim / 2)
+            cos_k, sin_k: (seqlen, rotary_dim / 2), optional
+        rotary_dim must be <= headdim
+        Apply rotary embedding *inplace* to the first rotary_dim of q and k.
+        """
+        _, three, _, headdim = qkv.shape
+        assert three == 3
+        rotary_seqlen, rotary_dim = cos.shape
+        rotary_dim *= 2
+        assert rotary_dim <= headdim
+        cos_k = cos if cos_k is None else cos_k
+        sin_k = sin if sin_k is None else sin_k
+        assert sin.shape == cos_k.shape == sin_k.shape == (rotary_seqlen,
+                                                           rotary_dim // 2)
+        q1, q2 = qkv[:, 0, :, :rotary_dim].chunk(2, dim=-1)
+        rotary_emb.apply_rotary(q1, q2, rearrange(cos, "s d -> s 1 d"),
+                                rearrange(sin, "s d -> s 1 d"), q1, q2, False)
+        k1, k2 = qkv[:, 1, :, :rotary_dim].chunk(2, dim=-1)
+        rotary_emb.apply_rotary(k1, k2, rearrange(cos_k, "s d -> s 1 d"),
+                                rearrange(sin_k, "s d -> s 1 d"), k1, k2,
+                                False)
+        ctx.save_for_backward(cos, sin, cos_k, sin_k)
+        return qkv
+
+    @staticmethod
+    def backward(ctx, dqkv):
+        cos, sin, cos_k, sin_k = ctx.saved_tensors
+        rotary_dim = cos.shape[-1]
+        rotary_dim *= 2
+        dq1, dq2 = dqkv[:, 0, :, :rotary_dim].chunk(2, dim=-1)
+        rotary_emb.apply_rotary(dq1, dq2, rearrange(cos, "s d -> s 1 d"),
+                                rearrange(sin, "s d -> s 1 d"), dq1, dq2, True)
+        dk1, dk2 = dqkv[:, 1, :, :rotary_dim].chunk(2, dim=-1)
+        rotary_emb.apply_rotary(dk1, dk2, rearrange(cos_k, "s d -> s 1 d"),
+                                rearrange(sin_k, "s d -> s 1 d"), dk1, dk2,
+                                True)
+        return dqkv, None, None, None, None
 
 
 class ConvertedInternLMRotaryEmbedding(torch.nn.Module):
@@ -137,6 +200,23 @@ class ConvertedInternLMRotaryEmbedding(torch.nn.Module):
                 self._cos_k_cached = (torch.cos(freqs) / scale).to(x.dtype)
                 self._sin_k_cached = (torch.sin(freqs) / scale).to(x.dtype)
 
+    def forward(self,
+                qkv: torch.Tensor,
+                indexes=0) -> Tuple[torch.Tensor, torch.Tensor]:
+        self._update_cos_sin_cache(qkv, indexes)
+        if self.scale is None:
+            return apply_rotary_emb_qkv_(qkv, self._cos_cached[indexes],
+                                         self._sin_cached[indexes]).to(
+                                             qkv.dtype)
+        else:
+            return apply_rotary_emb_qkv_(
+                qkv,
+                self._cos_cached[indexes],
+                self._sin_cached[indexes],
+                self._cos_k_cached[indexes],
+                self._sin_k_cached[indexes],
+            ).to(qkv.dtype)
+
     def eval_forward(self, qkv, seqlen_offset=0):
         """
         seqlen_offset: can be used in generation where the qkv being passed in is only the last
@@ -157,6 +237,7 @@ class ConvertedInternLMRotaryEmbedding(torch.nn.Module):
             )
 
 
+apply_rotary_emb_qkv_ = ApplyRotaryEmbQKV_.apply
 legacy_apply_rotary_embed_qkv = LegacyApplyRotaryEmbQKV_.apply
 
 

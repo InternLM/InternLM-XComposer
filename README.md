@@ -434,6 +434,119 @@ print(response)
 ```
 </details>
 
+## Finetuning
+Now we provide the official training script, finetune/finetune.py, for users to finetune the pretrained model for downstream applications in a simple fashion. Additionally, we provide shell scripts to launch finetuning with no worries. This script supports the training with DeepSpeed and FSDP. The shell scripts that we provide use DeepSpeed, and thus we advise you to install DeepSpeed before you start:
+```
+pip install deepspeed
+```
+### Data preparation
+To prepare your training data, you should formulate each sample as a dictionary consisting of an id, an image(for vision-language data), and a list of conversations. 
+The vision-language and pure-language data should be formulated as two individual lists and saved as JSON files.
+
+<details>
+  <summary>
+    <b>vision-language example list with 2 sample</b>
+  </summary>
+
+```
+  [
+    {
+      "id": "0",
+      "image": 'path/to/image_0.jpg'
+      "conversations": [
+        {
+          "from": "user",
+          "value": "图中是什么"
+        },
+        {
+          "from": "assistant",
+          "value": "这张图中包含了......"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "image": 'path/to/image_1.jpg'
+      "conversations": [
+        {
+          "from": "user",
+          "value": "what is the color of the dog"
+        },
+        {
+          "from": "assistant",
+          "value": "it is ...."
+        }
+      ]
+    }
+  ]
+```
+</details>
+
+<details>
+  <summary>
+    <b>pure-language example list with 2 sample</b>
+  </summary> 
+
+```
+  [
+    {
+      "id": "0",
+      "conversations": [
+        {
+          "from": "user",
+          "value": "你好"
+        },
+        {
+          "from": "assistant",
+          "value": "你好，我是浦语·灵笔，一个支持图文创作的多模态大模型。"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "conversations": [
+        {
+          "from": "user",
+          "value": "Tell me something about Albert Einstein."
+        },
+        {
+          "from": "assistant",
+          "value": "Albert Einstein was a German-born theoretical physicist who developed .... "
+        }
+      ]
+    }
+  ]
+```
+</details>
+
+After data preparation, you can use the provided shell scripts to run finetuning. Remember to specify the path to the vision-language data file with $VL_DATA, and pure-language with $TXT_DATA.
+
+### Full-parameter finetuning
+Full-parameter parameter finetuning requires updating all parameters of LLM in the whole training process. To launch your training, run the following script:
+```
+sh finetune/finetune.sh
+```
+
+### LoRA finetuning
+The LoRA allows light-weight model tuning with only a samll subset of parameters updated. We provide the LoRA implementation based on `peft`. To launch your training, run the following script:
+```
+sh finetune/finetune_lora.sh
+```
+For the interleaved text-image composition model [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b), its origin LoRA is not merged, so if you want to finetune it with a new LoRA adapter, you should merge it first with the `finetune/merge_lora.py` and finetune the new model.
+
+After training, you could load the model with the path to the adapter. We advise you to use absolute path for your pretrained model. This is because LoRA only saves the adapter and the absolute path in the adapter configuration json file is used for finding out the pretrained model to load. 
+```
+from peft import AutoPeftModelForCausalLM
+
+model = AutoPeftModelForCausalLM.from_pretrained(
+    path_to_adapter, # path to the output directory
+    device_map="auto",
+    trust_remote_code=True
+).eval()
+```
+
+
+
 ## Web UI
 
 
