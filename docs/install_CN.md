@@ -27,8 +27,11 @@ pip install auto_gptq transformers==4.33.1
 ```
 
 ### 可选: 微调 (Fine-tuning)
-微调需要安装flash-attention 和 rotary_emb
+微调需要安装deepspeed, flash-attention 和 rotary_emb
 ```bash
+# install deepspeed
+pip install deepspeed
+
 # install flash attention
 git clone git@github.com:Dao-AILab/flash-attention.git
 cd flash-attention

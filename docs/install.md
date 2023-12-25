@@ -28,8 +28,11 @@ pip install auto_gptq
 ```
 
 ### Optional: Fine-tuning
-Fine-turning requires installing flash-attention and rotary_emb
+Fine-turning requires deepspeed, flash-attention and rotary_emb
 ```bash
+# install deepspeed
+pip install deepspeed
+
 # install flash attention
 git clone git@github.com:Dao-AILab/flash-attention.git
 cd flash-attention

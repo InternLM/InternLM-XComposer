@@ -435,10 +435,8 @@ print(response)
 </details>
 
 ## Finetuning
-Now we provide the official training script, finetune/finetune.py, for users to finetune the pretrained model for downstream applications in a simple fashion. Additionally, we provide shell scripts to launch finetuning with no worries. This script supports the training with DeepSpeed and FSDP. The shell scripts that we provide use DeepSpeed, and thus we advise you to install DeepSpeed before you start:
-```
-pip install deepspeed
-```
+Now we provide the official training script, finetune/finetune.py, for users to finetune the pretrained model for downstream applications in a simple fashion. Additionally, we provide shell scripts to launch finetuning with no worries. This script supports the training with DeepSpeed and FSDP. The shell scripts that we provide use DeepSpeed, and the fine-tuning requires flash-attention and rotary embedding, thus we advise you to install related packages before you start. Please refer to the [installation instructions](docs/install.md)
+
 ### Data preparation
 To prepare your training data, you should formulate each sample as a dictionary consisting of an id, an image(for vision-language data), and a list of conversations. 
 The vision-language and pure-language data should be formulated as two individual lists and saved as JSON files.
