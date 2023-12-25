@@ -2,12 +2,12 @@ import logging
 import math
 import os
 from contextlib import contextmanager
-from transformers import StoppingCriteria, StoppingCriteriaList
 
 import timm.models.hub as timm_hub
 import torch
 import torch.distributed as dist
 import torch.nn as nn
+from transformers import StoppingCriteria, StoppingCriteriaList
 
 
 def is_dist_avail_and_initialized():
@@ -28,12 +28,16 @@ def is_main_process():
     return get_rank() == 0
 
 
+def rank0_print(msg, **kwargs):
+    if is_main_process():
+        print(msg, **kwargs)
+
+
 def download_cached_file(url, check_hash=True, progress=False):
     """
     Download a file from a URL and cache it locally. If the file already exists, it is not downloaded again.
     If distributed, only the main process downloads the file, and the other processes wait for the file to be downloaded.
     """
-
     def get_cached_file_path():
         # a hack to sync the file path across processes
         parts = torch.hub.urlparse(url)
@@ -76,18 +80,16 @@ def all_logging_disabled(highest_level=logging.CRITICAL):
 
 
 class LoRALinear(nn.Linear):
-    def __init__(
-        self,
-        in_features: int,
-        out_features: int,
-        bias: bool = True,
-        device=None,
-        dtype=None,
-        lora_r=8,
-        lora_alpha=16,
-        lora_dropout=0.05,
-        **kwargs
-    ) -> None:
+    def __init__(self,
+                 in_features: int,
+                 out_features: int,
+                 bias: bool = True,
+                 device=None,
+                 dtype=None,
+                 lora_r=8,
+                 lora_alpha=16,
+                 lora_dropout=0.05,
+                 **kwargs) -> None:
         super().__init__(in_features, out_features, bias, device, dtype)
         self.lora_r = lora_r
         self.lora_alpha = lora_alpha
@@ -97,12 +99,16 @@ class LoRALinear(nn.Linear):
             self.lora_dropout = lambda x: x
         self.lora_scaling = self.lora_alpha / self.lora_r
 
-        self.lora_A = nn.Linear(
-            in_features, self.lora_r, bias=False, device=device, dtype=dtype
-        )
-        self.lora_B = nn.Linear(
-            self.lora_r, out_features, bias=False, device=device, dtype=dtype
-        )
+        self.lora_A = nn.Linear(in_features,
+                                self.lora_r,
+                                bias=False,
+                                device=device,
+                                dtype=dtype)
+        self.lora_B = nn.Linear(self.lora_r,
+                                out_features,
+                                bias=False,
+                                device=device,
+                                dtype=dtype)
 
         self.reset_parameters()
 
@@ -116,7 +122,8 @@ class LoRALinear(nn.Linear):
         orig_type = x.dtype
         res = super().forward(x)
         x = x.float()
-        res += self.lora_B(self.lora_A(self.lora_dropout(x))) * self.lora_scaling
+        res += self.lora_B(self.lora_A(
+            self.lora_dropout(x))) * self.lora_scaling
         return res.to(orig_type)
 
 
@@ -127,7 +134,7 @@ class StoppingCriteriaSub(StoppingCriteria):
 
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor):
         for stop in self.stops:
-            if torch.all((stop == input_ids[:, -len(stop) :])).item():
+            if torch.all((stop == input_ids[:, -len(stop):])).item():
                 return True
 
         return False

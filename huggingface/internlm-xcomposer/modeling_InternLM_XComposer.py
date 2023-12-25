@@ -46,12 +46,13 @@ conversation
     def __init__(self, config):
         super().__init__(config)
 
-        print('Init VIT ... ', end='')
+        self.max_length = config.max_length
+        rank0_print('Init VIT ... ', end='')
         self.visual_encoder = create_eva_vit_g()
         self.ln_vision = LayerNorm(self.visual_encoder.num_features)
-        print('Done')
+        rank0_print('Done')
 
-        print('Init Perceive Sampler ... ', end='')
+        rank0_print('Init Perceive Sampler ... ', end='')
         with all_logging_disabled():
             self.Qformer, self.query_tokens = self.init_qformer(
                 config.num_query_token, self.visual_encoder.num_features)
@@ -61,9 +62,9 @@ conversation
                 layer.output = None
                 layer.intermediate = None
             self.Qformer.cls = None
-        print('Done')
+        rank0_print('Done')
 
-        print('Init InternLM ... ', end='')
+        rank0_print('Init InternLM ... ', end='')
         self.flag_image_start = nn.Parameter(torch.zeros([1, 1, 4096]))
         self.flag_image_end = nn.Parameter(torch.zeros([1, 1, 4096]))
         self.flag_image_start.requires_grad = False
@@ -81,7 +82,7 @@ conversation
             # speed up init llm
             with torch.device('meta'):
                 self.internlm_model = InternLMForCausalLM._from_config(config)
-            self.internlm_model.to_empty(device='cpu').to(torch.float16)
+            self.internlm_model.to_empty(device=config.device).to(torch.float16)
             self.internlm_model.to(config.device)
         for n, m in self.internlm_model.named_modules():
             if 'lora' in n:
@@ -89,7 +90,7 @@ conversation
 
         self.internlm_proj = nn.Linear(self.Qformer.config.hidden_size,
                                        self.internlm_model.config.hidden_size)
-        print('Done')
+        rank0_print('Done')
 
         self.vis_processor = transforms.Compose([
             transforms.Resize((224, 224),
@@ -110,6 +111,17 @@ conversation
         stopping_criteria = StoppingCriteriaList(
             [StoppingCriteriaSub(stops=stop_words_ids)])
         self.gen_config['stopping_criteria'] = stopping_criteria
+
+        self.supports_gradient_checkpointing = True
+
+    def get_input_embeddings(self):
+        return self.internlm_model.get_input_embeddings()
+
+    def _set_gradient_checkpointing(self, module, value=False):
+        if value:
+            self.internlm_model.apply(
+                partial(self.internlm_model._set_gradient_checkpointing,
+                        value=True))
 
     def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
@@ -268,3 +280,133 @@ conversation
         if history is not None:
             prompt_embeds = torch.cat([*history, prompt_embeds], dim=1)
         return prompt_embeds
+
+    ######################
+    #  code for training
+    ######################
+    def prompt_wrap(self, img_embeds, prompt):
+        batch_size = img_embeds.shape[0]
+        p_before, p_after = prompt.split('<ImageHere>')
+        p_before_tokens = self.tokenizer(p_before,
+                                         return_tensors="pt",
+                                         add_special_tokens=True).to(
+                                             img_embeds.device)
+
+        p_before_embeds = self.internlm_model.model.embed_tokens(
+            p_before_tokens.input_ids).expand(batch_size, -1, -1)
+        wrapped_img_embeds = torch.cat([p_before_embeds, img_embeds], dim=1)
+
+        wrapped_atts_img = torch.ones(wrapped_img_embeds.size()[:-1],
+                                      dtype=torch.long).to(img_embeds.device)
+
+        wrapped_target = torch.ones(
+            batch_size, wrapped_img_embeds.shape[1], dtype=torch.long).to(
+                img_embeds.device) * -100
+
+        return wrapped_img_embeds, wrapped_atts_img, wrapped_target
+
+    def align_text(self, samples, has_img=False):  ### add eos and eoa
+        text_new = []
+        if has_img:  ### remove the first user to wrap image features
+            text = [
+                t.replace("<image>", "").split("<|User|>:", 1)[-1].lstrip()
+                for t in samples["text_input"]
+            ]
+        else:
+            text = [t for t in samples["text_input"]]
+
+        text = [t + self.eoa + ' </s>' for t in text]
+        for i in range(len(text)):
+            temp = text[i]
+            temp = temp.replace('<|Bot|>', self.eoh + ' <|Bot|>')
+            temp = temp.replace(' <|User|>', self.eoa + ' <|User|>')
+            if temp.find(self.eoh) > temp.find(self.eoa):
+                temp = temp.replace(self.eoa, '', 1)
+            text_new.append(temp)
+        return text_new
+
+    def text2emb(self, text):
+        to_regress_tokens = self.tokenizer(text,
+                                           return_tensors="pt",
+                                           padding="longest",
+                                           truncation=True,
+                                           max_length=self.max_length,
+                                           add_special_tokens=False).to(
+                                               self.device)
+
+        targets = self.mask_human_targets(to_regress_tokens.input_ids)
+        targets = targets.to(self.device)
+
+        return to_regress_tokens, targets
+
+    def mask_human_targets(self, input_ids, pure=False):
+        target_batch = []
+        for bs in range(input_ids.shape[0]):
+            cur_idx = 0
+            ids = input_ids[bs]
+            targets = copy.deepcopy(ids)
+            last_eoa = 0
+            last_eoh = 0
+            for i, temp_id in enumerate(ids):
+                if temp_id == 103027:  #### end of human
+                    targets[cur_idx:i + 6] = -100
+                    cur_idx = i + 6
+                    last_eoh = i
+                elif temp_id == 103028:  ### end of assistant
+                    cur_idx = i + 1
+                    last_eoa = i
+                elif temp_id == 2:  ### eos and following pad
+                    targets[i + 1:] = -100  #### loss on eos, but not on pad
+                    break
+            if temp_id != 2 and last_eoa > last_eoh:  ### trunction, end at last question
+                targets[last_eoa +
+                        1:] = -100  #### mask all after the last answer
+
+            target_batch.append(targets.unsqueeze(0))
+
+        target_batch = torch.cat(target_batch, dim=0)
+        return target_batch
+
+    def forward(self,
+                input_ids=None,
+                attention_mask=None,
+                inputs_embeds=None,
+                labels=None,
+                output_attentions=None,
+                output_hidden_states=None,
+                return_dict=None,
+                **kwargs):
+
+        samples = kwargs.get('samples')
+        has_img = 'images' in samples.keys()
+
+        ### encode text
+        text = self.align_text(samples, has_img=has_img)
+        to_regress_tokens, targets = self.text2emb(text)
+
+        to_regress_embeds = self.internlm_model.model.embed_tokens(
+            to_regress_tokens.input_ids)
+        attention_mask = to_regress_tokens.attention_mask
+
+        if has_img:
+            header = samples["text_input"][0].split(' <|User|>:')[0]
+            prompt = header + ' <|User|>:<ImageHere>'
+
+            ### encode image
+            image = samples["image"]
+            img_embeds = self.encode_img(image)
+            img_embeds, atts_img, wrapped_target = self.prompt_wrap(
+                img_embeds, prompt)
+            ### combine text and image
+            to_regress_embeds = torch.cat([img_embeds, to_regress_embeds],
+                                          dim=1)
+            attention_mask = torch.cat([atts_img, attention_mask], dim=1)
+            targets = torch.cat([wrapped_target, targets], dim=1)
+
+        outputs = self.internlm_model(
+            inputs_embeds=to_regress_embeds,
+            attention_mask=attention_mask,
+            return_dict=True,
+            labels=targets,
+        )
+        return outputs
