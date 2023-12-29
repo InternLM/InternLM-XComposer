@@ -175,13 +175,11 @@ See [Evaluation.md](https://github.com/InternLM/InternLM-XComposer/blob/main/pro
 ## ✒️ Citation
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
 ```bibtex
-@misc{chen2023sharegpt4v,
-      title={ShareGPT4V: Improving Large Multi-Modal Models with Better Captions}, 
-      author={Lin Chen and Jinsong Li and Xiaoyi Dong and Pan Zhang and Conghui He and Jiaqi Wang and Feng Zhao and Dahua Lin},
-      year={2023},
-      eprint={2311.12793},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{chen2023sharegpt4v,
+  title={ShareGPT4V: Improving Large Multi-Modal Models with Better Captions},
+  author={Chen, Lin and Li, Jisong and Dong, Xiaoyi and Zhang, Pan and He, Conghui and Wang, Jiaqi and Zhao, Feng and Lin, Dahua},
+  journal={arXiv preprint arXiv:2311.12793},
+  year={2023}
 }
 ```
 
