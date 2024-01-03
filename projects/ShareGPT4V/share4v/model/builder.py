@@ -29,7 +29,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     else:
         kwargs['torch_dtype'] = torch.float16
 
-    if 'share4v' in model_name.lower():
+    if 'sharegpt4v' in model_name.lower():
         # Load ShareGPT4V model
         if 'lora' in model_name.lower() and model_base is None:
             warnings.warn('There is `lora` in model name but no `model_base` is provided. If you are loading a LoRA model, please provide the `model_base` argument.')
@@ -118,7 +118,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
 
     image_processor = None
 
-    if 'share4v' in model_name.lower():
+    if 'sharegpt4v' in model_name.lower():
         mm_use_im_start_end = getattr(
             model.config, "mm_use_im_start_end", False)
         mm_use_im_patch_token = getattr(
