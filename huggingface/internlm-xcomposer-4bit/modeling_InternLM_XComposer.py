@@ -378,7 +378,7 @@ conversation
                 **kwargs):
 
         samples = kwargs.get('samples')
-        has_img = 'images' in samples.keys()
+        has_img = 'image' in samples.keys()
 
         ### encode text
         text = self.align_text(samples, has_img=has_img)
