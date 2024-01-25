@@ -1,22 +1,17 @@
+import re
+import os
+import json
+import base64
 import torch
+import openai
+import numpy as np
 import torchvision
 from PIL import Image
+from typing import Optional
+from torch.utils.data import Dataset
 
-def __resize_img__( b):
-        
-        width, height = b.size
-        tar = max(width, height)
-        top_padding = int((tar - height)/2)
-        bottom_padding = tar - height - top_padding
-        left_padding = int((tar - width)/2)
-        right_padding = tar - width - left_padding
-        b = torchvision.transforms.functional.pad(b, [left_padding, top_padding, right_padding, bottom_padding])
-        return b
 
-def model_gen( model, text, images, need_bos=True):
-    text = text.split('Please answer')[0].strip()
-    text = f'{text} Answer this question briefly'
-    text = f'[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n'
+def model_gen(model, text, images, need_bos=True):
     pt1 = 0
     embeds = []
     im_mask = []
@@ -26,28 +21,39 @@ def model_gen( model, text, images, need_bos=True):
         subtext = text[pt1:pts]
         if need_bos or len(subtext) > 0:
             text_embeds = model.encode_text(subtext, add_special_tokens=need_bos)
-            im_mask.append(torch.zeros(text_embeds.shape[:2]).cuda())
             embeds.append(text_embeds)
+            im_mask.append(torch.zeros(text_embeds.shape[:2]).cuda())
             need_bos = False
         if i < len(images):
-            image = Image.open(images[i]).convert('RGB')
-            image = __resize_img__(image)
+            try:
+                image = Image.open(images[i]).convert('RGB')
+            except:
+                image = images[i].convert('RGB')
             image = model.vis_processor(image).unsqueeze(0).cuda()
             image_embeds = model.encode_img(image)
-            im_mask.append(torch.ones(image_embeds.shape[:2]).cuda())
             embeds.append(image_embeds)
+            im_mask.append(torch.ones(image_embeds.shape[:2]).cuda())
         pt1 = pts
     embeds = torch.cat(embeds, dim=1)
     im_mask = torch.cat(im_mask, dim=1)
     im_mask = im_mask.bool()
 
     outputs = model.generate(inputs_embeds=embeds, im_mask=im_mask,
-                        temperature=1.0, max_new_tokens=5, num_beams=5,
+                        temperature=1.0, max_new_tokens=500, num_beams=3,
                         do_sample=False, repetition_penalty=1.0)
+
     output_token = outputs[0]
     if output_token[0] == 0 or output_token[0] == 1:
         output_token = output_token[1:]
     output_text = model.tokenizer.decode(output_token, add_special_tokens=False)
-    output_text = output_text.split('[UNUSED_TOKEN_145]')[0]
+    output_text = output_text.split('[UNUSED_TOKEN_145]')[0].strip()
     return output_text
+
+def load_jsonl(json_file):
+    with open(json_file) as f:
+        lines = f.readlines()
+    ques = []
+    for line in lines:
+        ques.append(json.loads(line))
+    return ques
 
