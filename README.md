@@ -2,7 +2,7 @@
     <img src="logo-en.png" width="650"/>
 </p>
 <p align="center">
-    <b><font size="6">InternLM-XComposer</font></b>
+    <b><font size="6">InternLM-XComposer2</font></b>
 </p>
 
 
@@ -10,7 +10,7 @@
         InternLM-XComposer <a href="">🐼 <a> <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖<a href="https://openxlab.org.cn/models/detail/InternLM-xcomposer/internlm-xcomposer-7b">🐼 </a> &nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖<a href="https://openxlab.org.cn/models/detail/InternLM-xcomposer/internlm-xcomposer-7b">🐼 </a> &nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 </a>
+        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"> &nbsp | Technical Report <a href="">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
