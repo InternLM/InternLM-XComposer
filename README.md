@@ -60,6 +60,7 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
 
 
 ## Demo
+[![Replicate](https://replicate.com/cjwbw/internlm-xcomposer/badge)](https://replicate.com/cjwbw/internlm-xcomposer) 
 
 
 https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
