@@ -300,11 +300,11 @@ Yes ratio: 0.42646048109965634
  
 <details>
   <summary>
-    <b>HallusionBench results</b>
+    <b>HallusionBench Image Part results</b>
   </summary>
 
-| Image Part Acc |  
-|---------|  
-| 60.3   |  
+|  aAcc |  fAcc | qAcc | 
+|---------|  --------|  --------|  
+| 60.3   | 30.01 |  32.97  | 
 
 </details>
