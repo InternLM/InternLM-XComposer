@@ -2,22 +2,20 @@ import torch
 import os
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
-from utils import generate_answer
+from utils import model_gen
 
-tgt_dir = 'PATH TO MODEL'
-hf_tokenizer = AutoTokenizer.from_pretrained(tgt_dir, trust_remote_code=True)
-hf_model = AutoModel.from_pretrained(tgt_dir, trust_remote_code=True)
-hf_model.cuda()
-hf_model.eval()
-for n, p in hf_model.named_parameters():
-    p.requires_grad = False
+tgt_dir = 'internlm/internlm-xcomposer2-vl-7b'
+tokenizer = AutoTokenizer.from_pretrained(tgt_dir, trust_remote_code=True)
+model = AutoModel.from_pretrained(tgt_dir, trust_remote_code=True)
+model.cuda().eval().half()
+model.tokenizer = tokenizer
 
-hf_model.tokenizer = hf_tokenizer
-model = hf_model
+eval_tool_path = '/mnt/petrelfs/dongxiaoyi/dataset/eval_tool/'
+mme_data_path = '/mnt/petrelfs/dongxiaoyi/dataset/MME_Benchmark_release'
 
+root = os.path.join(eval_tool_path, 'Your_Results')
+output = os.path.join(eval_tool_path, 'InternLM_XComposer2_VL')
 
-root = 'MME_PATH/eval_tool/Your_Results'
-output = 'MME_PATH/eval_tool/InternLM-XComposer-VL'
 os.makedirs(output, exist_ok=True)
 
 
@@ -28,13 +26,11 @@ for filename in os.listdir(root):
         for line in tqdm(lines):
             img, question, gt = line.strip().split('\t')
             try:
-                img_path = os.path.join('MME_IMG_PATH', filename, img)
+                img_path = os.path.join(mme_data_path, filename, img)
                 assert os.path.exists(img_path), img_path
             except:
-                img_path = os.path.join('MME_IMG_PATH', filename, 'images', img)
+                img_path = os.path.join(mme_data_path, filename, 'images', img)
                 assert os.path.exists(img_path), img_path
-            text = f' <|User|>:<ImageHere> {question} Answer this question briefly' + hf_model.eoh + ' <|Bot|>:'
             with torch.cuda.amp.autocast():
-                with torch.no_grad():
-                    response = generate_answer(model, text, img_path)
+                response = model_gen(model, question, img_path)
             print(img, question, gt, response, sep='\t', file=fout)

@@ -4,25 +4,24 @@ from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
 from utils import generate_answer, MMDump, MMBenchDataset
 
-mmbench = MMBenchDataset('PATH TO MMBENCH TSV')
-mm_dump = MMDump(save_path = './test.xlsx')
+mmbench = MMBenchDataset('data/mmbench_test_20230712.tsv')
+mm_dump = MMDump(save_path = '../Output/submit_test.xlsx')
 
-tgt_dir = 'PATH TO MODEL'
-hf_tokenizer = AutoTokenizer.from_pretrained(tgt_dir, trust_remote_code=True)
-hf_model = AutoModel.from_pretrained(tgt_dir, trust_remote_code=True)
-hf_model.cuda()
-hf_model.eval()
-for n, p in hf_model.named_parameters():
-    p.requires_grad = False
-hf_model.tokenizer = hf_tokenizer
-model = hf_model
+tgt_dir = 'internlm/internlm-xcomposer2-vl-7b'
+tokenizer = AutoTokenizer.from_pretrained(tgt_dir, trust_remote_code=True)
+model = AutoModel.from_pretrained(tgt_dir, trust_remote_code=True)
+model.cuda().eval().half()
+model.tokenizer = tokenizer
 
 for sample in tqdm(mmbench):
     image = sample['img']
-    text = sample['input_text']
+    text = sample['text']
     with torch.cuda.amp.autocast():
-        with torch.no_grad():
-            response = generate_answer(model, text, image)
+        with torch.no_grad(): 
+            response = model_gen(model, text, image) 
+            #print (response)
     sample['pred_answer'] = response
     mm_dump.process(sample)
 mm_dump.save_results()
+
+

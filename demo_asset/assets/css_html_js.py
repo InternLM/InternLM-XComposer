@@ -1,7 +1,33 @@
 custom_css = """
 .feedback {font-size: 20px !important}
+.edit {font-size: 16px !important;
+    border-color: gray;
+}
+.editsmall {font-size: 8px !important;
+    border-color: gray;
+}
 .markdown-text {
     font-size: 1em !important;
+}
+.sm_btn {
+    max-width: 2.5em;
+    min-width: 2.5em !important;
+    height: 2.4em;
+    align-self: end;
+}
+.smax_btn {
+     max-width: 2.5em;
+     min-width: 2.5em !important;
+     min-height: 6.0em;
+     align-self: center;
+}
+#expand_btn {
+    max-width: 2.0em;
+    max-height: 2.4em;
+}
+#abbre_btn {
+    max-width: 2.0em;
+    max-height: 2.4em;
 }
 #models-to-add-text {
     font-size: 18px !important;
