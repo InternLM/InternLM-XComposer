@@ -92,6 +92,15 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 * ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf)。
 </br>
 
+## 模型合集
+
+| 模型                      | Transformers(HF)                           | ModelScope(HF)                           |  开源日期 |
+| -------------------------- | ------------------------------------------ | ---------------------------------------- | -------------------------------------- |
+| **InternLM-XComposer2**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer2-VL**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary) |  2024-09-26   |
+| **InternLM-XComposer-4bit**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) |  2024-09-26   |
+| **InternLM-XComposer-VL**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary) |  2024-09-26   |
 
 ## 评测
 

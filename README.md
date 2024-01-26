@@ -90,6 +90,17 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 * ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
 </br>
 
+## Model Zoo
+
+| Model                      | Transformers(HF)                           | ModelScope(HF)                           |  Release Date |
+| -------------------------- | ------------------------------------------ | ---------------------------------------- | -------------------------------------- |
+| **InternLM-XComposer2**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer2-VL**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary) |  2024-09-26   |
+| **InternLM-XComposer-4bit**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) |  2024-09-26   |
+| **InternLM-XComposer-VL**      | [🤗internlm2-base-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm2-base-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary) |  2024-09-26   |
+
+
 
 ## Evaluation
 
