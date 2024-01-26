@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo.png" width="400"/>
+    <img src="./assets/logo_cn.png" width="400"/>
 </p>
 <p align="center">
     <b><font size="6">浦语·灵笔</font></b>

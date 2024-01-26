@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="logo-en.png" width="650"/>
+    <img src="./assets/logo_en.png" width="650"/>
 </p>
 <p align="center">
     <b><font size="6">InternLM-XComposer2</font></b>
@@ -10,15 +10,15 @@
         InternLM-XComposer <a href="">🐼 <a> <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"> &nbsp | Technical Report <a href="">  📄 </a>
+        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | Technical Report <a href="">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
 </div>
 
-<p align="center">
+<!-- <p align="center">
     Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a> and <a href="https://replicate.com/cjwbw/internlm-xcomposer" target="_blank">Replicate Demo</a>
-</p>
+</p> -->
 
 <p align="center">
     👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://github.com/InternLM/InternLM/assets/25839884/a6aad896-7232-4220-ac84-9e070c2633ce" target="_blank">WeChat</a>
@@ -28,29 +28,29 @@
 
 ## Multimodal Projects of Our Team
 
-> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
+> [**InternLM-XComposer2**](https://github.com/InternLM/InternLM-XComposer): **Mastering Free-form Text-Image Composition and Comprehension in Vision-Language Large Models**
+
+> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer/tree/main/InternLM-XComposer-1.0): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
 
 > <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
 
 </br>
 
-**InternLM-XComposer** is a vision-language large model (VLLM) based on [InternLM](https://github.com/InternLM/InternLM/tree/main) for advanced text-image comprehension and composition. InternLM-XComposer has several appealing properties:
+**InternLM-XComposer2** is a groundbreaking vision-language large model (VLLM) based on [InternLM2-7B](https://github.com/InternLM/InternLM/tree/main) excelling in free-form text-image composition and comprehension. It boasts several amazing capabilities and applications:
 
-- **Interleaved Text-Image Composition**: InternLM-XComposer can effortlessly generate coherent and contextual articles that seamlessly integrate images, providing a more engaging and immersive reading experience. The interleaved text-image composition is implemented in following steps:
+- **Free-form Interleaved Text-Image Composition**: InternLM-XComposer2 can effortlessly generate coherent and contextual articles with interleaved images following diverse inputs like outlines, detailed text requirements and reference images, enabling highly customizable content creation.
 
-    1. **Text Generation**: It crafts long-form text based on human-provided instructions.
-    2. **Image Spoting and Captioning**: It pinpoints optimal locations for image placement and furnishes image descriptions.
-    3. **Image Retrieval and Selection**: It select image candidates and identify the image that optimally complements the content.
+- **Accurate Vision-language Problem-solving**: InternLM-XComposer2 accurately handles diverse and challenging vision-language Q&A tasks based on free-form instructions, excelling in recognition, perception, detailed captioning, visual reasoning, and more.
 
-- **Comprehension with Rich Multilingual Knowledge**: The text-image comprehension is empowered by training on extensive multi-modal multilingual concepts with carefully crafted strategies, resulting in a deep understanding of visual content.
-- **Strong performance**: It consistently achieves state-of-the-art results across various benchmarks for vision-language large models, including [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) (English), [MMBench](https://opencompass.org.cn/leaderboard-multimodal) (English), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) (English), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal)(Chinese), and [CCBench](https://opencompass.org.cn/leaderboard-multimodal)(Chinese).
+- **Awesome performance**: InternLM-XComposer2 based on InternLM2-7B not only significantly outperforms existing open-source multimodal models in 13 benchmarks but also **matches or even surpasses GPT-4V and Gemini Pro in 6 benchmarks**
 
-We release InternLM-XComposer series in two versions:
+We release InternLM-XComposer2 series in two versions:
 
-- **InternLM-XComposer-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a>: The pretrained and multi-task trained VLLM model with InternLM as the initialization of the LLM, achieving strong performance on various multimodal benchmarks, e.g., MME Benchmark, MMBench Seed-Bench, CCBench, and MMBench-CN.
-- **InternLM-XComposer-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* and *LLM-based AI assistant*.
+- **InternLM-XComposer2-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b">🤖 </a>: The multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *VL benchmarks* and *AI assistant*. **It ranks as the most powerful vision-language model based on 7B-parameter level LLMs, leading across 13 benchmarks.**
 
-Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for more details.
+- **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b">🤖 </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* with free-form inputs.
+
+Please refer to [Technical Report]() for more details.
   <br>
 
 <!-- 
@@ -59,19 +59,23 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
 <p> -->
 
 
-## Demo
+<!-- ## Demo -->
 
 
-https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
+<!-- https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc -->
 
 
 
 
-Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/blob/main/README_CN.md#demo) for the demo of the Chinese version.
+<!-- Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/blob/main/README_CN.md#demo) for the demo of the Chinese version. -->
 
 
 
 ## News and Updates
+* ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b) are publicly available on **ModelScope**. 
+* ```2023.01.26``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
+* ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face**. 
+* ```2023.01.26``` 🎉🎉🎉 We release a [technical report]() for more details of InternLM-XComposer2 series.
 * ```2023.11.22``` 🎉🎉🎉 We release the [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), a large-scale highly descriptive image-text dataset generated by GPT4-Vision and a superior large multimodal model, ShareGPT4V-7B.
 * ```2023.10.30``` 🎉🎉🎉 InternLM-XComposer-VL achieved the top 1 ranking in both [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) and [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation).
 * ```2023.10.19``` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
@@ -84,241 +88,15 @@ Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/bl
 
 ## Evaluation
 
-We evaluate InternLM-XComposer-VL on seven multimodal benchmarks: [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) in the English language, [CCBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) in the simplified chinese language.
-
-   - [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): A comprehensive evaluation benchmark for multimodal large language models with 14 subtasks.
-   - [MMBench](https://opencompass.org.cn/leaderboard-multimodal): A comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT.
-   - [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal): A simplified chinese language version of [MMBench](https://opencompass.org.cn/leaderboard-multimodal).
-   - [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard): A multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs.
-   - [CCBench](): A multimodal benchmark for chinese cultural comprehension.
-   - [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards): A benchmark for general-purpose foundation models on low-level vision.
-   - [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation): An ability-level multimodal dataset split derived from the LVLM-eHub.
+We evaluate InternLM-XComposer-VL on seven multimodal benchmarks: [MMMU](https://mmmu-benchmark.github.io/), [MathVista](https://mathvista.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MMME]()
 
 InternLM-XComposer-VL outperforms existing vision-language large models on **all the seven benchmarks**, demonstrating stronger multilingual comprehension ability.
+
+See [Evaluation Details](./evaluation/README.md) here.
 
 <p align="center">
     <img src="evaluation/polar%20v3.png" width="600"/>
 </p>
-
-### MME Benchmark
-
-[MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) is a comprehensive evaluation benchmark for multimodal large language models. It measures both perception and cognition abilities on a total of 14 subtasks, including existence, count, position, color, poster, celebrity, scene, landmark, artwork, OCR, commonsense reasoning, numerical calculation, text translation, and code reasoning.
-
-  InternLM-XComposer-VL achieves SOTAs on overall performance evaluation. See more details on [HERE](evaluation/mme/MME_Bench.md).
-
-
-<p align="center">
-Overall Performance
-</p>
-
-
-<div align="center">
-
-| Rank |      Model      |          Version         |  Score  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | [InternLM-XComposer-VL](https://github.com/InternLM/InternLM-XComposer) | [InternLM-7B](https://github.com/InternLM/InternLM-XComposer) | 1919.5 |
-|   2  | Qwen-VL-Chat    |        Qwen-7B            | 1848.3 |
-|   3  |      MMICL      |         FlanT5xxl        | 1810.7 |
-|   4  |    Skywork-MM   |      Skywork-MM-13B      | 1775.5 |
-|   5  |       BLIVA     |    FlanT5xxl             | 1669.2 |
-
-</div>
-
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mme/perception.PNG" width="600"/>
-</p>
-<p align="center">
-    <img src="evaluation/mme/cognition.PNG" width="600"/>
-</p>
-</details>
-
-
-
-### MMBench & MMBench-CN
-
-[MMBench](https://opencompass.org.cn/leaderboard-multimodal) is a comprehensive evaluation pipeline comprised of meticulously curated multimodal dataset and a novel circulareval strategy using ChatGPT. It is comprised of 20 ability dimensions defined by MMBench. [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) is the Chinese language version of MMBench.
-
-InternLM-XComposer-VL a
-chieves SOTAs on the test split of both MMBench and MMBench-CN. See more details on [HERE](evaluation/mmbench/MMBench.md).
-
-
-<p align="center">
-MMBench Test Split
-</p>
-
-<div align='center'>
-
-| Rank |      Model      |          Version         |  Score  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 74.4 |
-|   2  |    Pink  |        Vicuna-7B            | 74.1 |
-|   3  |      JiuTian      |        FLANT5-XXL        | 71.8 |
-|   4  |  WeMM   |      InternLM-7B      | 69.0 |
-|   5  |     mPLUG-Owl     |    LLaMA2 7B            |  68.5 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/mmbench_en.PNG" width="1000"/>
-</p>
-</details>
-
-<p align="center">
-MMBench-CN Test Split
-</p>
-
-<div align='center'>
-
-| Rank |         Model         |          Version         |  Score  |
-|:----:|:---------------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 72.4 |
-|   2  |     QWen-VL-Chat      | Qwen-7B | 56.3 |
-|   3  |         LLaVA         | LLaMA 7B  |36.6 |
-|   4  |       VisualGLM       | ChatGLM 6B | 25.6 |
-|   5  |       mPLUG-Owl       | LLaMA2 7B  | 24.9 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/mmbench_cn_en.PNG" width="1000"/>
-</p>
-</details>
-
-
-### SEED-Bench
-
-[SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) is a multimodal benchmark of 19K multiple-choice questions with accurate human annotations for evaluating Multimodal LLMs, covering 12 evaluation dimensions including both **image** and **video** understanding. See more details on [HERE](evaluation/seed_bench/SEED.md).
-
-InternLM-XComposer-VL achieves SOTAs on this benchmark for images.
-
-
-<p align="center">
-SeedBench Image Evaluation
-</p>
-
-<div align="center">
-
-| Rank |      Model      |          Version         |  Score  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 66.9 |
-|   2  |    QWen-VL-Chat | Qwen-7B | 65.4 |
-|   3  |    QWen-VL | Qwen-7B | 62.3 |
-|   4  |    InstructBLIP-Vicuna   |        Vicuna 7B  | 58.8 |
-|   5  |    InstructBLIP   |     Flan-T5-XL  | 57.8 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
-</p>
-</details>
-
-
-
-### CCBench
-
-[CCBench](https://opencompass.org.cn/leaderboard-multimodal) is a multimodal benchmark for chinese cultural comprehension. See more details on [HERE](evaluation/mmbench/MMBench.md).
-
-<p align="center">
-CCBench Performance
-</p>
-
-<div align="center">
-
-| Rank |         Model         |          Version         |  Score  |
-|:----:|:---------------------:|:------------------------:|:-------:|
-| ️  1 | InternLM-XComposer-VL | InternLM-7B | 47.6 |
-|  2   |     QWen-VL-Chat      | Qwen-7B | 39.3 |
-|  3   |       mPLUG-Owl       | LLaMA2 7B  | 12.9 |
-|  4   |     InstructBLIP      |        Vicuna 7B  | 12.1 |
-|  5   |       VisualGLM       | ChatGLM 6B | 9.2  |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/ccbench_en.PNG" width="1000"/>
-</p>
-</details>
-
-
-
-### Q-Bench
-
-[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) is a benchmark for general-purpose foundation models on low-level vision.
-
-<p align="center">
-Q-Bench Performance
-</p>
-
-<div align="center">
-
-| Rank |       A1：Perception (dev)        |       A1：Perception (test)       |         A2: Description          | A3: Assessment | 
-|:----:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:--------------:|
-| ️  1 | InternLM-XComposer-VL<br/>0.6535 | InternLM-XComposer-VL<br/>0.6435 | InternLM-XComposer-VL<br/>4.21/6 | InternLM-XComposer-VL<br/>(0.542, 0.581) |
-|  2   |    LLaVA-v1.5-13B<br/>0.6214     |   InstrucBLIP-T5-XL<br/>0.6194   |       Kosmos-2<br/>4.03/6        | Qwen-VL<br/>(0.475, 0.506) |
-|  3   |   InstrucBLIP-T5-XL<br/>0.6147   |        Qwen-VL<br/>0.6167        |       mPLUG-Owl<br/>3.94/6       | LLaVA-v1.5-13B<br/>(0.444, 0.473) |
-
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/qbench/overall.png" width="1000"/>
-</p>
-</details>
-
-
-### Tiny LVLM
-
-[Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) is an ability-level multimodal dataset split derived from the LVLM-eHub.
-
-<p align="center">
-Tiny LVLM Performance
-</p>
-
-<div align="center">
-
-| Rank |         Model         |   Version    | Score  | 
-|:----:|:---------------------:|:------------:|:------:|
-| ️  1 | InternLM-XComposer-VL | InternLM-7B  | 322.51 |
-|  2   |         Bard          |     Bard     | 319.59 |
-|  3   |     Qwen-VL-Chat      | Qwen-VL-Chat | 316.81 |
-
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
-</p>
-</details>
 
 
 ## Requirements
