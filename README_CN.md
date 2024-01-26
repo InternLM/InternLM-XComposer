@@ -73,7 +73,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 ## Demo Video
 
-https://openxlab.oss-cn-shanghai.aliyuncs.com/xcomposer-writer/5d51fa9a052083ec85370b2ba07a7cf9.mov
+https://openxlab.oss-cn-shanghai.aliyuncs.com/xcomposer-writer/5d51fa9a052083ec85370b2ba07a7cf9
 
 
 
