@@ -62,7 +62,7 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
 ## Demo
 
 
-[https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc](https://github.com/InternLM/InternLM-XComposer/assets/30363822/7c399c65-0cdd-41ae-a903-49b58dca609a)
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
 
 
 
