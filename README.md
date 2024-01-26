@@ -102,7 +102,7 @@ See [Evaluation Details](./evaluation/README.md) here.
 
 
 <p align="center">
-    <img src="assets/opencompass_leaderboard.png" width="1200"/>
+    <img src="assets/opencompass_leaderboard.png" width="1600"/>
 </p>
 
 
@@ -121,20 +121,20 @@ See [Evaluation Details](./evaluation/README.md) here.
 
 
 ### Compared with open-source methods.
-| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  |
-|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|
-| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      |
-| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   |
-| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   |
-| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   |
-| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   |
-| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   |
-| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   |
-| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   |
-| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   |
-| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   |
-| InternLM-XC  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   |
-| Ours         | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   |
+| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | POPE  |
+|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|--------|
+| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      | -      |
+| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   | 78.9   |
+| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   | -      |
+| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   | -      |
+| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   | 80.2      |
+| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   | 85.9      |
+| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   | -      |
+| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   | -      |
+| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   | -      |
+| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   | -      |
+| InternLM-XC  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   | -      |
+| Ours         | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   | 87.7    |
 
 
 
@@ -174,7 +174,11 @@ image = 'examples/image1.webp'
 with torch.cuda.amp.autocast(): 
   response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-"""The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. They appear to be hiking or exploring, embodying the essence of the quote. The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets."""
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
+# They appear to be hiking or exploring, embodying the essence of the quote. 
+# The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 
 ```
 </details>
@@ -202,7 +206,11 @@ image = 'examples/image1.webp'
 with torch.cuda.amp.autocast(): 
   response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-"""The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. They appear to be hiking or exploring, embodying the essence of the quote. The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets."""
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
+# They appear to be hiking or exploring, embodying the essence of the quote. 
+# The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 ```
 </details>
  
