@@ -97,10 +97,15 @@ We evaluate InternLM-XComposer2-VL on 12 multimodal benchmarks: [MathVista](http
 
 See [Evaluation Details](./evaluation/README.md) here.
 
+Compared with closed-source APIs and previous SOTAs.
 <p align="center">
-    <img src="evaluation/polar%20v3.png" width="600"/>
+    <img src="assets/table_closed.png" width="1200"/>
 </p>
 
+Compared with open-source methods.
+<p align="center">
+    <img src="assets/table_open.png" width="1200"/>
+</p>
 
 
 ## Requirements
