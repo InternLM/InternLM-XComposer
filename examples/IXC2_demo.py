@@ -941,13 +941,13 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 with gr.Column(scale=2):
                     instruction = gr.Textbox(label='Write an illustrated article based on the given instruction: (根据素材或指令创作图文并茂的文章)',
                                              lines=5,
-                                             value='2049年，我们的共和国将迎来百年华诞。届时假如请你拍摄一幅或几幅照片来展现中华民族伟大复兴的辉煌成就，你将选择怎样的画面？请展开想象，以“共和国，我为你拍照”为题，写一篇记叙文。要求：想象合理，有叙述，有描写。可以写宏大的画>面，也可以写小的场景，以小见大。')
+                                             value='请根据给定标题：“熊猫：自然界的温柔使者”，写一篇长文章。首先，详细介绍熊猫的基本特征，如外貌，习性等。然后，探讨熊猫的自然栖息地及其面临的环境挑战，包括栖息地丧失和气候变化等问题。之后，详细讨论熊猫的保护工作现状，包括建立自然保护区，大熊猫的人工繁育等。最后，分析熊猫在中国和世界范围内的文化影响。字数不少于800字。')
                 with gr.Column(scale=1):
                     img_num = gr.Dropdown(
                         ["Automatic (自动)", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
                         value='Automatic (自动)', label="Image Number (插图数量)", info="Select the number of the inserted images",
                         interactive=True)
-                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=1234.0, step=1.0, label='Random Seed (随机种子)')
+                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=6345.0, step=1.0, label='Random Seed (随机种子)')
                     btn = gr.Button("Submit (提交)", scale=1)
 
             with gr.Accordion("Click to add image material (点击添加图片素材）, optional（可选）", open=False, visible=True):
