@@ -225,7 +225,7 @@ print(response)
 ## Web UI
 
 
-Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM-XComposer/pull/37">HuggingFace Demo </a> and <a href="https://github.com/InternLM/InternLM-XComposer/pull/9" target="_blank">Replicate Demo</a>
+Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM-XComposer/pull/37">HuggingFace Demo </a>
 
 
 We provide code for users to build a web UI demo.
