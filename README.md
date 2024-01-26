@@ -52,13 +52,13 @@ Please refer to [Technical Report](https://arxiv.org/pdf/2309.15112.pdf) for mor
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
 
-<details>
-  <summary>
-    <b> Other Multimodal Projects of Our Team </b>
-</summary>
 
-####[ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) : Improving Large Multi-modal Models with Better Captions
-</details>
+### Multimodal Projects of Our Team
+
+> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
+
+> [**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+
 
 ## Demo
 
