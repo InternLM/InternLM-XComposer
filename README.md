@@ -69,7 +69,7 @@ Please refer to [Technical Report]() for more details.
 
 ## Demo Video
 
-https://openxlab.oss-cn-shanghai.aliyuncs.com/xcomposer-writer/1bbb6a41b280684888009a17d5567b97
+https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
 
 
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
