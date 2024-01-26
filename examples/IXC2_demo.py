@@ -916,8 +916,8 @@ def change_language(lang):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--code_path", default='/mnt/petrelfs/share_data/zangyuhang/share_models/224_final_v8_sampler')
-parser.add_argument("--chat_path", default='/mnt/petrelfs/share_data/dongxiaoyi/share_models/INT2_Backup/INT2_P256_S2PT490_0114_ocr_plus_B2_Decay1e5_ftV_MIX_LLM02/checkpoint-1800')
+parser.add_argument("--code_path", default='internlm/internlm-xcomposer2-7b')
+parser.add_argument("--chat_path", default='internlm/internlm-xcomposer2-vl-7b')
 parser.add_argument("--private", default=False, action='store_true')
 parser.add_argument("--num_gpus", default=1, type=int)
 parser.add_argument("--port", default=11111, type=int)
