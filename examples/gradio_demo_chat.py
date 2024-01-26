@@ -43,7 +43,7 @@ class Demo_UI:
         self.chat_model = AutoModelForCausalLM.from_pretrained(code_path, device_map='cuda', trust_remote_code=True).half().eval()
         self.chat_model.tokenizer = tokenizer
 
-        stop_words_ids = [92397]
+        stop_words_ids = [92542]
         self.stopping_criteria = get_stopping_criteria(stop_words_ids)
         set_random_seed(1234)
 

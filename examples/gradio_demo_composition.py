@@ -94,7 +94,7 @@ class Demo_UI:
 
         self.vis_processor = ImageProcessor()
 
-        stop_words_ids = [92397]
+        stop_words_ids = [92542]
         self.stopping_criteria = get_stopping_criteria(stop_words_ids)
         set_random_seed(1234)
         self.r2 = re.compile(r'<Seg[0-9]*>')
