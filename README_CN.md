@@ -2,16 +2,21 @@
     <img src="./assets/logo_cn.png" width="400"/>
 </p>
 <p align="center">
-    <b><font size="6">浦语·灵笔</font></b>
+    <b><font size="6">浦语·灵笔2</font></b>
 </p>
 
 <!-- <div align="center">
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a> &nbsp ｜ InternLM-XComposer-VL <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a> &nbsp | Technical Report <a href="https://arxiv.org/pdf/2309.15112.pdf">  📄 </a>
+        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | 技术报告 <a href="">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
+
+
+<p align="center">
+    感谢社区提供的 InternLM-XComposer2 <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">在线试用</a>
+</p>
 
 </div>
 <p align="center">
@@ -20,24 +25,37 @@
 
 <br>
 
+## 本仓库包括的多模态项目
+
+> [**InternLM-XComposer2**](https://github.com/InternLM/InternLM-XComposer): **Mastering Free-form Text-Image Composition and Comprehension in Vision-Language Large Models**
+
+> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer/tree/main/InternLM-XComposer-1.0): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
+
+> <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+
+</br>
 
 
-**浦语·灵笔**是基于[书生·浦语](https://github.com/InternLM/InternLM/tree/main)大语言模型研发的视觉-语言大模型，提供出色的图文理解和创作能力，具有多项优势：
 
-- **图文交错创作**: 浦语·灵笔可以为用户打造图文并貌的专属文章。生成的文章文采斐然，图文相得益彰，提供沉浸式的阅读体验。这一能力由以下步骤实现：
-    1. **理解用户指令，创作符合要求的长文章**。
-    2. **智能分析文章，自动规划插图的理想位置，确定图像内容需求。**
-    3. **多层次智能筛选，从图库中锁定最完美的图片。**
+**浦语·灵笔2**是基于[书生·浦语2](https://github.com/InternLM/InternLM/tree/main)大语言模型研发的突破性的图文多模态大模型，具有非凡的图文写作和图像理解能力，在多种应用场景表现出色：
 
-- **基于丰富多模态知识的图文理解**: 浦语·灵笔设计了高效的训练策略，为模型注入海量的多模态概念和知识数据，赋予其强大的图文理解和对话能力。
-- **杰出性能**: 浦语·灵笔在多项视觉语言大模型的主流评测上均取得了最佳性能，包括[MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) (英文评测), [MMBench](https://opencompass.org.cn/leaderboard-multimodal) (英文评测), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) (英文评测), [CCBench](https://opencompass.org.cn/leaderboard-multimodal)(中文评测), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal) (中文评测).
+- **自由指令输入的图文写作：** 浦语·灵笔2可以理解**自由形式的图文指令输入，包括大纲、文章细节要求、参考图片等**，为用户打造图文并貌的专属文章。生成的文章文采斐然，图文相得益彰，提供沉浸式的阅读体验。
 
-我们开源的浦语·灵笔包括两个版本:
+- **准确的图文问题解答：** 浦语·灵笔2具有海量图文知识，可以准确的回复各种图文问答难题，在识别、感知、细节描述、视觉推理等能力上表现惊人。
 
-- **InternLM-XComposer-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b">🤖 </a>: 基于书生·浦语大语言模型的多模态预训练和多任务训练模型，在多种评测上表现出杰出性能, 例如：MME Benchmark, MMBench Seed-Bench, CCBench, MMBench-CN.
-- **InternLM-XComposer-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b">🤖 </a>: 面向 *图文交错文章创作* 和 *智能对话* 的微调模型。
+- **杰出性能：** 浦语·灵笔2基于书生·浦语2-7B模型，我们在13项多模态评测中大幅领先同量级多模态模型，在其中6项评测中超过 GPT-4V 和 Gemini Pro。
+
+<p align="center">
+    <img src="assets/benchmark.png" width="1000"/>
+</p>
+
+我们开源的 浦语·灵笔2 包括两个版本:
+
+- **InternLM-XComposer2-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"> </a>（浦语·灵笔2-视觉问答-7B）: 基于书生·浦语2-7B大语言模型训练，面向多模态评测和视觉问答。浦语·灵笔2-视觉问答-7B是目前最强的基于7B量级语言模型基座的图文多模态大模型，领跑多达13个多模态大模型榜单。
+
+- **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"><img src="./assets/modelscope_logo.png" width="20px"> </a>: 进一步微调，支持自由指令输入图文写作的图文多模态大模型。
  
-更多方法细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf)．
+更多方法细节请参考[技术报告]()．
   <br>
 
 <!-- 
@@ -46,275 +64,49 @@
 <p> -->
 
 
-## Demo
+<!-- ## Demo
 
 
 
 https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f41-a5df-796680fa56cd
-
+ -->
 
 
 
 
 
 ## 更新消息
-* ```2023.10.30``` 🎉🎉🎉 灵笔在[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 和 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 取得了第一名.
-* ```2023.10.19``` 🎉🎉🎉 支持多卡测试，多卡Demo. 两张4090显卡可部署全量Demo.
-* ```2023.10.12``` 🎉🎉🎉 支持4比特量化Demo， 模型文件可从[Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit) 获取
-* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源. 
-* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源.
-* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源. 
-* ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf).
-<br>
-
+* ```2023.01.26``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源。
+* ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b)已在**ModelScope**开源。
+* ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)已在**Hugging Face**开源。
+* ```2023.01.26``` 🎉🎉🎉 我们公开了InternLM-XComposer2更多技术细节，请参考[技术报告]()。
+* ```2023.11.22``` 🎉🎉🎉 我们开源了[ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), 一个高质量的大规模图文描述数据集，以及性能优秀的多模态大模型ShareGPT4V-7B。
+* ```2023.10.30``` 🎉🎉🎉 灵笔在[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 和 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 取得了第一名。
+* ```2023.10.19``` 🎉🎉🎉 支持多卡测试，多卡Demo. 两张4090显卡可部署全量Demo。
+* ```2023.10.12``` 🎉🎉🎉 支持4比特量化Demo， 模型文件可从[Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit) 获取。
+* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) 已在Modelscope开源。
+* ```2023.9.27``` 🎉🎉🎉 **InternLM-XComposer-VL-7B**的[评测代码](./evaluation/)已开源。
+* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) 和 [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) 已在Hugging Face开源。
+* ```2023.9.27``` 🎉🎉🎉 更多技术细节请参考[技术报告](https://arxiv.org/pdf/2309.15112.pdf)。
 </br>
 
-## 我们组的多模态工作
-
-> [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
-
-> [**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
-
-</br>
 
 ## 评测
 
-我们在7个多模态评测上测试 InternLM-XComposer-VL 的性能，包括英文评测 [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 和中文评测 [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [CCBench](https://opencompass.org.cn/leaderboard-multimodal).
+我们在13个多模态评测对InternLM-XComposer2-VL上进行测试，包括：[MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [QBench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [ChartQA](https://github.com/vis-nlp/ChartQA), [MM-Vet](https://github.com/yuweihao/MM-Vet), [LLaVA-in-the-wild](https://github.com/haotian-liu/LLaVA), [POPE](https://github.com/AoiDragon/POPE).
 
-   - [MME Benchmark](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): 包括14个子任务的多模态模型全面评测。
-   - [MMBench](https://opencompass.org.cn/leaderboard-multimodal): 提供精心收集的多模态评测题目和使用ChatGPT的循环评估策略的多模态评测。
-   - [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal): 简体中文版本问题和答案的 [MMBench](https://opencompass.org.cn/leaderboard-multimodal) 评测。
-   - [Seed-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard): 包括人工标注的1.9万道多模态多选题目的多模态评测。
-   - [CCBench](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation): 针对中国文化理解的中文多模态评测。
-   - [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards): 评测多模态大模型的low-level视觉能力。
-   - [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation): 从LVLM-eHub拆分出来的，多能力层次的多模态评测。
 
-InternLM-XComposer-VL 在**全部7个评测**上均超过其他多模态大模型，表现出强大的多模态理解能力。
+复现评测结果，请参考[评测细节](./evaluation/README.md)。
 
+对比闭源多模态API以及开源SOTA模型。
 <p align="center">
-    <img src="evaluation/polar%20v3.png" width="600"/>
+    <img src="assets/table_closed.png" width="1200"/>
 </p>
 
-### MME Benchmark
-
-[MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation) 是一个针对多模态大模型设计的多模态评测，关注模型的感知和认知能力，包括14个子任务。
-
-InternLM-XComposer-VL 在感知和认知能力的综合性能上超过其他多模态大模型。点击查看[更多信息](evaluation/mme/MME_Bench.md)。
-
-
+对比开源模型。
 <p align="center">
-综合性能
+    <img src="assets/table_open.png" width="1200"/>
 </p>
-
-
-<div align="center">
-
-| 排名 |      模型      |          版本         |  分数  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | [InternLM-XComposer-VL](https://github.com/InternLM/InternLM-XComposer) | [InternLM-7B](https://github.com/InternLM/InternLM-XComposer) | 1919.5 |
-|   2  | Qwen-VL-Chat    |        Qwen-7B            | 1848.3 |
-|   3  |      MMICL      |         FlanT5xxl        | 1810.7 |
-|   4  |    Skywork-MM   |      Skywork-MM-13B      | 1775.5 |
-|   5  |       BLIVA     |    FlanT5xxl             | 1669.2 |
-
-</div>
-
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mme/perception.PNG" width="600"/>
-</p>
-<p align="center">
-    <img src="evaluation/mme/cognition.PNG" width="600"/>
-</p>
-</details>
-
-
-
-### MMBench & MMBench-CN
-
-[MMBench](https://opencompass.org.cn/leaderboard-multimodal) 提供精心收集的多模态评测题目和使用ChatGPT的循环评估策略，包括了20个能力项。MMBench 还提供了中文版的 MMBench-CN 用于测试模型的中文能力。
-
-InternLM-XComposer-VL 在 MMBench 和 MMBench-CN 测试集上都取得了最佳性能。点击查看[更多信息](evaluation/mmbench/MMBench.md).
-
-
-<p align="center">
-MMBench 测试集性能
-</p>
-
-<div align='center'>
-
-| 排名 |      模型      |          版本         |  分数  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 74.4 |
-|   2  |    Pink  |        Vicuna-7B            | 74.1 |
-|   3  |      JiuTian      |        FLANT5-XXL        | 71.8 |
-|   4  |  WeMM   |      InternLM-7B      | 69.0 |
-|   5  |     mPLUG-Owl     |    LLaMA2 7B            |  68.5 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/mmbench.PNG" width="1000"/>
-</p>
-</details>
-
-<p align="center">
-MMBench-CN 测试集性能
-</p>
-
-<div align='center'>
-
-| 排名 |          模型           |          版本         |  分数  |
-|:----:|:---------------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 72.4 |
-|   2  |     QWen-VL-Chat      | Qwen-7B | 56.3 |
-|   3  |         LLaVA         | LLaMA 7B  |36.6 |
-|   4  |       VisualGLM       | ChatGLM 6B | 25.6 |
-|   5  |       mPLUG-Owl       | LLaMA2 7B  | 24.9 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/mmbench_cn.PNG" width="1000"/>
-</p>
-</details>
-
-
-
-### SEED-Bench
-
-[SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard) 提供包括人工标注的1.9万道多模态多选题目的多模态评测, 覆盖12个评测为度。SEED-Bench同时提供 *图像* 和 *视频* 理解能力评测。点击查看[更多信息](evaluation/seed_bench/SEED.md).
-
-InternLM-XComposer-VL 在图像理解评测取得最佳性能。
-
-
-<p align="center">
-SeedBench 图像理解评测
-</p>
-
-<div align="center">
-
-| 排名 |      模型      |          版本         |  分数  |
-|:----:|:---------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 66.9 |
-|   2  |    QWen-VL-Chat | Qwen-7B | 65.4 |
-|   3  |    QWen-VL | Qwen-7B | 62.3 |
-|   4  |    InstructBLIP-Vicuna   |        Vicuna 7B  | 58.8 |
-|   5  |    InstructBLIP   |     Flan-T5-XL  | 57.8 |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/seed_bench/seed_bench.PNG" width="1000"/>
-</p>
-</details>
-
-
-
-### CCBench
-
-[CCBench](https://opencompass.org.cn/leaderboard-multimodal) 针对中国文化理解设计的多模态评测. 点击查看[更多信息](evaluation/seed_bench/MMBench.md).
-
-<p align="center">
-CCBench 评测
-</p>
-
-<div align="center">
-
-| 排名 |          模型           |          版本         |  分数  |
-|:----:|:---------------------:|:------------------------:|:-------:|
-| ️  1  | InternLM-XComposer-VL | InternLM-7B | 47.6 |
-|   2  |     QWen-VL-Chat      | Qwen-7B | 39.3 |
-|   3  |       mPLUG-Owl       | LLaMA2 7B  | 12.9 |
-|   3  |     InstructBLIP      |        Vicuna 7B  | 12.1 |
-|   4  |       VisualGLM       | ChatGLM 6B | 9.2  |
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/mmbench/ccbench.PNG" width="1000"/>
-</p>
-</details>
-
-
-
-### Q-Bench
-
-[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 是一个用于测试多模态大模型的low-level视觉能力的评测。
-
-<p align="center">
-Q-Bench 评测
-</p>
-
-<div align="center">
-
-|  排名  |           A1：感知 (dev)            |           A1：感知 (test)           |              A2: 描述              |                  A3: 评估                  | 
-|:----:|:--------------------------------:|:--------------------------------:|:--------------------------------:|:----------------------------------------:|
-| ️  1 | InternLM-XComposer-VL<br/>0.6535 | InternLM-XComposer-VL<br/>0.6435 | InternLM-XComposer-VL<br/>4.21/6 | InternLM-XComposer-VL<br/>(0.542, 0.581) |
-|  2   |    LLaVA-v1.5-13B<br/>0.6214     |   InstrucBLIP-T5-XL<br/>0.6194   |       Kosmos-2<br/>4.03/6        |        Qwen-VL<br/>(0.475, 0.506)        |
-|  3   |   InstrucBLIP-T5-XL<br/>0.6147   |        Qwen-VL<br/>0.6167        |       mPLUG-Owl<br/>3.94/6       |    LLaVA-v1.5-13B<br/>(0.444, 0.473)     |
-
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/qbench/overall.png" width="1000"/>
-</p>
-</details>
-
-
-
-### Tiny LVLM
-
-[Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 是一个从LVLM-eHub拆分出来的，多能力层次的多模态评测。
-
-<p align="center">
-Tiny LVLM 评测
-</p>
-
-<div align="center">
-
-| 排名 |          模型           |          版本         |  分数  | 
-|:----:|:---------------------:|:------------:|:------:|
-| ️  1 | InternLM-XComposer-VL | InternLM-7B  | 322.51 |
-|  2   |         Bard          |     Bard     | 319.59 |
-|  3   |     Qwen-VL-Chat      | Qwen-VL-Chat | 316.81 |
-
-
-</div>
-
-<details>
-  <summary>
-    <b>leaderboard</b>
-  </summary>
-<p align="center">
-    <img src="evaluation/tiny_lvlm/overall.png" width="1000"/>
-</p>
-</details>
 
 
 ## 环境要求
