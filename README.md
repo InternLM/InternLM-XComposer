@@ -97,15 +97,37 @@ We evaluate InternLM-XComposer2-VL on 12 multimodal benchmarks: [MathVista](http
 
 See [Evaluation Details](./evaluation/README.md) here.
 
-Compared with closed-source APIs and previous SOTAs.
+### [OpenCompass](https://opencompass.org.cn/leaderboard-multimodal) Multi-Modal Leaderborad results.
+
+
 <p align="center">
-    <img src="assets/table_closed.png" width="1200"/>
+    <img src="assets/opencompass_leaderboard.png" width="1200"/>
 </p>
 
-Compared with open-source methods.
-<p align="center">
-    <img src="assets/table_open.png" width="1200"/>
-</p>
+
+
+### Compared with closed-source APIs and previous SOTAs.
+|               | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA  |
+|---------------|-----------|--------|-------|--------|--------|--------|-------|--------|---------|--------|--------|-----------|
+|  Open-source Previous  SOTA | SPH-MOE   | Monkey | Yi-VL | WeMM   | L-Int2 | L-Int2 | SPH-2 | CogVLM | Int-XC  | CogVLM | Monkey | CogAgent  |
+|    | 8x7B      | 10B    | 34B   | 6B     | 20B    | 20B    | 17B   | 17B    | 8B      | 30B    | 10B    | 18B       |
+|  | 42.3      | 72.6   | 45.9  | 2066.6 | 75.1   | 73.7   | 74.8  | 73.9   | 64.4    | 56.8   | 58.4   | 68.4      |
+|               |           |        |       |        |        |        |       |        |         |        |        |           |
+| GPT-4V        | 49.9      | 78.2   | 56.8  | 1926.5 | 77     | 74.4   | 69.1  | 93.1   | 74.1    | 67.7   | 65.8   | 78.5      |
+| Gemini-Pro    | 45.2      | 73.9   | 47.9  | 1933.3 | 73.6   | 74.3   | 70.7  | 79.9   | 70.6    | 64.3   | 63.9   | 74.1      |
+| QwenVL-Plus   | 43.3      | 75.9   | 46.5  | 2183.3 | 67     | 70.7   | 72.7  | 73.7   | 68.9    | 55.7   | 56.4   | 78.1      |
+| Ours          | 57.6      | 78.7   | 42    | 2242.7 | 79.6   | 77.6   | 75.9  | 81.8   | 72.5    | 51.2   | 60.3   | 72.6      |
+
+
+### Compared with open-source methods.
+| Method       | LLM         | MathVista | MMMU | MMEP    | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  |
+|--------------|-------------|-----------|------|---------|-------|------|-------|-------|--------|---------|--------|--------|
+| Qwen-VL-Chat | Qwen-7B     | 33.8      | 35.9 | 1,487.5 | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   |
+| LLaVA-1.5    | Vicuna-13B  | 26.1      | 36.4 | 1,531.3 | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   |
+| CogVLM-17B   | Vicuna-7B   | 34.7      | 37.3 | -       | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   |
+| InternLM-XC  | InernLM-7B  | 29.5      | 35.6 | 1,528.4 | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   |
+| Monkey       | Qwen-7B     | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0   | 58.4   |
+| Ours         | InernLM2-7B | 57.6      | 42.0   | 1,712.0 | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 60.3   |
 
 
 ## Requirements
