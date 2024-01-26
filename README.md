@@ -69,7 +69,7 @@ Please refer to [Technical Report]() for more details.
 
 ## Demo Video
 
-https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
+[https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc](https://github.com/InternLM/InternLM-XComposer/assets/30363822/7c399c65-0cdd-41ae-a903-49b58dca609a)
 
 
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
