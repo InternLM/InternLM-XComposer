@@ -75,8 +75,6 @@ Please refer to [Technical Report]() for more details.
 
 
 ## News and Updates
-* ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer-VL2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b) achieves SOTAs on [OpenCompass](https://opencompass.org.cn/leaderboard-multimodal) Multi-Modal Leaderborad.
-
 * ```2023.01.26``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
 * ```2023.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**. 
 * ```2023.01.26``` 🎉🎉🎉 We release a [technical report]() for more details of InternLM-XComposer2 series.
@@ -97,15 +95,6 @@ We evaluate InternLM-XComposer2-VL on 12 multimodal benchmarks: [MathVista](http
 
 
 See [Evaluation Details](./evaluation/README.md) here.
-
-### [OpenCompass](https://opencompass.org.cn/leaderboard-multimodal) Multi-Modal Leaderborad results.
-
-
-<p align="center">
-    <img src="assets/opencompass_leaderboard.png" width="1600"/>
-</p>
-
-
 
 ### Compared with closed-source APIs and previous SOTAs.
 |               | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA  |
