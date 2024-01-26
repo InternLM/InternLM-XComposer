@@ -100,17 +100,39 @@ https://openxlab.oss-cn-shanghai.aliyuncs.com/xcomposer-writer/InternLM_XCompose
 
 
 复现评测结果，请参考[评测细节](./evaluation/README.md)。
+ 
 
-对比闭源多模态API以及开源SOTA模型。
-<p align="center">
-    <img src="assets/table_closed.png" width="1200"/>
-</p>
 
-对比开源模型。
-<p align="center">
-    <img src="assets/table_open.png" width="1200"/>
-</p>
+### 对比闭源多模态API以及开源SOTA模型。
+|               | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA  |
+|---------------|-----------|--------|-------|--------|--------|--------|-------|--------|---------|--------|--------|-----------|
+|  Open-source Previous  SOTA | SPH-MOE   | Monkey | Yi-VL | WeMM   | L-Int2 | L-Int2 | SPH-2 | CogVLM | Int-XC  | CogVLM | Monkey | CogAgent  |
+|    | 8x7B      | 10B    | 34B   | 6B     | 20B    | 20B    | 17B   | 17B    | 8B      | 30B    | 10B    | 18B       |
+|  | 42.3      | 72.6   | 45.9  | 2066.6 | 75.1   | 73.7   | 74.8  | 73.9   | 64.4    | 56.8   | 58.4   | 68.4      |
+|               |           |        |       |        |        |        |       |        |         |        |        |           |
+| GPT-4V        | 49.9      | 78.2   | 56.8  | 1926.5 | 77     | 74.4   | 69.1  | 93.1   | 74.1    | 67.7   | 65.8   | 78.5      |
+| Gemini-Pro    | 45.2      | 73.9   | 47.9  | 1933.3 | 73.6   | 74.3   | 70.7  | 79.9   | 70.6    | 64.3   | 63.9   | 74.1      |
+| QwenVL-Plus   | 43.3      | 75.9   | 46.5  | 2183.3 | 67     | 70.7   | 72.7  | 73.7   | 68.9    | 55.7   | 56.4   | 78.1      |
+| Ours          | 57.6      | 78.7   | 42    | 2242.7 | 79.6   | 77.6   | 75.9  | 81.8   | 72.5    | 51.2   | 60.3   | 72.6      |
 
+
+### 对比开源模型。
+| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | POPE  |
+|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|--------|
+| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      | -      |
+| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   | 78.9   |
+| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   | -      |
+| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   | -      |
+| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   | 80.2      |
+| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   | 85.9      |
+| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   | -      |
+| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   | -      |
+| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   | -      |
+| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   | -      |
+| InternLM-XC  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   | -      |
+| Ours         | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   | 87.7    |
+
+ 
 
 ## 环境要求
 
@@ -141,52 +163,17 @@ from transformers import AutoModel, AutoTokenizer
 torch.set_grad_enabled(False)
 
 # init model and tokenizer
-model = AutoModel.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True).cuda().eval()
-tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer-7b', trust_remote_code=True)
-model.tokenizer = tokenizer
-
-# example image
-image = 'examples/images/aiyinsitan.jpg'
-
-# Single-Turn Pure-Text Dialogue
-text = '请介绍下爱因斯坦的生平'
-response = model.generate(text)
+model = AutoModel.from_pretrained('internlm/internlm-xcomposer2-vl-7b', trust_remote_code=True).cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2-vl-7b', trust_remote_code=True)  
+ 
+text = '<ImageHere>仔细描述这张图'
+image = 'examples/image1.webp'
+with torch.cuda.amp.autocast(): 
+  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-# 阿尔伯特·爱因斯坦（Albert Einstein，1879年3月14日-1955年4月18日）是德国出生的理论物理学家。他提出了狭义相对论和广义相对论，
-# 这两个理论对现代物理学产生了深远的影响。爱因斯坦还发现了光电效应定律，并因此获得了1921年的诺贝尔物理学奖。
-# 爱因斯坦于1879年3月14日出生于德国巴登-符腾堡州乌尔姆市的一个犹太人家庭。他在瑞士苏黎世联邦理工学院学习物理学和数学， # 并于1905年发表了一系列重要论文，其中包括狭义相对论和光电效应定律。
-# 1915年，爱因斯坦发表了广义相对论，该理论解释了引力是如何通过时空弯曲来影响物体的运动。这一理论改变了人们对宇宙的认识，并为现代宇宙学奠定了基础。
-# 1933年，爱因斯坦因为他的犹太血统而受到纳粹党的迫害，被迫离开德国。他最终定居在美国，并在那里度过了他的余生。1955年4月18日，爱因斯坦在普林斯顿去世，享年76岁。
-# 爱因斯坦的贡献对现代物理学产生了深远的影响，他被认为是20世纪最伟大的科学家之一。
-
-# Single-Turn Text-Image Dialogue
-text = '请问这张图片里面的人是谁？并介绍下他。'
-image = 'examples/images/aiyinsitan.jpg'
-response = model.generate(text, image)
-print(response)
-# 图片里的人是阿尔伯特·爱因斯坦（Albert Einstein），一位著名的物理学家和理论物理学家。他于1879年3月14日出生于德国巴登-符腾堡州的乌尔姆市，
-# 并在那里度过了他的 童年和少年时代。爱因斯坦在瑞士苏黎世联邦理工学院学习物理学，并于1905年发表了一系列重要论文，
-# 其中包括狭义相对论和质能方程E=mc^2。1921年，爱因斯坦获得了诺贝尔物理学奖，以表彰他对光电效应的发现和对狭义相对论的贡献。
-
-# Multi-Turn Text-Image Dialogue
-# 1st turn
-text = '图片里面的是谁？'
-response, history = model.chat(text=text, image=image, history=None)
-print(response)
-# 图片里面的人物是阿尔伯特·爱因斯坦（Albert Einstein），一位著名的物理学家和理论物理学家。
-
-# 2nd turn
-text = '他有哪些成就?'
-response, history = model.chat(text=text, image=None, history=history)
-print(response)
-# 阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一，他提出了狭义相对论和广义相对论，为现代物理学的发展做出了巨大的贡献。
-# 此外，他还提出了光量子理论、质能关系等重要理论，对现代物理学的发展产生了深远的影响。
-
-# 3rd turn
-text = '他是最伟大的物理学家吗?'
-response, history = model.chat(text=text, image=None, history=history)
-print(response)
-# 是的，阿尔伯特·爱因斯坦是20世纪最伟大的物理学家之一。他提出了狭义相对论和广义相对论，为现代物理学的发展做出了巨大的贡献。
+#这张图片是一个引用的奥斯卡·王尔德的名言，它被放在一个美丽的日落背景上。
+#引用的内容是“Live life with no excuses, travel with no regrets”，意思是“生活不要找借口，旅行不要后悔”。
+# 在日落时分，两个身影站在山丘上，他们似乎正在享受这个美景。整个场景传达出一种积极向上、勇敢追求梦想的情感。
 ```
 </details>
 
@@ -204,24 +191,19 @@ from modelscope import snapshot_download, AutoModel, AutoTokenizer
 torch.set_grad_enabled(False)
 
 # init model and tokenizer
-model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer-7b')
+model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b')
 model = AutoModel.from_pretrained(model_dir, trust_remote_code=True).cuda().eval()
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 model.tokenizer = tokenizer
 
-# example image
-image = 'examples/images/aiyinsitan.jpg'
-
-# Single-Turn Pure-Text Dialogue
-text = '请介绍下爱因斯坦的生平'
-response = model.generate(text)
+text = '<ImageHere>仔细描述这张图'
+image = 'examples/image1.webp'
+with torch.cuda.amp.autocast(): 
+  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-# 阿尔伯特·爱因斯坦（Albert Einstein，1879年3月14日-1955年4月18日）是德国出生的理论物理学家。他提出了狭义相对论和广义相对论，
-# 这两个理论对现代物理学产生了深远的影响。爱因斯坦还发现了光电效应定律，并因此获得了1921年的诺贝尔物理学奖。
-# 爱因斯坦于1879年3月14日出生于德国巴登-符腾堡州乌尔姆市的一个犹太人家庭。他在瑞士苏黎世联邦理工学院学习物理学和数学， # 并于1905年发表了一系列重要论文，其中包括狭义相对论和光电效应定律。
-# 1915年，爱因斯坦发表了广义相对论，该理论解释了引力是如何通过时空弯曲来影响物体的运动。这一理论改变了人们对宇宙的认识，并为现代宇宙学奠定了基础。
-# 1933年，爱因斯坦因为他的犹太血统而受到纳粹党的迫害，被迫离开德国。他最终定居在美国，并在那里度过了他的余生。1955年4月18日，爱因斯坦在普林斯顿去世，享年76岁。
-# 爱因斯坦的贡献对现代物理学产生了深远的影响，他被认为是20世纪最伟大的科学家之一。
+#这张图片是一个引用的奥斯卡·王尔德的名言，它被放在一个美丽的日落背景上。
+#引用的内容是“Live life with no excuses, travel with no regrets”，意思是“生活不要找借口，旅行不要后悔”。
+# 在日落时分，两个身影站在山丘上，他们似乎正在享受这个美景。整个场景传达出一种积极向上、勇敢追求梦想的情感。
 ```
 </details>
 
@@ -229,36 +211,16 @@ print(response)
 ## Web UI
 
 我们提供了一个轻松搭建 Web UI demo 的代码.
-
-<p align="center">
-    <img src="demo_asset/assets/UI_en.png" width="800"/>
-</p>
-
-
-请运行以下代码（需要>=32GB显存的GPU, 推荐）
-
+ 
 ```
-python examples/web_demo.py
+# 自由形式的图文创作demo
+python examples/gradio_demo_composition.py
+
+# 多模态对话demo
+python examples/gradio_demo_chat.py
 ```
 更多信息请参考 Web UI [用户指南](demo_asset/demo.md)。 如果您想要更改模型存放的文件夹，请使用 --folder=new_folder 选项。
-
-## 量化
-我们提供4bit量化模型来缓解模型的内存需求。 要运行4bit模型（GPU内存> = 12GB），您需要首先安装相应的[依赖包](docs/install_CN.md)，然后执行以下脚本进行聊天和网页演示：
-```
-# 4-bit chat
-python examples/example_chat_4bit.py
-# 4-bit web demo
-python examples/web_demo_4bit.py
-```
-
-## 多GPU测试
-如果你有多张 GPU，但是每张 GPU 的显存大小都不足以容纳完整的模型，那么可以将模型切分在多张GPU上。首先安装 accelerate: pip install accelerate，然后执行以下脚本进行聊天和网页演示：
-```
-# chat with 2 GPUs
-python examples/example_chat.py --num_gpus 2
-# web demo with 2 GPUs
-python examples/web_demo.py --num_gpus 2
-```
+ 
 <br>
 
 ## 引用
