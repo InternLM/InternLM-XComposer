@@ -233,7 +233,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
         with gr.Column(scale=20):
             # gr.HTML("""<h1 align="center" id="space-title" style="font-size:35px;">🤗 浦语·灵笔 (InternLM-XComposer)</h1>""")
             gr.HTML(
-                """<h1 align="center"><img src="https://raw.githubusercontent.com/InternLM/InternLM-XComposer/main/logo-en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
+                """<h1 align="center"><img src="https://raw.githubusercontent.com/InternLM/InternLM-XComposer/InternLM-XComposer2/assets/logo_en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
             )
         with gr.Column(scale=1, min_width=100):
             lang_btn = gr.Button("中文")
