@@ -225,45 +225,16 @@ Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM
 
 We provide code for users to build a web UI demo.
 
-<p align="center">
-    <img src="demo_asset/assets/UI_en.png" width="800"/>
-</p>
-
-Please run the command below (GPU memory >= 32GB, Recommended):
+Please run the command below for Composition / Chat:
 
 ```
-python examples/web_demo.py
+# For Free-form Text-Image Composition
+python examples/gradio_demo_composition.py
+
+# For Multimodal Chat
+python examples/gradio_demo_chat.py
 ```
 The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
-
-## Quantilization
-We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](docs/install.md), then execute the follows scripts for chat and web demo:
-```
-# 4-bit chat
-python examples/example_chat_4bit.py
-# 4-bit web demo
-python examples/web_demo_4bit.py
-```
-
-## Inference on Multiple GPUs
-If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, execute the follows scripts for chat and web demo:
-```
-# chat with 2 GPUs
-python examples/example_chat.py --num_gpus 2
-# web demo with 2 GPUs
-python examples/web_demo.py --num_gpus 2
-```
-
-## Calculate TFLOPs and Params
-Required package
-```pip install calflops```
-
-```
-# text = 'Please introduce the person in this picture in detail.'
-# image = 'examples/images/aiyinsitan.jpg'
-python examples/example_params_and_flops.py
-```
-The expected output is FLOPs: 17.6 TFLOPS, Params: 8.8 B.
 <br>
 
 ## Citation
