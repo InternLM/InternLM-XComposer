@@ -15,7 +15,7 @@
 
 
 <p align="center">
-    感谢社区提供的 InternLM-XComposer2 <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">在线试用</a>
+    感谢社区提供的 InternLM-XComposer2 <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">Hugging Face 在线试用</a> | <a href="https://openxlab.org.cn/apps/detail/WillowBreeze/InternLM-XComposer">OpenXLab 在线试用</a>
 </p>
 
 </div>
