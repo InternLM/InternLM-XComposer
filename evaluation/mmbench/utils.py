@@ -6,6 +6,8 @@ import pandas as pd
 import xlsxwriter
 from PIL import Image
 import io
+import re
+pattern = re.compile(r'[A-D]')
 
 class MMDump():
     def __init__(self,
