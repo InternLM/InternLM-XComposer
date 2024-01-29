@@ -106,6 +106,7 @@ class Demo_UI:
         self.stopping_criteria = get_stopping_criteria(stop_words_ids)
         set_random_seed(1234)
         self.r2 = re.compile(r'<Seg[0-9]*>')
+        self.withmeta = False
 
     def reset(self):
         self.pt = 0
@@ -120,8 +121,10 @@ class Demo_UI:
                 gr.Button(visible=False),) * max_section + (gr.Image(visible=False),) * max_section + (gr.Accordion(visible=False),) * max_section * 2
 
     def text2instruction(self, text):
-        return f"[UNUSED_TOKEN_146]system\n{meta_instruction}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
-        #return f"[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
+        if self.withmeta:
+            return f"[UNUSED_TOKEN_146]system\n{meta_instruction}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
+        else:
+            return f"[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
 
     def get_images_xlab(self, caption, pt, exclude):
         urls, idxs = get_urls(caption.strip()[:53], exclude)
@@ -734,6 +737,9 @@ class Demo_UI:
     def generate_with_chat_streaming(self, **kwargs):
         return Iteratorize(self.generate_with_chat_callback, kwargs, callback=None)
 
+    def change_meta(self, withmeta):
+        self.withmeta = withmeta
+
     def upload_images(self, files):
         if len(files) > 10:
             gr.Warning('No more than 10 images !!!')
@@ -941,13 +947,15 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 with gr.Column(scale=2):
                     instruction = gr.Textbox(label='Write an illustrated article based on the given instruction: (根据素材或指令创作图文并茂的文章)',
                                              lines=5,
-                                             value='请根据给定标题：“熊猫：自然界的温柔使者”，写一篇长文章。首先，详细介绍熊猫的基本特征，如外貌，习性等。然后，探讨熊猫的自然栖息地及其面临的环境挑战，包括栖息地丧失和气候变化等问题。之后，详细讨论熊猫的保护工作现状，包括建立自然保护区，大熊猫的人工繁育等。最后，分析熊猫在中国和世界范围内的文化影响。字数不少于800字。')
+                                             value='''根据以下标题：“中国水墨画：流动的诗意与东方美学”，创作长文章，字数不少于800字。请结合以下文本素材：
+“水墨画是由水和墨调配成不同深浅的墨色所画出的画，是绘画的一种形式，更多时候，水墨画被视为中国传统绘画，也就是国画的代表。也称国画，中国画。墨水画是中国传统画之一。墨水是国画的起源，以笔墨运用的技法基础画成墨水画。线条中锋笔，侧锋笔，顺锋和逆锋，点染，擦，破墨，拨墨的技法。墨于水的变化分为五色。画成作品，题款，盖章。就是完整的墨水画作品。
+基本的水墨画，仅有水与墨，黑与白色，但进阶的水墨画，也有工笔花鸟画，色彩缤纷。后者有时也称为彩墨画。在中国画中，以中国画特有的材料之一，墨为主要原料加以清水的多少引为浓墨、淡墨、干墨、湿墨、焦墨等，画出不同浓淡（黑、白、灰）层次。别有一番韵味称为“墨韵”。而形成水墨为主的一种绘画形式。”''')
                 with gr.Column(scale=1):
                     img_num = gr.Dropdown(
                         ["Automatic (自动)", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
-                        value='Automatic (自动)', label="Image Number (插图数量)", info="Select the number of the inserted images",
+                        value='6', label="Image Number (插图数量)", info="Select the number of the inserted images",
                         interactive=True)
-                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=6345.0, step=1.0, label='Random Seed (随机种子)')
+                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=8909.0, step=1.0, label='Random Seed (随机种子)')
                     btn = gr.Button("Submit (提交)", scale=1)
 
             with gr.Accordion("Click to add image material (点击添加图片素材）, optional（可选）", open=False, visible=True):
@@ -963,6 +971,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                         text_num = gr.Slider(minimum=100.0, maximum=4096.0, value=4096.0, step=1.0, label='Max output tokens (最多输出字数)')
                         llmO = gr.Checkbox(value=False, label='LLM Only (纯文本写作)')
                         random = gr.Checkbox(value=True, label='Sampling (随机采样)')
+                        withmeta = gr.Checkbox(value=False, label='With Meta (使用meta指令)')
 
             articles, edit_bts = [], []
             text_editers, edit_types, edit_subs, insertIMGs, edit_dones, edit_cancels = [], [], [], [], [], []
@@ -1024,6 +1033,8 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
             uploads.upload(demo_ui.upload_images, inputs=uploads, outputs=[upshows, img_num])
             uploads.clear(demo_ui.clear_images, inputs=[], outputs=upshows)
             img_num.select(demo_ui.limit_imagenum, inputs=[img_num, upshows], outputs=img_num)
+
+            withmeta.change(demo_ui.change_meta, inputs=withmeta, outputs=[])
 
             for i in range(max_section):
                 edit_bts[i].click(demo_ui.show_edit, inputs=[articles[i], gr.Number(value=i, visible=False)], outputs=[text_editers[i], before_edits[i], after_edits[i]])
