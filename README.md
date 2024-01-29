@@ -10,7 +10,7 @@
         InternLM-XComposer <a href="">🐼 <a> <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | Technical Report <a href="">  📄 </a>
+        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | Technical Report <a href="./InternLM-XComposer2-Report.pdf">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -51,11 +51,11 @@
 
 We release InternLM-XComposer2 series in two versions:
 
-- **InternLM-XComposer2-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b">🤖 </a>: The multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *VL benchmarks* and *AI assistant*. **It ranks as the most powerful vision-language model based on 7B-parameter level LLMs, leading across 13 benchmarks.**
+- **InternLM-XComposer2-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"> </a>: The multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *VL benchmarks* and *AI assistant*. **It ranks as the most powerful vision-language model based on 7B-parameter level LLMs, leading across 13 benchmarks.**
 
-- **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b">🤖 </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* with free-form inputs.
+- **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"><a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"> </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* with free-form inputs.
 
-Please refer to [Technical Report]() for more details.
+Please refer to [Technical Report](./InternLM-XComposer2-Report.pdf) for more details.
   <br>
 
 <!-- 
@@ -67,21 +67,21 @@ Please refer to [Technical Report]() for more details.
 
 <!-- https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc -->
 
-## Demo
+
+## Demo Video
+
+[https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc](https://github.com/InternLM/InternLM-XComposer/assets/30363822/7c399c65-0cdd-41ae-a903-49b58dca609a)
 
 https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc
 
-
-<!-- Please refer to [Chinese Demo](https://github.com/InternLM/InternLM-XComposer/blob/main/README_CN.md#demo) for the demo of the Chinese version. -->
+Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 
 
 ## News and Updates
-* ```2024.01.26``` 🎉🎉🎉 [InternLM-XComposer-VL2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b) achieves SOTAs on [OpenCompass](https://opencompass.org.cn/leaderboard-multimodal) Multi-Modal Leaderborad.
-
 * ```2024.01.26``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
 * ```2024.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**. 
-* ```2024.01.26``` 🎉🎉🎉 We release a [technical report]() for more details of InternLM-XComposer2 series.
+* ```2024.01.26``` 🎉🎉🎉 We release a [technical report](./InternLM-XComposer2-Report.pdf) for more details of InternLM-XComposer2 series.
 * ```2023.11.22``` 🎉🎉🎉 We release the [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), a large-scale highly descriptive image-text dataset generated by GPT4-Vision and a superior large multimodal model, ShareGPT4V-7B.
 * ```2023.10.30``` 🎉🎉🎉 InternLM-XComposer-VL achieved the top 1 ranking in both [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) and [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation).
 * ```2023.10.19``` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
@@ -92,22 +92,24 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f
 * ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
 </br>
 
+## Model Zoo
+
+| Model                  | Usage    | Transformers(HF)                           | ModelScope(HF)                           |  Release Date |
+| -------------------------- | ------------------------------------------ | ---------------------------------------- | -------------------------------------- |----------- |
+| **InternLM-XComposer2**  |  Text-Image Composition   | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer2-VL**   | Benchmark, VL-Chat   | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary) |  2024-01-26   |
+| **InternLM-XComposer**   |  Text-Image Composition, VL-Chat  | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary) |  2024-09-26   |
+| **InternLM-XComposer-4bit**  | Text-Image Composition, VL-Chat   | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) |  2024-09-26   |
+| **InternLM-XComposer-VL**   | Benchmark   | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary) |  2024-09-26   |
+
+
 
 ## Evaluation
 
-We evaluate InternLM-XComposer2-VL on 12 multimodal benchmarks: [MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [QBench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [ChartQA](https://github.com/vis-nlp/ChartQA), [MM-Vet](https://github.com/yuweihao/MM-Vet), [LLaVA-in-the-wild](https://github.com/haotian-liu/LLaVA), [POPE](https://github.com/AoiDragon/POPE).
+We evaluate InternLM-XComposer2-VL on 13 multimodal benchmarks: [MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [QBench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [ChartQA](https://github.com/vis-nlp/ChartQA), [MM-Vet](https://github.com/yuweihao/MM-Vet), [LLaVA-in-the-wild](https://github.com/haotian-liu/LLaVA), [POPE](https://github.com/AoiDragon/POPE).
 
 
 See [Evaluation Details](./evaluation/README.md) here.
-
-### [OpenCompass](https://opencompass.org.cn/leaderboard-multimodal) Multi-Modal Leaderborad results.
-
-
-<p align="center">
-    <img src="assets/opencompass_leaderboard.png" width="1200"/>
-</p>
-
-
 
 ### Compared with closed-source APIs and previous SOTAs.
 |               | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA  |
@@ -123,20 +125,20 @@ See [Evaluation Details](./evaluation/README.md) here.
 
 
 ### Compared with open-source methods.
-| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  |
-|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|
-| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      |
-| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   |
-| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   |
-| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   |
-| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   |
-| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   |
-| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   |
-| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   |
-| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   |
-| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   |
-| InternLM-XC  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   |
-| Ours         | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   |
+| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | POPE  |
+|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|--------|
+| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      | -      |
+| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   | 78.9   |
+| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   | -      |
+| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   | -      |
+| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   | 80.2      |
+| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   | 85.9      |
+| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   | -      |
+| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   | -      |
+| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   | -      |
+| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   | -      |
+| InternLM-XC  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   | -      |
+| Ours         | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   | 87.7    |
 
 
 
@@ -176,7 +178,11 @@ image = 'examples/image1.webp'
 with torch.cuda.amp.autocast(): 
   response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-"""The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. They appear to be hiking or exploring, embodying the essence of the quote. The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets."""
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
+# They appear to be hiking or exploring, embodying the essence of the quote. 
+# The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 
 ```
 </details>
@@ -204,7 +210,11 @@ image = 'examples/image1.webp'
 with torch.cuda.amp.autocast(): 
   response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
 print(response)
-"""The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. They appear to be hiking or exploring, embodying the essence of the quote. The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets."""
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
+# They appear to be hiking or exploring, embodying the essence of the quote. 
+# The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 ```
 </details>
  
