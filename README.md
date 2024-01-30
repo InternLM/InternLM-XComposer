@@ -21,7 +21,7 @@
 </p> 
 
 <p align="center">
-    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://github.com/InternLM/InternLM/assets/25839884/a6aad896-7232-4220-ac84-9e070c2633ce" target="_blank">WeChat</a>
+    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="./WeChat_QR.jpg" target="_blank">WeChat</a>
 </p>
 
 <br>
@@ -45,7 +45,7 @@
 - **Awesome performance**: InternLM-XComposer2 based on InternLM2-7B not only significantly outperforms existing open-source multimodal models in 13 benchmarks but also **matches or even surpasses GPT-4V and Gemini Pro in 6 benchmarks**
 
 <p align="center">
-    <img src="assets/benchmark.png" width="1000"/>
+    <img src="assets/Benchmark_radar.png" width="1000"/>
 </p>
 
 

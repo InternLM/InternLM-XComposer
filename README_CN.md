@@ -46,7 +46,7 @@
 - **杰出性能：** 浦语·灵笔2基于书生·浦语2-7B模型，我们在13项多模态评测中大幅领先同量级多模态模型，在其中6项评测中超过 GPT-4V 和 Gemini Pro。
 
 <p align="center">
-    <img src="assets/benchmark.png" width="1000"/>
+    <img src="assets/Benchmark_radar_CN.png" width="1000"/>
 </p>
 
 我们开源的 浦语·灵笔2 包括两个版本:
