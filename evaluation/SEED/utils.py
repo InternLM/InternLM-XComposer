@@ -55,7 +55,7 @@ class SeedDataset(Dataset):
 
         data = {
             'img': data_path,
-            'text': text
+            'text': text,
             'answer': answer,
         }
         return data
