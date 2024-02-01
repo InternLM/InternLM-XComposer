@@ -20,7 +20,7 @@
 
 </div>
 <p align="center">
-    👋 加入我们的 <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> 和 <a href="./WeChat_QR.jpg" target="_blank">微信社区</a>
+    👋 加入我们的 <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> 和 <a href="https://r.vansin.top/?r=internwx" target="_blank">微信社区</a>
 </p>
 
 <br>
