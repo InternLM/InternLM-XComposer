@@ -21,7 +21,7 @@
 </p> 
 
 <p align="center">
-    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="./WeChat_QR.jpg" target="_blank">WeChat</a>
+    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://r.vansin.top/?r=internwx" target="_blank">WeChat</a>
 </p>
 
 <br>
