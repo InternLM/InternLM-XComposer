@@ -16,7 +16,7 @@
 
 <details>
   <summary>
-    <b>图文数据示例</b>
+    <b>图文数据示例 (vl_data.json)</b>
   </summary>
 
 ```
@@ -56,7 +56,7 @@
 
 <details>
   <summary>
-    <b>纯文本数据示例</b>
+    <b>纯文本数据示例 (text_data.json)</b>
   </summary>
 
 ```

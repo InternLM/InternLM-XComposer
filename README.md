@@ -209,7 +209,7 @@ print(response)
 
 ## Finetune
 
-Please refer to our finetune scripts \[finetune/README.md\].
+Please refer to our [finetune scripts](finetune/README.md).
 
 ## Web UI
 
