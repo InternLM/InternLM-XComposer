@@ -164,7 +164,7 @@ tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2-vl-7b', 
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
 with torch.cuda.amp.autocast():
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False)
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
 #The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret,"
 # set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange,
@@ -196,7 +196,7 @@ model.tokenizer = tokenizer
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
 with torch.cuda.amp.autocast():
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False)
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
 #The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret,"
 # set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange,
