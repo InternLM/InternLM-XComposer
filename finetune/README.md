@@ -117,6 +117,10 @@ Full-parameter parameter finetuning requires updating all parameters of LLM in t
 sh finetune.sh
 ```
 
+If you want to finetune the `internlm/internlm-xcomposer-7b` model, please set the `--img_size 224`.
+
+If you want to finetune the `internlm/internlm-xcomposer-vl-7b` model, please set the `--img_size 490`.
+
 ### LoRA finetuning
 
 The LoRA allows light-weight model tuning with only a small subset of parameters updated. We provide the LoRA implementation based on `peft`. To launch your training, run the following script:
@@ -124,6 +128,8 @@ The LoRA allows light-weight model tuning with only a small subset of parameters
 ```
 sh finetune_lora.sh
 ```
+
+The value of the `img_size` parameter is consistent with full parameter fine-tuning (224 for the 7b model and 490 for the vl-7b model).
 
 After training, you could load the model with the path to the adapter. We advise you to use absolute path for your pretrained model. This is because LoRA only saves the adapter and the absolute path in the adapter configuration json file is used for finding out the pretrained model to load.
 

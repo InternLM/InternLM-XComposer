@@ -24,6 +24,7 @@ DISTRIBUTED_ARGS="
 torchrun $DISTRIBUTED_ARGS finetune.py \
     --model_name_or_path $MODEL \
     --data_path $DATA \
+    --img_size 490 \
     --given_num True \
     --bf16 True \
     --fix_vit False \
