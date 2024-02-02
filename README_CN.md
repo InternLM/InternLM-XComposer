@@ -166,7 +166,7 @@ tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2-vl-7b', 
 text = '<ImageHere>仔细描述这张图'
 image = 'examples/image1.webp'
 with torch.cuda.amp.autocast():
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False)
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
 #这张图片是一个引用的奥斯卡·王尔德的名言，它被放在一个美丽的日落背景上。
 #引用的内容是“Live life with no excuses, travel with no regrets”，意思是“生活不要找借口，旅行不要后悔”。
@@ -195,7 +195,7 @@ model.tokenizer = tokenizer
 text = '<ImageHere>仔细描述这张图'
 image = 'examples/image1.webp'
 with torch.cuda.amp.autocast():
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False)
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
 #这张图片是一个引用的奥斯卡·王尔德的名言，它被放在一个美丽的日落背景上。
 #引用的内容是“Live life with no excuses, travel with no regrets”，意思是“生活不要找借口，旅行不要后悔”。
