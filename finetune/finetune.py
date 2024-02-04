@@ -135,10 +135,8 @@ class DataCollatorForSupervisedDataset:
         text_input, data_type = tuple(
             [instance[key] for instance in instances]
             for key in ('text_input', 'data_type'))
-        text_input = []
-        for instance in instances:
-            for t in instance['text_input']:
-                text_input.append(t)
+        if 'image' not in instances[0]:
+            text_input = [instance['text_input'][0] for instance in instances]
         batch = dict(
             text_input=text_input,
             data_type=data_type,

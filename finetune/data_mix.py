@@ -34,7 +34,6 @@ def conv2text(sources):
 class ImageProcessor:
 
     def __init__(self, image_size=224):
-
         mean = (0.48145466, 0.4578275, 0.40821073)
         std = (0.26862954, 0.26130258, 0.27577711)
         self.normalize = transforms.Normalize(mean, std)
@@ -99,15 +98,26 @@ class Mix_dataset(Dataset):
             self.set_seed = True
             print(f'Set seed {index} for rank {self.local_rank}')
 
-        if self.use_multi < self.batch_size:
+        if len(self.datasets_multi) == 0 and len(self.datasets_text) == 0:
+            raise ValueError(
+                'Both _multi and _text are empty. Cannot sample any data.')
+
+        if len(self.datasets_multi) > 0 and (self.use_multi < self.batch_size
+                                             or len(self.datasets_text) == 0):
             data_idx = random.choices(
-                range(len(self.data_ratio_multi)), self.data_ratio_multi,
+                range(len(self.data_ratio_multi)),
+                weights=self.data_ratio_multi,
                 k=1)[0]
             sample = self.datasets_multi[data_idx].get_item()
-        else:
+        elif len(self.datasets_text) > 0:
             data_idx = random.choices(
-                range(len(self.data_ratio_text)), self.data_ratio_text, k=1)[0]
+                range(len(self.data_ratio_text)),
+                weights=self.data_ratio_text,
+                k=1)[0]
             sample = self.datasets_text[data_idx].get_item()
+        else:
+            raise ValueError('Unable to select a dataset for sampling.')
+
         self.use_multi += 1
         if self.use_multi > self.batch_size * 2:
             self.use_multi = 0
