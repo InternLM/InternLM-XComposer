@@ -145,7 +145,7 @@ CUDA_VISIBLE_DEVICES=0 python -u eval.py
 
 ### AI2D
 
-1. Download the processed images [here](https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=drive_link), unzip the images to `./data/ai2d/`. 
+1. Download the processed images [here](https://drive.google.com/file/d/1dqqa3MnrxMXaU_K9JA6C83je32ibwdOY/view?usp=sharing), unzip the images to `./data/ai2d/`. 
 2. Run the notebook `AI2D.ipynb`.
  
 <details>
