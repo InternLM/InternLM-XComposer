@@ -93,6 +93,10 @@ class Conversation:
                     from io import BytesIO
                     msg, images = msg
 
+                    # type check for images, if not list(e.g. PIL), just put it in a list
+                    if type(images) is not list:
+                        images = [images]
+                    
                     img_str = '''<style>.centerimg{float:left;}.flex_img{align-items: left;display: flex;justify-content: left;}</style><div class='flex_img'>'''
                     for j, image in enumerate(images):
                         max_hw, min_hw = max(image.size), min(image.size)
