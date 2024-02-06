@@ -54,8 +54,11 @@ class LoraArguments:
     lora_alpha: int = 64
     lora_dropout: float = 0.05
     lora_target_modules: List[str] = field(default_factory=lambda: [
-        'mlp.up_proj', 'mlp.down_proj', 'mlp.gate_proj', 'self_attn.q_proj',
-        'self_attn.k_proj', 'self_attn.v_proj', 'self_attn.o_proj'
+        'attention.wqkv',
+        'attention.wo',
+        'feed_forward.w1',
+        'feed_forward.w2',
+        'feed_forward.w3',
     ])
     lora_weight_path: str = ''
     lora_bias: str = 'none'
@@ -265,18 +268,12 @@ def train():
 
     if training_args.fix_sampler:
         model.vision_proj.requires_grad_(False)
-        try:
-            model.vision_sampler.requires_grad_(False)
-        except Exception:
-            print('Qformer not exists, make sure the vision is correct')
     else:
         model.vision_proj.requires_grad_(True)
-        try:
-            model.vision_sampler.requires_grad_(True)
-        except Exception:
-            print('Qformer not exists, make sure the vision is correct')
 
     if training_args.use_lora:
+        for name, param in model.model.named_parameters():
+            param.requires_grad = False
         lora_config = LoraConfig(
             r=lora_args.lora_r,
             lora_alpha=lora_args.lora_alpha,
