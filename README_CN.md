@@ -71,10 +71,10 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 [https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f41-a5df-796680fa56cd](https://github.com/InternLM/InternLM-XComposer/assets/30363822/63756590-7366-4c5d-807f-66c4e69ea827)
 
 ## 更新消息
-
+* ```2024.02.06``` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) 已在**Hugging Face**和**ModelScope**开源。
+- `2024.02.02` 🎉🎉🎉 **InternLM-XComposer2-VL-7B**的[微调代码](./finetune/)已开源。
 - `2024.01.26` 🎉🎉🎉 **InternLM-XComposer2-VL-7B**的[评测代码](./evaluation/)已开源。
-- `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b)已在**ModelScope**开源。
-- `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)已在**Hugging Face**开源。
+- `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)已在**Hugging Face**和**ModelScope**开源。
 - `2024.01.26` 🎉🎉🎉 我们公开了InternLM-XComposer2更多技术细节，请参考[技术报告](https://arxiv.org/abs/2401.16420)。
 - `2023.11.22` 🎉🎉🎉 我们开源了[ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), 一个高质量的大规模图文描述数据集，以及性能优秀的多模态大模型ShareGPT4V-7B。
 - `2023.10.30` 🎉🎉🎉 灵笔在[Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) 和 [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation) 取得了第一名。
@@ -92,6 +92,8 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 | --------------------------- | ------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | **InternLM-XComposer2**     | 图文创作            | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary)         | 2024-01-26 |
 | **InternLM-XComposer2-VL**  | Benchmark, 视觉问答 | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary)   | 2024-01-26 |
+| **InternLM-XComposer2-4bit**  |  图文创作   | [🤗internlm-xcomposer2-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit/summary) |  2024-02-06   |
+| **InternLM-XComposer2-VL-4bit**   | Benchmark, 视觉问答   | [🤗internlm-xcomposer2-vl-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b-4bit/summary) |  2024-02-06   |
 | **InternLM-XComposer**      | 图文创作, 视觉问答  | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b)           | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary)           | 2023-09-26 |
 | **InternLM-XComposer-4bit** | 图文创作, 视觉问答  | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) | 2023-09-26 |
 | **InternLM-XComposer-VL**   | Benchmark           | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b)     | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary)     | 2023-09-26 |
@@ -202,6 +204,55 @@ print(response)
 # 在日落时分，两个身影站在山丘上，他们似乎正在享受这个美景。整个场景传达出一种积极向上、勇敢追求梦想的情感。
 ```
 
+</details>
+
+
+## 4-Bit 量化模型
+
+我们提供4bit量化模型来缓解模型的内存需求。 要运行4bit模型（GPU内存> = 12GB），您需要首先安装相应的[依赖包](https://github.com/InternLM/InternLM-XComposer/docs/install.md), 然后执行以下脚本:
+
+
+<details>
+  <summary>
+    <b>🤗 Transformers</b>
+  </summary>
+
+```python
+import torch, auto_gptq
+from transformers import AutoModel, AutoTokenizer 
+from auto_gptq.modeling import BaseGPTQForCausalLM
+
+auto_gptq.modeling._base.SUPPORTED_MODELS = ["internlm"]
+torch.set_grad_enabled(False)
+
+class InternLMXComposer2QForCausalLM(BaseGPTQForCausalLM):
+    layers_block_name = "model.layers"
+    outside_layer_modules = [
+        'vit', 'vision_proj', 'model.tok_embeddings', 'model.norm', 'output', 
+    ]
+    inside_layer_modules = [
+        ["attention.wqkv.linear"],
+        ["attention.wo.linear"],
+        ["feed_forward.w1.linear", "feed_forward.w3.linear"],
+        ["feed_forward.w2.linear"],
+    ]
+ 
+# init model and tokenizer
+model = InternLMXComposer2QForCausalLM.from_quantized(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True, device="cuda:0").eval()
+tokenizer = AutoTokenizer.from_pretrained(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True)
+
+text = '<ImageHere>Please describe this image in detail.'
+image = 'examples/image1.webp'
+with torch.cuda.amp.autocast(): 
+  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
+print(response)
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets." 
+#The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset. 
+#They appear to be hiking or climbing, as one of them is holding a walking stick. 
+#The sky behind them is painted with hues of orange and purple, creating a beautiful contrast with the dark figures.
+```
 </details>
 
 ## 微调代码

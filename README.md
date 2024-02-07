@@ -70,7 +70,8 @@ Please refer to [Technical Report](https://arxiv.org/abs/2401.16420) for more de
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 ## News and Updates
-
+* ```2024.02.06``` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) are publicly available on **Hugging Face** and **ModelScope**. 
+- `2024.01.26` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**.
 - `2024.01.26` 🎉🎉🎉 We release a [technical report](https://arxiv.org/abs/2401.16420) for more details of InternLM-XComposer2 series.
@@ -90,6 +91,8 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 | --------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
 | **InternLM-XComposer2**     | Text-Image Composition          | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary)         | 2024-01-26   |
 | **InternLM-XComposer2-VL**  | Benchmark, VL-Chat              | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary)   | 2024-01-26   |
+| **InternLM-XComposer2-4bit**  |  Text-Image Composition   | [🤗internlm-xcomposer2-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit/summary) |  2024-02-06   |
+| **InternLM-XComposer2-VL-4bit**   | Benchmark, VL-Chat   | [🤗internlm-xcomposer2-vl-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b-4bit/summary) |  2024-02-06   |
 | **InternLM-XComposer**      | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b)           | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary)           | 2023-09-26   |
 | **InternLM-XComposer-4bit** | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) | 2023-09-26   |
 | **InternLM-XComposer-VL**   | Benchmark                       | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b)     | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary)     | 2023-09-26   |
@@ -205,6 +208,55 @@ print(response)
 # The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 ```
 
+</details>
+
+
+## 4-Bit Model
+
+We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](https://github.com/InternLM/InternLM-XComposer/docs/install.md), then execute the follows scripts for chat:
+
+
+<details>
+  <summary>
+    <b>🤗 Transformers</b>
+  </summary>
+
+```python
+import torch, auto_gptq
+from transformers import AutoModel, AutoTokenizer 
+from auto_gptq.modeling import BaseGPTQForCausalLM
+
+auto_gptq.modeling._base.SUPPORTED_MODELS = ["internlm"]
+torch.set_grad_enabled(False)
+
+class InternLMXComposer2QForCausalLM(BaseGPTQForCausalLM):
+    layers_block_name = "model.layers"
+    outside_layer_modules = [
+        'vit', 'vision_proj', 'model.tok_embeddings', 'model.norm', 'output', 
+    ]
+    inside_layer_modules = [
+        ["attention.wqkv.linear"],
+        ["attention.wo.linear"],
+        ["feed_forward.w1.linear", "feed_forward.w3.linear"],
+        ["feed_forward.w2.linear"],
+    ]
+ 
+# init model and tokenizer
+model = InternLMXComposer2QForCausalLM.from_quantized(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True, device="cuda:0").eval()
+tokenizer = AutoTokenizer.from_pretrained(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True)
+
+text = '<ImageHere>Please describe this image in detail.'
+image = 'examples/image1.webp'
+with torch.cuda.amp.autocast(): 
+  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
+print(response)
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets." 
+#The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset. 
+#They appear to be hiking or climbing, as one of them is holding a walking stick. 
+#The sky behind them is painted with hues of orange and purple, creating a beautiful contrast with the dark figures.
+```
 </details>
 
 ## Finetune
