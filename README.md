@@ -213,7 +213,7 @@ print(response)
 
 ## 4-Bit Model
 
-We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](https://github.com/InternLM/InternLM-XComposer/docs/install.md), then execute the follows scripts for chat:
+We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](./docs/install.md), then execute the follows scripts for chat:
 
 
 <details>
