@@ -71,7 +71,7 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 
 ## News and Updates
 * ```2024.02.06``` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) are publicly available on **Hugging Face** and **ModelScope**. 
-- `2024.01.26` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B** are publicly available.
+- `2024.02.02` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**.
 - `2024.01.26` 🎉🎉🎉 We release a [technical report](https://arxiv.org/abs/2401.16420) for more details of InternLM-XComposer2 series.
