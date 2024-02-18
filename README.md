@@ -224,7 +224,7 @@ We provide 4-bit quantized models to ease the memory requirement of the models. 
 ```python
 import torch, auto_gptq
 from transformers import AutoModel, AutoTokenizer 
-from auto_gptq.modeling import BaseGPTQForCausalLM
+from auto_gptq.modeling._base import BaseGPTQForCausalLM
 
 auto_gptq.modeling._base.SUPPORTED_MODELS = ["internlm"]
 torch.set_grad_enabled(False)
@@ -250,7 +250,7 @@ tokenizer = AutoTokenizer.from_pretrained(
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
 with torch.cuda.amp.autocast(): 
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False) 
 print(response)
 #The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets." 
 #The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset. 
