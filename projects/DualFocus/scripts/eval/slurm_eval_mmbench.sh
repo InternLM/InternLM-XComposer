@@ -44,9 +44,3 @@ output_file=./playground/data/eval/mmbench/answers/$CKPT/merge.jsonl
 for IDX in $(seq 0 $((CHUNKS-1))); do
     cat ./playground/data/eval/mmbench/answers/$CKPT/${CHUNKS}_${IDX}.jsonl >> "$output_file"
 done
-
-# Evaluate
-python scripts/convert_mmbench_for_submission.py \
-    --annotation-file ./playground/data/eval/mmbench/$SPLIT.tsv \
-    --pred-file $output_file \
-    --save-file ./playground/data/eval/mmbench/answers_upload/${CKPT}.xlsx \

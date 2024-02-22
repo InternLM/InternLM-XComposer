@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-# CUDA_VISIBLE_DEVICES=0
-
 gpu_list="${CUDA_VISIBLE_DEVICES:-0}"
 IFS=',' read -ra GPULIST <<< "$gpu_list"
 

@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-CUDA_VISIBLE_DEVICES=0
-
 gpu_list="${CUDA_VISIBLE_DEVICES:-0}"
 IFS=',' read -ra GPULIST <<< "$gpu_list"
 
@@ -24,10 +22,8 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
         --num-chunks $CHUNKS \
         --chunk-idx $IDX \
         --temperature 0 \
-        --conv-mode vicuna_v1
+        --conv-mode vicuna_v1 &
 done
-
-exit
 
 wait
 
