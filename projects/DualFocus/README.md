@@ -9,7 +9,7 @@
   <img src="./images/teaser.png">
 </p>
 
-- **Authors**: [Yuhang Cao](https://scholar.google.com/citations?user=sJkqsqkAAAAJ&hl=zh-CN), [Pan Zhang](https://panzhang0212.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Dahua Lin📧](http://dahua.site/), [Jiaqi Wang](https://myownskyw7.github.io/)
+- **Authors**: [Yuhang Cao](https://scholar.google.com/citations?user=sJkqsqkAAAAJ&hl=zh-CN), [Pan Zhang](https://panzhang0212.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Dahua Lin](http://dahua.site/), [Jiaqi Wang](https://myownskyw7.github.io/)
 
 - **Institutes**: The Chinese University of Hong Kong; Shanghai AI Laboratory
 - **Resources**: [[Paper](https://arxiv.org/abs/2402.14767)] 
