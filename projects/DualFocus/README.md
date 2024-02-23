@@ -12,15 +12,15 @@
 - **Authors**: [Yuhang Cao](https://scholar.google.com/citations?user=sJkqsqkAAAAJ&hl=zh-CN), [Pan Zhang](https://panzhang0212.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Dahua Lin📧](http://dahua.site/), [Jiaqi Wang](https://myownskyw7.github.io/)
 
 - **Institutes**: The Chinese University of Hong Kong; Shanghai AI Laboratory
-- **Resources**: [[Paper](https://www.example.com/)] 
+- **Resources**: [[Paper](https://arxiv.org/abs/2402.14767)] 
 - **Models**: [[DualFocus-LLaVA-1.5-7B](https://huggingface.co/yhcao/DualFocus-LLaVA-1.5-7B)]; [[DualFocus-LLaVA-1.5-13B](https://huggingface.co/yhcao/DualFocus-LLaVA-1.5-13B)]; [[DualFocus-ShareGPT4V-13B](https://huggingface.co/yhcao/DualFocus-ShareGPT4V-13B)] 
 
 ## 📜 News
-[2024/02/22] The paper, evaluation code and checkpoints are released!
+[2024/02/22] The [paper](https://arxiv.org/abs/2402.14767), evaluation code and checkpoints are released!
 
 ## 👨‍💻 Todo
 - [x] Release evaluation code and checkpoints
-- [ ] Release paper
+- [x] Release paper
 - [ ] Release training code
 - [ ] Speed up inference
 
@@ -126,7 +126,12 @@ bash scripts/eval/slurm_eval_gqa.sh yhcao/DualFocus-LLaVA-1.5-7B
 ## ✒️ Citation
 If you find our work helpful for your research, please consider giving a star ⭐ and citation 📝
 ```bibtex
-placeholder
+@article{cao2024dualfocus,
+  title={DualFocus: Integrating Macro and Micro Perspectives in Multi-modal Large Language Models}, 
+  author={Yuhang Cao and Pan Zhang and Xiaoyi Dong and Dahua Lin and Jiaqi Wang},
+  journal={arXiv preprint arXiv:2311.12793},
+  year={2024},
+}
 ```
 
 ## License
