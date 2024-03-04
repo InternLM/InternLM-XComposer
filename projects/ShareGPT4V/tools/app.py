@@ -7,13 +7,13 @@ from threading import Thread
 
 import gradio as gr
 import torch
-from llava.constants import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN,
-                             DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX)
-from llava.conversation import (SeparatorStyle, conv_templates,
-                                default_conversation)
-from llava.mm_utils import (KeywordsStoppingCriteria, load_image_from_base64,
-                            process_images, tokenizer_image_token)
-from llava.model.builder import load_pretrained_model
+from share4v.constants import (DEFAULT_IM_END_TOKEN, DEFAULT_IM_START_TOKEN,
+                               DEFAULT_IMAGE_TOKEN, IMAGE_TOKEN_INDEX)
+from share4v.conversation import (SeparatorStyle, conv_templates,
+                                  default_conversation)
+from share4v.mm_utils import (KeywordsStoppingCriteria, load_image_from_base64,
+                              process_images, tokenizer_image_token)
+from share4v.model.builder import load_pretrained_model
 from transformers import TextIteratorStreamer
 
 print(gr.__version__)
@@ -357,7 +357,7 @@ def parse_args():
     parser.add_argument("--model-path", type=str,
                         default="Lin-Chen/ShareGPT4V-7B")
     parser.add_argument("--model-name", type=str,
-                        default="llava-v1.5-7b")
+                        default="share4v-7b")
     args = parser.parse_args()
     return args
 

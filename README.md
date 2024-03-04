@@ -5,12 +5,11 @@
     <b><font size="6">InternLM-XComposer2</font></b>
 </p>
 
-
 <!-- <div align="center">
         InternLM-XComposer <a href="">🐼 <a> <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | Technical Report <a href="./InternLM-XComposer2-Report.pdf">  📄 </a>
+        InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | Technical Report <a href="https://arxiv.org/abs/2401.16420">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -18,10 +17,10 @@
 
 <p align="center">
     Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a>  | <a href="https://openxlab.org.cn/apps/detail/WillowBreeze/InternLM-XComposer">OpenXLab Demo</a> of InternLM-XComposer2.
-</p> 
+</p>
 
 <p align="center">
-    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="./WeChat_QR.jpg" target="_blank">WeChat</a>
+    👋 join us on <a href="https://discord.gg/xa29JuW87d" target="_blank">Discord</a> and <a href="https://r.vansin.top/?r=internwx" target="_blank">WeChat</a>
 </p>
 
 <br>
@@ -33,6 +32,8 @@
 > [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer/tree/main/InternLM-XComposer-1.0): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
 
 > <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+ 
+> [**DualFocus**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus): **Integrating Macro and Micro Perspectives in Multi-modal Large Language Models**
 
 </br>
 
@@ -45,9 +46,8 @@
 - **Awesome performance**: InternLM-XComposer2 based on InternLM2-7B not only significantly outperforms existing open-source multimodal models in 13 benchmarks but also **matches or even surpasses GPT-4V and Gemini Pro in 6 benchmarks**
 
 <p align="center">
-    <img src="assets/benchmark.png" width="1000"/>
+    <img src="assets/Benchmark_radar.png" width="1000"/>
 </p>
-
 
 We release InternLM-XComposer2 series in two versions:
 
@@ -55,15 +55,13 @@ We release InternLM-XComposer2 series in two versions:
 
 - **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"><a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl2-7b"> </a>: The further instruction tuned VLLM for *Interleaved Text-Image Composition* with free-form inputs.
 
-Please refer to [Technical Report](./InternLM-XComposer2-Report.pdf) for more details.
-  <br>
+Please refer to [Technical Report](https://arxiv.org/abs/2401.16420) for more details.
+<br>
 
-<!-- 
+<!--
 <p align="center">
     <figcaption align = "center"><b> InternLM-XComposer </b></figcaption>
 <p> -->
-
-
 
 <!-- https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc -->
 
@@ -71,80 +69,78 @@ Please refer to [Technical Report](./InternLM-XComposer2-Report.pdf) for more de
 
 [https://github.com/InternLM/InternLM-XComposer/assets/22662425/fdb89a38-c650-45f2-b5b7-51182e89a5cc](https://github.com/InternLM/InternLM-XComposer/assets/30363822/7c399c65-0cdd-41ae-a903-49b58dca609a)
 
-
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
-
-
 ## News and Updates
-* ```2024.01.26``` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer2-VL-7B** are publicly available.
-* ```2024.01.26``` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**. 
-* ```2024.01.26``` 🎉🎉🎉 We release a [technical report](./InternLM-XComposer2-Report.pdf) for more details of InternLM-XComposer2 series.
-* ```2023.11.22``` 🎉🎉🎉 We release the [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), a large-scale highly descriptive image-text dataset generated by GPT4-Vision and a superior large multimodal model, ShareGPT4V-7B.
-* ```2023.10.30``` 🎉🎉🎉 InternLM-XComposer-VL achieved the top 1 ranking in both [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) and [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation).
-* ```2023.10.19``` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
-* ```2023.10.12``` 🎉🎉🎉 4-bit demo is supported, model files are available in [Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit).
-* ```2023.10.8``` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**. 
-* ```2023.9.27``` 🎉🎉🎉 The [evaluation code](./InternLM-XComposer-1.0/evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
-* ```2023.9.27``` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**. 
-* ```2023.9.27``` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
-</br>
+- `2024.02.22` 🎉🎉🎉 We release [DualFocus](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus), a framework for integrating macro and micro perspectives within MLLMs to enhance vision-language task performance.
+* ```2024.02.06``` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) are publicly available on **Hugging Face** and **ModelScope**. 
+- `2024.02.02` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B** are publicly available.
+- `2024.01.26` 🎉🎉🎉 The [evaluation code](./evaluation/) of **InternLM-XComposer2-VL-7B** are publicly available.
+- `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**.
+- `2024.01.26` 🎉🎉🎉 We release a [technical report](https://arxiv.org/abs/2401.16420) for more details of InternLM-XComposer2 series.
+- `2023.11.22` 🎉🎉🎉 We release the [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V), a large-scale highly descriptive image-text dataset generated by GPT4-Vision and a superior large multimodal model, ShareGPT4V-7B.
+- `2023.10.30` 🎉🎉🎉 InternLM-XComposer-VL achieved the top 1 ranking in both [Q-Bench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards) and [Tiny LVLM](https://github.com/OpenGVLab/Multi-Modality-Arena/tree/main/tiny_lvlm_evaluation).
+- `2023.10.19` 🎉🎉🎉 Support for inference on multiple GPUs. Two 4090 GPUs are sufficient for deploying our demo.
+- `2023.10.12` 🎉🎉🎉 4-bit demo is supported, model files are available in [Hugging Face](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) and [ModelScope](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit).
+- `2023.10.8` 🎉🎉🎉 [InternLM-XComposer-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b) are publicly available on **ModelScope**.
+- `2023.9.27` 🎉🎉🎉 The [evaluation code](./InternLM-XComposer-1.0/evaluation/) of **InternLM-XComposer-VL-7B** are publicly available.
+- `2023.9.27` 🎉🎉🎉 [InternLM-XComposer-7B](https://huggingface.co/internlm/internlm-xcomposer-7b) and [InternLM-XComposer-VL-7B](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) are publicly available on **Hugging Face**.
+- `2023.9.27` 🎉🎉🎉 We release a [technical report](https://arxiv.org/pdf/2309.15112.pdf) for more details of our model series.
+  </br>
 
 ## Model Zoo
 
-| Model                  | Usage    | Transformers(HF)                           | ModelScope(HF)                           |  Release Date |
-| -------------------------- | ------------------------------------------ | ---------------------------------------- | -------------------------------------- |----------- |
-| **InternLM-XComposer2**  |  Text-Image Composition   | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary) |  2024-01-26   |
-| **InternLM-XComposer2-VL**   | Benchmark, VL-Chat   | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary) |  2024-01-26   |
-| **InternLM-XComposer**   |  Text-Image Composition, VL-Chat  | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary) |  2024-09-26   |
-| **InternLM-XComposer-4bit**  | Text-Image Composition, VL-Chat   | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) |  2024-09-26   |
-| **InternLM-XComposer-VL**   | Benchmark   | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary) |  2024-09-26   |
-
-
+| Model                       | Usage                           | Transformers(HF)                                                                           | ModelScope(HF)                                                                                                                                                               | Release Date |
+| --------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **InternLM-XComposer2**     | Text-Image Composition          | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary)         | 2024-01-26   |
+| **InternLM-XComposer2-VL**  | Benchmark, VL-Chat              | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary)   | 2024-01-26   |
+| **InternLM-XComposer2-4bit**  |  Text-Image Composition   | [🤗internlm-xcomposer2-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit/summary) |  2024-02-06   |
+| **InternLM-XComposer2-VL-4bit**   | Benchmark, VL-Chat   | [🤗internlm-xcomposer2-vl-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b-4bit/summary) |  2024-02-06   |
+| **InternLM-XComposer**      | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b)           | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary)           | 2023-09-26   |
+| **InternLM-XComposer-4bit** | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) | 2023-09-26   |
+| **InternLM-XComposer-VL**   | Benchmark                       | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b)     | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary)     | 2023-09-26   |
 
 ## Evaluation
 
 We evaluate InternLM-XComposer2-VL on 13 multimodal benchmarks: [MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [QBench](https://github.com/Q-Future/Q-Bench/tree/master/leaderboards#overall-leaderboards), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [ChartQA](https://github.com/vis-nlp/ChartQA), [MM-Vet](https://github.com/yuweihao/MM-Vet), [LLaVA-in-the-wild](https://github.com/haotian-liu/LLaVA), [POPE](https://github.com/AoiDragon/POPE).
 
-
 See [Evaluation Details](./evaluation/README.md) here.
 
 ### Compared with closed-source APIs and previous SOTAs.
-|               | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA  |
-|---------------|-----------|--------|-------|--------|--------|--------|-------|--------|---------|--------|--------|-----------|
-|  Open-source Previous  SOTA | SPH-MOE   | Monkey | Yi-VL | WeMM   | L-Int2 | L-Int2 | SPH-2 | CogVLM | Int-XC  | CogVLM | Monkey | CogAgent  |
-|    | 8x7B      | 10B    | 34B   | 6B     | 20B    | 20B    | 17B   | 17B    | 8B      | 30B    | 10B    | 18B       |
-|  | 42.3      | 72.6   | 45.9  | 2066.6 | 75.1   | 73.7   | 74.8  | 73.9   | 64.4    | 56.8   | 58.4   | 68.4      |
-|               |           |        |       |        |        |        |       |        |         |        |        |           |
-| GPT-4V        | 49.9      | 78.2   | 56.8  | 1926.5 | 77     | 74.4   | 69.1  | 93.1   | 74.1    | 67.7   | 65.8   | 78.5      |
-| Gemini-Pro    | 45.2      | 73.9   | 47.9  | 1933.3 | 73.6   | 74.3   | 70.7  | 79.9   | 70.6    | 64.3   | 63.9   | 74.1      |
-| QwenVL-Plus   | 43.3      | 75.9   | 46.5  | 2183.3 | 67     | 70.7   | 72.7  | 73.7   | 68.9    | 55.7   | 56.4   | 78.1      |
-| InternLM-XComposer2-VL    | 57.6      | 78.7   | 42    | 2242.7 | 79.6   | 77.6   | 75.9  | 81.8   | 72.5    | 51.2   | 60.3   | 72.6      |
 
+|                            | MathVista | AI2D   | MMMU  | MME    | MMB    | MMBCN  | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | ChartVQA |
+| -------------------------- | --------- | ------ | ----- | ------ | ------ | ------ | ----- | ------ | ------- | ------ | ------ | -------- |
+| Open-source Previous  SOTA | SPH-MOE   | Monkey | Yi-VL | WeMM   | L-Int2 | L-Int2 | SPH-2 | CogVLM | Int-XC  | CogVLM | Monkey | CogAgent |
+|                            | 8x7B      | 10B    | 34B   | 6B     | 20B    | 20B    | 17B   | 17B    | 8B      | 30B    | 10B    | 18B      |
+|                            | 42.3      | 72.6   | 45.9  | 2066.6 | 75.1   | 73.7   | 74.8  | 73.9   | 64.4    | 56.8   | 58.4   | 68.4     |
+|                            |           |        |       |        |        |        |       |        |         |        |        |          |
+| GPT-4V                     | 49.9      | 78.2   | 56.8  | 1926.5 | 77     | 74.4   | 69.1  | 93.1   | 74.1    | 67.7   | 65.8   | 78.5     |
+| Gemini-Pro                 | 45.2      | 73.9   | 47.9  | 1933.3 | 73.6   | 74.3   | 70.7  | 79.9   | 70.6    | 64.3   | 63.9   | 74.1     |
+| QwenVL-Plus                | 43.3      | 75.9   | 46.5  | 2183.3 | 67     | 70.7   | 72.7  | 73.7   | 68.9    | 55.7   | 56.4   | 78.1     |
+| InternLM-XComposer2-VL     | 57.6      | 78.7   | 42    | 2242.7 | 79.6   | 77.6   | 75.9  | 81.8   | 72.5    | 51.2   | 60.3   | 72.6     |
 
 ### Compared with open-source methods.
-| Method       | LLM          | MathVista | MMMU | MMEP     | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB  | POPE  |
-|--------------|--------------|-----------|------|----------|-------|------|-------|-------|--------|---------|--------|--------|--------|
-| BLIP-2       | FLAN-T5      | -         | 35.7 | 1,293.8  | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -      | -      |
-| InstructBLIP | Vicuna-7B    | 25.3      | 30.6 | -        | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6   | 78.9   |
-| IDEFICS-80B  | LLaMA-65B    | 26.2      | 24.0 | -        | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1   | -      |
-| Qwen-VL-Chat | Qwen-7B      | 33.8      | 35.9 | 1,487.5  | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4   | -      |
-| LLaVA        | Vicuna-7B    | 23.7      | 32.3 | 807.0    | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1   | 80.2      |
-| LLaVA-1.5    | Vicuna-13B   | 26.1      | 36.4 | 1,531.3  | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7   | 85.9      |
-| ShareGPT4V   | Vicuna-7B    | 25.8      | 36.6 | 1,567.4  | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8   | -      |
-| CogVLM-17B   | Vicuna-7B    | 34.7      | 37.3 | -        | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1   | -      |
-| LLaVA-XTuner | InernLM2-20B | 24.6      | 39.4 | -        | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7   | -      |
-| Monkey-10B   | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0     | 58.4   | -      |
-| InternLM-XComposer  | InernLM-7B   | 29.5      | 35.6 | 1,528.4  | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0   | -      |
-| InternLM-XComposer2-VL | InernLM2-7B  | 57.6      | 43.0 | 1,712.0  | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1   | 87.7    |
 
-
+| Method                 | LLM          | MathVista | MMMU | MMEP    | MMEC  | MMB  | MMBCN | SEEDI | LLaVAW | QBenchT | MM-Vet | HallB | POPE |
+| ---------------------- | ------------ | --------- | ---- | ------- | ----- | ---- | ----- | ----- | ------ | ------- | ------ | ----- | ---- |
+| BLIP-2                 | FLAN-T5      | -         | 35.7 | 1,293.8 | 290.0 | -    | -     | 46.4  | 38.1   | -       | 22.4   | -     | -    |
+| InstructBLIP           | Vicuna-7B    | 25.3      | 30.6 | -       | -     | 36.0 | 23.7  | 53.4  | 60.9   | 55.9    | 26.2   | 53.6  | 78.9 |
+| IDEFICS-80B            | LLaMA-65B    | 26.2      | 24.0 | -       | -     | 54.5 | 38.1  | 52.0  | 56.9   | -       | 39.7   | 46.1  | -    |
+| Qwen-VL-Chat           | Qwen-7B      | 33.8      | 35.9 | 1,487.5 | 360.7 | 60.6 | 56.7  | 58.2  | 67.7   | 61.7    | 47.3   | 56.4  | -    |
+| LLaVA                  | Vicuna-7B    | 23.7      | 32.3 | 807.0   | 247.9 | 34.1 | 14.1  | 25.5  | 63.0   | 54.7    | 26.7   | 44.1  | 80.2 |
+| LLaVA-1.5              | Vicuna-13B   | 26.1      | 36.4 | 1,531.3 | 295.4 | 67.7 | 63.6  | 68.2  | 70.7   | 61.4    | 35.4   | 46.7  | 85.9 |
+| ShareGPT4V             | Vicuna-7B    | 25.8      | 36.6 | 1,567.4 | 376.4 | 68.8 | 62.2  | 69.7  | 72.6   | -       | 37.6   | 49.8  | -    |
+| CogVLM-17B             | Vicuna-7B    | 34.7      | 37.3 | -       | -     | 65.8 | 55.9  | 68.8  | 73.9   | -       | 54.5   | 55.1  | -    |
+| LLaVA-XTuner           | InernLM2-20B | 24.6      | 39.4 | -       | -     | 75.1 | 73.7  | 70.2  | 63.7   | -       | 37.2   | 47.7  | -    |
+| Monkey-10B             | Qwen-7B      | 34.8      | 40.7 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | 33.5   | -       | 33.0   | 58.4  | -    |
+| InternLM-XComposer     | InernLM-7B   | 29.5      | 35.6 | 1,528.4 | 391.1 | 74.4 | 72.4  | 66.1  | 53.8   | 64.4    | 35.2   | 57.0  | -    |
+| InternLM-XComposer2-VL | InernLM2-7B  | 57.6      | 43.0 | 1,712.0 | 530.7 | 79.6 | 77.6  | 75.9  | 81.8   | 72.5    | 51.2   | 59.1  | 87.7 |
 
 ## Requirements
 
-* python 3.8 and above
-* pytorch 1.12 and above, 2.0 and above are recommended
-* CUDA 11.4 and above are recommended (this is for GPU users)
+- python 3.8 and above
+- pytorch 1.12 and above, 2.0 and above are recommended
+- CUDA 11.4 and above are recommended (this is for GPU users)
   <br>
 
 ## Installation
@@ -169,22 +165,22 @@ torch.set_grad_enabled(False)
 
 # init model and tokenizer
 model = AutoModel.from_pretrained('internlm/internlm-xcomposer2-vl-7b', trust_remote_code=True).cuda().eval()
-tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2-vl-7b', trust_remote_code=True)  
- 
+tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2-vl-7b', trust_remote_code=True)
+
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
-with torch.cuda.amp.autocast(): 
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
+with torch.cuda.amp.autocast():
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
-#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
-# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
-# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
-# They appear to be hiking or exploring, embodying the essence of the quote. 
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret,"
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange,
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon.
+# They appear to be hiking or exploring, embodying the essence of the quote.
 # The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 
 ```
-</details>
 
+</details>
 
 <details>
   <summary>
@@ -205,17 +201,18 @@ model.tokenizer = tokenizer
 
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
-with torch.cuda.amp.autocast(): 
-  response, _ = model.chat(tokenizer, query=query, image=image, history=[], do_sample=False) 
+with torch.cuda.amp.autocast():
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
-#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret," 
-# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange, 
-# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon. 
-# They appear to be hiking or exploring, embodying the essence of the quote. 
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regret,"
+# set against a backdrop of a breathtaking sunset. The sky is painted in hues of pink and orange,
+# creating a serene atmosphere. Two silhouetted figures stand on a cliff, overlooking the horizon.
+# They appear to be hiking or exploring, embodying the essence of the quote.
 # The overall scene conveys a sense of adventure and freedom, encouraging viewers to embrace life without hesitation or regrets.
 ```
+
 </details>
- 
+
 ## Inference on Multiple GPUs
 If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, execute the follows scripts for chat:
 ```
@@ -223,11 +220,63 @@ If you have multiple GPUs, but the memory size of each GPU is not enough to acco
 python examples/example_chat.py --num_gpus 2
 ```
 
+## 4-Bit Model
+
+We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](./docs/install.md), then execute the follows scripts for chat:
+
+
+<details>
+  <summary>
+    <b>🤗 Transformers</b>
+  </summary>
+
+```python
+import torch, auto_gptq
+from transformers import AutoModel, AutoTokenizer 
+from auto_gptq.modeling._base import BaseGPTQForCausalLM
+
+auto_gptq.modeling._base.SUPPORTED_MODELS = ["internlm"]
+torch.set_grad_enabled(False)
+
+class InternLMXComposer2QForCausalLM(BaseGPTQForCausalLM):
+    layers_block_name = "model.layers"
+    outside_layer_modules = [
+        'vit', 'vision_proj', 'model.tok_embeddings', 'model.norm', 'output', 
+    ]
+    inside_layer_modules = [
+        ["attention.wqkv.linear"],
+        ["attention.wo.linear"],
+        ["feed_forward.w1.linear", "feed_forward.w3.linear"],
+        ["feed_forward.w2.linear"],
+    ]
+ 
+
+=======
+# init model and tokenizer
+model = InternLMXComposer2QForCausalLM.from_quantized(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True, device="cuda:0").eval()
+tokenizer = AutoTokenizer.from_pretrained(
+  'internlm/internlm-xcomposer2-vl-7b-4bit', trust_remote_code=True)
+
+text = '<ImageHere>Please describe this image in detail.'
+image = 'examples/image1.webp'
+with torch.cuda.amp.autocast(): 
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False) 
+print(response)
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets." 
+#The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset. 
+#They appear to be hiking or climbing, as one of them is holding a walking stick. 
+#The sky behind them is painted with hues of orange and purple, creating a beautiful contrast with the dark figures.
+```
+</details>
+
+## Finetune
+
+Please refer to our [finetune scripts](finetune/README.md).
+
 ## Web UI
 
-
 Thanks the community for 3rd-party <a href="https://github.com/InternLM/InternLM-XComposer/pull/37">HuggingFace Demo </a>
-
 
 We provide code for users to build a web UI demo.
 
@@ -240,21 +289,29 @@ python examples/gradio_demo_composition.py
 # For Multimodal Chat
 python examples/gradio_demo_chat.py
 ```
+
 The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--folder=new_folder` option.
 <br>
 
 ## Citation
 
-If you find our paper and code useful in your research, please consider giving a star :star: and citation :pencil: :)
+If you find our models / code / papers useful in your research, please consider giving stars :star: and citations :pencil:, thx :)
 
 ```BibTeX
-@misc{zhang2023internlmxcomposer,
-      title={InternLM-XComposer: A Vision-Language Large Model for Advanced Text-image Comprehension and Composition}, 
+@article{internlmxcomposer2,
+      title={InternLM-XComposer2: Mastering Free-form Text-Image Composition and Comprehension in Vision-Language Large Model},
+      author={Xiaoyi Dong and Pan Zhang and Yuhang Zang and Yuhang Cao and Bin Wang and Linke Ouyang and Xilin Wei and Songyang Zhang and Haodong Duan and Maosong Cao and Wenwei Zhang and Yining Li and Hang Yan and Yang Gao and Xinyue Zhang and Wei Li and Jingwen Li and Kai Chen and Conghui He and Xingcheng Zhang and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2401.16420},
+      year={2024}
+}
+```
+
+```BibTeX
+@article{internlmxcomposer,
+      title={InternLM-XComposer: A Vision-Language Large Model for Advanced Text-image Comprehension and Composition},
       author={Pan Zhang and Xiaoyi Dong and Bin Wang and Yuhang Cao and Chao Xu and Linke Ouyang and Zhiyuan Zhao and Shuangrui Ding and Songyang Zhang and Haodong Duan and Wenwei Zhang and Hang Yan and Xinyue Zhang and Wei Li and Jingwen Li and Kai Chen and Conghui He and Xingcheng Zhang and Yu Qiao and Dahua Lin and Jiaqi Wang},
-      year={2023},
-      eprint={2309.15112},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+      journal={arXiv preprint arXiv:2309.15112},
+      year={2023}
 }
 ```
 
@@ -262,4 +319,4 @@ If you find our paper and code useful in your research, please consider giving a
 
 ## License & Contact Us
 
-The code is licensed under Apache-2.0, while model weights are fully open for academic research and also allow free commercial usage. To apply for a commercial license, please fill in the application form (English)/申请表（中文）. For other questions or collaborations, please contact internlm@pjlab.org.cn.
+The code is licensed under Apache-2.0, while model weights are fully open for academic research and also allow **free** commercial usage. To apply for a commercial license, please fill in the [application form (English)](https://wj.qq.com/s2/12727483/5dba/)/[申请表（中文）](https://wj.qq.com/s2/12725412/f7c1/). For other questions or collaborations, please contact <internlm@pjlab.org.cn>.
