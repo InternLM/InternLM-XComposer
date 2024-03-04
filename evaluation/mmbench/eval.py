@@ -18,7 +18,7 @@ for sample in tqdm(mmbench):
     text = sample['text']
     with torch.cuda.amp.autocast():
         with torch.no_grad(): 
-            response = model_gen(model, text, image) 
+            response = generate_answer(model, text, image) 
             #print (response)
     sample['pred_answer'] = response
     mm_dump.process(sample)
