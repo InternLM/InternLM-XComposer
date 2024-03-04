@@ -215,6 +215,13 @@ print(response)
 ```
 </details>
 
+## 多GPU测试
+如果你有多张 GPU，但是每张 GPU 的显存大小都不足以容纳完整的模型，那么可以将模型切分在多张GPU上。首先安装 accelerate: pip install accelerate，然后执行以下脚本进行聊天：
+```
+# chat with 2 GPUs
+python examples/example_chat.py --num_gpus 2
+```
+
 
 ## Web UI
 

@@ -216,6 +216,12 @@ print(response)
 ```
 </details>
  
+## Inference on Multiple GPUs
+If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, execute the follows scripts for chat:
+```
+# chat with 2 GPUs
+python examples/example_chat.py --num_gpus 2
+```
 
 ## Web UI
 
