@@ -11,6 +11,7 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--model-name", type=str,
                         default="Lin-Chen/ShareCaptioner")
+    parser.add_argument("--num_gpus", default=1, type=int)
     parser.add_argument("--images-file", type=str, default="images_to_describe.json",
                         help="a list, each element is a string for image path")
     parser.add_argument("--save-path", type=str, default="captions.json")
@@ -18,16 +19,56 @@ def parse_args():
     return args
 
 
+def auto_configure_device_map(num_gpus):
+    # visual_encoder 算4层
+    # internlm_model.model.embed_tokens 占用1层
+    # norm 和 lm_head 占用1层
+    # transformer.layers 占用 32 层
+    # 总共34层分配到num_gpus张卡上
+    num_trans_layers = 32
+    per_gpu_layers = 38 / num_gpus
+
+    device_map = {
+        'visual_encoder': 0,
+        'ln_vision': 0,
+        'Qformer': 0,
+        'internlm_model.model.embed_tokens': 0,
+        'internlm_model.model.norm': 0,
+        'internlm_model.lm_head': 0,
+        'query_tokens': 0,
+        'flag_image_start': 0,
+        'flag_image_end': 0,
+        'internlm_proj': 0,
+    }
+
+    used = 6
+    gpu_target = 0
+    for i in range(num_trans_layers):
+        if used >= per_gpu_layers:
+            gpu_target += 1
+            used = 0
+        assert gpu_target < num_gpus
+        device_map[f'internlm_model.model.layers.{i}'] = gpu_target
+        used += 1
+
+    return device_map
+
+
 if __name__ == '__main__':
     args = parse_args()
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_name, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name, device_map="cuda", trust_remote_code=True).eval()
-    model.tokenizer = tokenizer
+        args.model_name, device_map="cuda", trust_remote_code=True).eval().half()
 
-    model.cuda()
-    model.half()
+    if args.num_gpus > 1:
+        from accelerate import dispatch_model
+        device_map = auto_configure_device_map(args.num_gpus)
+        model = dispatch_model(model, device_map=device_map)
+    else:
+        model.cuda()
+
+    model.tokenizer = tokenizer
 
     imgs = json.load(open(args.images_file, 'r'))
     part_len = len(imgs)
@@ -63,6 +104,7 @@ if __name__ == '__main__':
                 subs = model.encode_img(subs)
                 input_emb = torch.cat(
                     [tmp_seg_emb1, subs, tmp_seg_emb2], dim=1)
+
                 out_embeds = model.internlm_model.generate(inputs_embeds=input_emb,
                                                            max_length=500,
                                                            num_beams=3,
