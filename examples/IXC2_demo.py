@@ -9,6 +9,8 @@ import gradio as gr
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
 import copy
 import time
+from datetime import datetime
+import hashlib
 import shutil
 import requests
 from PIL import Image, ImageFile
@@ -63,6 +65,9 @@ class ImageGroup(object):
         self.paths = paths
         self.pts = pts
 
+    def __str__(self):
+        return f"cap: {self.cap}; paths:{self.paths}; pts:{self.pts}"
+
 
 class ImageProcessor:
     def __init__(self, image_size=224):
@@ -81,6 +86,65 @@ class ImageProcessor:
         if isinstance(item, str):
             item = Image.open(item).convert('RGB')
         return self.transform(item)
+
+
+class Database(object):
+    def __init__(self):
+        self.title = '###'
+        self.hash_title = hashlib.sha256(self.title.encode()).hexdigest()
+
+    def addtitle(self, title, hash_folder, params):
+        self.title = title
+        self.hash_folder = hash_folder
+        time = datetime.now()
+        self.folder = os.path.join('databases', time.strftime("%Y%m%d"), 'composition', self.hash_folder)
+        if os.path.exists(self.folder):
+            shutil.rmtree(self.folder)
+
+        os.makedirs(self.folder)
+        with open(os.path.join(self.folder, 'index.txt'), 'w') as fd:
+            fd.write(self.title + '\n')
+            fd.write(self.hash_title + '\n')
+            fd.write(str(time) + '\n')
+            for key, val in params.items():
+                fd.write(f"{key}:{val}" + '\n')
+            fd.write('\n')
+
+    def prepare_save_article(self, text_imgs, src_folder, tgt_folder):
+        save_text = ''
+        for txt, img in text_imgs:
+            save_text += txt + '\n'
+            if img is not None:
+                save_text += f'<div align="center"> <img src={os.path.basename(img.paths[img.pts])} width = 500/> </div>'
+                path = os.path.join(src_folder, os.path.basename(img.paths[img.pts]))
+                dst_path = os.path.join(tgt_folder, os.path.basename(img.paths[img.pts]))
+                if not os.path.exists(dst_path):
+                    if os.path.exists(path):
+                        shutil.copy(path, tgt_folder)
+                    else:
+                        shutil.copy(img.paths[img.pts], tgt_folder)
+        return save_text
+
+    def addarticle(self, text_imgs):
+        if len(text_imgs) > 0:
+            images_folder = os.path.join(self.folder, 'images')
+            os.makedirs(images_folder, exist_ok=True)
+
+        save_text = self.prepare_save_article(text_imgs, os.path.join('articles', self.hash_folder), images_folder)
+
+        with open(os.path.join(self.folder, 'generate.MD'), 'w') as f:
+            f.writelines(save_text)
+
+    def addedit(self, edit_type, inst_edit, text_imgs):
+        timestamp = datetime.now()
+        with open(os.path.join(self.folder, 'index.txt'), 'a+') as f:
+            f.write(str(edit_type) + '\n')
+            f.write(str(inst_edit) + '\n')
+            f.write(str(timestamp) + '\n\n')
+
+        save_text = self.prepare_save_article(text_imgs, os.path.join('articles', self.hash_folder), os.path.join(self.folder, 'images'))
+        with open(os.path.join(self.folder, str(timestamp).replace(' ', '-') + '.MD'), 'w') as f:
+            f.writelines(save_text)
 
 
 class Demo_UI:
@@ -107,6 +171,8 @@ class Demo_UI:
         set_random_seed(1234)
         self.r2 = re.compile(r'<Seg[0-9]*>')
         self.withmeta = False
+        self.database = Database()
+        self.chat_folder = None
 
     def reset(self):
         self.pt = 0
@@ -420,7 +486,7 @@ class Demo_UI:
     def generate_article(self, instruction, upimages, beam, repetition, max_length, random, seed):
         self.reset()
         set_random_seed(int(seed))
-        self.hash_folder = str(hash(instruction))
+        self.hash_folder = hashlib.sha256(instruction.encode()).hexdigest()
         self.instruction = instruction
         if upimages is None:
             upimages = []
@@ -483,6 +549,9 @@ class Demo_UI:
         output_text = output_text.split('\n')[:max_section]
 
         self.texts_imgs = [[t, None] for t in output_text]
+        self.database.addtitle(text, self.hash_folder,
+                               params={'beam': beam, 'repetition': repetition, 'max_length': max_length,
+                                       'random': random, 'seed': seed})
 
         if article_stream_output:
             yield self.show_article()
@@ -532,6 +601,8 @@ class Demo_UI:
             else:
                 selected = self.model_select_imagebase(output_text, locs, upimages, progress)
                 self.texts_imgs = [[t, ImageGroup('', [upimages[selected[i]]])] if i in selected else [t, None] for i, t in enumerate(output_text)]
+
+        self.database.addarticle(self.texts_imgs)
         return self.show_article()
 
     def show_edit(self, text, pt):
@@ -562,6 +633,7 @@ class Demo_UI:
 
     def hide_gallery(self):
         self.open_edit = False
+        self.database.addedit('changeimage', '', self.texts_imgs)
         return gr.Accordion(visible=False), '', gr.Gallery(value=None)
 
     def delete_gallery(self, pt):
@@ -577,7 +649,7 @@ class Demo_UI:
     def insert_image(self):
         return list(self.hide_edit(flag=True)) + [gr.Accordion(visible=True), '', gr.Gallery(visible=True, value=None)]
 
-    def done_edit(self, edit_type, new_text):
+    def done_edit(self, edit_type, inst_edit, new_text):
         if new_text == '':
             self.texts_imgs = self.texts_imgs[:self.pt] + self.texts_imgs[self.pt+1:]
         else:
@@ -592,6 +664,7 @@ class Demo_UI:
                 print(new_text)
                 assert 0 == 1
 
+        self.database.addedit(edit_type, inst_edit, self.texts_imgs)
         return list(self.hide_edit()) + list(self.show_article())
 
     def paragraph_edit(self, edit_type, text, instruction, pts):
@@ -799,7 +872,7 @@ class Demo_UI:
         state.append_message(state.roles[1], None)
 
         return (state, img_list, state.to_gradio_chatbot(), "",
-                None) + (gr.Button(interactive=False), ) * 2
+                None) + (gr.Button(interactive=False), ) * 4
 
     def chat_answer(self, state, img_list, max_output_tokens,
                     repetition_penalty, num_beams, do_sample):
@@ -832,10 +905,18 @@ class Demo_UI:
                         break
                     state.messages[-1][-1] = decoded_output + "▌"
                     yield (state,
-                           state.to_gradio_chatbot()) + (gr.Button(interactive=False), ) * 2
+                           state.to_gradio_chatbot()) + (gr.Button(interactive=False), ) * 4
                     time.sleep(0.03)
             state.messages[-1][-1] = state.messages[-1][-1][:-1]
-            yield (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 2
+            if self.chat_folder and os.path.exists(self.chat_folder):
+                with open(os.path.join(self.chat_folder, 'chat.txt'), 'a+') as fd:
+                    if isinstance(state.messages[-2][1], str):
+                        fd.write(state.messages[-2][0] + state.messages[-2][1])
+                    else:
+                        fd.write(state.messages[-2][0] + state.messages[-2][1][0])
+                    fd.write(state.messages[-1][0] + state.messages[-1][1])
+
+            yield (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 4
             return
         else:
             outputs = self.chat_model.generate(
@@ -863,7 +944,7 @@ class Demo_UI:
             output_text = output_text.replace("<s>", "")
             state.messages[-1][1] = output_text
 
-            return (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 2
+            return (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 4
 
     def clear_answer(self, state):
         state.messages[-1][-1] = None
@@ -871,7 +952,39 @@ class Demo_UI:
 
     def chat_clear_history(self):
         state = CONV_VISION_INTERN2.copy()
-        return (state, [], state.to_gradio_chatbot(), "", None) + (gr.Button(interactive=False), ) * 2
+        return (state, [], state.to_gradio_chatbot(), "", None) + (gr.Button(interactive=False), ) * 4
+
+    def enable_like(self):
+        return [gr.Button(visible=True)] * 2
+
+    def like(self):
+        with open(os.path.join(self.database.folder, 'like.txt'), 'w') as fd:
+            fd.write('like')
+        return [gr.Button(visible=False)] * 2
+
+    def dislike(self):
+        with open(os.path.join(self.database.folder, 'like.txt'), 'w') as fd:
+            fd.write('dislike')
+        return [gr.Button(visible=False)] * 2
+
+    def uploadimgs(self, images):
+        timestamp = datetime.now()
+        self.chat_folder = os.path.join('databases', timestamp.strftime("%Y%m%d"), 'chat', str(timestamp).replace(' ', '-'))
+        os.makedirs(self.chat_folder, exist_ok=True)
+        for image_path in images:
+            shutil.copy(image_path, self.chat_folder)
+
+    def chat_like(self):
+        if self.chat_folder and os.path.exists(self.chat_folder):
+            with open(os.path.join(self.chat_folder, 'chat.txt'), 'a+') as fd:
+                fd.write('#like#')
+        return [gr.Button(interactive=False)] * 2
+
+    def chat_dislike(self):
+        if self.chat_folder and os.path.exists(self.chat_folder):
+            with open(os.path.join(self.chat_folder, 'chat.txt'), 'a+') as fd:
+                fd.write('#dislike#')
+        return [gr.Button(interactive=False)] * 2
 
 
 def load_demo():
@@ -973,6 +1086,10 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                         random = gr.Checkbox(value=True, label='Sampling (随机采样)')
                         withmeta = gr.Checkbox(value=False, label='With Meta (使用meta指令)')
 
+            with gr.Row():
+                btn_like = gr.Button(interactive=True, visible=False, value='👍  Like This Article (点赞这篇文章)')
+                btn_dislike = gr.Button(interactive=True, visible=False, value='👎  Dislike This Article (点踩这篇文章)')
+
             articles, edit_bts = [], []
             text_editers, edit_types, edit_subs, insertIMGs, edit_dones, edit_cancels = [], [], [], [], [], []
             before_edits, inst_edits, after_edits = [], [], []
@@ -1041,7 +1158,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 edit_types[i].select(demo_ui.edit_types_change, inputs=[edit_types[i]], outputs=[inst_edits[i]])
                 edit_subs[i].click(demo_ui.paragraph_edit, inputs=[edit_types[i], before_edits[i], inst_edits[i], gr.Number(value=i, visible=False)], outputs=[after_edits[i], insertIMGs[i], edit_dones[i]])
                 insertIMGs[i].click(demo_ui.insert_image, inputs=[], outputs=[text_editers[i], edit_types[i], inst_edits[i], after_edits[i], img_editers[i], cap_boxs[i], gallerys[i]])
-                edit_dones[i].click(demo_ui.done_edit, inputs=[edit_types[i], after_edits[i]], outputs=[text_editers[i], edit_types[i], inst_edits[i], after_edits[i]] + articles + edit_bts + image_shows)
+                edit_dones[i].click(demo_ui.done_edit, inputs=[edit_types[i], inst_edits[i], after_edits[i]], outputs=[text_editers[i], edit_types[i], inst_edits[i], after_edits[i]] + articles + edit_bts + image_shows)
                 edit_cancels[i].click(demo_ui.hide_edit, inputs=[], outputs=[text_editers[i], edit_types[i], inst_edits[i], after_edits[i]])
 
                 image_shows[i].select(demo_ui.show_gallery, inputs=[gr.Number(value=i, visible=False)], outputs=[img_editers[i], cap_boxs[i], gallerys[i]])
@@ -1050,12 +1167,16 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 gallery_dels[i].click(demo_ui.delete_gallery, inputs=[gr.Number(value=i, visible=False)], outputs=[image_shows[i], img_editers[i], cap_boxs[i], gallerys[i]])
                 gallery_dones[i].click(demo_ui.hide_gallery, inputs=[], outputs=[img_editers[i], cap_boxs[i], gallerys[i]])
 
+            btn_like.click(demo_ui.like, inputs=[], outputs=[btn_like, btn_dislike])
+            btn_dislike.click(demo_ui.dislike, inputs=[], outputs=[btn_like, btn_dislike])
+
             btn.click(demo_ui.reset_components, inputs=[],
                       outputs=articles + edit_bts + image_shows + text_editers + img_editers).then(
                     demo_ui.generate_article,
                     inputs=[instruction, upshows, beam, repetition, text_num, random, seed],
                     outputs=articles + edit_bts + image_shows).then(
-                    demo_ui.insert_images, inputs=[upshows, llmO, img_num, seed], outputs=articles + edit_bts + image_shows)
+                    demo_ui.insert_images, inputs=[upshows, llmO, img_num, seed], outputs=articles + edit_bts + image_shows).then(
+                    demo_ui.enable_like, inputs=[], outputs=[btn_like, btn_dislike])
 
         with gr.TabItem("💬 Multimodal Chat (多模态对话)", elem_id="chat", id=0):
             chat_state = gr.State()
@@ -1114,12 +1235,18 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                                    interactive=False)
                         clear_btn = gr.Button(value="🗑️  Clear history",
                                               interactive=False)
+                        chat_btn_like = gr.Button(interactive=False, value='👍  Like (点赞)')
+                        chat_btn_dislike = gr.Button(interactive=False, value='👎  Dislike (点踩)')
 
-            btn_list = [regenerate_btn, clear_btn]
+            btn_list = [regenerate_btn, clear_btn, chat_btn_like, chat_btn_dislike]
             parameter_list = [
                 chat_max_output_tokens, chat_repetition_penalty,
                 chat_num_beams, chat_do_sample
             ]
+
+            imagebox.upload(demo_ui.uploadimgs, imagebox, [])
+            chat_btn_like.click(demo_ui.chat_like, [], [chat_btn_like, chat_btn_dislike])
+            chat_btn_dislike.click(demo_ui.chat_dislike, [], [chat_btn_like, chat_btn_dislike])
 
             chat_textbox.submit(
                 demo_ui.chat_ask,

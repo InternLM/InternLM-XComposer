@@ -8,6 +8,8 @@ import argparse
 import gradio as gr
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
 import time
+from datetime import datetime
+import shutil
 from PIL import Image, ImageFile
 import torch
 import transformers
@@ -46,6 +48,7 @@ class Demo_UI:
         stop_words_ids = [92542]
         self.stopping_criteria = get_stopping_criteria(stop_words_ids)
         set_random_seed(1234)
+        self.folder = None
 
     def get_context_emb(self, state, img_list):
         prompt = state.get_prompt()
@@ -119,7 +122,7 @@ class Demo_UI:
         state.append_message(state.roles[1], None)
 
         return (state, img_list, state.to_gradio_chatbot(), "",
-                None) + (gr.Button(interactive=False), ) * 2
+                None) + (gr.Button(interactive=False), ) * 4
 
     def chat_answer(self, state, img_list, max_output_tokens,
                     repetition_penalty, num_beams, do_sample):
@@ -152,10 +155,18 @@ class Demo_UI:
                         break
                     state.messages[-1][-1] = decoded_output + "▌"
                     yield (state,
-                           state.to_gradio_chatbot()) + (gr.Button(interactive=False), ) * 2
+                           state.to_gradio_chatbot()) + (gr.Button(interactive=False), ) * 4
                     time.sleep(0.03)
             state.messages[-1][-1] = state.messages[-1][-1][:-1]
-            yield (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 2
+            if self.folder and os.path.exists(self.folder):
+                with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
+                    if isinstance(state.messages[-2][1], str):
+                        fd.write(state.messages[-2][0] + state.messages[-2][1])
+                    else:
+                        fd.write(state.messages[-2][0] + state.messages[-2][1][0])
+                    fd.write(state.messages[-1][0] + state.messages[-1][1])
+
+            yield (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 4
             return
         else:
             outputs = self.chat_model.generate(
@@ -183,7 +194,7 @@ class Demo_UI:
             output_text = output_text.replace("<s>", "")
             state.messages[-1][1] = output_text
 
-            return (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 2
+            return (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 4
 
     def clear_answer(self, state):
         state.messages[-1][-1] = None
@@ -191,7 +202,26 @@ class Demo_UI:
 
     def chat_clear_history(self):
         state = CONV_VISION_INTERN2.copy()
-        return (state, [], state.to_gradio_chatbot(), "", None) + (gr.Button(interactive=False), ) * 2
+        return (state, [], state.to_gradio_chatbot(), "", None) + (gr.Button(interactive=False), ) * 4
+
+    def uploadimgs(self, images):
+        timestamp = datetime.now()
+        self.folder = os.path.join('databases', timestamp.strftime("%Y%m%d"), 'chat', str(timestamp).replace(' ', '-'))
+        os.makedirs(self.folder, exist_ok=True)
+        for image_path in images:
+            shutil.copy(image_path, self.folder)
+
+    def like(self):
+        if self.folder and os.path.exists(self.folder):
+            with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
+                fd.write('#like#')
+        return [gr.Button(interactive=False)] * 2
+
+    def dislike(self):
+        if self.folder and os.path.exists(self.folder):
+            with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
+                fd.write('#dislike#')
+        return [gr.Button(interactive=False)] * 2
 
 
 def load_demo():
@@ -296,12 +326,18 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                                                    interactive=False)
                         clear_btn = gr.Button(value="🗑️  Clear history",
                                               interactive=False)
+                        btn_like = gr.Button(interactive=False, value='👍  Like (点赞)')
+                        btn_dislike = gr.Button(interactive=False, value='👎  Dislike (点踩)')
 
-            btn_list = [regenerate_btn, clear_btn]
+            btn_list = [regenerate_btn, clear_btn, btn_like, btn_dislike]
             parameter_list = [
                 chat_max_output_tokens, chat_repetition_penalty,
                 chat_num_beams, chat_do_sample
             ]
+
+            imagebox.upload(demo_ui.uploadimgs, imagebox, [])
+            btn_like.click(demo_ui.like, [], [btn_like, btn_dislike])
+            btn_dislike.click(demo_ui.dislike, [], [btn_like, btn_dislike])
 
             chat_textbox.submit(
                 demo_ui.chat_ask,
