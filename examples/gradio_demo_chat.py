@@ -157,14 +157,14 @@ class Demo_UI:
                     yield (state,
                            state.to_gradio_chatbot()) + (gr.Button(interactive=False), ) * 4
                     time.sleep(0.03)
-            state.messages[-1][-1] = state.messages[-1][-1][:-1]
+            state.messages[-1][-1] = [state.messages[-1][-1][:-1], '']
             if self.folder and os.path.exists(self.folder):
                 with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
                     if isinstance(state.messages[-2][1], str):
                         fd.write(state.messages[-2][0] + state.messages[-2][1])
                     else:
                         fd.write(state.messages[-2][0] + state.messages[-2][1][0])
-                    fd.write(state.messages[-1][0] + state.messages[-1][1])
+                    fd.write(state.messages[-1][0] + ''.join(state.messages[-1][1]))
 
             yield (state, state.to_gradio_chatbot()) + (gr.Button(interactive=True), ) * 4
             return
@@ -211,17 +211,39 @@ class Demo_UI:
         for image_path in images:
             shutil.copy(image_path, self.folder)
 
-    def like(self):
+    def like(self, state):
         if self.folder and os.path.exists(self.folder):
-            with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
-                fd.write('#like#')
-        return [gr.Button(interactive=False)] * 2
+            with open(os.path.join(self.folder, 'chat.txt'), 'r') as fd:
+                content = fd.read()
 
-    def dislike(self):
+            if content[-1] == '👎':
+                content = content[:-1]
+            if content[-1] != '👍':
+                content = content + '👍'
+
+            state.messages[-1][-1][1] = '👍'
+
+            with open(os.path.join(self.folder, 'chat.txt'), 'w') as fd:
+                fd.write(content)
+
+        return state, state.to_gradio_chatbot()
+
+    def dislike(self, state):
         if self.folder and os.path.exists(self.folder):
-            with open(os.path.join(self.folder, 'chat.txt'), 'a+') as fd:
-                fd.write('#dislike#')
-        return [gr.Button(interactive=False)] * 2
+            with open(os.path.join(self.folder, 'chat.txt'), 'r') as fd:
+                content = fd.read()
+
+            if content[-1] == '👍':
+                content = content[:-1]
+            if content[-1] != '👎':
+                content = content + '👎'
+
+            state.messages[-1][-1][1] = '👎'
+
+            with open(os.path.join(self.folder, 'chat.txt'), 'w') as fd:
+                fd.write(content)
+
+        return state, state.to_gradio_chatbot()
 
 
 def load_demo():
@@ -336,8 +358,8 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
             ]
 
             imagebox.upload(demo_ui.uploadimgs, imagebox, [])
-            btn_like.click(demo_ui.like, [], [btn_like, btn_dislike])
-            btn_dislike.click(demo_ui.dislike, [], [btn_like, btn_dislike])
+            btn_like.click(demo_ui.like, [chat_state], [chat_state, chatbot])
+            btn_dislike.click(demo_ui.dislike, [chat_state], [chat_state, chatbot])
 
             chat_textbox.submit(
                 demo_ui.chat_ask,

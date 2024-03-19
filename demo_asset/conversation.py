@@ -71,7 +71,10 @@ class Conversation:
             for i, (role, message) in enumerate(self.messages):
                 if message:
                     if isinstance(message, list):
-                        ret += '<Img><ImageHere></Img>' + role + message[0].replace('<Img><ImageHere></Img>', '') + self.sep
+                        if i % 2 == 0:
+                            ret += '<Img><ImageHere></Img>' + role + message[0].replace('<Img><ImageHere></Img>', '') + self.sep
+                        else:
+                            ret += role + message[0] + self.sep
                     else:
                         ret += role + message + self.sep
                 else:
@@ -118,8 +121,11 @@ class Conversation:
                     img_str += "</div>"
                     msg = msg.replace('<Img><ImageHere></Img>', img_str)
                 ret.append([msg, None])
-            else:
-                ret[-1][-1] = msg
+            else:  # answer
+                if type(msg) is tuple or type(msg) is list:
+                    ret[-1][-1] = msg[0] + '<p style="font-family: var(--font); text-align: right;">' + msg[1] + "</p>"
+                else:
+                    ret[-1][-1] = msg
         return ret
 
     def copy(self):
