@@ -24,7 +24,9 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
-[2023/12/14] We release the ShareGPT4V-13B model. Have fun!🚀
+[2024/4/1] We released an elite vision-indispensable multi-modal benchmark, [MMStar](https://github.com/MMStar-Benchmark/MMStar). Have fun!🚀
+
+[2023/12/14] We released the ShareGPT4V-13B model. Have fun!🚀
 
 [2023/12/13] Training and evaluation code is available.
 
