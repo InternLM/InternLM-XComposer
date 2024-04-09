@@ -1,10 +1,12 @@
 # Evaluation
 
-In InternLM-XComposer2, we evaluate models on a diverse set of 13 benchmarks.  
+## InternLM-XComposer2-4KHD Evaluation
+We support the evaluation of InternLM-XComposer2-4KHD in [VLMEvalKit](https://github.com/open-compass/VLMEvalKit)
 
 
-## Scripts
-
+## InternLM-XComposer2-VL Evaluation
+In InternLM-XComposer2, we evaluate models on a diverse set of 13 benchmarks with the following scripts. The evaluation is also supported in [VLMEvalKit](https://github.com/open-compass/VLMEvalKit) (The results will have slight difference).
+ 
 ### MathVista
 
 1. Run the notebook `MathVista.ipynb`.  
