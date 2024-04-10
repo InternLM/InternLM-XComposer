@@ -12,7 +12,7 @@
         InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | InternLM-XComposer2-<img src="./assets/4k.png" width="25px"> <a href="https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-4khd-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp
 </div>
 <div align="center">
-         灵笔2技术报告 <a href="https://arxiv.org/abs/2401.16420">  📄 </a> | 灵笔2-<img src="./assets/4k.png" width="27px"> 技术报告 <a href="https://arxiv.org/abs/2401.16420">  📄 </a>
+         灵笔2技术报告 <a href="https://arxiv.org/abs/2401.16420">  📄 </a> | 灵笔2-<img src="./assets/4k.png" width="27px"> 技术报告 <a href="https://arxiv.org/abs/2404.06512">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -29,7 +29,7 @@
 
 ## 本仓库包括的多模态项目
 
-> [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **Scaling the Resolution of Large Vision-Language Models up to 4KHD and Beyond**
+> [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD**
 
 > [**InternLM-XComposer2**](https://github.com/InternLM/InternLM-XComposer): **Mastering Free-form Text-Image Composition and Comprehension in Vision-Language Large Models**
 
@@ -73,7 +73,7 @@
 
 - **InternLM-XComposer2-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/"><img src="./assets/modelscope_logo.png" width="20px"> </a>: 进一步微调，支持自由指令输入图文写作的图文多模态大模型。
 
-更多方法细节请参考[技术报告](https://arxiv.org/abs/2401.16420)．
+更多方法细节请参考[技术报告](https://arxiv.org/abs/2401.16420) 和[4KHD技术报告](https://arxiv.org/pdf/2404.06512.pdf)．
 <br>
 
 <!--
@@ -426,6 +426,14 @@ python examples/gradio_demo_chat.py
 ## 引用
 
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)
+```BibTeX
+@article{internlmxcomposer2_4khd,
+      title={InternLM-XComposer2-4KHD: A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD},
+      author={Xiaoyi Dong and Pan Zhang and Yuhang Zang and Yuhang Cao and Bin Wang and Linke Ouyang and Songyang Zhang and Haodong Duan and Wenwei Zhang and Yining Li and Hang Yan and Yang Gao and Zhe Chen and Xinyue Zhang and Wei Li and Jingwen Li and Wenhai Wang and Kai Chen and Conghui He and Xingcheng Zhang and Jifeng Dai and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2404.06512},
+      year={2024}
+}
+```
 
 ```BibTeX
 @article{internlmxcomposer2,
