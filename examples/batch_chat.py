@@ -24,7 +24,7 @@ meta_instruction = """You are an AI assistant whose name is InternLM-XComposer (
 img_paths = ['examples/image1.webp',
              'examples/image1.webp']
 questions = ['Please describe this image in detail.',
-             'What is the text in this images?']
+             'What is the text in this images? Please describe it in detail.']
 
 assert len(img_paths) == len(questions)
 
