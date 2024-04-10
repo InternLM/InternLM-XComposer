@@ -66,7 +66,8 @@ with torch.cuda.amp.autocast():
         batch_inputs, batch_masks, batch_atten_masks = [], [], []
         for inputs, im_mask in zip(inputs_list, masks_list):
             if im_mask.shape[1] < max_len:
-                pad_embeds = torch.cat([pad_embed]*(max_len - im_mask.shape[1]))
+                pad_length = max_len - im_mask.shape[1]
+                pad_embeds = pad_embed.repeat(1, pad_length, 1) 
                 pad_masks = torch.tensor([0]*(max_len - im_mask.shape[1])).unsqueeze(0).cuda()
                 inputs = torch.cat([pad_embeds, inputs['inputs_embeds']], dim=1)
                 atten_masks = torch.cat([pad_masks, torch.ones_like(im_mask)], dim=1)
