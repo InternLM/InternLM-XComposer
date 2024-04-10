@@ -12,7 +12,7 @@
         InternLM-XComposer2 <a href="https://huggingface.co/internlm/internlm-xcomposer2-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ InternLM-XComposer2-VL <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp | InternLM-XComposer2-<img src="./assets/4k.png" width="25px"> <a href="https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-4khd-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp
 </div>
 <div align="center">
-         XComposer2 Technical Report <a href="https://arxiv.org/abs/2401.16420">  📄 </a> | XComposer2-<img src="./assets/4k.png" width="27px"> Technical Report <a href="https://arxiv.org/pdf/2404.06512.pdf">  📄 </a>
+         XComposer2 Technical Report <a href="https://arxiv.org/abs/2401.16420">  📄 </a> | XComposer2-<img src="./assets/4k.png" width="27px"> Technical Report <a href="https://arxiv.org/abs/2404.06512">  📄 </a>
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -430,7 +430,7 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
 ```BibTeX
-@article{internlmxcomposer2,
+@article{internlmxcomposer2_4khd,
       title={InternLM-XComposer2-4KHD: A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD},
       author={Xiaoyi Dong and Pan Zhang and Yuhang Zang and Yuhang Cao and Bin Wang and Linke Ouyang and Songyang Zhang and Haodong Duan and Wenwei Zhang and Yining Li and Hang Yan and Yang Gao and Zhe Chen and Xinyue Zhang and Wei Li and Jingwen Li and Wenhai Wang and Kai Chen and Conghui He and Xingcheng Zhang and Jifeng Dai and Yu Qiao and Dahua Lin and Jiaqi Wang},
       journal={arXiv preprint arXiv:2404.06512},
