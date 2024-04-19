@@ -24,21 +24,23 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
-[2023/12/14] We release the ShareGPT4V-13B model. Have fun!🚀
+**[2024/4/1]** We released **an elite vision-indispensable multi-modal benchmark**, [MMStar](https://github.com/MMStar-Benchmark/MMStar). Have fun!🚀
 
-[2023/12/13] Training and evaluation code is available.
+**[2023/12/14]** We released the ShareGPT4V-13B model. Have fun!🚀
 
-[2023/12/13] **Local ShareCaptioner** is available now! You can utilize it to generate high-quality captions for your dataset with batch inference by directly run `tools/share-cap_batch_infer.py`.
+**[2023/12/13]** Training and evaluation code is available.
 
-[2023/11/23] We release the [web demo](https://huggingface.co/spaces/Lin-Chen/Share-Captioner) of general Share-Captioner!💥
+**[2023/12/13]** **Local ShareCaptioner** is available now! You can utilize it to generate high-quality captions for your dataset with batch inference by directly run `tools/share-cap_batch_infer.py`.
 
-[2023/11/23] We release code to build your local demo of ShareGPT4V-7B!💥
+**[2023/11/23]** We release the [web demo](https://huggingface.co/spaces/Lin-Chen/Share-Captioner) of general Share-Captioner!💥
 
-[2023/11/22] [Web demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B) and [checkpoint](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) are available now!💥
+**[2023/11/23]** We release code to build your local demo of ShareGPT4V-7B!💥
 
-[2023/11/21] [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
+**[2023/11/22]** [Web demo](https://huggingface.co/spaces/Lin-Chen/ShareGPT4V-7B) and [checkpoint](https://huggingface.co/Lin-Chen/ShareGPT4V-7B) are available now!💥
 
-[2023/11/20] The [paper]([ShareGPT4V.pdf](https://arxiv.org/pdf/2311.12793.pdf)) and [project page](https://ShareGPT4V.github.io/) are released!
+**[2023/11/21]** [ShareGPT4V Dataset](https://huggingface.co/datasets/Lin-Chen/ShareGPT4V) is available now!💥
+
+**[2023/11/20]** The [paper]([ShareGPT4V.pdf](https://arxiv.org/pdf/2311.12793.pdf)) and [project page](https://ShareGPT4V.github.io/) are released!
 
 ## 👨‍💻 Todo
 - [x] Training and evaluation code for ShareGPT4V-7B
