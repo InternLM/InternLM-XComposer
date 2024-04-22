@@ -29,6 +29,7 @@ class DataArguments:
     given_num: bool = False
     img_size: int = 224
     batch_size: int = 4
+    hd_num: int = -1
 
 
 @dataclass
@@ -197,6 +198,7 @@ def make_supervised_data_module(
         train_json,
         data_args.batch_size,
         img_size=data_args.img_size,
+        hd_num=data_args.hd_num,
         local_rank=local_rank)
     print(str(len(train_dataset)) + 'samples is loaded')
     eval_dataset = None

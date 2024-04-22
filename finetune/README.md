@@ -8,6 +8,8 @@
 
 We offer the official scripts for easy finetuning of the pretrained internlm-xcomposer2 model on downstream tasks. Our finetune scripts use DeepSpeed and FSDP by default, and please refer to the [installation instructions](../docs/install.md) for installation details.
 
+Please make sure you have downloaded the `openai/clip-vit-large-patch14-336` model from [huggingface](https://huggingface.co/openai/clip-vit-large-patch14-336).
+
 ### Data preparation
 
 To prepare your finetuning data, you should (1) formulate each sample as a dictionary consisting of an id, an image path list with multiple images (optional, not required for pure-text example), and a list of conversations, and (2) save data samples in JSON files.
@@ -27,11 +29,11 @@ For the vision-language example with image(s), you are required to define placeh
       "conversations": [
         {
           "from": "user",
-          "value": "<ImageHere> <ImageHere>图中是什么"
+          "value": "<ImageHere> <ImageHere>Please describe these two images in detail."
         },
         {
           "from": "assistant",
-          "value": "这张图中包含了......"
+          "value": "The first image......"
         }
       ]
     },
@@ -117,9 +119,11 @@ Full-parameter parameter finetuning requires updating all parameters of LLM in t
 sh finetune.sh
 ```
 
-If you want to finetune the `internlm/internlm-xcomposer-7b` model, please set the `--img_size 224`.
+If you want to finetune the `internlm/internlm-xcomposer2-7b` model, please set the `--img_size 224` and `--hd_num -1`.
 
-If you want to finetune the `internlm/internlm-xcomposer-vl-7b` model, please set the `--img_size 490`.
+If you want to finetune the `internlm/internlm-xcomposer2-vl-7b` model, please set the `--img_size 490` and `--hd_num -1`.
+
+If you want to finetune the `internlm/internlm-xcomposer2-4khd-7b` model, please set `hd_num` to a positive integer, e.g., `--hd_num 16`. The parameter `img_size` is not used in the 4khd model and can by any number.
 
 ### LoRA finetuning
 
@@ -142,4 +146,52 @@ model = AutoPeftModelForCausalLM.from_pretrained(
     device_map="auto",
     trust_remote_code=True
 ).eval()
+```
+
+### Finetuning FAQs
+
+> Q: How to set the `batch_size` parameter?
+
+A: The current fine-tuning code only supports batch_size = 1. If you want to support batch size > 1, you have to add the padding yourself in \[this function\](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/ modeling_internlm_xcomposer2.py#L208).
+
+> Q: Why my loss is 0 during the fine-tuning?
+
+A: This is due to the incorrect SFT data format. For the `-vl-7b` model, you can set a breakpoint to view the value of the `text` variable in [here](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/modeling_internlm_xcomposer2.py#L214). For `-7b` and `-4khd-7b`, also check the corresponding position of this function.
+
+> Q: Does the fine-tuning code support multi-image inputs?
+
+A: Yes. The finetuning SFT data format for multi-image inputs is:
+
+```
+{
+    "id": "0",
+    "image": ['path/to/image_0.jpg', 'path/to/image_1.jpg']
+    "conversations": [
+      {
+        "from": "user",
+        "value": "<ImageHere> <ImageHere>Please describe these two images in detail."
+      },
+      {
+        "from": "assistant",
+        "value": "The first image......"
+      }
+    ]
+},
+```
+
+When testing, please refer to the following code using multiple image inputs:
+
+```
+model = AutoModelForCausalLM.from_pretrained('your model path').cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained('your model path')
+
+images = ["./a.png", "./b.png"]
+image1 = model.encode_img(images[0])
+image2 = model.encode_img(images[1])
+image = torch.cat((image1, image2), dim=0)
+
+query = ""First picture:<ImageHere>, second picture:<ImageHere>. Describe the subject of these two pictures?"""
+
+response, _ = model.interleav_wrap_chat(tokenizer, query, image, history=[])
+print(response)
 ```

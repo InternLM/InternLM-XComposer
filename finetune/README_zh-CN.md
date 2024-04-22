@@ -8,6 +8,8 @@
 
 我们官方提供了将浦语·灵笔2应用到下游任务中的微调代码。我们的微调代码默认使用了 DeepSpeed 和 FSDP, 请参考[安装指南](../docs/install_CN.md)进行安装.
 
+请确保您已从 [huggingface](https://huggingface.co/openai/clip-vit-large-patch14-336) 下载 `openai/clip-vit-large-patch14-336` 模型。
+
 ### Data preparation
 
 为了准备微调数据，您应该（1）将每个样本制定为一个字典，其中包含一个 id、一个包含多个图像的图像路径列表（可选，对于纯语言样本不需要）和一个对话列表，（2）并将数据样本保存在 JSON 文件中。
@@ -27,11 +29,11 @@
       "conversations": [
         {
           "from": "user",
-          "value": "<ImageHere> <ImageHere>图中是什么"
+          "value": "<ImageHere> <ImageHere>这两张图中有什么"
         },
         {
           "from": "assistant",
-          "value": "这张图中包含了......"
+          "value": "第一张图中包含了......"
         }
       ]
     },
@@ -117,9 +119,11 @@ path/to/text_data.json 5
 sh finetune/finetune.sh
 ```
 
-如果你想微调 `internlm/internlm-xcomposer-7b` 模型, 请设置 `--img_size 224`.
+如果你想微调 `internlm/internlm-xcomposer2-7b` 模型, 请设置 `--img_size 224` 和 `--hd_num -1`.
 
-如果你想微调 `internlm/internlm-xcomposer-vl-7b` 模型, 请设置 `--img_size 490`.
+如果你想微调 `internlm/internlm-xcomposer2-vl-7b` 模型, 请设置 `--img_size 490` 和 `--hd_num -1`.
+
+如果你想微调 `internlm/internlm-xcomposer2-4khd-7b` 模型, 请设置 `hd_num`为正整数，例如 `--hd_num 16`. 参数 `img_size` 在4khd 模型中未使用，可以设为任意数字.
 
 ### LoRA 微调
 
@@ -142,4 +146,52 @@ model = AutoPeftModelForCausalLM.from_pretrained(
     device_map="auto",
     trust_remote_code=True
 ).eval()
+```
+
+### 微调常见问题
+
+> Q: batch_size 要怎么设置？
+
+A: 目前的微调代码只支持 batch_size = 1. 如果你想要支持 batch size > 1，要自行在 [这个函数](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/modeling_internlm_xcomposer2.py#L208) 加入 padding。
+
+> Q: 为什么微调时我的 loss 是 0？
+
+A: 这是由于数据格式不对。对于 `-vl-7b` 模型，可以在[这里](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/modeling_internlm_xcomposer2.py#L214)设断点查看 `text` 变量的值。对于 `-7b` 和 `-4khd-7b` 也是在该函数对应的位置查看。
+
+> Q: 微调代码支持多张图片的输入吗？
+
+A: 支持。微调时多张图片请按照下面的格式准备：
+
+```
+{
+    "id": "0",
+    "image": ['path/to/image_0.jpg', 'path/to/image_1.jpg']
+    "conversations": [
+      {
+        "from": "user",
+        "value": "<ImageHere> <ImageHere>这两张图中有什么"
+      },
+      {
+        "from": "assistant",
+        "value": "第一张图中包含了......"
+      }
+    ]
+},
+```
+
+测试时，请参考下面的代码进行多张图片的输入:
+
+```
+model = AutoModelForCausalLM.from_pretrained('your model path').cuda().eval()
+tokenizer = AutoTokenizer.from_pretrained('your model path')
+
+images = ["./a.png", "./b.png"]
+image1 = model.encode_img(images[0])
+image2 = model.encode_img(images[1])
+image = torch.cat((image1, image2), dim=0)
+
+query = ""First picture:<ImageHere>, second picture:<ImageHere>. Describe the subject of these two pictures?"""
+
+response, _ = model.interleav_wrap_chat(tokenizer, query, image, history=[])
+print(response)
 ```
