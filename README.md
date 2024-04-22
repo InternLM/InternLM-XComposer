@@ -37,7 +37,7 @@
 > [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer/tree/main/InternLM-XComposer-1.0): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
 
 > <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
- 
+
 > [**DualFocus**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus): **Integrating Macro and Micro Perspectives in Multi-modal Large Language Models**
 
 </br>
@@ -55,15 +55,14 @@
 </p>
 
 **InternLM-XComposer2-4KHD** could further understand 4K Resolution images.
+
 <p align="center">
     <img src="assets/4khd_radar.png" width="500"/>
 </p>
 
-
-
 We release InternLM-XComposer2 series in three versions:
-- **InternLM-XComposer2-4KHD-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b">🤗</a>: The high-resolution multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *High-resolution understanding*, *VL benchmarks* and *AI assistant*. 
 
+- **InternLM-XComposer2-4KHD-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b">🤗</a>: The high-resolution multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *High-resolution understanding*, *VL benchmarks* and *AI assistant*.
 
 - **InternLM-XComposer2-VL-7B** <a href="https://huggingface.co/internlm/internlm-xcomposer2-vl-7b">🤗</a> : The multi-task trained VLLM model with InternLM-7B as the initialization of the LLM for *VL benchmarks* and *AI assistant*. **It ranks as the most powerful vision-language model based on 7B-parameter level LLMs, leading across 13 benchmarks.**
 
@@ -88,10 +87,14 @@ Please refer to [Technical Report](https://arxiv.org/abs/2401.16420) and [4KHD T
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 ## News and Updates
+
+- `2024.04.22` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B44KHD-7B** are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-4KHD-7B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) and [evaluation code](./evaluation/README.md) are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-VL-1.8B](https://huggingface.co/internlm/internlm-xcomposer2-vl-1_8b) is publicly available.
 - `2024.02.22` 🎉🎉🎉 We release [DualFocus](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus), a framework for integrating macro and micro perspectives within MLLMs to enhance vision-language task performance.
-* ```2024.02.06``` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) are publicly available on **Hugging Face** and **ModelScope**. 
+
+* `2024.02.06` 🎉🎉🎉 [InternLM-XComposer2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) and [InternLM-XComposer-VL2-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) are publicly available on **Hugging Face** and **ModelScope**.
+
 - `2024.02.02` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 The [evaluation code](./evaluation/README.md) of **InternLM-XComposer2-VL-7B** are publicly available.
 - `2024.01.26` 🎉🎉🎉 [InternLM-XComposer2-7B](https://huggingface.co/internlm/internlm-xcomposer2-7b) and [InternLM-XComposer-VL2-7B](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b) are publicly available on **Hugging Face** and **ModelScope**.
@@ -108,17 +111,17 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 
 ## Model Zoo
 
-| Model                       | Usage                           | Transformers(HF)                                                                           | ModelScope(HF)                                                                                                                                                               | Release Date |
-| --------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **InternLM-XComposer2-4KHD**     | 4K Resolution Understanding, Benchmark, VL-Chat          | [🤗internlm-xcomposer2-4khd-7b](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-4khd-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-4khd-7b/summary)         | 2024-04-09   |
-| **InternLM-XComposer2-VL-1.8B**  | Benchmark, VL-Chat              | [🤗internlm-xcomposer2-vl-1_8b](https://huggingface.co/internlm/internlm-xcomposer2-vl-1_8b)   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-1_8b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-1_8b/summary)   | 2024-04-09   |
-| **InternLM-XComposer2**     | Text-Image Composition          | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary)         | 2024-01-26   |
-| **InternLM-XComposer2-VL**  | Benchmark, VL-Chat              | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary)   | 2024-01-26   |
-| **InternLM-XComposer2-4bit**  |  Text-Image Composition   | [🤗internlm-xcomposer2-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit/summary) |  2024-02-06   |
-| **InternLM-XComposer2-VL-4bit**   | Benchmark, VL-Chat   | [🤗internlm-xcomposer2-vl-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b-4bit/summary) |  2024-02-06   |
-| **InternLM-XComposer**      | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b)           | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary)           | 2023-09-26   |
-| **InternLM-XComposer-4bit** | Text-Image Composition, VL-Chat | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary) | 2023-09-26   |
-| **InternLM-XComposer-VL**   | Benchmark                       | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b)     | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary)     | 2023-09-26   |
+| Model                           | Usage                                           | Transformers(HF)                                                                                   | ModelScope(HF)                                                                                                                                                                       | Release Date |
+| ------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| **InternLM-XComposer2-4KHD**    | 4K Resolution Understanding, Benchmark, VL-Chat | [🤗internlm-xcomposer2-4khd-7b](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b)       | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-4khd-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-4khd-7b/summary)       | 2024-04-09   |
+| **InternLM-XComposer2-VL-1.8B** | Benchmark, VL-Chat                              | [🤗internlm-xcomposer2-vl-1_8b](https://huggingface.co/internlm/internlm-xcomposer2-vl-1_8b)       | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-1_8b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-1_8b/summary)       | 2024-04-09   |
+| **InternLM-XComposer2**         | Text-Image Composition                          | [🤗internlm-xcomposer2-7b](https://huggingface.co/internlm/internlm-xcomposer2-7b)                 | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b/summary)                 | 2024-01-26   |
+| **InternLM-XComposer2-VL**      | Benchmark, VL-Chat                              | [🤗internlm-xcomposer2-vl-7b](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b)           | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b/summary)           | 2024-01-26   |
+| **InternLM-XComposer2-4bit**    | Text-Image Composition                          | [🤗internlm-xcomposer2-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-7b-4bit)       | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-7b-4bit/summary)       | 2024-02-06   |
+| **InternLM-XComposer2-VL-4bit** | Benchmark, VL-Chat                              | [🤗internlm-xcomposer2-vl-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer2-vl-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2-vl-7b-4bit/summary) | 2024-02-06   |
+| **InternLM-XComposer**          | Text-Image Composition, VL-Chat                 | [🤗internlm-xcomposer-7b](https://huggingface.co/internlm/internlm-xcomposer-7b)                   | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b/summary)                   | 2023-09-26   |
+| **InternLM-XComposer-4bit**     | Text-Image Composition, VL-Chat                 | [🤗internlm-xcomposer-7b-4bit](https://huggingface.co/internlm/internlm-xcomposer-7b-4bit)         | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-7b-4bit](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-7b-4bit/summary)         | 2023-09-26   |
+| **InternLM-XComposer-VL**       | Benchmark                                       | [🤗internlm-xcomposer-vl-7b](https://huggingface.co/internlm/internlm-xcomposer-vl-7b)             | [<img src="./assets/modelscope_logo.png" width="20px" /> internlm-xcomposer-vl-7b](https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer-vl-7b/summary)             | 2023-09-26   |
 
 ## Evaluation
 
@@ -127,44 +130,42 @@ We evaluate InternLM-XComposer2-VL on 16 multimodal benchmarks: [MMStar](https:/
 See [Evaluation Details](./evaluation/README.md) here.
 
 ### Compared with closed-source APIs and previous SOTAs.
-|                          | DocVQA     | ChartVQA   | InfoVQA    | TextVQA  | OCRBench | MMStar  | MathVista | AI2D    | MMMU   | MME     | MMB     | MMBCN   | SEEDI   | QBenchT | MM-Vet | HallB   |
-|--------------------------|------------|------------|------------|----------|----------|---------|-----------|---------|--------|---------|---------|---------|---------|---------|--------|---------|
-|  Open-source Previous SOTA   | DocOwl 1.5 | DocOwl 1.5 | DocOwl 1.5 | CogAgent | CogAgent | LLaVA-N | LLaVA-N   | LLaVA-N | Int-VL | WeMM    | LLaVA-N | LLaVA-N | LLaVA-N | Int-XC  | CogVLM | Monkey  |
-|                          | 8B         | 8B         | 8B         | 18B      | 18B      | 35B     | 35B       | 35B     | 40B    | 6B      | 35B     | 35B     | 35B     | 8B      | 17B    | 10B     |
-|                      | 82.2       | 70.2       | 44.5       | 76.1     | 59.0     | 52.1    | 39.0      | 78.9    | 51.6   | 2,050.2 | 81.1    | 79.0    | 75.7    | 64.4    | 54.5   | 39.3    |
-|                          |            |            |            |          |          |         |           |         |        |         |         |         |         |         |        |         |
-| GPT-4V                   | 88.4       | 78.5       | 75.1       | 78.0     | 51.6     | 57.1    | 47.8      | 75.5    | 56.8   | 1,926.5 | 77.0    | 74.4    | 69.1    | 74.1    | 56.8   | 46.5    |
-| Gemini-Pro               | 88.1       | 74.1       | 75.2       | 74.6     | 68.0     | 42.6    | 45.8      | 70.2    | 47.9   | 1,933.3 | 73.6    | 74.3    | 70.7    | 70.6    | 59.2   | 45.2    |
-| InternLM-XComposer2-VL   | 57.7       | 72.6       | 34.4       | 70.1     | 53.2     | 55.4    | 57.6      | 81.2    | 41.4   | 2,220.4 | 80.7    | 79.4    | 74.9    | 72.5    | 46.7   | 41.0    |
-| InternLM-XComposer2-4KHD | 90.0       | 81.0       | 68.6       | 77.2     | 67.5     | 54.1    | 57.8      | 80.9    | 39.9   | 2,204.9 | 80.2    | 77.7    | 74.7    | 71.8    | 54.9   | 40.9    |
 
+|                           | DocVQA     | ChartVQA   | InfoVQA    | TextVQA  | OCRBench | MMStar  | MathVista | AI2D    | MMMU   | MME     | MMB     | MMBCN   | SEEDI   | QBenchT | MM-Vet | HallB  |
+| ------------------------- | ---------- | ---------- | ---------- | -------- | -------- | ------- | --------- | ------- | ------ | ------- | ------- | ------- | ------- | ------- | ------ | ------ |
+| Open-source Previous SOTA | DocOwl 1.5 | DocOwl 1.5 | DocOwl 1.5 | CogAgent | CogAgent | LLaVA-N | LLaVA-N   | LLaVA-N | Int-VL | WeMM    | LLaVA-N | LLaVA-N | LLaVA-N | Int-XC  | CogVLM | Monkey |
+|                           | 8B         | 8B         | 8B         | 18B      | 18B      | 35B     | 35B       | 35B     | 40B    | 6B      | 35B     | 35B     | 35B     | 8B      | 17B    | 10B    |
+|                           | 82.2       | 70.2       | 44.5       | 76.1     | 59.0     | 52.1    | 39.0      | 78.9    | 51.6   | 2,050.2 | 81.1    | 79.0    | 75.7    | 64.4    | 54.5   | 39.3   |
+|                           |            |            |            |          |          |         |           |         |        |         |         |         |         |         |        |        |
+| GPT-4V                    | 88.4       | 78.5       | 75.1       | 78.0     | 51.6     | 57.1    | 47.8      | 75.5    | 56.8   | 1,926.5 | 77.0    | 74.4    | 69.1    | 74.1    | 56.8   | 46.5   |
+| Gemini-Pro                | 88.1       | 74.1       | 75.2       | 74.6     | 68.0     | 42.6    | 45.8      | 70.2    | 47.9   | 1,933.3 | 73.6    | 74.3    | 70.7    | 70.6    | 59.2   | 45.2   |
+| InternLM-XComposer2-VL    | 57.7       | 72.6       | 34.4       | 70.1     | 53.2     | 55.4    | 57.6      | 81.2    | 41.4   | 2,220.4 | 80.7    | 79.4    | 74.9    | 72.5    | 46.7   | 41.0   |
+| InternLM-XComposer2-4KHD  | 90.0       | 81.0       | 68.6       | 77.2     | 67.5     | 54.1    | 57.8      | 80.9    | 39.9   | 2,204.9 | 80.2    | 77.7    | 74.7    | 71.8    | 54.9   | 40.9   |
 
 ### Compared with open-source methods.
-| Method       | LLM          | MMStar | MathVista | AI2D | MMEP    | MMEC  | MMB  | MMBCN | SEEDI | QBenchT | MM-Vet  |
-|--------------|--------------|--------|-----------|------|---------|-------|------|-------|-------|---------|---------|
-| InstructBLIP | Vicuna-7B    | ---    | 25.3      | 40.6 | -       | -     | 36.0 | 23.7  | 53.4  | 55.9    | 26.2    |
-| Qwen-VL-Chat | Qwen-7B      | 37.5   | 33.8      | 63.0 | 1,487.5 | 360.7 | 60.6 | 56.7  | 58.2  | 61.7    | 47.3    |
-| LLaVA-1.5    | Vicuna-13B   | 13.9   | 26.1      | 61.1 | 1,531.3 | 295.4 | 67.7 | 63.6  | 68.2  | 61.4    | 35.4    |
-| ShareGPT4V   | Vicuna-7B    | 11.9   | 25.8      | 58.0 | 1,567.4 | 376.4 | 68.8 | 62.2  | 69.7  | -       | 37.6    |
-| CogVLM-17B   | Vicuna-7B    | 14.9   | 34.7      | 63.3 | -       | -     | 65.8 | 55.9  | 68.8  | -       | 54.5    |
-| LLaVA-XTuner | InernLM2-20B | ---    | 24.6      | 65.4 | -       | -     | 75.1 | 73.7  | 70.2  | -       | 37.2    |
-| Monkey       | Qwen-7B      | 38.3   | 34.8      | 62.5 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | -       | 33      |
-| LLaVA-Next   | Vicuna-13B   | 38.3   | 32.4      | 72.2 | 1,445.0 | 296.0 | 70.0 | 68.5  | 71.4  | -       | 44.9    |
-| InternLM-XC  | InernLM-7B   | ---    | 29.5      | 56.9 | 1,528.4 | 391.1 | 74.4 | 72.4  | 66.1  | 64.4    | 35.2    |
-| InternLM-XComposer2-VL      | InernLM2-7B  | 55.4   | 57.6      | 81.2 | 1,712.0 | 530.7 | 80.7 | 79.4  | 74.9  | 72.5    | 46.7    |
-| InternLM-XComposer2-4KHD    | InernLM2-7B  | 54.1   | 57.8      | 80.9 | 1,655.9 | 548.9 | 80.2 | 77.7  | 74.7  | 71.8    | 54.9    |
 
+| Method                   | LLM          | MMStar | MathVista | AI2D | MMEP    | MMEC  | MMB  | MMBCN | SEEDI | QBenchT | MM-Vet |
+| ------------------------ | ------------ | ------ | --------- | ---- | ------- | ----- | ---- | ----- | ----- | ------- | ------ |
+| InstructBLIP             | Vicuna-7B    | ---    | 25.3      | 40.6 | -       | -     | 36.0 | 23.7  | 53.4  | 55.9    | 26.2   |
+| Qwen-VL-Chat             | Qwen-7B      | 37.5   | 33.8      | 63.0 | 1,487.5 | 360.7 | 60.6 | 56.7  | 58.2  | 61.7    | 47.3   |
+| LLaVA-1.5                | Vicuna-13B   | 13.9   | 26.1      | 61.1 | 1,531.3 | 295.4 | 67.7 | 63.6  | 68.2  | 61.4    | 35.4   |
+| ShareGPT4V               | Vicuna-7B    | 11.9   | 25.8      | 58.0 | 1,567.4 | 376.4 | 68.8 | 62.2  | 69.7  | -       | 37.6   |
+| CogVLM-17B               | Vicuna-7B    | 14.9   | 34.7      | 63.3 | -       | -     | 65.8 | 55.9  | 68.8  | -       | 54.5   |
+| LLaVA-XTuner             | InernLM2-20B | ---    | 24.6      | 65.4 | -       | -     | 75.1 | 73.7  | 70.2  | -       | 37.2   |
+| Monkey                   | Qwen-7B      | 38.3   | 34.8      | 62.5 | 1,522.4 | 401.4 | 72.4 | 67.5  | 68.9  | -       | 33     |
+| LLaVA-Next               | Vicuna-13B   | 38.3   | 32.4      | 72.2 | 1,445.0 | 296.0 | 70.0 | 68.5  | 71.4  | -       | 44.9   |
+| InternLM-XC              | InernLM-7B   | ---    | 29.5      | 56.9 | 1,528.4 | 391.1 | 74.4 | 72.4  | 66.1  | 64.4    | 35.2   |
+| InternLM-XComposer2-VL   | InernLM2-7B  | 55.4   | 57.6      | 81.2 | 1,712.0 | 530.7 | 80.7 | 79.4  | 74.9  | 72.5    | 46.7   |
+| InternLM-XComposer2-4KHD | InernLM2-7B  | 54.1   | 57.8      | 80.9 | 1,655.9 | 548.9 | 80.2 | 77.7  | 74.7  | 71.8    | 54.9   |
 
-| Method     | LLM               | MMStar | MathVista | MMMU | MMEP    | MMEC  | CCBench | MMB  | SEEDI | MM-Vet | HallB | ChartQA | OCRBench | TextVQA | DocVQA | InfoVQA  |
-|------------|-------------------|--------|-----------|------|---------|-------|---------|------|-------|--------|-------|---------|----------|---------|--------|----------|
-| MobileVLM  |  MobileLLaMA 2.7B  |---  | ---       | ---  | 1,288.9 | ---   | ---     | 59.6 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---      |
-| LLaVA-Phi  |  Phi2-2.7B  |---  | ---       | ---  | 1,335.1 | ---   | ---     | 59.8 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---      |
-| MoE-LLaVA  | 4x Phi-2 2.7B |---  | ---       | ---  | 1,431.3 | ---   | ---     | 68.0 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---      |
-| TinyLLaVA  | Phi2-2.7B         | 36.0   | ---       | ---  | 1,464.9 | ---   | ---     | 66.9 | ---   | 32.0   | ---   | ---     | ---      | ---     | ---    | ---      |
-|            |                   |        |           |      |         |       |         |      |       |        |       |         |          |         |        |          |
-| InternLM-XComposer2-VL       | InernLM2-1.8B     | 46.3   | 48.2      | 30.1 | 1,465.9 | 420.0 | 41.4    | 72.5 | 70.4  | 30.1   | 34.4  | 57.8    | 46.0     | 65.9    | 48.3   | 24.1     |
-
-
+| Method                 | LLM              | MMStar | MathVista | MMMU | MMEP    | MMEC  | CCBench | MMB  | SEEDI | MM-Vet | HallB | ChartQA | OCRBench | TextVQA | DocVQA | InfoVQA |
+| ---------------------- | ---------------- | ------ | --------- | ---- | ------- | ----- | ------- | ---- | ----- | ------ | ----- | ------- | -------- | ------- | ------ | ------- |
+| MobileVLM              | MobileLLaMA 2.7B | ---    | ---       | ---  | 1,288.9 | ---   | ---     | 59.6 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---     |
+| LLaVA-Phi              | Phi2-2.7B        | ---    | ---       | ---  | 1,335.1 | ---   | ---     | 59.8 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---     |
+| MoE-LLaVA              | 4x Phi-2 2.7B    | ---    | ---       | ---  | 1,431.3 | ---   | ---     | 68.0 | ---   | ---    | ---   | ---     | ---      | ---     | ---    | ---     |
+| TinyLLaVA              | Phi2-2.7B        | 36.0   | ---       | ---  | 1,464.9 | ---   | ---     | 66.9 | ---   | 32.0   | ---   | ---     | ---      | ---     | ---    | ---     |
+|                        |                  |        |           |      |         |       |         |      |       |        |       |         |          |         |        |         |
+| InternLM-XComposer2-VL | InernLM2-1.8B    | 46.3   | 48.2      | 30.1 | 1,465.9 | 420.0 | 41.4    | 72.5 | 70.4  | 30.1   | 34.4  | 57.8    | 46.0     | 65.9    | 48.3   | 24.1    |
 
 ## Requirements
 
@@ -184,6 +185,7 @@ Please refer to the [installation instructions](docs/install.md)
 We provide a simple example to show how to use InternLM-XComposer with 🤗 Transformers.
 
 ### XComposer2-4KHD
+
 <details>
   <summary>
     <b>🤗 Transformers</b>
@@ -207,14 +209,14 @@ image = 'examples/4khd_example.webp'
 with torch.cuda.amp.autocast():
   response, his = model.chat(tokenizer, query=query, image=image, hd_num=55, history=[], do_sample=False, num_beams=3)
 print(response)
-# The image is a vibrant and colorful infographic that showcases 7 graphic design trends that will dominate in 2021. The infographic is divided into 7 sections, each representing a different trend. 
+# The image is a vibrant and colorful infographic that showcases 7 graphic design trends that will dominate in 2021. The infographic is divided into 7 sections, each representing a different trend.
 # Starting from the top, the first section focuses on "Muted Color Palettes", highlighting the use of muted colors in design.
-# The second section delves into "Simple Data Visualizations", emphasizing the importance of easy-to-understand data visualizations. 
-# The third section introduces "Geometric Shapes Everywhere", showcasing the use of geometric shapes in design. 
-# The fourth section discusses "Flat Icons and Illustrations", explaining how flat icons and illustrations are being used in design. 
+# The second section delves into "Simple Data Visualizations", emphasizing the importance of easy-to-understand data visualizations.
+# The third section introduces "Geometric Shapes Everywhere", showcasing the use of geometric shapes in design.
+# The fourth section discusses "Flat Icons and Illustrations", explaining how flat icons and illustrations are being used in design.
 # The fifth section is dedicated to "Classic Serif Fonts", illustrating the resurgence of classic serif fonts in design.
-# The sixth section explores "Social Media Slide Decks", illustrating how slide decks are being used on social media. 
-# Finally, the seventh section focuses on "Text Heavy Videos", illustrating the trend of using text-heavy videos in design. 
+# The sixth section explores "Social Media Slide Decks", illustrating how slide decks are being used on social media.
+# Finally, the seventh section focuses on "Text Heavy Videos", illustrating the trend of using text-heavy videos in design.
 # Each section is filled with relevant images and text, providing a comprehensive overview of the 7 graphic design trends that will dominate in 2021.
 
 ###############
@@ -257,14 +259,14 @@ image = 'examples/4khd_example.webp'
 with torch.cuda.amp.autocast():
   response, his = model.chat(tokenizer, query=query, image=image, hd_num=55, history=[], do_sample=False, num_beams=3)
 print(response)
-# The image is a vibrant and colorful infographic that showcases 7 graphic design trends that will dominate in 2021. The infographic is divided into 7 sections, each representing a different trend. 
+# The image is a vibrant and colorful infographic that showcases 7 graphic design trends that will dominate in 2021. The infographic is divided into 7 sections, each representing a different trend.
 # Starting from the top, the first section focuses on "Muted Color Palettes", highlighting the use of muted colors in design.
-# The second section delves into "Simple Data Visualizations", emphasizing the importance of easy-to-understand data visualizations. 
-# The third section introduces "Geometric Shapes Everywhere", showcasing the use of geometric shapes in design. 
-# The fourth section discusses "Flat Icons and Illustrations", explaining how flat icons and illustrations are being used in design. 
+# The second section delves into "Simple Data Visualizations", emphasizing the importance of easy-to-understand data visualizations.
+# The third section introduces "Geometric Shapes Everywhere", showcasing the use of geometric shapes in design.
+# The fourth section discusses "Flat Icons and Illustrations", explaining how flat icons and illustrations are being used in design.
 # The fifth section is dedicated to "Classic Serif Fonts", illustrating the resurgence of classic serif fonts in design.
-# The sixth section explores "Social Media Slide Decks", illustrating how slide decks are being used on social media. 
-# Finally, the seventh section focuses on "Text Heavy Videos", illustrating the trend of using text-heavy videos in design. 
+# The sixth section explores "Social Media Slide Decks", illustrating how slide decks are being used on social media.
+# Finally, the seventh section focuses on "Text Heavy Videos", illustrating the trend of using text-heavy videos in design.
 # Each section is filled with relevant images and text, providing a comprehensive overview of the 7 graphic design trends that will dominate in 2021.
 
 ###############
@@ -347,7 +349,9 @@ print(response)
 </details>
 
 ## Inference on Multiple GPUs
+
 If you have multiple GPUs, but the memory size of each GPU is not enough to accommodate the entire model, you can split the model across multiple GPUs. First, install `accelerate` using the command: `pip install accelerate`. Then, execute the follows scripts for chat:
+
 ```
 # chat with 2 GPUs
 python examples/example_chat.py --num_gpus 2
@@ -357,7 +361,6 @@ python examples/example_chat.py --num_gpus 2
 
 We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](./docs/install.md), then execute the follows scripts for chat:
 
-
 <details>
   <summary>
     <b>🤗 Transformers</b>
@@ -365,7 +368,7 @@ We provide 4-bit quantized models to ease the memory requirement of the models. 
 
 ```python
 import torch, auto_gptq
-from transformers import AutoModel, AutoTokenizer 
+from transformers import AutoModel, AutoTokenizer
 from auto_gptq.modeling._base import BaseGPTQForCausalLM
 
 auto_gptq.modeling._base.SUPPORTED_MODELS = ["internlm"]
@@ -374,7 +377,7 @@ torch.set_grad_enabled(False)
 class InternLMXComposer2QForCausalLM(BaseGPTQForCausalLM):
     layers_block_name = "model.layers"
     outside_layer_modules = [
-        'vit', 'vision_proj', 'model.tok_embeddings', 'model.norm', 'output', 
+        'vit', 'vision_proj', 'model.tok_embeddings', 'model.norm', 'output',
     ]
     inside_layer_modules = [
         ["attention.wqkv.linear"],
@@ -382,7 +385,7 @@ class InternLMXComposer2QForCausalLM(BaseGPTQForCausalLM):
         ["feed_forward.w1.linear", "feed_forward.w3.linear"],
         ["feed_forward.w2.linear"],
     ]
- 
+
 
 =======
 # init model and tokenizer
@@ -393,14 +396,15 @@ tokenizer = AutoTokenizer.from_pretrained(
 
 text = '<ImageHere>Please describe this image in detail.'
 image = 'examples/image1.webp'
-with torch.cuda.amp.autocast(): 
-  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False) 
+with torch.cuda.amp.autocast():
+  response, _ = model.chat(tokenizer, query=text, image=image, history=[], do_sample=False)
 print(response)
-#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets." 
-#The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset. 
-#They appear to be hiking or climbing, as one of them is holding a walking stick. 
+#The image features a quote by Oscar Wilde, "Live life with no excuses, travel with no regrets."
+#The quote is displayed in white text against a dark background. In the foreground, there are two silhouettes of people standing on a hill at sunset.
+#They appear to be hiking or climbing, as one of them is holding a walking stick.
 #The sky behind them is painted with hues of orange and purple, creating a beautiful contrast with the dark figures.
 ```
+
 </details>
 
 ## Finetune
@@ -429,6 +433,7 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 ## Citation
 
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
+
 ```BibTeX
 @article{internlmxcomposer2_4khd,
       title={InternLM-XComposer2-4KHD: A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD},

@@ -2,6 +2,7 @@ import random
 
 import numpy as np
 import torch
+from ixc_utils import HD_transform
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -48,6 +49,23 @@ class ImageProcessor:
     def __call__(self, item):
         item = Image.open(item).convert('RGB')
         return self.transform(item)
+
+
+class ImageProcessorHD:
+
+    def __init__(self, image_size=224):
+        mean = (0.48145466, 0.4578275, 0.40821073)
+        std = (0.26862954, 0.26130258, 0.27577711)
+        self.normalize = transforms.Normalize(mean, std)
+
+        self.transform = transforms.Compose([
+            transforms.ToTensor(),
+            self.normalize,
+        ])
+
+    def __call__(self, item):
+        item = Image.open(item).convert('RGB')
+        return self.transform(HD_transform(item))
 
 
 class Mix_dataset(Dataset):
@@ -126,11 +144,21 @@ class Mix_dataset(Dataset):
 
 class Sample_dataset(Dataset):
 
-    def __init__(self, raw_data, batch_size, has_img=True, img_size=224):
+    def __init__(self,
+                 raw_data,
+                 batch_size,
+                 has_img=True,
+                 img_size=224,
+                 hd_num=16):
         self.raw_data = raw_data
         print(f'load {len(self.raw_data)} data')
         self.batch_size = batch_size
-        self.vis_processor = ImageProcessor(image_size=img_size)
+        if hd_num == -1:
+            self.vis_processor = ImageProcessor(image_size=img_size)
+        else:
+            # for 4khd model
+            self.vis_processor = ImageProcessorHD(
+                image_size=img_size, hd_num=hd_num)
         self.text_processor = conv2text
         self.has_img = has_img
 
