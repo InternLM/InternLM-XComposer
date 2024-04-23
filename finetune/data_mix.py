@@ -53,10 +53,11 @@ class ImageProcessor:
 
 class ImageProcessorHD:
 
-    def __init__(self, image_size=224):
+    def __init__(self, image_size=224, hd_num=-1):
         mean = (0.48145466, 0.4578275, 0.40821073)
         std = (0.26862954, 0.26130258, 0.27577711)
         self.normalize = transforms.Normalize(mean, std)
+        self.hd_num = hd_num
 
         self.transform = transforms.Compose([
             transforms.ToTensor(),
@@ -65,12 +66,17 @@ class ImageProcessorHD:
 
     def __call__(self, item):
         item = Image.open(item).convert('RGB')
-        return self.transform(HD_transform(item))
+        return self.transform(HD_transform(item, hd_num=self.hd_num))
 
 
 class Mix_dataset(Dataset):
 
-    def __init__(self, json_datas, batch_size=1, img_size=224, local_rank=0):
+    def __init__(self,
+                 json_datas,
+                 batch_size=1,
+                 img_size=224,
+                 local_rank=0,
+                 hd_num=-1):
         """vis_root (string): Root directory of images (e.g. coco/images/)
         ann_root (string): directory to store the annotation file."""
         super().__init__()
@@ -87,7 +93,11 @@ class Mix_dataset(Dataset):
             else:
                 has_img = False
             sub_data_set = Sample_dataset(
-                d, batch_size, has_img=has_img, img_size=img_size)
+                d,
+                batch_size,
+                has_img=has_img,
+                img_size=img_size,
+                hd_num=hd_num)
             if has_img:
                 self.datasets_multi.append(sub_data_set)
                 self.data_num_multi.append(len(sub_data_set))

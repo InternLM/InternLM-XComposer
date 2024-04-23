@@ -152,7 +152,7 @@ model = AutoPeftModelForCausalLM.from_pretrained(
 
 > Q: How to set the `batch_size` parameter?
 
-A: The current fine-tuning code only supports batch_size = 1. If you want to support batch size > 1, you have to add the padding yourself in \[this function\](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/ modeling_internlm_xcomposer2.py#L208).
+A: The current fine-tuning code only supports batch_size = 1. If you want to support batch size > 1, you have to add the padding yourself in [this function](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b/blob/main/modeling_internlm_xcomposer2.py#L208).
 
 > Q: Why my loss is 0 during the fine-tuning?
 
