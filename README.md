@@ -357,6 +357,39 @@ If you have multiple GPUs, but the memory size of each GPU is not enough to acco
 python examples/example_chat.py --num_gpus 2
 ```
 
+## Inference Acceleration by LMDeploy
+
+If InternLM-XComposer2 model inference optimization is required, we recommend using [LMDeploy](https://github.com/InternLM/lmdeploy).
+
+In the following subsections, we will introduce the usage of LMDeploy with the [internlm-xcomposer2-4khd-7b](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) model as an example. 
+
+First of all, please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x. For a CUDA 11.x environment, please refer to the [installation guide](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation).
+
+### Offline Inference Pipeline
+
+```python
+from lmdeploy import pipeline
+from lmdeploy.vl import load_image
+pipe = pipeline('internlm/internlm-xcomposer2-4khd-7b')
+image = load_image('examples/4khd_example.webp')
+response = pipe(('describe this image', image))
+print(response)
+```
+For more on using the VLM pipeline, including multi-image inference or multi-turn chat, please overview [this](https://lmdeploy.readthedocs.io/en/latest/inference/vl_pipeline.html) guide.
+
+### Online Inference Service
+
+LMDeploy supports one-click packaging of the InternLM-XComposer2 model into an OpenAI service, providing seamless integration with the OpenAI API.
+
+The service can be launched by one command as below:
+```shell
+lmdeploy serve api_server internlm/internlm-xcomposer2-4khd-7b
+```
+
+The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
+
+For more details, including service startup with docker, RESTful API information, and openai integration methods, please refer to [this](https://lmdeploy.readthedocs.io/en/latest/serving/api_server_vl.html) guide.
+
 ## 4-Bit Model
 
 We provide 4-bit quantized models to ease the memory requirement of the models. To run the 4-bit models (GPU memory >= 12GB), you need first install the corresponding [dependency](./docs/install.md), then execute the follows scripts for chat:

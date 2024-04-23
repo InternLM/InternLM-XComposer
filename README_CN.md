@@ -354,6 +354,40 @@ print(response)
 python examples/example_chat.py --num_gpus 2
 ```
 
+## 使用 LMDeploy 加速推理
+
+如果你对 InternLM-XComposer2 的推理优化有需求，我们推荐使用 [LMDeploy](https://github.com/InternLM/lmdeploy)。
+
+以下，我们以 [internlm-xcomposer2-4khd-7b](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) 模型为例，介绍 LMDeploy 的使用方式。在此之前，请先通过 `pip install lmdeploy` 安装 pypi 包。默认安装依赖 CUDA 12.x 的版本。如果环境是 CUDA 11.x，请参考[此处](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation)安装。
+
+### 离线推理 Pipeline
+
+```python
+from lmdeploy import pipeline
+from lmdeploy.vl import load_image
+
+pipe = pipeline('internlm/internlm-xcomposer2-4khd-7b')
+
+image = load_image('examples/4khd_example.webp')
+response = pipe(('describe this image', image))
+print(response)
+```
+更多关于 VLM pipline 的使用方法，比如多图推理、多轮对话等，请参考[这里](https://lmdeploy.readthedocs.io/en/latest/inference/vl_pipeline.html)
+
+### 在线推理服务
+
+LMDeploy 支持一键式把 InternLM-XComposer2 模型封装为 openai 服务，无缝衔接 openai 接口。
+
+服务启动的方式如下：
+
+```shell
+lmdeploy serve api_server internlm/internlm-xcomposer2-4khd-7b
+```
+
+`api_server`的启动参数可以通过命令`lmdeploy serve api_server -h`查看。常用参数包括，`--tp` 设置张量并行，`--session-len` 设置推理的最大上下文窗口长度，`--cache-max-entry-count` 调整 k/v cache 的内存使用比例等等。
+
+更多详细信息，诸如使用 docker 启动服务、RESTful API 信息以及 openai 接入方法，请查阅[这篇指南](https://lmdeploy.readthedocs.io/en/latest/serving/api_server_vl.html)。
+
 
 ## 4-Bit 量化模型
 
