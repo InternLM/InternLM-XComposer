@@ -2,7 +2,9 @@
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 DIR=`pwd`
 
-# export MODEL="internlm/internlm-xcomposer-vl-7b"
+# export MODEL="internlm/internlm-xcomposer2-7b"
+# export MODEL="internlm/internlm-xcomposer2-vl-7b"
+# export MODEL="internlm/internlm-xcomposer2-4khd-7b"
 export MODEL="model name or path"
 # export DATA="data.txt"
 export DATA="path of data"
@@ -25,6 +27,7 @@ torchrun $DISTRIBUTED_ARGS finetune.py \
     --model_name_or_path $MODEL \
     --data_path $DATA \
     --img_size 490 \
+    --hd_num -1 \
     --given_num True \
     --bf16 True \
     --fix_vit False \
