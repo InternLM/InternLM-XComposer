@@ -2,7 +2,7 @@ import torch
 import os
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
-from utils import generate_answer, MMDump, MMBenchDataset
+from utils import model_gen, MMDump, MMBenchDataset
 
 mmbench = MMBenchDataset('data/mmbench_test_20230712.tsv')
 mm_dump = MMDump(save_path = '../Output/submit_test.xlsx')
