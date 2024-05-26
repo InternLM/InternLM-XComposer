@@ -40,4 +40,5 @@ Here is an video for introducing ShareGPT4Video clearly:
 
 ## ❤️ Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
-- [Open-Sora-Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan): a excellent open-source codebase for Sora-like text-to-video implementation. Thanks for their wonderful work.
+- [Open-Sora-Plan](https://github.com/PKU-YuanGroup/Open-Sora-Plan): an excellent open-source codebase for Sora-like text-to-video implementation. Thanks for their wonderful work.
+- [Open-LLaVA-NeXT](https://github.com/xiaoachen98/Open-LLaVA-NeXT): an open-source codebase for re-producing the training procedure of LLaVA-NeXT series.
