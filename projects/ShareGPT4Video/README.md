@@ -8,17 +8,12 @@
 
 Here is an video for introducing ShareGPT4Video clearly:
 
-<!-- <p align="center">
-  <a href="https://youtu.be/AQ7j3aegeeI" target="_blank">
-    <img src="https://img.youtube.com/vi/AQ7j3aegeeI/maxresdefault.jpg" alt="Watch the video" width="420" height="240" />
-  </a>
-</p> -->
 [![video]](https://user-images.githubusercontent.com/56393454/333897197-63855300-1d12-4d0c-a715-3a64349ba119.mp4)
 
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Xilin Wei*]() [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Yuhang Zang](https://yuhangzang.github.io/), [Zehui Chen](https://lovesnowbest.site/), [Haodong Duan](https://kennymckormick.github.io/), [Bin Lin](https://scholar.google.com.hk/citations?user=GCOVDKoAAAAJ&hl=en), [Zhenyu Tang](), [Li Yuan](https://yuanli2333.github.io/), [Dahua Lin](http://dahua.site/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Jiaqi Wang 📧](https://myownskyw7.github.io/)
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory; Peking University;
 - **Resources**: [[Paper]()] [[Project Page](https://sharegpt4video.github.io/)] [[ShareGPT4Video Dataset]()]
-- **Models**: [[ShareGPT4Video-8B]()] [[ShareGPT4Video-34B]()] [[ShareCaptioner-Video]()]
+- **Models**: [[🤗ShareGPT4Video-8B](https://huggingface.co/Lin-Chen/sharegpt4video-8b)] [[🤗ShareGPT4Video-34B]()] [[ShareCaptioner-Video]()]
 - **Demo**: [[🤗ShareGPT4Video-8B]()] [[🤗ShareCaptioner-Video]()]
 
 ## 💡 Highlights
@@ -30,6 +25,8 @@ Here is an video for introducing ShareGPT4Video clearly:
 
 ## 📜 News
 
+**[2024/5/27]** The [ShareGPT4Video-8B](https://huggingface.co/Lin-Chen/sharegpt4video-8b) model is released!
+
 **[2024/5/26]** The [ShareGPT4Video dataset](https://huggingface.co/datasets/ShareGPT4Video/ShareGPT4Video) and [project page](https://sharegpt4video.github.io/) are released!
 
 ## 👨‍💻 Todo
@@ -37,7 +34,8 @@ Here is an video for introducing ShareGPT4Video clearly:
 - [ ] Training and evaluation code for ShareGPT4V-8B, ShareGPT4Vidoe-34B
 - [ ] Local ShareCaptioner-Video
 - [ ] Web demo and local demo of ShareGPT4V-8B
-- [ ] Checkpoints of ShareGPT4Vidoe-8B, ShareGPT4Vidoe-34B
+- [ ] Checkpoints of ShareGPT4Video-34B
+- [x] Checkpoints of ShareGPT4Video-8B
 
 ## ❤️ Acknowledgments
 - [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon. Thanks for their wonderful work.
