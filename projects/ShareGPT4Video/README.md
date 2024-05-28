@@ -6,7 +6,7 @@
 
 🚀🚀🚀 Official implementation of **ShareGPT4Video: Improving Video Understanding and Generation with Better Captions**.
 
-Here is an video for introducing ShareGPT4Video clearly:
+Here is a video for introducing ShareGPT4Video clearly:
 
 [![video]](https://user-images.githubusercontent.com/56393454/334307144-1b106612-447b-4e35-bb9f-9b904fa3a464.mp4)
 
