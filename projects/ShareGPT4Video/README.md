@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/share4video_clean.png" style="vertical-align: -10px;" :height="60px" width="60px"> ShareGPT4Video: Improving Video Understanding and Generation with Better Captions
+# <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/share4video_tight.png" style="vertical-align: -10px;" :height="50px" width="50px"> ShareGPT4Video: Improving Video Understanding and Generation with Better Captions
 
 ⭐️ [**Star to follow our team's projects !**](https://github.com/InternLM/InternLM-XComposer)
 
@@ -13,14 +13,14 @@ Here is a video for introducing ShareGPT4Video clearly:
 - **Authors**: [Lin Chen*](https://lin-chen.site), [Xilin Wei*]() [Jinsong Li*](https://li-jinsong.github.io/), [Xiaoyi Dong](https://scholar.google.com/citations?user=FscToE0AAAAJ&hl=en), [Pan Zhang](https://panzhang0212.github.io/), [Yuhang Zang](https://yuhangzang.github.io/), [Zehui Chen](https://lovesnowbest.site/), [Haodong Duan](https://kennymckormick.github.io/), [Bin Lin](https://scholar.google.com.hk/citations?user=GCOVDKoAAAAJ&hl=en), [Zhenyu Tang](), [Li Yuan](https://yuanli2333.github.io/), [Yu Qiao](https://scholar.google.co.uk/citations?user=gFtI-8QAAAAJ&hl=en), [Dahua Lin](http://dahua.site/), [Feng Zhao📧](https://scholar.google.com/citations?hl=en&user=r6CvuOUAAAAJ), [Jiaqi Wang 📧](https://myownskyw7.github.io/)
 - **Institutes**: University of Science and Technology of China; Shanghai AI Laboratory; Peking University;
 - **Resources**: [[Paper]()] [[Project Page](https://sharegpt4video.github.io/)] [[ShareGPT4Video Dataset]()]
-- **Models**: [[🤗ShareGPT4Video-8B](https://huggingface.co/Lin-Chen/sharegpt4video-8b)] [[🤗ShareGPT4Video-34B]()] [[ShareCaptioner-Video]()]
+- **Models**: [[🤗ShareGPT4Video-8B](https://huggingface.co/Lin-Chen/sharegpt4video-8b)] [[ShareCaptioner-Video]()]
 - **Demo**: [[🤗ShareGPT4Video-8B]()] [[🤗ShareCaptioner-Video]()]
 
 ## 💡 Highlights
 
 - 🔥 A **large-scale** **highly descriptive** video-text dataset, **40K** GPT4-Vision-generated video captions, around **400K** implicit video split captions
 - 🔥 A **general video captioner for various video durations, resolutions, aspect ratios**, approaching GPT4-Vision's caption capability, featuring two inference mode targeted for quality and efficiency, separately.
-- 🔥 A series of superior large multi-modal models **ShareGPT4Video-8B**, **ShareGPT4Video-34B**, lasting **1 hour** and **5 hours** on 32xA100 GPUs of training respectively.
+- 🔥 A superior large video-language model **ShareGPT4Video-8B**, lasting **4 hours** on 8xA100 GPUs of training respectively.
 - 🔥 **Improving Text-to-Video performance** with high-quality video captions generate by our ShareCaptioner-Video
 
 ## 📜 News
