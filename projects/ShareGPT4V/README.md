@@ -26,7 +26,7 @@
 - 🔥 A superior large multi-modal model, **ShareGPT4V-7B**
 
 ## 📜 News
-**[2024/5/8]** We released **[ShareGPT4Video](https://sharegpt4video.github.io/)**, a large-scale video-caption dataset, with **40K** captions annotated by GPT4V and **4.8M** captions annotated by our ShareCaptioner-Video.
+**[2024/5/8]** We released **[ShareGPT4Video](https://sharegpt4video.github.io/)**, a large-scale video-caption dataset, with **40K** captions annotated by GPT4V and **4.8M** captions annotated by our ShareCaptioner-Video. The total videos last with **300** hours and **3000** hours separately!
 
 **[2024/4/1]** We released **an elite vision-indispensable multi-modal benchmark**, [MMStar](https://github.com/MMStar-Benchmark/MMStar). Have fun!🚀
 
