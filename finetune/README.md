@@ -148,6 +148,15 @@ model = AutoPeftModelForCausalLM.from_pretrained(
 ).eval()
 ```
 
+After training, you can also use `merge_peft_adapter.py` to merge the LoRA weights with the original model weights:
+
+```
+python3 merge_peft_adapter.py \
+    --adapter_model_name=path_to_adapter \
+    --base_model_name=path_to_base_model \
+    --output_name=path_to_output_name \
+```
+
 ### Finetuning FAQs
 
 > Q: How to set the `batch_size` parameter?

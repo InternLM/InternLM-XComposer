@@ -148,6 +148,15 @@ model = AutoPeftModelForCausalLM.from_pretrained(
 ).eval()
 ```
 
+训练后，您也可以用 `merge_peft_adapter.py` 合并 LoRA 权重与原模型权重：
+
+```
+python3 merge_peft_adapter.py \
+    --adapter_model_name=path_to_adapter \
+    --base_model_name=path_to_base_model \
+    --output_name=path_to_output_name \
+```
+
 ### 微调常见问题
 
 > Q: batch_size 要怎么设置？
