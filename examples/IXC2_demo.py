@@ -126,8 +126,8 @@ class Database(object):
         return save_text
 
     def addarticle(self, text_imgs):
+        images_folder = os.path.join(self.folder, 'images')
         if len(text_imgs) > 0:
-            images_folder = os.path.join(self.folder, 'images')
             os.makedirs(images_folder, exist_ok=True)
 
         save_text = self.prepare_save_article(text_imgs, os.path.join('articles', self.hash_folder), images_folder)

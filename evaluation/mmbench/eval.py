@@ -2,7 +2,7 @@ import torch
 import os
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
-from utils import generate_answer, MMDump, MMBenchDataset
+from utils import model_gen, MMDump, MMBenchDataset
 
 mmbench = MMBenchDataset('data/mmbench_test_20230712.tsv')
 mm_dump = MMDump(save_path = '../Output/submit_test.xlsx')
@@ -18,7 +18,7 @@ for sample in tqdm(mmbench):
     text = sample['text']
     with torch.cuda.amp.autocast():
         with torch.no_grad(): 
-            response = generate_answer(model, text, image) 
+            response = model_gen(model, text, image) 
             #print (response)
     sample['pred_answer'] = response
     mm_dump.process(sample)

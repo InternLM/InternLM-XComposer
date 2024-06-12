@@ -36,7 +36,9 @@
 
 > [**InternLM-XComposer**](https://github.com/InternLM/InternLM-XComposer/tree/main/InternLM-XComposer-1.0): **A Vision-Language Large Model for Advanced Text-image Comprehension and Composition**
 
-> <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V): **Improving Large Multi-modal Models with Better Captions**
+> <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/share4video_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4Video:**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4Video) **Improving Video Understanding and Generation with Better Captions**
+
+> <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V:**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) **Improving Large Multi-modal Models with Better Captions**
 
 > [**DualFocus**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus): **Integrating Macro and Micro Perspectives in Multi-modal Large Language Models**
 
@@ -88,7 +90,7 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 
 ## News and Updates
 
-- `2024.04.22` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B44KHD-7B** are publicly available.
+- `2024.04.22` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B-4KHD-7B** are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-4KHD-7B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) and [evaluation code](./evaluation/README.md) are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-VL-1.8B](https://huggingface.co/internlm/internlm-xcomposer2-vl-1_8b) is publicly available.
 - `2024.02.22` 🎉🎉🎉 We release [DualFocus](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus), a framework for integrating macro and micro perspectives within MLLMs to enhance vision-language task performance.
@@ -356,6 +358,39 @@ If you have multiple GPUs, but the memory size of each GPU is not enough to acco
 # chat with 2 GPUs
 python examples/example_chat.py --num_gpus 2
 ```
+
+## Inference Acceleration by LMDeploy
+
+If InternLM-XComposer2 model inference optimization is required, we recommend using [LMDeploy](https://github.com/InternLM/lmdeploy).
+
+In the following subsections, we will introduce the usage of LMDeploy with the [internlm-xcomposer2-4khd-7b](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) model as an example. 
+
+First of all, please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x. For a CUDA 11.x environment, please refer to the [installation guide](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation).
+
+### Offline Inference Pipeline
+
+```python
+from lmdeploy import pipeline
+from lmdeploy.vl import load_image
+pipe = pipeline('internlm/internlm-xcomposer2-4khd-7b')
+image = load_image('examples/4khd_example.webp')
+response = pipe(('describe this image', image))
+print(response)
+```
+For more on using the VLM pipeline, including multi-image inference or multi-turn chat, please overview [this](https://lmdeploy.readthedocs.io/en/latest/inference/vl_pipeline.html) guide.
+
+### Online Inference Service
+
+LMDeploy supports one-click packaging of the InternLM-XComposer2 model into an OpenAI service, providing seamless integration with the OpenAI API.
+
+The service can be launched by one command as below:
+```shell
+lmdeploy serve api_server internlm/internlm-xcomposer2-4khd-7b
+```
+
+The arguments of `api_server` can be viewed through the command `lmdeploy serve api_server -h`, for instance, `--tp` to set tensor parallelism, `--session-len` to specify the max length of the context window, `--cache-max-entry-count` to adjust the GPU mem ratio for k/v cache etc.
+
+For more details, including service startup with docker, RESTful API information, and openai integration methods, please refer to [this](https://lmdeploy.readthedocs.io/en/latest/serving/api_server_vl.html) guide.
 
 ## 4-Bit Model
 
