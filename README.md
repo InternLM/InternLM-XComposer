@@ -40,6 +40,8 @@
 
 > <img src="https://raw.githubusercontent.com/ShareGPT4V/ShareGPT4V-Resources/master/images/logo_tight.png" style="vertical-align: -20px;" :height="25px" width="25px">[**ShareGPT4V:**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) **Improving Large Multi-modal Models with Better Captions**
 
+> <img src="https://github.com/Liuziyu77/MMDU/blob/main/asset/logo.png" style="vertical-align: -20px;" :height="25px" width="25px">[**MMDU:**](https://liuziyu77.github.io/MMDU/) **A Multi-Turn Multi-Image Dialog Understanding Benchmark and Instruction-Tuning Dataset for LVLMs**
+
 > [**DualFocus**](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/DualFocus): **Integrating Macro and Micro Perspectives in Multi-modal Large Language Models**
 
 </br>
