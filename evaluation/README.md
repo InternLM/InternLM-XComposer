@@ -169,7 +169,7 @@ CUDA_VISIBLE_DEVICES=0 python -u eval.py
  
 <details>
   <summary>
-    <b>AI2D results</b>
+    <b>ChartQA results</b>
   </summary>
 
 | Overall | Human | Augmented |
