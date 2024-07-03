@@ -2,7 +2,7 @@
     <img src="./assets/logo_en.png" width="650"/>
 </p>
 <p align="center">
-    <b><font size="6">InternLM-XComposer2.5</font></b>
+    <b><font size="6">InternLM-XComposer-2.5</font></b>
 </p>
 
 
@@ -15,7 +15,7 @@
 </div>
 
 <p align="center">
-    Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a>  | <a href="https://openxlab.org.cn/apps/detail/WillowBreeze/InternLM-XComposer">OpenXLab Demo</a> of InternLM-XComposer2.5.
+    Thanks the community for <a href="https://huggingface.co/spaces/Willow123/InternLM-XComposer">HuggingFace Demo </a>  | <a href="https://openxlab.org.cn/apps/detail/WillowBreeze/InternLM-XComposer">OpenXLab Demo</a> of InternLM-XComposer-2.5.
 </p>
 
 <p align="center">
