@@ -68,7 +68,9 @@ Please refer to [Technical Report]()  for more details.
  
 
 ## Demo Video
-[![Watch the video](https://img.youtube.com/vi/8tYpiQNOJww/maxresdefault.jpg)](https://youtu.be/8tYpiQNOJww)
+[https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4](https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4)
+
+[Youtube Video](https://youtu.be/8tYpiQNOJww)
 
 
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
