@@ -166,7 +166,7 @@ Please refer to the [installation instructions](docs/install.md)
 
 ## Quickstart
 
-We provide a simple example to show how to use InternLM-XComposer2.5 with 🤗 Transformers.
+We provide a simple example to show how to use InternLM-XComposer-2.5 with 🤗 Transformers.
  
 
 <details>
