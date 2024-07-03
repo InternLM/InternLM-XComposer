@@ -75,7 +75,9 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 ## Demo Video
 
-[![Watch the video](https://img.youtube.com/vi/8tYpiQNOJww/maxresdefault.jpg)](https://youtu.be/8tYpiQNOJww)
+[https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4](https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4)
+
+[Youtube Video](https://youtu.be/8tYpiQNOJww)
 
 ## 更新消息
 - `2024.07.03` 🎉🎉🎉 我们开源了[InternLM-XComposer-2.5-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-7b).
