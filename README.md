@@ -429,7 +429,7 @@ Coming Soon
 
 Please refer to our [finetune scripts](finetune/README.md).
 
-## Gradio Web Demo
+## Gradio Deploy
 Coming Soon 
 
 ## Citation
