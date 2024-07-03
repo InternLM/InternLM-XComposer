@@ -74,6 +74,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
  -->
 
 ## Demo Video
+🔥For the best experience, please keep the audio on while enjoying the video.
 
 [https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4](https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4)
 
