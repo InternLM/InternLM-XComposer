@@ -164,7 +164,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 
 ## 快速开始
 
-我们提供了一个简单实用的 🤗 Transformers 版本 InternLM-XComposer系列的使用案例。 
+我们提供了一个简单实用的 🤗 Transformers 版本 InternLM-XComposer-2.5 系列的使用案例。 
 
 
 <details>
