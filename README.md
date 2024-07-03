@@ -25,7 +25,7 @@
 <br>
 
 ## Multimodal Projects of Our Team
-> [**InternLM-XComposer2.5**](https://github.com/InternLM/InternLM-XComposer): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
+> [**InternLM-XComposer-2.5**](https://github.com/InternLM/InternLM-XComposer): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
 
 
 > [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD**
@@ -44,11 +44,11 @@
 
 </br>
 
-**InternLM-XComposer2.5** excels in various text-image comprehension and composition applications, achieving GPT-4V level capabilities with merely 7B LLM backend. IXC2.5 is trained with 24K interleaved image-text contexts, it can seamlessly extend to 96K long contexts via RoPE extrapolation. This long-context capability allows IXC-2.5 to excel in tasks requiring extensive input and output contexts. 
+**InternLM-XComposer-2.5** excels in various text-image comprehension and composition applications, achieving GPT-4V level capabilities with merely 7B LLM backend. IXC-2.5 is trained with 24K interleaved image-text contexts, it can seamlessly extend to 96K long contexts via RoPE extrapolation. This long-context capability allows IXC-2.5 to perform exceptionally well in tasks requiring extensive input and output contexts. 
 
 - **Ultra-High Resolution Understanding**: IXC-2.5 enhances the dynamic resolution solution proposed in IXC2-4KHD with a native 560 × 560 ViT vision encoder, supporting high-resolution images with any aspect ratio.
 
-- **Fine-Grained Video Understanding**: IXC-2.5 treats videos as a ultra-high-resolution composite picture consisting of tens to thousands of frames, allowing it to capture fine details through dense sampling and higher resolution for each frame.
+- **Fine-Grained Video Understanding**: IXC-2.5 treats videos as a ultra-high-resolution composite picture consisting of tens to hundreds of frames, allowing it to capture fine details through dense sampling and higher resolution for each frame.
 
 - **Multi-Turn Multi-Image Dialogue**: IXC-2.5 supports free-form multi-turn multi-image dialogue, allowing it to naturally interact with humans in multi-round conversations. 
 
@@ -63,7 +63,7 @@
 </p>
   
 
-Please refer to [Technical Report](https://arxiv.org/abs/2401.16420)  for more details.
+Please refer to [Technical Report]()  for more details.
 <br>
  
 
@@ -114,7 +114,7 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 
 ## Evaluation
 
-We evaluate InternLM-XComposer2-VL on 28 multimodal benchmarks, including image benchmarks [MMDU](https://github.com/Liuziyu77/MMDU), [MMStar](https://github.com/MMStar-Benchmark/MMStar), [RealWorldQA](https://x.ai/blog/grok-1.5v),  [Design2Code](https://salt-nlp.github.io/Design2Code/), [DocVQA](https://rrc.cvc.uab.es/?ch=17), [Infographics VQA](https://rrc.cvc.uab.es/?ch=17), [TextVQA](https://textvqa.org/), [ChartQA](https://github.com/vis-nlp/ChartQA), [OCRBench](https://github.com/Yuliang-Liu/MultimodalOCR), [DeepFrom](https://wandb.ai/stacey/deepform_v1/reports/DeepForm-Understand-Structured-Documents-at-Scale--VmlldzoyODQ3Njg), [WTQ](https://arxiv.org/abs/1508.00305), [VisualMRC](https://github.com/nttmdlab-nlp/VisualMRC), [TabFact](https://tabfact.github.io/), [MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [MM-Vet](https://github.com/yuweihao/MM-Vet), and video benchmarks [MVBench](https://github.com/OpenGVLab/Ask-Anything), [MLVU](https://github.com/FlagOpen/FlagEmbedding/tree/master/MLVU/evaluation), [Video-MME](https://github.com/BradyFU/Video-MME), [MMBench-Video](https://github.com/open-compass/VLMEvalKit), [TempCompass](https://github.com/llyx97/TempCompass)
+We evaluate InternLM-XComposer-2.5 on 28 multimodal benchmarks, including image benchmarks [MMDU](https://github.com/Liuziyu77/MMDU), [MMStar](https://github.com/MMStar-Benchmark/MMStar), [RealWorldQA](https://x.ai/blog/grok-1.5v),  [Design2Code](https://salt-nlp.github.io/Design2Code/), [DocVQA](https://rrc.cvc.uab.es/?ch=17), [Infographics VQA](https://rrc.cvc.uab.es/?ch=17), [TextVQA](https://textvqa.org/), [ChartQA](https://github.com/vis-nlp/ChartQA), [OCRBench](https://github.com/Yuliang-Liu/MultimodalOCR), [DeepFrom](https://wandb.ai/stacey/deepform_v1/reports/DeepForm-Understand-Structured-Documents-at-Scale--VmlldzoyODQ3Njg), [WTQ](https://arxiv.org/abs/1508.00305), [VisualMRC](https://github.com/nttmdlab-nlp/VisualMRC), [TabFact](https://tabfact.github.io/), [MathVista](https://mathvista.github.io/), [MMMU](https://mmmu-benchmark.github.io/), [AI2D](https://prior.allenai.org/projects/diagram-understanding), [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation), [MMBench](https://opencompass.org.cn/leaderboard-multimodal), [MMBench-CN](https://opencompass.org.cn/leaderboard-multimodal), [SEED-Bench](https://huggingface.co/spaces/AILab-CVC/SEED-Bench_Leaderboard), [HallusionBench](https://github.com/tianyi-lab/HallusionBench), [MM-Vet](https://github.com/yuweihao/MM-Vet), and video benchmarks [MVBench](https://github.com/OpenGVLab/Ask-Anything), [MLVU](https://github.com/FlagOpen/FlagEmbedding/tree/master/MLVU/evaluation), [Video-MME](https://github.com/BradyFU/Video-MME), [MMBench-Video](https://github.com/open-compass/VLMEvalKit), [TempCompass](https://github.com/llyx97/TempCompass)
 
 See [Evaluation Details](./evaluation/README.md) here.
 
@@ -429,7 +429,7 @@ Coming Soon
 
 Please refer to our [finetune scripts](finetune/README.md).
 
-## Web UI
+## Gradio Web Demo
 Coming Soon 
 
 ## Citation
