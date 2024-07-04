@@ -74,7 +74,7 @@ Please refer to [Technical Report]()  for more details.
 ## Demo Video
 🔥 For the best experience, please keep the audio on while enjoying the video.
 
-[https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4](https://github.com/InternLM/InternLM-XComposer/assets/147793160/70be926a-90ac-45f6-8b0a-5200dad1c7e4)
+[https://github.com/InternLM/InternLM-XComposer/assets/147793160/8206f07f-3166-461e-a631-9cbcdec6ae75](https://github.com/InternLM/InternLM-XComposer/assets/147793160/8206f07f-3166-461e-a631-9cbcdec6ae75)
 
 [Youtube Video](https://youtu.be/8tYpiQNOJww)
 
