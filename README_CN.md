@@ -9,7 +9,7 @@
         InternLM-XComposer <a href="">🤖 <a> <a href="">🤗</a>&nbsp ｜ InternLM-VL <a href="">🤖 <a> <a href="">🤗</a>&nbsp | Technical Report <a href=""> <a> 📄  -->
 
 <div align="center">
-        InternLM-XComposer2.5 <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ 浦语·灵笔2.5技术报告 <a href="https://arxiv.org/abs/">  📄 </a>  
+        InternLM-XComposer2.5 <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ 浦语·灵笔2.5技术报告 <a href="https://arxiv.org/abs/2407.03320">  📄 </a>  
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
@@ -63,7 +63,7 @@
   
 
 
-更多方法细节请参考[技术报告](https://arxiv.org/abs/2401.16420)．
+更多方法细节请参考[技术报告](https://arxiv.org/abs/2407.03320)．
 <br>
 
 <!--
