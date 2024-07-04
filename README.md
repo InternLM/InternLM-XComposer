@@ -367,7 +367,7 @@ See the [Screenshot to Webpage](./examples/Screenshot-to-Webpage.html) results h
 
 <details>
   <summary>
-    <b>Write Artical</b>
+    <b>Write Article</b>
   </summary>
 
 ```python
