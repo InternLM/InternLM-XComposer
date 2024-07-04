@@ -7,7 +7,7 @@
 
 
 <div align="center">
-        InternLM-XComposer2.5 <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ XComposer2.5 Technical Report <a href="https://arxiv.org/abs/">  📄 </a>  
+        InternLM-XComposer2.5 <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b"><img src="./assets/modelscope_logo.png" width="20px"></a> &nbsp｜ XComposer2.5 Technical Report <a href="https://arxiv.org/abs/2407.03320">  📄 </a>  
  
 
 [English](./README.md) | [简体中文](./README_CN.md)
@@ -67,7 +67,7 @@
 </p>
   
 
-Please refer to [Technical Report]()  for more details.
+Please refer to [Technical Report](https://arxiv.org/abs/2407.03320)  for more details.
 <br>
  
 
