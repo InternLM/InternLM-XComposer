@@ -1,5 +1,6 @@
 from PIL import Image
 
+import re
 import torch
 from transformers import StoppingCriteria, StoppingCriteriaList
 
@@ -28,6 +29,7 @@ class Conversation:
 
     skip_next: bool = False
     conv_id: Any = None
+    single: bool = True
 
     def get_prompt(self):
         if self.sep_style == SeparatorStyle.SINGLE:
@@ -72,7 +74,11 @@ class Conversation:
                 if message:
                     if isinstance(message, list):
                         if i % 2 == 0:
-                            ret += '<Img><ImageHere></Img>' + role + message[0].replace('<Img><ImageHere></Img>', '') + self.sep
+                            print(self.single)
+                            if self.single:
+                                ret += '<Img><ImageHere></Img>' + role + message[0].replace('<Img><ImageHere></Img>', '') + self.sep
+                            else:
+                                ret += role + message[0] + self.sep
                         else:
                             ret += role + message[0] + self.sep
                     else:
@@ -99,8 +105,7 @@ class Conversation:
                     # type check for images, if not list(e.g. PIL), just put it in a list
                     if type(images) is not list:
                         images = [images]
-                    
-                    img_str = '''<style>.centerimg{float:left;}.flex_img{align-items: left;display: flex;justify-content: left;}</style><div class='flex_img'>'''
+
                     for j, image in enumerate(images):
                         max_hw, min_hw = max(image.size), min(image.size)
                         aspect_ratio = max_hw / min_hw
@@ -117,9 +122,9 @@ class Conversation:
                         buffered = BytesIO()
                         image.save(buffered, format="JPEG")
                         img_b64_str = base64.b64encode(buffered.getvalue()).decode()
-                        img_str += f' <div class="centerimg"><img src="data:image/png;base64,{img_b64_str}" alt="user upload image{j}" /></div>'
-                    img_str += "</div>"
-                    msg = msg.replace('<Img><ImageHere></Img>', img_str)
+                        img_str = '''<style>.centerimg{float:left;}.flex_img{align-items: left;display: flex;justify-content: left;}</style><div class='flex_img'> <div class="centerimg"><img src="data:image/png;base64,''' + img_b64_str + f'''" alt="user upload image{j}" /></div></div>'''
+                        msg = re.sub(r"Image\d+: <Img><ImageHere></Img>; *", "<Img><ImageHere></Img>", msg).replace('<Img><ImageHere></Img>', img_str, 1)
+
                 ret.append([msg, None])
             else:  # answer
                 if type(msg) is tuple or type(msg) is list:

@@ -880,7 +880,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                         beam = gr.Slider(minimum=1.0, maximum=6.0, value=1.0, step=1.0, label='Beam Size (集束大小)')
                         repetition = gr.Slider(minimum=1.0, maximum=2.0, value=1.005, step=0.001, label='Repetition_penalty (重复惩罚)')
                         text_num = gr.Slider(minimum=100.0, maximum=4096.0, value=4096.0, step=1.0, label='Max output tokens (最多输出字数)')
-                        llmO = gr.Checkbox(value=False, label='LLM Only (纯文本写作)')
+                        llmO = gr.Checkbox(value=True, label='LLM Only (纯文本写作)')
                         random = gr.Checkbox(value=True, label='Sampling (随机采样)')
                         withmeta = gr.Checkbox(value=False, label='With Meta (使用meta指令)')
 

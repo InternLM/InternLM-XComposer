@@ -37,14 +37,14 @@ chat_meta = """You are an AI assistant whose name is InternLM-XComposer (浦语�
 
 chat_stream_output = True
 
-
+import random
 import numpy as np
 from torchvision.transforms.functional import InterpolationMode
 import torchvision.transforms as transforms
 
-def padding_336(b):
+def padding_336(b, R=336):
     width, height = b.size
-    tar = int(np.ceil(height / 336) * 336)
+    tar = int(np.ceil(height / R) * R)
     top_padding = int((tar - height)/2)
     bottom_padding = tar - height - top_padding
     left_padding = 0
@@ -53,7 +53,7 @@ def padding_336(b):
 
     return b
 
-def HD_transform(img, hd_num=16):
+def R560_HD18_Identity_transform(img):
     width, height = img.size
     trans = False
     if width < height:
@@ -62,14 +62,43 @@ def HD_transform(img, hd_num=16):
         width, height = img.size
     ratio = (width/ height)
     scale = 1
-    while scale*np.ceil(scale/ratio) <= hd_num:
+    while scale*np.ceil(scale/ratio) <= 18:
         scale += 1
     scale -= 1
-    new_w = int(scale * 336)
+
+    scale_low = min(np.ceil(width * 1.5 / 560), scale)
+    scale_up = min(np.ceil(width * 1.5 / 560), scale)
+    scale = random.randrange(scale_low, scale_up + 1)
+
+    new_w = int(scale * 560)
     new_h = int(new_w / ratio)
 
     img = transforms.functional.resize(img, [new_h, new_w],)
-    img = padding_336(img)
+    img = padding_336(img, 560)
+    width, height = img.size
+    if trans:
+        img = img.transpose(Image.TRANSPOSE)
+
+    return img
+
+
+def R560_HD4_transform(img):
+    width, height = img.size
+    trans = False
+    if width < height:
+        img = img.transpose(Image.TRANSPOSE)
+        trans = True
+        width, height = img.size
+    ratio = (width/ height)
+    scale = 1
+    while scale*np.ceil(scale/ratio) <= 4:
+        scale += 1
+    scale -= 1
+    new_w = int(scale * 560)
+    new_h = int(new_w / ratio)
+
+    img = transforms.functional.resize(img, [new_h, new_w],)
+    img = padding_336(img, 560)
     width, height = img.size
     if trans:
         img = img.transpose(Image.TRANSPOSE)
@@ -120,7 +149,7 @@ class Demo_UI:
     def generate_with_chat_streaming(self, **kwargs):
         return Iteratorize(self.generate_with_chat_callback, kwargs, callback=None)
 
-    def chat_ask(self, state, img_list, text, image):
+    def chat_ask(self, state, img_list, text, image, task):
         print(1111)
         state.skip_next = False
         if len(text) <= 0 and image is None:
@@ -129,26 +158,33 @@ class Demo_UI:
                     None) + (gr.Button(), ) * 2
 
         if image is not None:
-            imgs = []
             imgs_pil = []
+            img_str = ""
             for j in range(len(image)):
                 img_pil = Image.open(image[j]).convert('RGB')
                 imgs_pil.append(img_pil)
-                img_pil = HD_transform(img_pil, hd_num=25)
+                if task == "Single":
+                    img_pil = R560_HD18_Identity_transform(img_pil)
+                    state.single = True
+                    img_str = "<Img><ImageHere></Img>"
+                else:
+                    img_pil = R560_HD4_transform(img_pil)
+                    state.single = False
                 img = self.chat_model.vis_processor(img_pil)
-                imgs.append(img)
-            imgs = torch.stack(imgs, dim=0)
-            print(imgs.shape)
-            with torch.no_grad():
-                with torch.cuda.amp.autocast():
-                    image_emb = self.chat_model.encode_img(imgs)
+                print(img.shape)
 
-            image_emb = torch.cat([t.unsqueeze(0) for t in image_emb], dim=1)
-            print(image_emb.shape)
-            img_list.append(image_emb)
+                with torch.no_grad():
+                    with torch.cuda.amp.autocast():
+                        image_emb = self.chat_model.encode_img(img.unsqueeze(0))
+
+                print(image_emb.shape)
+                img_list.append(image_emb)
+
+                if not state.single:
+                    img_str += f"Image{len(img_list)}: <Img><ImageHere></Img>; "
 
             state.append_message(state.roles[0],
-                                 ["<Img><ImageHere></Img>", imgs_pil])
+                                 [img_str, imgs_pil])
 
         if len(state.messages) > 0 and state.messages[-1][0] == state.roles[
                 0] and isinstance(state.messages[-1][1], list):
@@ -162,8 +198,13 @@ class Demo_UI:
 
         state.append_message(state.roles[1], None)
 
+        if state.single:
+            grfile = gr.File(None, visible=False)
+        else:
+            grfile = None
+
         return (state, img_list, state.to_gradio_chatbot(), "",
-                None) + (gr.Button(interactive=False), ) * 4
+                grfile) + (gr.Button(interactive=False), ) * 4
 
     def chat_answer(self, state, img_list, max_output_tokens,
                     repetition_penalty, num_beams, do_sample):
@@ -243,14 +284,18 @@ class Demo_UI:
 
     def chat_clear_history(self):
         state = CONV_VISION_INTERN2.copy()
-        return (state, [], state.to_gradio_chatbot(), "", None) + (gr.Button(interactive=False), ) * 4
+        return (state, [], state.to_gradio_chatbot(), "", gr.File(None, visible=True)) + (gr.Button(interactive=False), ) * 4
 
-    def uploadimgs(self, images):
+    def uploadimgs(self, task, images):
+        if task == 'Single' and len(images) > 1:
+            gr.Warning("Single mode do not support multiple images!!!")
+            return []
         timestamp = datetime.now()
         self.folder = os.path.join('databases', timestamp.strftime("%Y%m%d"), 'chat', str(timestamp).replace(' ', '-'))
         os.makedirs(self.folder, exist_ok=True)
         for image_path in images:
             shutil.copy(image_path, self.folder)
+        return images
 
     def like(self, state):
         if self.folder and os.path.exists(self.folder):
@@ -313,7 +358,8 @@ def change_language(lang):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--code_path", default='internlm/internlm-xcomposer2-4khd-7b')
+parser.add_argument("--code_path", default='/mnt/hwfile/mllm/zhangpan/share/from/xiaoyi/JSH_0527')
+#parser.add_argument("--code_path", default='DLight1551/JSH_0527')
 parser.add_argument("--private", default=False, action='store_true')
 parser.add_argument("--num_gpus", default=1, type=int)
 parser.add_argument("--port", default=11111, type=int)
@@ -325,8 +371,11 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
     with gr.Row():
         with gr.Column(scale=20):
             # gr.HTML("""<h1 align="center" id="space-title" style="font-size:35px;">🤗 浦语·灵笔 (InternLM-XComposer)</h1>""")
+            # gr.HTML(
+            #     """<h1 align="center"><img src="https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b/resolve/main/logo_4k_en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
+            # )
             gr.HTML(
-                """<h1 align="center"><img src="https://raw.githubusercontent.com/InternLM/InternLM-XComposer/InternLM-XComposer2/assets/logo_en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
+                """<h1 align="center"><img src="https://modelscope.cn/api/v1/models/Shanghai_AI_Laboratory/internlm-xcomposer2-4khd-7b/repo?Revision=master&FilePath=logo_4k_en.png&View=true", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
             )
         with gr.Column(scale=1, min_width=100):
             lang_btn = gr.Button("中文")
@@ -337,6 +386,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
             img_list = gr.State()
             with gr.Row():
                 with gr.Column(scale=3):
+                    task = gr.Dropdown(["Single", "Multiple"], value='Single', label="单图/多图模式", interactive=True)
                     imagebox = gr.File(file_count='multiple')
 
                     with gr.Accordion("Parameters (参数)", open=True,
@@ -398,20 +448,20 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 chat_num_beams, chat_do_sample
             ]
 
-            imagebox.upload(demo_ui.uploadimgs, imagebox, [])
+            imagebox.upload(demo_ui.uploadimgs, [task, imagebox], [imagebox])
             btn_like.click(demo_ui.like, [chat_state], [chat_state, chatbot])
             btn_dislike.click(demo_ui.dislike, [chat_state], [chat_state, chatbot])
 
             chat_textbox.submit(
                 demo_ui.chat_ask,
-                [chat_state, img_list, chat_textbox, imagebox],
+                [chat_state, img_list, chat_textbox, imagebox, task],
                 [chat_state, img_list, chatbot, chat_textbox, imagebox] +
                 btn_list).then(demo_ui.chat_answer,
                                [chat_state, img_list] + parameter_list,
                                [chat_state, chatbot] + btn_list)
             submit_btn.click(
                 demo_ui.chat_ask,
-                [chat_state, img_list, chat_textbox, imagebox],
+                [chat_state, img_list, chat_textbox, imagebox, task],
                 [chat_state, img_list, chatbot, chat_textbox, imagebox] +
                 btn_list).then(demo_ui.chat_answer,
                                [chat_state, img_list] + parameter_list,
