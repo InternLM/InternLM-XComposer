@@ -26,6 +26,7 @@ if args.num_gpus > 1:
     model = dispatch_model(model, device_map=device_map)
 
 tokenizer = AutoTokenizer.from_pretrained('internlm/internlm-xcomposer2d5-7b', trust_remote_code=True)
+model.tokenizer = tokenizer
 
 query = 'Analyze the given image in a detail manner'
 image = ['./examples/dubai.png']
