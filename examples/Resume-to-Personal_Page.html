@@ -1,0 +1,219 @@
+<html>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<body class="bg-gray-100 text-gray-900">
+    <!-- Header Section -->
+    <header class="relative h-screen bg-cover bg-center" style="background-image: url('https://picsum.photos/1920/1080');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-white">
+            <h1 class="text-5xl font-bold">Qidong Huang</h1>
+            <p class="mt-4 text-xl">Ph.D, University of Science and Technology of China</p>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="text-lg font-semibold">Qidong Huang</a>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="#about" class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">About Me</a>
+                    <a href="#education" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Education</a>
+                    <a href="#publications" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Publications</a>
+                    <a href="#skills" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Skills</a>
+                    <a href="#services" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Services</a>
+                    <a href="#awards" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Awards & Honors</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="lg:w-1/2">
+                    <img src="https://picsum.photos/400/400" alt="Profile Picture" class="rounded-full w-48 h-48 mx-auto lg:mx-0">
+                </div>
+                <div class="mt-8 lg:mt-0 lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">Short Biography</h2>
+                    <p class="text-lg leading-relaxed">Qidong Huang is a PhD student at the University of Science and Technology of China. He has published more than 7 papers at top-tier conferences and journals, such as CVPR/ICCV/AAAI/TIP/TCSVT. His research interests focus on vision transfer learning (e.g., prompt learning for vision pretrained models) and artificial intelligence security (e.g., adversarial examples and anti-DeepFake). He is the reviewer of many top conferences (including CVPR, ICCV, ECCV) and top journals (TNNLS, PR).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">PhD of Cyberspace Security</h3>
+                    <p class="text-gray-600">University of Science and Technology of China, Hefei, China, CAS Key Laboratory of Electromagnetic Space Information. Supervised by Prof. Weiming Zhang.</p>
+                    <p class="text-gray-600">09/2020–present</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Bachelor of Information Security</h3>
+                    <p class="text-gray-600">School of Information Science and Technology, University of Science and Technology of China, Hefei, China.</p>
+                    <p class="text-gray-600">09/2016–06/2020</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Vision Prompt Learning</h3>
+                    <p class="text-gray-600">I have been researching the prompt learning for large-scale vision pretrained models and published one paper on top-tier computer vision conferences, in which I propose DAM-VP, a data diversity-aware method for efficient and adaptive vision prompt learning. This work alleviates the mismatch between vision prompts and downstream data diversity.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Artificial Intelligence Security</h3>
+                    <p class="text-gray-600">I have been studying artificial intelligence security since 2020, including adversarial attack&defense and anti-DeepFake. For adversarial attack, I propose SI-Adv, a shape-invariant attack for 3D point cloud recognition which great boosts the imperceptibility of adversarial examples. For adversarial defense, I propose a contrastive adversarial training framework for robust point cloud recognition named PointCAT. Besides, our work for improving adversarial robustness of masked autoencoders has been recently accepted by ICCV 2023. For anti-DeepFake, we are the first to propose the concept of “initiative defense” against DeepFakes by proactively protecting users’ facial privacy before the manipulation, unlike previous ex-post countermeasures like DeepFake detection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Publications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Improving Adversarial Robustness of Masked Autoencoders via Test-time Frequency-domain Prompting</h3>
+                    <p class="text-gray-600">International Conference on Computer Vision (ICCV), 2023</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Diversity-Aware Meta Visual Prompting</h3>
+                    <p class="text-gray-600">Conference on Computer Vision and Pattern Recognition (CVPR), 2023</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Shape-invariant 3D Adversarial Point Clouds</h3>
+                    <p class="text-gray-600">Conference on Computer Vision and Pattern Recognition (CVPR), 2022</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Initiative Defense against Facial Manipulation</h3>
+                    <p class="text-gray-600">AAAI Conference on Artificial Intelligence (AAAI), 2021</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">PointCAT : Contrastive Adversarial Training for Robust Point Cloud Recognition</h3>
+                    <p class="text-gray-600">IEEE Transactions on Image Processing (TIP), Major Revision</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Ada3Diff : Defending against 3D Adversarial Point Clouds via Adaptive Diffusion</h3>
+                    <p class="text-gray-600">Under Review</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Deep Template-based Watermarking</h3>
+                    <p class="text-gray-600">IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), 2020</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">Poison ink : Robust and invisible backdoor attack</h3>
+                    <p class="text-gray-600">IEEE Transactions on Image Processing (TIP), 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Services</h2>
+            <ul class="list-disc list-inside">
+                <li>Reviewer for CVPR 2022, 2023</li>
+                <li>Reviewer for ICCV 2023</li>
+                <li>Reviewer for ECCV 2022</li>
+                <li>Reviewer for ICPR 2022</li>
+                <li>Reviewer for IEEE Transactions on Neural Networks and Learning Systems (TNNLS)</li>
+                <li>Reviewer for Pattern Recognition (PR)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Awards & Honors Section -->
+    <section id="awards" class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-8 text-center">Awards & Honors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">2021 China National Scholarship</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-white">&copy; 2023 Qidong Huang. All rights reserved.</div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Smooth Scroll Navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior:'smooth'
+            });
+        });
+    });
+
+    // Hero Section Typing Effect
+    const heroText = document.querySelector('header h1');
+    const heroSubText = document.querySelector('header p');
+    if (heroText && heroSubText) {
+        let text = "Qidong Huang";
+        let subText = "Ph.D, University of Science and Technology of China";
+        heroText.textContent = '';
+        heroSubText.textContent = '';
+
+        let index = 0;
+        let subIndex = 0;
+
+        function typeHeroText() {
+            if (index < text.length) {
+                heroText.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeHeroText, 100);
+            } else if (subIndex < subText.length) {
+                heroSubText.textContent += subText.charAt(subIndex);
+                subIndex++;
+                setTimeout(typeHeroText, 100);
+            }
+        }
+
+        typeHeroText();
+    }
+
+    // Mouse Over/Out Effects for Profile Picture
+    const profileImg = document.querySelector('#about img');
+    if (profileImg) {
+        profileImg.addEventListener('mouseover', function () {
+            this.style.transform ='scale(1.1)';
+            this.style.transition = 'transform 0.3s';
+        });
+        profileImg.addEventListener('mouseout', function () {
+            this.style.transform ='scale(1)';
+        });
+    }
+});
+</script>
+
+</html>
