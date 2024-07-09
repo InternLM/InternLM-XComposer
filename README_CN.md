@@ -429,7 +429,17 @@ python examples/example_chat.py --num_gpus 2
 请参考 [微调指南](finetune/README_zh-CN.md)
 
 ## Gradio Deploy
-准备中
+我们提供了一个轻松搭建 Web UI demo 的代码.
+
+```
+# 多模态对话demo
+python gradio_demo/gradio_demo_chat.py
+
+# 自由形式的图文创作demo
+python gradio_demo/gradio_demo_composition.py
+```
+
+更多信息请参考 Web UI [用户指南](demo_asset/demo.md)。 如果您想要更改模型存放的文件夹，请使用 `--code_path=new_folder` 选项。
 
 <br>
 
