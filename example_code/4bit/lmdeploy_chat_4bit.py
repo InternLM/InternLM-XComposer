@@ -11,7 +11,7 @@ engine_config = TurbomindEngineConfig(
     model_format='awq',
     cache_max_entry_count=0.1,  # you can change this parameter to tune the kv cache memory
 )
-pipe = pipeline('./internlm-xcomposer2d5-7b-4bit',
+pipe = pipeline('internlm/internlm-xcomposer2d5-7b-4bit',
                 log_level='INFO',
                 backend_config=engine_config)
 query = f'{IMAGE_TOKEN} Analyze the given image in a detail manner.'

@@ -11,7 +11,7 @@ engine_config = TurbomindEngineConfig(
     cache_max_entry_count= 0.1,  # you can change this parameter to tune the kv cache memory
 )
 pipe = pipeline(
-    './internlm-xcomposer2d5-7b',
+    'internlm/internlm-xcomposer2d5-7b',
     log_level='INFO',
     backend_config=engine_config,
 )
