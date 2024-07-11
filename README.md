@@ -438,7 +438,21 @@ Coming Soon
 Please refer to our [finetune scripts](finetune/README.md).
 
 ## Gradio Deploy
-Coming Soon 
+
+We provide code for users to build a web UI demo.
+
+Please run the command below for Chat / Composition:
+
+```
+# For Multimodal Chat
+python gradio_demo/gradio_demo_chat.py
+
+# For Free-form Text-Image Composition
+python gradio_demo/gradio_demo_composition.py
+```
+
+The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish to change the default folder of the model, please use the `--code_path=new_folder` option.
+<br>
 
 ## Citation
 

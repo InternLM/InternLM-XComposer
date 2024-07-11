@@ -1,9 +1,11 @@
 import os
+import random
 import re
 import sys
 sys.path.insert(0, '.')
 sys.path.insert(0, '..')
 
+import numpy as np
 import argparse
 import gradio as gr
 os.environ["GRADIO_TEMP_DIR"] = os.path.join(os.getcwd(), 'tmp')
@@ -14,6 +16,7 @@ import hashlib
 import shutil
 import requests
 from PIL import Image, ImageFile
+from peft import PeftModel
 import torch
 from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
@@ -26,7 +29,10 @@ from demo_asset.assets.css_html_js import custom_css
 from demo_asset.serve_utils import Stream, Iteratorize
 from demo_asset.conversation import CONV_VISION_INTERN2
 from demo_asset.download import download_image_thread
-from examples.utils import get_stopping_criteria, set_random_seed
+from gradio_demo.utils import get_stopping_criteria, set_random_seed
+
+import json
+from datetime import datetime
 
 
 meta_instruction = """You are an AI assistant whose name is InternLM-XComposer (浦语·灵笔).
@@ -39,6 +45,7 @@ chat_meta = """You are an AI assistant whose name is InternLM-XComposer (浦语�
 - InternLM-XComposer (浦语·灵笔) is capable of comprehending and articulating responses effectively based on the provided image.
 """
 
+caption_meta_instruction = """请严格按照示例的<input> <output>格式，根据给定的文章，给出适合在某一段后插入的图像对应的标题。"""
 
 
 max_section = 60
@@ -69,22 +76,63 @@ class ImageGroup(object):
 
 
 class ImageProcessor:
-    def __init__(self, image_size=224):
-        mean = (0.48145466, 0.4578275, 0.40821073)
-        std = (0.26862954, 0.26130258, 0.27577711)
-        self.normalize = transforms.Normalize(mean, std)
-
-        self.transform = transforms.Compose([
-            transforms.Resize((image_size, image_size),
-                              interpolation=InterpolationMode.BICUBIC),
-            transforms.ToTensor(),
-            self.normalize,
-        ])
+    def __init__(self, vis_processor = None):
+        self.vis_processor = vis_processor
 
     def __call__(self, item):
         if isinstance(item, str):
             item = Image.open(item).convert('RGB')
-        return self.transform(item)
+        # return self.transform(item)
+        item = R560_HD18_Identity_transform(item)
+        item = self.vis_processor(item).unsqueeze(0).cuda()
+        return item
+
+
+def padding_336(b, R=336):
+    width, height = b.size
+    tar = int(np.ceil(height / R) * R)
+    top_padding = int((tar - height) / 2)
+    bottom_padding = tar - height - top_padding
+    left_padding = 0
+    right_padding = 0
+    b = transforms.functional.pad(
+        b, [left_padding, top_padding, right_padding, bottom_padding],
+        fill=[255, 255, 255])
+
+    return b
+
+
+def R560_HD18_Identity_transform(img):
+    width, height = img.size
+    trans = False
+    if width < height:
+        img = img.transpose(Image.TRANSPOSE)
+        trans = True
+        width, height = img.size
+    ratio = (width / height)
+    scale = 1
+    while scale * np.ceil(scale / ratio) <= 18:
+        scale += 1
+    scale -= 1
+
+    scale_low = min(np.ceil(width * 1.5 / 560), scale)
+    scale_up = min(np.ceil(width * 1.5 / 560), scale)
+    import random
+    scale = random.randrange(scale_low, scale_up + 1)
+
+    new_w = int(scale * 560)
+    new_h = int(new_w / ratio)
+
+    img = transforms.functional.resize(
+        img,
+        [new_h, new_w],
+    )
+    img = padding_336(img, 560)
+    width, height = img.size
+    if trans:
+        img = img.transpose(Image.TRANSPOSE)
+
+    return img
 
 
 class Database(object):
@@ -125,8 +173,8 @@ class Database(object):
         return save_text
 
     def addarticle(self, text_imgs):
-        images_folder = os.path.join(self.folder, 'images')
         if len(text_imgs) > 0:
+            images_folder = os.path.join(self.folder, 'images')
             os.makedirs(images_folder, exist_ok=True)
 
         save_text = self.prepare_save_article(text_imgs, os.path.join('articles', self.hash_folder), images_folder)
@@ -147,16 +195,16 @@ class Database(object):
 
 
 class Demo_UI:
-    def __init__(self, code_path, num_gpus=1):
-        self.code_path = code_path
+    def __init__(self, ckpt_path, num_gpus=1):
+        self.ckpt_path = ckpt_path
         self.reset()
 
-        tokenizer = AutoTokenizer.from_pretrained(code_path, trust_remote_code=True)
-        self.model = AutoModelForCausalLM.from_pretrained(code_path, device_map='cuda', trust_remote_code=True).half().eval()
+        tokenizer = AutoTokenizer.from_pretrained(self.ckpt_path, trust_remote_code=True)
+        self.model = AutoModelForCausalLM.from_pretrained(self.ckpt_path, device_map='cuda', trust_remote_code=True, torch_dtype=torch.bfloat16).eval()
         self.model.tokenizer = tokenizer
-        self.model.vit.resize_pos()
 
-        self.vis_processor = ImageProcessor()
+        self.vis_processor = ImageProcessor(self.model.vis_processor)
+        # self.vis_processor = self.model.vis_processor
 
         stop_words_ids = [92397]
         #stop_words_ids = [92542]
@@ -173,6 +221,7 @@ class Demo_UI:
         self.open_edit = False
         self.hash_folder = '12345'
         self.instruction = ''
+        torch.cuda.empty_cache()
 
     def reset_components(self):
         return (gr.Markdown(visible=True, value=''),) + (gr.Markdown(visible=False, value=''),) * (max_section - 1) + (
@@ -183,6 +232,9 @@ class Demo_UI:
             return f"[UNUSED_TOKEN_146]system\n{meta_instruction}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
         else:
             return f"[UNUSED_TOKEN_146]user\n{text}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n"
+
+    def text2instruction_caption(self, inst):
+        return f"""[UNUSED_TOKEN_146]system\n{caption_meta_instruction}[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]user\n<input>\n给定文章"<Seg0> 大多数的车友们在选车、购车时都会格外关注续航\n<Seg1> 甚至还有要求电动滑板车跑一百公里的\n<Seg2> 但这真的是你所需要的吗?\n<Seg3> 据报告，一线城市上班族通勤半径均在10公里以内\n<Seg4> 所以大多数通勤出行RND的续航完全可以满足\n<Seg5> 可能会有人说，续航短导致一天一充或两充很麻烦\n" 给出适合在<Seg4>后插入的图像对应的标题。</input>\n<output>\n标题是\"一个人正站在充电桩前给电动滑板车充电，面容看上去有些疲惫\"</output>\n<input>\n{inst}</input><output>[UNUSED_TOKEN_145]\n[UNUSED_TOKEN_146]assistant\n标题是\""""
 
     def get_images_xlab(self, caption, pt, exclude):
         urls, idxs = get_urls(caption.strip()[:53], exclude)
@@ -210,7 +262,8 @@ class Demo_UI:
                                                 max_new_tokens=max_length,
                                                 top_p=0.8,
                                                 top_k=40,
-                                                length_penalty=1.0)
+                                                length_penalty=1.0,
+                                                infer_mode='write',)
         response = generate[0].tolist()
         response = response[len_input_tokens:]
         response = self.model.tokenizer.decode(response, skip_special_tokens=True)
@@ -231,7 +284,8 @@ class Demo_UI:
                                                 top_p=0.8,
                                                 top_k=40,
                                                 length_penalty=1.0,
-                                                im_mask=im_mask)
+                                                im_mask=im_mask,
+                                                infer_mode='write',)
         response = generate[0].tolist()
         response = self.model.tokenizer.decode(response, skip_special_tokens=True)
         response = response.replace('[UNUSED_TOKEN_145]', '')
@@ -283,10 +337,12 @@ class Demo_UI:
 
             #input_text = f' <|User|>: 给定文章"{full_txt}" {past}给出适合在<Seg{po}>后插入的图像对应的标题。' + ' \n<TOKENS_UNUSED_0> <|Bot|>: 标题是"'
             input_text = f'给定文章"{full_txt}" {past}给出适合在<Seg{po}>后插入的图像对应的标题。'
-            instruction = self.text2instruction(input_text) + '标题是"'
+            # instruction = self.text2instruction(input_text) + '标题是"'
+            instruction = self.text2instruction_caption(input_text)
             print(instruction)
             cap_text = self.generate(instruction, True, 1, 200, 1.005)
-            cap_text = cap_text.split('"')[0].strip()
+            cap_text = '"'.join(cap_text.split('"')[:-1])
+            # cap_text = cap_text.split('"')[0].strip()
             print(cap_text)
             caps[po] = cap_text
 
@@ -298,9 +354,8 @@ class Demo_UI:
         print(caps)
         return caps
 
-    def interleav_wrap(self, text, image, max_length=4096):
-        device = image.device
-        im_len = image.shape[1]
+    def interleav_wrap(self, text, image, max_length=16384):
+        device = 'cuda'
         image_nums = len(image)
         parts = text.split('<image>')
         wrap_embeds, wrap_im_mask = [], []
@@ -320,9 +375,9 @@ class Demo_UI:
                 wrap_im_mask.append(torch.zeros(part_embeds.shape[:2]))
                 temp_len += part_embeds.shape[1]
             if idx < image_nums:
-                wrap_embeds.append(image[idx].unsqueeze(0))
-                wrap_im_mask.append(torch.ones(1, image[idx].shape[0]))
-                temp_len += im_len
+                wrap_embeds.append(image[idx])
+                wrap_im_mask.append(torch.ones(1, image[idx].shape[1]))
+                temp_len += image[idx].shape[1]
 
             if temp_len > max_length:
                 break
@@ -343,26 +398,32 @@ class Demo_UI:
         for i, text in enumerate(output_text):
             pre_text += text + '\n'
             if i in locs:
+                if len(pre_img) > 0:
+                    pre_img = [i.detach() for i in pre_img]
                 images = copy.deepcopy(pre_img)
+                images = [i.cuda() for i in images]
                 for j in range(len(images_paths[i])):
                     image = self.vis_processor(images_paths[i][j])
-                    images.append(image)
-                images = torch.stack(images, dim=0)
+                    with torch.cuda.amp.autocast():
+                        img_embeds = self.model.encode_img(image)
+                    images.append(img_embeds)
+                # images = torch.stack(images, dim=0)
 
                 pre_text_list.append(pre_text)
                 pre_text = ''
 
-                images = images.cuda()
+                # images = images.cuda()
                 text = '根据给定上下文和候选图像，选择合适的配图：' + '<image>'.join(pre_text_list) + '候选图像包括: ' + '\n'.join([chr(ord('A') + j) + '.<image>' for j in range(len(images_paths[i]))])
                 input_text = self.text2instruction(text) + '最合适的图是'
                 print(input_text)
                 with torch.no_grad():
                     with torch.cuda.amp.autocast():
-                        img_embeds = self.model.encode_img(images)
-                        input_embeds, im_mask, len_input_tokens = self.interleav_wrap(input_text, img_embeds)
+                        # img_embeds = self.model.encode_img(images)
+                        input_embeds, im_mask, len_input_tokens = self.interleav_wrap(input_text, images)
 
                 with torch.no_grad():
-                    outputs = self.model.generate(
+                    with torch.cuda.amp.autocast():
+                        outputs = self.model.generate(
                                             inputs_embeds=input_embeds,
                                             do_sample=True,
                                             temperature=1.,
@@ -371,7 +432,8 @@ class Demo_UI:
                                             top_p=0.8,
                                             top_k=40,
                                             length_penalty=1.0,
-                                            im_mask=im_mask
+                                            im_mask=im_mask,
+                                            infer_mode='write',
                                             )
                 response = outputs[0][2:].tolist()   #<s>: C
                 #print(response)
@@ -436,7 +498,8 @@ class Demo_UI:
                                                 top_p=0.8,
                                                 top_k=40,
                                                 length_penalty=1.0,
-                                                im_mask=im_mask
+                                                im_mask=im_mask,
+                                                infer_mode='write',
                                                 )
                     response = outputs[0][2:].tolist()   #<s>: C
                     #print(response)
@@ -477,6 +540,7 @@ class Demo_UI:
 
     def generate_article(self, instruction, upimages, beam, repetition, max_length, random, seed):
         self.reset()
+
         set_random_seed(int(seed))
         self.hash_folder = hashlib.sha256(instruction.encode()).hexdigest()
         self.instruction = instruction
@@ -518,6 +582,7 @@ class Demo_UI:
                 top_k=40,
                 length_penalty=1.0,
                 im_mask=im_mask,
+                infer_mode='write',
             )
             output_text = "▌"
             with self.generate_with_streaming(**generate_params) as generator:
@@ -777,6 +842,7 @@ class Demo_UI:
         if len(files) > 10:
             gr.Warning('No more than 10 images !!!')
             files = files[:10]
+
         return gr.Gallery(value=files), gr.Dropdown(value=str(len(files)))
 
     def clear_images(self):
@@ -834,10 +900,10 @@ def change_language(lang):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--code_path", default='internlm/internlm-xcomposer2-7b')
+parser.add_argument("--code_path", default='internlm/internlm-xcomposer2d5-7b')
 parser.add_argument("--private", default=False, action='store_true')
 parser.add_argument("--num_gpus", default=1, type=int)
-parser.add_argument("--port", default=11111, type=int)
+parser.add_argument("--port", default=7861, type=int)
 args = parser.parse_args()
 demo_ui = Demo_UI(args.code_path, args.num_gpus)
 
@@ -847,7 +913,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
         with gr.Column(scale=20):
             # gr.HTML("""<h1 align="center" id="space-title" style="font-size:35px;">🤗 浦语·灵笔 (InternLM-XComposer)</h1>""")
             gr.HTML(
-                """<h1 align="center"><img src="https://raw.githubusercontent.com/InternLM/InternLM-XComposer/InternLM-XComposer2/assets/logo_en.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
+                """<h1 align="center"><img src="https://huggingface.co/DLight1551/JSH0626/resolve/main/teaser.png", alt="InternLM-XComposer" border="0" style="margin: 0 auto; height: 120px;" /></a> </h1>"""
             )
         with gr.Column(scale=1, min_width=100):
             lang_btn = gr.Button("中文")
@@ -858,15 +924,13 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                 with gr.Column(scale=2):
                     instruction = gr.Textbox(label='Write an illustrated article based on the given instruction: (根据素材或指令创作图文并茂的文章)',
                                              lines=5,
-                                             value='''根据以下标题：“中国水墨画：流动的诗意与东方美学”，创作长文章，字数不少于800字。请结合以下文本素材：
-“水墨画是由水和墨调配成不同深浅的墨色所画出的画，是绘画的一种形式，更多时候，水墨画被视为中国传统绘画，也就是国画的代表。也称国画，中国画。墨水画是中国传统画之一。墨水是国画的起源，以笔墨运用的技法基础画成墨水画。线条中锋笔，侧锋笔，顺锋和逆锋，点染，擦，破墨，拨墨的技法。墨于水的变化分为五色。画成作品，题款，盖章。就是完整的墨水画作品。
-基本的水墨画，仅有水与墨，黑与白色，但进阶的水墨画，也有工笔花鸟画，色彩缤纷。后者有时也称为彩墨画。在中国画中，以中国画特有的材料之一，墨为主要原料加以清水的多少引为浓墨、淡墨、干墨、湿墨、焦墨等，画出不同浓淡（黑、白、灰）层次。别有一番韵味称为“墨韵”。而形成水墨为主的一种绘画形式。”''')
+                                             value='''阅读下面的材料，根据要求写作。\n电影《长安三万里》的出现让人感慨，影片并未将重点全落在大唐风华上，也展现了恢弘气象的阴暗面，即旧门阀的资源垄断、朝政的日益衰败与青年才俊的壮志难酬。高适仕进无门，只能回乡沉潜修行。李白虽得玉真公主举荐，擢入翰林，但他只是成为唐玄宗的御用文人，不能真正实现有益于朝政的志意。然而，片中高潮部分《将进酒》一节，人至中年、挂着肚腩的李白引众人乘仙鹤上天，一路从水面、瀑布飞升至银河进入仙宫，李白狂奔着与仙人们碰杯，最后大家纵身飞向漩涡般的九重天。肉身的微贱、世路的“天生我材必有用，坎坷，拘不住精神的高蹈。“天生我材必有用，千金散尽还复来。”\n古往今来，身处闲顿、遭受挫折、被病痛折磨，很多人都曾经历了人生的“失意”，却反而成就了他们“诗意”的人生。对正在追求人生价值的当代青年来说，如何对待人生中的缺憾和困顿?诗意人生中又有怎样的自我坚守和自我认同?请结合“失意”与“诗意”这两个关键词写一篇文章。\n要求:选准角度，确定立意，明确文体，自拟标题;不要套作，不得抄袭;不得泄露个人信息;不少于 800 字。''')
                 with gr.Column(scale=1):
                     img_num = gr.Dropdown(
-                        ["Automatic (自动)", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
-                        value='6', label="Image Number (插图数量)", info="Select the number of the inserted images",
+                        ["Automatic (自动)", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                        value='1', label="Image Number (插图数量)", info="Select the number of the inserted images",
                         interactive=True)
-                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=8909.0, step=1.0, label='Random Seed (随机种子)')
+                    seed = gr.Slider(minimum=1.0, maximum=20000.0, value=1234.0, step=1.0, label='Random Seed (随机种子)')
                     btn = gr.Button("Submit (提交)", scale=1)
 
             with gr.Accordion("Click to add image material (点击添加图片素材）, optional（可选）", open=False, visible=True):
@@ -879,7 +943,7 @@ with gr.Blocks(css=custom_css, title='浦语·灵笔 (InternLM-XComposer)') as d
                     with gr.Accordion("Advanced Settings (高级设置)", open=False, visible=True) as parameter_article:
                         beam = gr.Slider(minimum=1.0, maximum=6.0, value=1.0, step=1.0, label='Beam Size (集束大小)')
                         repetition = gr.Slider(minimum=1.0, maximum=2.0, value=1.005, step=0.001, label='Repetition_penalty (重复惩罚)')
-                        text_num = gr.Slider(minimum=100.0, maximum=4096.0, value=4096.0, step=1.0, label='Max output tokens (最多输出字数)')
+                        text_num = gr.Slider(minimum=100.0, maximum=8192.0, value=8192.0, step=1.0, label='Max output tokens (最多输出字数)')
                         llmO = gr.Checkbox(value=True, label='LLM Only (纯文本写作)')
                         random = gr.Checkbox(value=True, label='Sampling (随机采样)')
                         withmeta = gr.Checkbox(value=False, label='With Meta (使用meta指令)')

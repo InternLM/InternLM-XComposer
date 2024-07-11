@@ -15,6 +15,7 @@ args = parser.parse_args()
 
 # init model and tokenizer
 model = AutoModel.from_pretrained('internlm/internlm-xcomposer2d5-7b', trust_remote_code=True).eval()
+
 if args.dtype == 'fp16':
     model.half().cuda()
 elif args.dtype == 'fp32':
