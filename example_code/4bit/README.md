@@ -1,6 +1,6 @@
 ## Run InternLM-XComposer-2d5-4bit with LMDeploy
 
-Thanks to the LMDeploy team for providing AWQ quantization support, https://github.com/InternLM/lmdeploy/pull/1932. The following document shows how run to set up LMDeploy to run InternLM-XComposer-2d5-4bit:
+Thanks to the LMDeploy team for providing AWQ quantization support, https://github.com/InternLM/lmdeploy/pull/1932. The following document shows how to set up LMDeploy to run InternLM-XComposer-2d5-4bit:
 
 1. Download the LMDeploy branch that supports InternLM-XComposer-2d5-4bit: 
 ```bash
@@ -25,7 +25,7 @@ python lmdeploy_chat_4bit.py
 
 ## GPU Memory comparison
 
-It is noted for lmdeploy we set the value of `cache_max_entry_count=0.01` to save the cost gpu memory. The program is tested on 2.2.2+cu118.
+It is noted for lmdeploy we set the value of `cache_max_entry_count=0.01` to save the cost gpu memory. The program is tested on pytorch 2.2.2+cu118.
 
 |               | GPU Memory (GB) |
 |---------------|-----------------|
