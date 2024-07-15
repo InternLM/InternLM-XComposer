@@ -29,7 +29,7 @@
 <br>
 
 ## Multimodal Projects of Our Team
-> [**InternLM-XComposer-2.5**](https://github.com/InternLM/InternLM-XComposer): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
+> [**InternLM-XComposer-2.5**](https://arxiv.org/pdf/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
 
 
 > [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD**
@@ -485,6 +485,15 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 ## Citation
 
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
+
+```BibTeX
+@article{internlmxcomposer2_5,
+      title={InternLM-XComposer-2.5: A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output}, 
+      author={Pan Zhang and Xiaoyi Dong and Yuhang Zang and Yuhang Cao and Rui Qian and Lin Chen and Qipeng Guo and Haodong Duan and Bin Wang and Linke Ouyang and Songyang Zhang and Wenwei Zhang and Yining Li and Yang Gao and Peng Sun and Xinyue Zhang and Wei Li and Jingwen Li and Wenhai Wang and Hang Yan and Conghui He and Xingcheng Zhang and Kai Chen and Jifeng Dai and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2407.03320},
+      year={2024}
+}
+```
 
 ```BibTeX
 @article{internlmxcomposer2_4khd,
