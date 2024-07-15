@@ -467,7 +467,7 @@ Please refer to our [finetune scripts](finetune/README.md).
 
 ## Gradio Deploy
 
-We provide code for users to build a web UI demo.
+We provide code for users to build a web UI demo. Please use ```gradio==4.13.0```
 
 Please run the command below for Chat / Composition:
 
