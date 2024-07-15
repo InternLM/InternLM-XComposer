@@ -418,7 +418,7 @@ python examples/example_chat.py --num_gpus 2
 
 ## 使用LMDeploy加速推理
 
-如果需要进行 InternLM-XComposer2d5 模型推理优化，我们建议使用 [LMDeploy](https://github.com/InternLM/lmdeploy).
+如果需要进行 InternLM-XComposer2d5 模型推理优化，我们建议使用 [LMDeploy](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md).
 
 在以下小节中，我们将以[internlm-xcomposer2d5-7b](https://huggingface.co/internlm/internlm-xcomposer2d5-7b)作为例子。
 
