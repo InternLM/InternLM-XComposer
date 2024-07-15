@@ -429,7 +429,7 @@ python example_code/example_chat.py --num_gpus 2
 
 ## Inference Acceleration by LMDeploy
 
-If InternLM-XComposer2d5 model inference optimization is required, we recommend using [LMDeploy](https://github.com/InternLM/lmdeploy).
+If InternLM-XComposer2d5 model inference optimization is required, we recommend using [LMDeploy](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md).
 
 In the following subsections, we will introduce the usage of LMDeploy with the [internlm-xcomposer2d5-7b](https://huggingface.co/internlm/internlm-xcomposer2d5-7b) model as an example. 
 
