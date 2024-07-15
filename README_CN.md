@@ -416,13 +416,39 @@ print(response)
 python examples/example_chat.py --num_gpus 2
 ```
 
-## 使用 LMDeploy 加速推理
+## 使用LMDeploy加速推理
 
-准备中
+如果需要进行 InternLM-XComposer2d5 模型推理优化，我们建议使用 [LMDeploy](https://github.com/InternLM/lmdeploy).
 
-## 4-Bit 量化模型
+在以下小节中，我们将以[internlm-xcomposer2d5-7b](https://huggingface.co/internlm/internlm-xcomposer2d5-7b)作为例子。
 
-准备中
+首先，请使用`pip install lmdeploy`安装pypi包。默认情况下，它依赖于 CUDA 12.x. 对于 CUDA 11.x 环境，请参阅[安装指南](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation)。
+
+### 离线推理流程
+
+```python
+from lmdeploy import pipeline
+from lmdeploy.vl import load_image
+pipe = pipeline('internlm/internlm-xcomposer2d5-7b')
+image = load_image('examples/dubai.png')
+response = pipe(('describe this image', image))
+print(response.text)
+```
+
+有关使用VLM的更多信息，包括多图像推理或多轮聊天，请参阅[这里]((https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md)).
+
+## 4-Bit Model
+我们通过LMDeploy提供4位量化模型以减少内存需求。有关内存使用情况的比较，请参阅[此处](example_code/4bit/README.md)。
+
+```python
+from lmdeploy import TurbomindEngineConfig, pipeline
+from lmdeploy.vl import load_image
+engine_config = TurbomindEngineConfig(model_format='awq')
+pipe = pipeline('internlm/internlm-xcomposer2d5-7b-4bit', backend_config=engine_config)
+image = load_image('examples/dubai.png')
+response = pipe(('describe this image', image))
+print(response.text)
+```
 
 ## 微调代码
 

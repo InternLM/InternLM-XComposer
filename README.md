@@ -428,10 +428,38 @@ python example_code/example_chat.py --num_gpus 2
 ```
 
 ## Inference Acceleration by LMDeploy
- Coming Soon
+
+If InternLM-XComposer2d5 model inference optimization is required, we recommend using [LMDeploy](https://github.com/InternLM/lmdeploy).
+
+In the following subsections, we will introduce the usage of LMDeploy with the [internlm-xcomposer2d5-7b](https://huggingface.co/internlm/internlm-xcomposer2d5-7b) model as an example. 
+
+First of all, please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x. For a CUDA 11.x environment, please refer to the [installation guide](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation).
+
+### Offline Inference Pipeline
+
+```python
+from lmdeploy import pipeline
+from lmdeploy.vl import load_image
+pipe = pipeline('internlm/internlm-xcomposer2d5-7b')
+image = load_image('examples/dubai.png')
+response = pipe(('describe this image', image))
+print(response.text)
+```
+
+For more on using the VLM pipeline, including multi-image inference or multi-turn chat, please overview [this](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) guide.
 
 ## 4-Bit Model
-Coming Soon
+We offer 4-bit quantized models via LMDeploy to reduce memory requirements. For a memory usage comparison, please refer to [here](example_code/4bit/README.md).
+
+```python
+from lmdeploy import TurbomindEngineConfig, pipeline
+from lmdeploy.vl import load_image
+engine_config = TurbomindEngineConfig(model_format='awq')
+pipe = pipeline('internlm/internlm-xcomposer2d5-7b-4bit', backend_config=engine_config)
+image = load_image('examples/dubai.png')
+response = pipe(('describe this image', image))
+print(response.text)
+```
 
 ## Finetune
 
