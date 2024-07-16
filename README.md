@@ -467,7 +467,7 @@ print(response.text)
 ## Finetune
 
 1. Please refer to our [finetune scripts](finetune/README.md).
-2. 3rd Party inference and finetune support from [ModelScope Swift](https://github.com/modelscope/swift/blob/main/docs/source_en/Multi-Modal/internlm-xcomposer2-best-practice.md)
+2. Inference and finetune support from [ModelScope Swift](https://github.com/modelscope/swift/blob/main/docs/source_en/Multi-Modal/internlm-xcomposer2-best-practice.md)
 
 ## Gradio Deploy
 
