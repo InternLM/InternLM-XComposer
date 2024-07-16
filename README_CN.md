@@ -85,6 +85,9 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 [Youtube Video](https://youtu.be/8tYpiQNOJww)
 
 ## 更新消息
+- `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) 支持了InternLM-XComposer2.5-7B的微调和推理.
+- `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) 支持了InternLM-XComposer2.5-7B 的4-bit量化和推理.
+- `2024.07.15` 🎉🎉🎉 我们开源了4-Bit量化模型[InternLM-XComposer2.5-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-4bit).
 - `2024.07.03` 🎉🎉🎉 我们开源了[InternLM-XComposer-2.5-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-7b).
 - `2024.04.09` 🎉🎉🎉 我们开源了[InternLM-XComposer2-4KHD-7B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) 和 [评测代码](./evaluation/README.md).
 - `2024.04.09` 🎉🎉🎉 我们开源了[InternLM-XComposer2-VL-1.8B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b).
@@ -452,7 +455,9 @@ print(response.text)
 
 ## 微调代码
 
-请参考 [微调指南](finetune/README_zh-CN.md)
+1. 请参考 [微调指南](finetune/README_zh-CN.md)
+
+2. [ModelScope Swift](https://github.com/modelscope/swift/blob/main/docs/source_en/Multi-Modal/internlm-xcomposer2-best-practice.md)的微调和推理支持
 
 ## Gradio Deploy
 我们提供了一个轻松搭建 Web UI demo 的代码.
