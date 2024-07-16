@@ -82,8 +82,8 @@ Please refer to [Technical Report](https://arxiv.org/abs/2407.03320)  for more d
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 ## News and Updates
-- `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B now.
-- `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B now.
+- `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for finetuning and inference.
+- `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for 4 bit quantization and inference.
 - `2024.07.15` 🎉🎉🎉 [InternLM-XComposer2.5-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2-vl-7b-4bit) is publicly available.
 - `2024.07.03` 🎉🎉🎉 [InternLM-XComposer2.5-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-7b) is publicly available.
 - `2024.07.01` 🎉🎉🎉 [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) is accepted by ECCV2024. 
