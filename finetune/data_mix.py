@@ -1,12 +1,10 @@
 import random
 
 import numpy as np
-import torch
-from ixc_utils import HD_transform
+from ixc_utils import R560_HD18_Identity_transform
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
-from torchvision.transforms.functional import InterpolationMode
 
 
 def conv2text(sources):
@@ -32,31 +30,13 @@ def conv2text(sources):
     return conversation + '</s>'
 
 
-class ImageProcessor:
-
-    def __init__(self, image_size=224):
-        mean = (0.48145466, 0.4578275, 0.40821073)
-        std = (0.26862954, 0.26130258, 0.27577711)
-        self.normalize = transforms.Normalize(mean, std)
-
-        self.transform = transforms.Compose([
-            transforms.Resize((image_size, image_size),
-                              interpolation=InterpolationMode.BICUBIC),
-            transforms.ToTensor(),
-            self.normalize,
-        ])
-
-    def __call__(self, item):
-        item = Image.open(item).convert('RGB')
-        return self.transform(item)
-
-
 class ImageProcessorHD:
 
-    def __init__(self, image_size=224, hd_num=-1):
+    def __init__(self, resolution=560, hd_num=18):
         mean = (0.48145466, 0.4578275, 0.40821073)
         std = (0.26862954, 0.26130258, 0.27577711)
         self.normalize = transforms.Normalize(mean, std)
+        self.resolution = resolution
         self.hd_num = hd_num
 
         self.transform = transforms.Compose([
@@ -66,7 +46,9 @@ class ImageProcessorHD:
 
     def __call__(self, item):
         item = Image.open(item).convert('RGB')
-        return self.transform(HD_transform(item, hd_num=self.hd_num))
+        return self.transform(
+            R560_HD18_Identity_transform(
+                item, resolution=self.resolution, hd_num=self.hd_num))
 
 
 class Mix_dataset(Dataset):
@@ -74,9 +56,9 @@ class Mix_dataset(Dataset):
     def __init__(self,
                  json_datas,
                  batch_size=1,
-                 img_size=224,
                  local_rank=0,
-                 hd_num=-1):
+                 resolution=560,
+                 hd_num=18):
         """vis_root (string): Root directory of images (e.g. coco/images/)
         ann_root (string): directory to store the annotation file."""
         super().__init__()
@@ -93,11 +75,7 @@ class Mix_dataset(Dataset):
             else:
                 has_img = False
             sub_data_set = Sample_dataset(
-                d,
-                batch_size,
-                has_img=has_img,
-                img_size=img_size,
-                hd_num=hd_num)
+                d, batch_size, has_img=has_img, hd_num=hd_num)
             if has_img:
                 self.datasets_multi.append(sub_data_set)
                 self.data_num_multi.append(len(sub_data_set))
@@ -158,17 +136,13 @@ class Sample_dataset(Dataset):
                  raw_data,
                  batch_size,
                  has_img=True,
-                 img_size=224,
-                 hd_num=16):
+                 resolution=560,
+                 hd_num=18):
         self.raw_data = raw_data
         print(f'load {len(self.raw_data)} data')
         self.batch_size = batch_size
-        if hd_num == -1:
-            self.vis_processor = ImageProcessor(image_size=img_size)
-        else:
-            # for 4khd model
-            self.vis_processor = ImageProcessorHD(
-                image_size=img_size, hd_num=hd_num)
+        self.vis_processor = ImageProcessorHD(
+            resolution=resolution, hd_num=hd_num)
         self.text_processor = conv2text
         self.has_img = has_img
 
@@ -180,8 +154,13 @@ class Sample_dataset(Dataset):
         sample = dict(text_input=conv_text, )
         if self.has_img:
             image_file = self.raw_data[i]['image']
-            image = [self.vis_processor(i) for i in image_file]
-            sample['image'] = torch.stack(image)
+            if type(image_file) == str:
+                image = self.vis_processor(image_file)
+            elif type(image_file) == list:
+                image = [self.vis_processor(i) for i in image_file]
+            else:
+                raise NotImplementedError('Image format not supported')
+            sample['image'] = image
         else:
             sample['image'] = None
 
@@ -194,11 +173,20 @@ class Sample_dataset(Dataset):
             idx = random.randrange(len(self.raw_data))
             sample = self.__get_item__(idx)
             text_input.append(sample['text_input'])
-            images.append(sample['image'])
+            if sample['image'] is None:
+                pass
+            else:
+                images_batch = []
+                if type(sample['image']) is list:
+                    for im in sample['image']:
+                        images_batch.append(im.unsqueeze(0))
+                else:
+                    images_batch.append(sample['image'].unsqueeze(0))
+            images.append(images_batch)
         sample = {
             'text_input': text_input,
             'data_type': 'multi' if self.has_img else 'text',
         }
         if self.has_img:
-            sample['image'] = torch.cat(images)
+            sample['image'] = images
         return sample

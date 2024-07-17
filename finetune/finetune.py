@@ -27,9 +27,9 @@ class DataArguments:
     data_path: str = field(
         default='data.txt', metadata={'help': 'Path to the training data.'})
     given_num: bool = False
-    img_size: int = 224
     batch_size: int = 4
-    hd_num: int = -1
+    resolution: int = 560
+    hd_num: int = 18
 
 
 @dataclass
@@ -37,7 +37,7 @@ class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default='adamw_torch')
     max_length: int = field(
-        default=4096,
+        default=8192,
         metadata={
             'help':
             'Maximum sequence length. Sequences will be right padded (and possibly truncated).'
@@ -197,7 +197,7 @@ def make_supervised_data_module(
     train_dataset = Mix_dataset(
         train_json,
         data_args.batch_size,
-        img_size=data_args.img_size,
+        resolution=data_args.resolution,
         hd_num=data_args.hd_num,
         local_rank=local_rank)
     print(str(len(train_dataset)) + 'samples is loaded')
@@ -248,9 +248,6 @@ def train():
         device_map=device_map,
         trust_remote_code=True,
     )
-
-    if data_args.img_size != 336:
-        model.vit.resize_pos()
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
