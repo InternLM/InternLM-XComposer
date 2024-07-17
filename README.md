@@ -359,7 +359,7 @@ model.tokenizer = tokenizer
 query = 'Generate the HTML code of this web image with Tailwind CSS.'
 image = ['./examples/screenshot.jpg']
 with torch.autocast(device_type='cuda', dtype=torch.float16):
-    response = model.resume_2_webpage(query, image, seed=202, repetition_penalty=3.0)
+    response = model.screen_2_webpage(query, image, seed=202, repetition_penalty=3.0)
 print(response)
 ```
 See the [Screenshot to Webpage](./examples/Screenshot-to-Webpage.html) results here.
