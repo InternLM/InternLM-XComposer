@@ -3,7 +3,8 @@ export CUDA_DEVICE_MAX_CONNECTIONS=1
 DIR=`pwd`
 
 export MODEL="internlm/internlm-xcomposer2d5-7b"
-export DATA="path of data"
+# export DATA="path of data"
+export DATA="data.txt"
 
 GPUS_PER_NODE=8
 NNODES=1
@@ -27,6 +28,7 @@ torchrun $DISTRIBUTED_ARGS finetune.py \
     --fix_vit True \
     --fix_sampler True \
     --use_lora True \
+    --hd_num 18 \
     --output_dir output/finetune_lora \
     --num_train_epochs 1 \
     --batch_size 2 \

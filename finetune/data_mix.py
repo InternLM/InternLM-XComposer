@@ -182,7 +182,7 @@ class Sample_dataset(Dataset):
                         images_batch.append(im.unsqueeze(0))
                 else:
                     images_batch.append(sample['image'].unsqueeze(0))
-            images.append(images_batch)
+                images.append(images_batch)
         sample = {
             'text_input': text_input,
             'data_type': 'multi' if self.has_img else 'text',
