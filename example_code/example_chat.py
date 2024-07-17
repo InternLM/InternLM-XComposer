@@ -4,7 +4,7 @@ sys.path.insert(0, '..')
 import argparse
 import torch
 from transformers import AutoModel, AutoTokenizer
-from examples.utils import auto_configure_device_map
+from example_code.utils import auto_configure_device_map
 
 torch.set_grad_enabled(False)
 
