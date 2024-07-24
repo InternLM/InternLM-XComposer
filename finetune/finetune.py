@@ -27,9 +27,9 @@ class DataArguments:
     data_path: str = field(
         default='data.txt', metadata={'help': 'Path to the training data.'})
     given_num: bool = False
+    img_size: int = 224
     batch_size: int = 4
-    resolution: int = 560
-    hd_num: int = 18
+    hd_num: int = -1
 
 
 @dataclass
@@ -37,7 +37,7 @@ class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
     optim: str = field(default='adamw_torch')
     max_length: int = field(
-        default=8192,
+        default=4096,
         metadata={
             'help':
             'Maximum sequence length. Sequences will be right padded (and possibly truncated).'
@@ -153,7 +153,7 @@ class DataCollatorForSupervisedDataset:
 
 
 def make_supervised_data_module(
-    tokenizer: transformers.PreTrainedTokenizer,
+    tokenizer,
     data_args,
 ) -> Dict:
     """Make dataset and collator for supervised fine-tuning."""
@@ -167,12 +167,14 @@ def make_supervised_data_module(
             lines = f.readlines()
 
         for line in lines:
+            rank0_print('Loading data...', line)
             line = line.strip()
             line = line.split(' ')
+            data_root = line[2] if len(line) == 3 else ""
             with open(line[0]) as f:
                 temp = json.load(f)
             if data_args.given_num:
-                assert len(line) == 2
+                # assert len(line) == 2
                 num = int(float(line[1]) * 1000)
                 if len(temp) > num:
                     temp = random.sample(temp, num)
@@ -193,11 +195,11 @@ def make_supervised_data_module(
                             ex_temp.append(random.choice(temp))
                         temp.extend(ex_temp)
             rank0_print(f'Load {len(temp)} samples from {line}')
-            train_json[line[0]] = temp
+            train_json[line[0]] = [data_root, temp]
     train_dataset = Mix_dataset(
         train_json,
         data_args.batch_size,
-        resolution=data_args.resolution,
+        img_size=data_args.img_size,
         hd_num=data_args.hd_num,
         local_rank=local_rank)
     print(str(len(train_dataset)) + 'samples is loaded')
@@ -214,19 +216,12 @@ def make_supervised_data_module(
 def train():
     global local_rank
 
-    parser = transformers.HfArgumentParser(
-        (ModelArguments, DataArguments, TrainingArguments, LoraArguments))
-    (
-        model_args,
-        data_args,
-        training_args,
-        lora_args,
-    ) = parser.parse_args_into_dataclasses()
+    parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments, LoraArguments))
 
+    (model_args, data_args, training_args, lora_args, _) = parser.parse_args_into_dataclasses(return_remaining_strings=True)
+  
     if getattr(training_args, 'deepspeed', None):
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
-
-    local_rank = training_args.local_rank
 
     device_map = None
 
@@ -248,6 +243,9 @@ def train():
         device_map=device_map,
         trust_remote_code=True,
     )
+    #TODO
+    # if data_args.img_size != 336:
+    #     model.vit.resize_pos()
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
@@ -287,7 +285,9 @@ def train():
 
         if training_args.gradient_checkpointing:
             model.enable_input_require_grads()
+
     # Load data
+    # tokenizer
     data_module = make_supervised_data_module(
         tokenizer=tokenizer, data_args=data_args)
     print(transformers.processing_utils.logging.is_progress_bar_enabled())

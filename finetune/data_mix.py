@@ -1,42 +1,63 @@
-import random
+import os, sys, random, glob
 
 import numpy as np
-from ixc_utils import R560_HD18_Identity_transform
+import torch
+from ixc_utils import load_video, frame2img, get_font, Image_transform, Video_transform
 from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
+from torchvision.transforms.functional import InterpolationMode
 
 
 def conv2text(sources):
     END_HUMAN = '[UNUSED_TOKEN_145]\n'
     END_BOT = '[UNUSED_TOKEN_145]\n'
     conversation = ''
+    if 'conversations' in sources:
+        sources = sources['conversations']
+        for idx, sentence in enumerate(sources):
+            BEGIN_SIGNAL = ''
 
-    for idx, sentence in enumerate(sources):
-        BEGIN_SIGNAL = ''
-
-        from_str = sentence['from']
-        if from_str.lower() == 'human' or from_str.lower() == 'user':
-            from_str = '[UNUSED_TOKEN_146]user\n'
-            temp = (
-                BEGIN_SIGNAL + from_str + sentence['value'].strip() +
-                END_HUMAN)
-        else:
-            from_str = '[UNUSED_TOKEN_146]assistant\n'
-            temp = (
-                BEGIN_SIGNAL + from_str + sentence['value'].strip() + END_BOT)
-        conversation += temp
+            from_str = sentence['from']
+            if from_str.lower() == 'human' or from_str.lower() == 'user':
+                from_str = '[UNUSED_TOKEN_146]user\n'
+                temp = (
+                    BEGIN_SIGNAL + from_str + sentence['value'].strip() +
+                    END_HUMAN)
+            else:
+                from_str = '[UNUSED_TOKEN_146]assistant\n'
+                temp = (
+                    BEGIN_SIGNAL + from_str + sentence['value'].strip() + END_BOT)
+            conversation += temp
 
     return conversation + '</s>'
 
 
-class ImageProcessorHD:
+class ImageProcessor:
 
-    def __init__(self, resolution=560, hd_num=18):
+    def __init__(self, image_size=224):
         mean = (0.48145466, 0.4578275, 0.40821073)
         std = (0.26862954, 0.26130258, 0.27577711)
         self.normalize = transforms.Normalize(mean, std)
-        self.resolution = resolution
+
+        self.transform = transforms.Compose([
+            transforms.Resize((image_size, image_size),
+                              interpolation=InterpolationMode.BICUBIC),
+            transforms.ToTensor(),
+            self.normalize,
+        ])
+
+    def __call__(self, item):
+        item = Image.open(item).convert('RGB')
+        return self.transform(item)
+
+
+class ImageProcessorHD:
+
+    def __init__(self, image_size=224, hd_num=-1):
+        mean = (0.48145466, 0.4578275, 0.40821073)
+        std = (0.26862954, 0.26130258, 0.27577711)
+        self.normalize = transforms.Normalize(mean, std)
         self.hd_num = hd_num
 
         self.transform = transforms.Compose([
@@ -44,11 +65,16 @@ class ImageProcessorHD:
             self.normalize,
         ])
 
-    def __call__(self, item):
-        item = Image.open(item).convert('RGB')
-        return self.transform(
-            R560_HD18_Identity_transform(
-                item, resolution=self.resolution, hd_num=self.hd_num))
+    def __call__(self, item, is_video=False, font=None):
+        if not is_video:
+            if isinstance(item, str):
+                item = Image.open(item).convert('RGB')
+            return self.transform(Image_transform(item, hd_num=self.hd_num))
+        else:
+            assert font is not None
+            item = frame2img(item, font)
+            return self.transform(Video_transform(item, hd_num=self.hd_num))
+        
 
 
 class Mix_dataset(Dataset):
@@ -56,9 +82,9 @@ class Mix_dataset(Dataset):
     def __init__(self,
                  json_datas,
                  batch_size=1,
+                 img_size=224,
                  local_rank=0,
-                 resolution=560,
-                 hd_num=18):
+                 hd_num=-1):
         """vis_root (string): Root directory of images (e.g. coco/images/)
         ann_root (string): directory to store the annotation file."""
         super().__init__()
@@ -69,13 +95,18 @@ class Mix_dataset(Dataset):
         self.batch_size = batch_size
         self.set_seed = False
         self.local_rank = local_rank
-        for _, d in json_datas.items():
-            if 'image' in d[0].keys():
+        for _, (data_root, d) in json_datas.items():
+            if 'image' in d[0].keys() or "video" in d[0].keys():
                 has_img = True
             else:
                 has_img = False
             sub_data_set = Sample_dataset(
-                d, batch_size, has_img=has_img, hd_num=hd_num)
+                d,
+                batch_size,
+                has_img=has_img,
+                img_size=img_size,
+                hd_num=hd_num,
+                data_root=data_root)
             if has_img:
                 self.datasets_multi.append(sub_data_set)
                 self.data_num_multi.append(len(sub_data_set))
@@ -136,31 +167,57 @@ class Sample_dataset(Dataset):
                  raw_data,
                  batch_size,
                  has_img=True,
-                 resolution=560,
-                 hd_num=18):
+                 img_size=224,
+                 hd_num=16,
+                 data_root="",):
         self.raw_data = raw_data
         print(f'load {len(self.raw_data)} data')
         self.batch_size = batch_size
-        self.vis_processor = ImageProcessorHD(
-            resolution=resolution, hd_num=hd_num)
+        if hd_num == -1:
+            self.vis_processor = ImageProcessor(image_size=img_size)
+        else:
+            # for 4khd model
+            self.vis_processor = ImageProcessorHD(
+                image_size=img_size, hd_num=hd_num)
         self.text_processor = conv2text
         self.has_img = has_img
+
+        self.data_root = data_root
+        self.font = get_font()
+        self.num_frm = 16
 
     def __len__(self):
         return len(self.raw_data)
 
     def __get_item__(self, i):
-        conv_text = conv2text(self.raw_data[i]['conversations'])
+        conv_text = conv2text(self.raw_data[i])
         sample = dict(text_input=conv_text, )
         if self.has_img:
-            image_file = self.raw_data[i]['image']
-            if type(image_file) == str:
-                image = self.vis_processor(image_file)
-            elif type(image_file) == list:
-                image = [self.vis_processor(i) for i in image_file]
-            else:
-                raise NotImplementedError('Image format not supported')
-            sample['image'] = image
+            if "image" in self.raw_data[i]:
+                image_file = self.raw_data[i]['image']
+                image = []
+                for _path in image_file:
+                    img_path = os.path.join(self.data_root, _path)
+                    image.append(self.vis_processor(img_path))
+                sample['image'] = image
+            #video frames
+            elif "video" in self.raw_data[i]:
+                video_file = self.raw_data[i]['video']
+                # video frames
+                if video_file is img:
+                    img_dir = os.path.join(self.data_root, video_file)
+                    img_list = sorted(glob.glob("{}/*.jpeg".format(img_dir)))
+                    if len(img_list) > self.num_frm:
+                        step_size = len(img_list) / (self.num_frm + 1)
+                        indices = [int(ii*step_size) for ii in range(self.num_frm)]
+                        img_list = [img_list[ii] for ii in indices]
+                    image = [Image.open(_path).convert('RGB') for _path in img_list]
+                #video file
+                else:
+                    image = load_video(os.path.join(self.data_root, video_file), num_frm=self.num_frm)
+
+                image = self.vis_processor(image, is_video=True, font=self.font)
+                sample['image'] = image
         else:
             sample['image'] = None
 
@@ -183,10 +240,12 @@ class Sample_dataset(Dataset):
                 else:
                     images_batch.append(sample['image'].unsqueeze(0))
                 images.append(images_batch)
+
         sample = {
             'text_input': text_input,
             'data_type': 'multi' if self.has_img else 'text',
         }
+
         if self.has_img:
             sample['image'] = images
         return sample
