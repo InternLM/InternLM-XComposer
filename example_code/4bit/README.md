@@ -4,5 +4,5 @@ Thanks to the LMDeploy team for providing AWQ quantization support (https://gith
 
 |               | GPU Memory (GB) |
 |---------------|-----------------|
-| lmdeploy      | 31.81           |
-| lmdeploy-4bit | 23.21           |
+| IXC2.5-lmdeploy      | 31.81           |
+| IXC2.5-lmdeploy-4bit | 23.21           |
