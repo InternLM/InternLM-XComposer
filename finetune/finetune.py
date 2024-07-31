@@ -139,8 +139,7 @@ class DataCollatorForSupervisedDataset:
         text_input, data_type = tuple(
             [instance[key] for instance in instances]
             for key in ('text_input', 'data_type'))
-        if 'image' not in instances[0]:
-            text_input = [instance['text_input'][0] for instance in instances]
+        # Keep the batch size as 1 per GPU
         batch = dict(
             text_input=text_input,
             data_type=data_type,
@@ -296,7 +295,7 @@ def train():
     # Start trainner
     trainer = Trainer(
         model=model, tokenizer=tokenizer, args=training_args, **data_module)
-
+    assert trainer.args.per_device_train_batch_size == 1, " keep 1 training batch per GPU for nested batch"
     trainer.train()
     trainer.save_state()
 
