@@ -23,6 +23,12 @@ pip install transformers==4.33.2 timm==0.4.12 sentencepiece==0.1.99 gradio==4.13
 
 ```
 
+**Step 4.** Install flash-attention2 to save GPU memory
+
+We strongly recommend installing flash-attention2 to save GPU memory, although you can run IXC models without it.
+
+How to install flash-attention2: [https://github.com/Dao-AILab/flash-attention?tab=readme-ov-file#installation-and-features](https://github.com/Dao-AILab/flash-attention?tab=readme-ov-file#installation-and-features)
+
 ### Optional: 4-bit inference
 
 ```bash
