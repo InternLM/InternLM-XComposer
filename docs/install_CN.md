@@ -24,9 +24,8 @@ pip install transformers==4.30.2 timm==0.4.12 sentencepiece==0.1.99 gradio==3.44
 
 ### 可选: 4-bit测试额外需要安装的包
 
-```bash
-pip install auto_gptq transformers==4.33.1
-```
+请使用“pip install lmdeploy”安装 pypi 包。默认情况下，它依赖于 CUDA 12.x。
+对于 CUDA 11.x 环境，请参阅[安装指南](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation)。
 
 ### 可选: 微调 (Fine-tuning)
 

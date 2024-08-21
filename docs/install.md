@@ -31,9 +31,8 @@ How to install flash-attention2: [https://github.com/Dao-AILab/flash-attention?t
 
 ### Optional: 4-bit inference
 
-```bash
-pip install auto_gptq
-```
+Please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x. 
+For a CUDA 11.x environment, please refer to the [installation guide](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation).
 
 ### Optional: Fine-tuning
 
