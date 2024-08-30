@@ -33,8 +33,8 @@ pip install transformers==4.30.2 timm==0.4.12 sentencepiece==0.1.99 gradio==3.44
 
 ```bash
 # install deepspeed
-pip install deepspeed
+pip install deepspeed==0.12.3
 
 # install peft
-pip install peft
+pip install peft==0.8.2
 ```

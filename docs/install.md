@@ -31,7 +31,7 @@ How to install flash-attention2: [https://github.com/Dao-AILab/flash-attention?t
 
 ### Optional: 4-bit inference
 
-Please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x. 
+Please install the pypi package with `pip install lmdeploy`. By default, it depends on CUDA 12.x.
 For a CUDA 11.x environment, please refer to the [installation guide](https://lmdeploy.readthedocs.io/en/latest/get_started.html#installation).
 
 ### Optional: Fine-tuning
@@ -40,8 +40,8 @@ Fine-turning requires deepspeed, peft (optional for LoRA fine-tuning)
 
 ```bash
 # install deepspeed
-pip install deepspeed
+pip install deepspeed==0.12.3
 
 # install peft
-pip install peft
+pip install peft==0.8.2
 ```
