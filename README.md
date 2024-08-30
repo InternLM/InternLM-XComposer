@@ -86,7 +86,8 @@ Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese 
 - `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for 4 bit quantization and inference.
 - `2024.07.15` 🎉🎉🎉 [InternLM-XComposer2.5-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-4bit) is publicly available.
 - `2024.07.03` 🎉🎉🎉 [InternLM-XComposer2.5-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-7b) is publicly available.
-- `2024.07.01` 🎉🎉🎉 [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) is accepted by ECCV2024. 
+- `2024.07.02` 🎉🎉🎉 [InternLM-XComposer2-4KHD-7B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) achieves the state-of-the-art results on the [MindBench](https://arxiv.org/abs/2407.02842) dataset, which is a comprehensive benchmark for mind map structure recognition and analysis.
+- `2024.07.01` 🎉🎉🎉 [ShareGPT4V](https://github.com/InternLM/InternLM-XComposer/tree/main/projects/ShareGPT4V) is accepted by ECCV2024.
 - `2024.04.22` 🎉🎉🎉 The [finetune code](./finetune/) of **InternLM-XComposer2-VL-7B-4KHD-7B** are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-4KHD-7B](https://huggingface.co/internlm/internlm-xcomposer2-4khd-7b) and [evaluation code](./evaluation/README.md) are publicly available.
 - `2024.04.09` 🎉🎉🎉 [InternLM-XComposer2-VL-1.8B](https://huggingface.co/internlm/internlm-xcomposer2-vl-1_8b) is publicly available.
