@@ -1,0 +1,3 @@
+data/only_text_example.json 0.02
+data/single_turn_single_image_example.json 0.01
+data/multi_turn_multi_images_example.json 0.01
