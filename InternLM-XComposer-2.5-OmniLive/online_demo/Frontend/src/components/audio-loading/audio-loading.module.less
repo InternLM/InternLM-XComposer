@@ -1,0 +1,92 @@
+.audio-loading,
+.audio-loading > div {
+    position: relative;
+    box-sizing: border-box;
+}
+
+.audio-loading {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.audio-loading.la-dark {
+    color: #fff;
+}
+
+.audio-loading > div {
+    display: inline-block;
+    float: none;
+    background: rgba(155, 78, 255, 1);
+}
+
+.audio-loading > div:nth-of-type(2) {
+    background: rgba(133, 93, 255, 1);
+}
+
+.audio-loading > div:nth-of-type(3) {
+    background: rgba(106, 113, 255, 1);
+}
+
+.audio-loading > div:nth-of-type(4) {
+    background: rgba(83, 132, 255, 1);
+}
+
+.audio-loading > div:nth-of-type(5) {
+    background: rgba(58, 152, 255, 1);
+}
+
+.forbid-animate > div {
+    animation: none !important;
+}
+
+.audio-loading {
+    height: 32px;
+}
+
+.audio-loading > div {
+    width: 8px;
+    height: 32px;
+    margin: 0 8px;
+    border-radius: 24px;
+    animation: line-scale-pulse-out 0.9s infinite cubic-bezier(0.85, 0.25, 0.37, 0.85);
+}
+
+.audio-loading > div:nth-child(3),
+.audio-loading > div:nth-child(13),
+.audio-loading > div:nth-child(8) {
+    animation-delay: -0.9s;
+}
+
+.audio-loading > div:nth-child(2),
+.audio-loading > div:nth-child(4),
+.audio-loading > div:nth-child(7),
+.audio-loading > div:nth-child(10),
+.audio-loading > div:nth-child(12),
+.audio-loading > div:nth-child(14) {
+    animation-delay: -0.7s;
+}
+
+.audio-loading > div:nth-child(1),
+.audio-loading > div:nth-child(5),
+.audio-loading > div:nth-child(6),
+.audio-loading > div:nth-child(9),
+.audio-loading > div:nth-child(11),
+.audio-loading > div:nth-child(15) {
+    animation-delay: -0.5s;
+}
+
+@keyframes line-scale-pulse-out {
+    0% {
+        transform: scaley(1);
+    }
+
+    50% {
+        // transform: scaley(0.3);
+        height: 12px;
+    }
+
+    100% {
+        transform: scaley(1);
+    }
+}

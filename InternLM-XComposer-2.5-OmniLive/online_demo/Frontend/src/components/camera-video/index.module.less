@@ -1,0 +1,103 @@
+@import '@/styles/fn.less';
+
+.container {
+    flex: 1;
+    width: calc(100% - 24px);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+
+    &.pc {
+        flex: 1;
+        aspect-ratio: 0.5625;
+        width: auto;
+    }
+
+    &-error {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .linearBorder(4px, 20px, linear-gradient(174.61deg, #B771FF 0.69%, #A9A6FF 43.04%, #66e4ff 93.81%));
+
+        img {
+            width: 107px;
+            height: auto;
+        }
+
+        &-text {
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    &-video {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        video {
+            background: black;
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scanner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: flex-end;
+            animation: scan linear 6s infinite;
+
+            &-inner {
+                width: 100%;
+                height: 90px;
+                border-bottom: 2px solid rgba(142, 243, 255, 1);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0) 5%, rgba(96, 255, 244, 0.5) 97.78%);
+            }
+
+            @keyframes scan {
+                0% {
+                    height: 90px;
+                }
+                50% {
+                    height: 100%;
+                }
+                100% {
+                    height: 90px;
+                }
+            }
+        }
+
+        .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: hide linear 3s;
+            background: rgba(0, 0, 0, 0.5);
+
+            @keyframes hide {
+                0% {
+                    background: rgba(0, 0, 0, 0.5);
+                }
+                100% {
+                    background: rgba(0, 0, 0, 0);
+                }
+            }
+        }
+    }
+}

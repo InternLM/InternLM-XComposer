@@ -1,0 +1,30 @@
+// Gradient text
+.colorfulText(@c) {
+    background: @c;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+// Gradient border with rouned corners
+.linearBorder(@borderWidth, @borderRadius, @linearBg) {
+    position: relative;
+    z-index: 1;
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: @borderWidth;
+        border-radius: @borderRadius;
+        background: @linearBg;
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+}

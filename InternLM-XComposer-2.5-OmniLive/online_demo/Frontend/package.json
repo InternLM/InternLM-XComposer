@@ -1,0 +1,51 @@
+{
+    "name": "live-chat",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "start": "vite --host",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "prettier": "prettier --write ."
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+        "@types/classnames": "^2.3.1",
+        "@types/js-cookie": "^3.0.3",
+        "@types/node": "^18.15.11",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-basic-ssl": "^1.1.0",
+        "@vitejs/plugin-react": "^3.1.0",
+        "antd": "^5.19.4",
+        "husky": "^9.1.4",
+        "less": "^4.1.3",
+        "lint-staged": "^15.2.7",
+        "prettier": "^3.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "terser": "^5.16.9",
+        "typescript": "^4.9.3",
+        "vite": "^4.2.1",
+        "vite-babel-plugin": "^0.0.2"
+    },
+    "dependencies": {
+        "ahooks": "^3.8.0",
+        "axios": "^1.3.5",
+        "base64-arraybuffer": "^1.0.2",
+        "classnames": "^2.3.2",
+        "file64": "^1.0.3",
+        "js-audio-recorder": "^1.0.7",
+        "js-cookie": "^3.0.1",
+        "lottie-web": "^5.12.2",
+        "react-router": "^6.11.2",
+        "react-router-dom": "^6.11.2",
+        "react-use-websocket": "^4.8.1",
+        "vconsole": "^3.15.1",
+        "websocket": "^1.0.35"
+    },
+    "lint-staged": {
+        "**/*.{ts, tsx, less, module.less, json, md, .html}": "prettier --write ."
+    }
+}

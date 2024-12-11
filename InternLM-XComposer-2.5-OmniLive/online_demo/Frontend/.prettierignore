@@ -1,0 +1,8 @@
+dist
+deploy
+values
+node_modules
+.gitignore
+.prettierignore
+.husky
+src/components/camera-video/srs.sdk.js

@@ -28,9 +28,16 @@
 
 <br>
 
-## Multimodal Projects of Our Team
-> [**InternLM-XComposer-2.5**](https://arxiv.org/pdf/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
+## 🔥🔥🔥 **InternLM-XComposer-2.5-OmniLive**
 
+We release **InternLM-XComposer-2.5-OmniLive**, a specialized generalist multimodal system for streaming video and audio interactions. Please refer to the [project page](InternLM-XComposer-2.5-OmniLive) for details.
+
+<br>
+
+## Multimodal Projects of Our Team
+> [**InternLM-XComposer-2.5-OmniLive**](): **A Specialized Generalist Multimodal System for Streaming Video and Audio Interactions**
+
+> [**InternLM-XComposer-2.5**](https://arxiv.org/pdf/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
 
 > [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD**
 
@@ -82,6 +89,7 @@ Please refer to [Technical Report](https://arxiv.org/abs/2407.03320)  for more d
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 ## News and Updates
+- `2024.12.12` 🎉🎉🎉 [InternLM-XComposer2.5-OmniLive-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b) is publicly available.
 - `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for finetuning and inference.
 - `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for 4 bit quantization and inference.
 - `2024.07.15` 🎉🎉🎉 [InternLM-XComposer2.5-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-4bit) is publicly available.
