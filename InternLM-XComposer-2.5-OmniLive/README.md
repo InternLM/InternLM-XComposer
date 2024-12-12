@@ -2,7 +2,7 @@
     <img src="assets/logo_en.png" width="650"/>
 </p>
 <p align="center">
-    <b><font size="6">InternLM-XComposer-2.5 OmniLive (IXC2.5-OL) </font></b>
+    <b><font size="6">InternLM-XComposer2.5-OmniLive (IXC2.5-OL) </font></b>
 </p>
 
 
