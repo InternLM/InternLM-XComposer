@@ -28,9 +28,9 @@
 
 <br>
 
-## 🔥🔥🔥 **InternLM-XComposer-2.5-OmniLive**
+## 🔥🔥🔥 **InternLM-XComposer2.5-OmniLive**
 
-We release **InternLM-XComposer-2.5-OmniLive**, a specialized generalist multimodal system for streaming video and audio interactions. Please refer to the [project page](InternLM-XComposer-2.5-OmniLive) for details.
+We release **InternLM-XComposer2.5-OmniLive**, a comprehensive multimodal system for long-term streaming video and audio interactions. Please refer to the [project page](InternLM-XComposer-2.5-OmniLive) for details.
 
 <br>
 
