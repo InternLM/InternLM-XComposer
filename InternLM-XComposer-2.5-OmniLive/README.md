@@ -7,7 +7,7 @@
 
 
 <div align="center">
-        InternLM-XComposer2.5-OmniLive <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-ol-7b"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ XComposer2.5 OmniLive Technical Report <a href="https://arxiv.org/abs/2407.03320">  📄 </a>  
+        InternLM-XComposer2.5-OmniLive <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-ol-7b"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ XComposer2.5 OmniLive Technical Report <a href="https://github.com/InternLM/InternLM-XComposer/blob/main/InternLM-XComposer-2.5-OmniLive/IXC2.5-OL.pdf">  📄 </a>  
  
 
 [English](./README.md) | [简体中文](./README_CN.md)
