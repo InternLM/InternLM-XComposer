@@ -5,29 +5,22 @@ import re
 import shutil
 import sys
 sys.path.insert(0, 'third_party')
-import json
-import ssl
 import time
 import cv2
 import base64
 import threading
-import websocket
-import signal
 import datetime
 from PIL import Image, ImageDraw, ImageFont
 from queue import Queue
 import multiprocessing
 from multiprocessing import Value, Manager
 from multiprocessing import Queue as MPQueue
-from collections import deque
-from asr import WebsocketClient
 from funasr import AutoModel as FunAutoModel
 import numpy as np
 import wave
 import asyncio
 from audio_stream_consume import AudioStreamer
 from video_stream_consume import scheduled_screenshot
-from tts import TTSClient
 import opencc
 import whisper
 import soundfile
@@ -39,9 +32,6 @@ import torch
 import nest_asyncio
 nest_asyncio.apply()
 from lmdeploy import pipeline, GenerationConfig, TurbomindEngineConfig
-from lmdeploy.vl.constants import IMAGE_TOKEN
-from transformers.dynamic_module_utils import get_class_from_dynamic_module
-from transformers import AutoModel
 
 from swift.llm import get_model_tokenizer, get_template, ModelType, get_default_template_type, inference
 from swift.utils import seed_everything
@@ -316,9 +306,6 @@ class Client():
             time.sleep(0.1)
 
     def initiate(self, session_id):
-        if self.asr_model == 'sensetime':
-            self.ws = WebsocketClient(punctuation=1)
-
         # self.stream_url = f'rtmp://srs-xcomposer-dev.intern-ai.org.cn:1935/live/doctest{session_id}'
         self.stream_url = f'rtmp://10.1.101.102:1935/live/livestream{session_id}'
         self.stop_event = threading.Event()
@@ -347,10 +334,7 @@ class Client():
         os.makedirs('tmp', exist_ok=True)
         new_loop = asyncio.new_event_loop()
         self.tts_pcm_thread = threading.Thread(target=self.process_audio_in_thread, args=(new_loop,))
-        if self.tts_model == 'sensetime':
-            self.tts_client = TTSClient()
-            self.tts_thread = threading.Thread(target=self.tts)
-        elif self.tts_model == 'meloTTS' or self.tts_model == 'f5-tts':
+        if self.tts_model == 'meloTTS' or self.tts_model == 'f5-tts':
             self.audio_id = 0
 
 
@@ -386,19 +370,8 @@ class Client():
                 self.interrupt.value = 0
                 while not self.llm_out_queue.empty():
                     self.llm_out_queue.get()
-                if self.tts_model == 'sensetime':
-                    self.tts_client.tts_queue.queue.clear()
 
-            if self.tts_model == 'sensetime':
-                tts_queue = self.tts_client.tts_queue
-                try:
-                    # 尝试从队列中获取音频数据
-                    wav_file = tts_queue.get_nowait()
-                except:
-                    # 如果队列为空，等待一小段时间再继续循环
-                    await asyncio.sleep(0.1)
-                    continue
-            elif self.tts_model == 'meloTTS':
+            if self.tts_model == 'meloTTS':
                 if not self.llm_out_queue.empty():
                     output, time_dict = self.llm_out_queue.get()
                     st_time = time.time()
@@ -515,11 +488,7 @@ class Client():
             if not self.audio_queue.empty():
                 audio, cls_audio, time_dict = self.audio_queue.get()
                 time_dict['voice_get_queue'] = time.time()
-                if self.asr_model == 'sensetime':
-                    self.ws.set_audio(audio)
-                    self.ws.run()
-                    text = self.ws.txt
-                elif self.asr_model == 'whisper_large-v2':
+                if self.asr_model == 'whisper_large-v2':
                     audio_array = np.frombuffer(audio, dtype=np.int16).flatten().astype(np.float32) / 32768.0
                     text = self.text_converter.convert(self.whisper_model.transcribe(audio_array)['text'])
                 elif self.asr_model == 'streaming_audio':
@@ -570,9 +539,6 @@ class Client():
         self.audio_thread.start()
         self.asr_thread.start()
 
-        if self.tts_model == 'sensetime':
-            self.tts_thread.start()
-            self.tts_client.stream_ws = websocket
         self.tts_pcm_thread.start()
 
         self.websocket = websocket

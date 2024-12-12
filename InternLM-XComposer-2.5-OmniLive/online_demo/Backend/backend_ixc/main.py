@@ -6,9 +6,9 @@ from client import Client
 app = FastAPI(openapi_url=None, docs_url=None, redoc_url=None)
 
 
-asr_model = 'streaming_audio'  # ['sensetime', 'whisper_large-v2', 'streaming_audio']
+asr_model = 'streaming_audio'  # ['whisper_large-v2', 'streaming_audio']
 tts_model = 'meloTTS'  # ['sensetime', 'meloTTS', 'f5-tts']
-tp = 1
+tp = 1 # 2 for two GPUS
 app.client = Client(asr_model, tts_model, tp)
 
 app.add_middleware(
