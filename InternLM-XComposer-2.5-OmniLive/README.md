@@ -7,7 +7,7 @@
 
 
 <div align="center">
-        InternLM-XComposer2.5-OmniLive <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-ol-7b"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ IXC2.5-OL Technical Report <a href="https://github.com/InternLM/InternLM-XComposer/blob/main/InternLM-XComposer-2.5-OmniLive/IXC2.5-OL.pdf">  📄 </a>  
+        InternLM-XComposer2.5-OmniLive <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-ol-7b"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ IXC2.5-OL Technical Report <a href="https://arxiv.org/pdf/2412.09596">  📄 </a>  
  
 
 [English](./README.md) | [简体中文](./README_CN.md)
@@ -217,6 +217,15 @@ We evaluate InternLM-XComposer-2.5-OL on multimodal benchmarks, including audio,
 ## Citation
 
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
+
+```BibTeX
+@article{internlmxcomposer2_5_OL,
+      title={InternLM-XComposer2.5-OmniLive: A Comprehensive Multimodal System for Long-term Streaming Video and Audio Interactions}, 
+      author={Pan Zhang and Xiaoyi Dong and Yuhang Cao and Yuhang Zang and Rui Qian and Xilin Wei and Lin Chen and Yifei Li and Junbo Niu and Shuangrui Ding and Qipeng Guo and Haodong Duan and Xin Chen and Han Lv and Zheng Nie and Min Zhang and Bin Wang and Wenwei Zhang and Xinyue Zhang and Jiaye Ge and Wei Li and Jingwen Li and Zhongying Tu and Conghui He and Xingcheng Zhang and Kai Chen and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2412.09596},
+      year={2024}
+}
+```
 
 ```BibTeX
 @article{internlmxcomposer2_5,
