@@ -499,6 +499,15 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
 
 ```BibTeX
+@article{internlmxcomposer2_5_OL,
+      title={InternLM-XComposer2.5-OmniLive: A Comprehensive Multimodal System for Long-term Streaming Video and Audio Interactions}, 
+      author={Pan Zhang and Xiaoyi Dong and Yuhang Cao and Yuhang Zang and Rui Qian and Xilin Wei and Lin Chen and Yifei Li and Junbo Niu and Shuangrui Ding and Qipeng Guo and Haodong Duan and Xin Chen and Han Lv and Zheng Nie and Min Zhang and Bin Wang and Wenwei Zhang and Xinyue Zhang and Jiaye Ge and Wei Li and Jingwen Li and Zhongying Tu and Conghui He and Xingcheng Zhang and Kai Chen and Yu Qiao and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2412.09596},
+      year={2024}
+}
+```
+
+```BibTeX
 @article{internlmxcomposer2_5,
       title={InternLM-XComposer-2.5: A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output}, 
       author={Pan Zhang and Xiaoyi Dong and Yuhang Zang and Yuhang Cao and Rui Qian and Lin Chen and Qipeng Guo and Haodong Duan and Bin Wang and Linke Ouyang and Songyang Zhang and Wenwei Zhang and Yining Li and Yang Gao and Peng Sun and Xinyue Zhang and Wei Li and Jingwen Li and Wenhai Wang and Hang Yan and Conghui He and Xingcheng Zhang and Kai Chen and Jifeng Dai and Yu Qiao and Dahua Lin and Jiaqi Wang},
