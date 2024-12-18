@@ -148,6 +148,35 @@ We evaluate InternLM-XComposer-2.5-OL on multimodal benchmarks, including audio,
 | IXC2\.5\-OL  | Qwen2\-1\.5B  | 9\.0        | 9\.2          | 2\.5        | 5\.7       | 2\.6        | 5\.8        |
 
 ### Video benchmark **MLVU**
+<details>
+  <summary>
+    <b>Inference Code</b>
+  </summary>
+
+
+```plaintext
+Download the videos from MLVU and save them in the directory (e.g., './video/mlvu')
+
+└── video/                
+   └── mlvu/           
+      ├── 1_plotQA/ 
+      │    ├──1.mp4
+      │    ...
+      ├── 2_needle/ 
+      ├── 3_ego/ 
+      ├── 4_count/ 
+      ├── 5_order/
+      ├── 6_anomaly_reco/  
+      └── 7_topic_reasoning/  
+```
+
+```bash
+sh benchmarks/mlvu/mlvu.sh ./video/mlvu
+```
+
+</details>
+
+#### Results
 
 | Method                 | Params | Topic Rea. | Anomaly Recog. | Needle QA | Ego Rea. | Plot QA | Action Or. | Action Co. | M-Avg |
 |------------------------|--------|------------|----------------|-----------|----------|---------|------------|------------|-------|
@@ -170,6 +199,31 @@ We evaluate InternLM-XComposer-2.5-OL on multimodal benchmarks, including audio,
 | IXC2.5-OL              | 7B     | 84.1       | 68.5           | 76.6      | 60.8     | 75.1    | 57.1       | 41.3       | 66.2  |
 
 ### Video benchmark **Video-MME**
+<details>
+  <summary>
+    <b>Inference Code</b>
+  </summary>
+
+
+```plaintext
+Download the videos from VideoMME and save them in the directory (e.g., './video/video_mme')
+
+└── video/                
+   └── video_mme/           
+      ├── 026dzf-vc5g.mp4
+      ├── 068rdc75mHM.mp4
+      ├── 08km9Yqbt-A.mp4
+      ├── 0ag_Qi5OEd0.mp4
+          ...      
+```
+
+```bash
+sh benchmarks/video_mme/video_mme.sh ./video/video_mme
+```
+
+</details>
+
+#### Results
 
 | Method                 | Params | Short Video | Medium Video | Long Video | Overall |
 |------------------------|--------|-------------|--------------|------------|---------|
@@ -193,6 +247,33 @@ We evaluate InternLM-XComposer-2.5-OL on multimodal benchmarks, including audio,
 | IXC2.5-OL              | 7B     | 72.7        | 58.2         | 50.8       | 60.6    |
 
 ### Streaming benchmark **StreamingBench**
+<details>
+  <summary>
+    <b>Inference Code</b>
+  </summary>
+
+
+```plaintext
+Download the videos from StreamingBench and save them in the directory (e.g., './video/StreamingBench')
+
+└── video/                
+   └── StreamingBench/           
+      └── real/ 
+          ├──sample_1/
+          │    └── video.mp4
+          ├──sample_10/
+          │    └── video.mp4
+          ├──sample_12/
+          ...    
+```
+
+```bash
+sh benchmarks/streamingbench/eval.sh ./video/StreamingBench
+```
+
+</details>
+
+#### Results
 
 | Method                 | Params | OP    | CR    | CS    | ATP   | EU    | TR    | PR    | SU    | ACP   | CT    | Overall |
 |------------------------|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|---------|
@@ -212,6 +293,105 @@ We evaluate InternLM-XComposer-2.5-OL on multimodal benchmarks, including audio,
 | Qwen2-VL               | 7B     | 75.20 | 82.81 | 73.19 | 77.45 | 68.32 | 71.03 | 72.22 | 61.19 | 69.04 | 46.11 | 69.04   |
 | LLaVA-OneVision        | 7B     | 80.38 | 74.22 | 76.03 | 80.72 | 72.67 | 71.65 | 67.59 | 65.45 | 65.72 | 45.08 | 71.12   |
 | IXC2.5-OL              | 7B     | 82.83 | 73.77 | 78.66 | 82.95 | 72.50 | 76.01 | 61.11 | 60.67 | 71.59 | 58.85 | 73.79   |
+
+
+### Video benchmark **MVBench**
+<details>
+  <summary>
+    <b>Inference Code</b>
+  </summary>
+
+
+```plaintext
+Download the videos from MVBench and save them in the directory (e.g., './video/mvbench')
+
+└── video/                
+   └── mvbench/           
+      ├── clevrer/ 
+      │   └── video_validation/
+      │         ├── video_10009.mp4
+      │         ├── video_10016.mp4
+      │         ├── video_10017.mp4
+      │         ...
+      ├── FunQA_test/
+      │   └── test/
+      │         ├──test_creative/
+      │         │  ├── C_KT_10_6402_6422.mp4
+      │         │  ├── C_KT_12_1452_1602.mp4
+      │         │  ├── C_KT_12_5112_5200.mp4
+      │         │  ...
+      │         ├──test_humor/
+      │         │  ├── H_A_101_1433_1631.mp4
+      │         │  ├── H_A_112_0436_0691.mp4
+      │         │  ├── H_A_125_2078_2286.mp4
+      │         │  ... 
+      │         ...
+      ...  
+```
+
+```bash
+sh benchmarks/mvbench/mvbench.sh ./video/mvbench
+```
+
+</details>
+
+#### Results
+
+| Method                 | Params | AS   | AP   | AA   | FA   | UA   | OE   | OI   | OS   | MD   | AL   | ST   | AC   | MC   | MA   | SC   | FP   | CO   | EN   | ER   | CI   | Avg  |
+|------------------------|--------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+| **Closed-source APIs** |
+| GPT-4V                 | -      | 55.5 | 63.5 | 72.0 | 46.5 | 73.5 | 18.5 | 59.0 | 29.5 | 12.0 | 40.5 | 83.5 | 39.0 | 12.0 | 22.5 | 45.0 | 47.5 | 52.0 | 31.0 | 59.0 | 11.0 | 43.5 |
+| GPT-4o                 | -      | 61.5 | 56.5 | 72.0 | 54.0 | 82.0 | 62.5 | 66.5 | 44.0 | 36.5 | 33.5 | 93.0 | 54.5 | 33.5 | 54.5 | 53.5 | 74.5 | 71.5 | 32.5 | 71.0 | 42.5 | 57.5 |
+| **Open-source models** |
+| VideoLLaMA             | 7B     | 27.5 | 25.5 | 51.0 | 29.0 | 39.0 | 48.0 | 40.5 | 38.0 | 22.5 | 22.5 | 43.0 | 34.0 | 22.5 | 32.5 | 45.5 | 32.5 | 40.0 | 30.0 | 21.0 | 37.0 | 34.1 |
+| VideoChat              | 7B     | 33.5 | 26.5 | 56.0 | 33.5| 40.5| 53.0| 40.5| 30.0| 25.5| 27.0| 48.5| 35.0| 20.5| 42.5| 46.0| 26.5| 41.0| 23.5| 23.5| 36.0|35.5 |
+|MiniCPM-V 2.6| 7B | 38.0|43.0|63.0|35.5|67.5|55.5|46.0|35.5|25.5|33.0|77.5|48.0|37.0|54.0|42.5|40.0|31.0|38.0|43.0|40.5|44.7|
+|VideoChat2 | 7B | 66.0| 47.5| 83.5| 49.5| 60.0 |58.0| 71.5| 42.5| 23.0| 23.0| 88.5| 39.0| 42.0| 58.5| 44.0| 49.0| 36.5| 35.0| 40.5| 65.5|51.1| 
+|Qwen2-VL | 7B  | 51.0|58.0|77.5|47.0|64.0|63.0|65.5|40.0|25.5|35.5|77.0|43.5|47.0|62.0|42.0|61.5|49.5|41.5|47.5|41.5|52.0|
+|PLLaVA | 34B  | 65.0|53.0|83.5|45.0|77.5|70.0|64.5|38.5|37.5|49.0|89.5|41.5|43.5|70.0|53.0|52.5|65.0|39.5|60.5|58.0|57.8|
+|LLaVA-OneVision | 72B | 63.0|58.0|84.5|46.5|85.5|64.0|73.5|41.5|37.0|69.0|95.0|47.5|47.5|75.5|53.5|52.0|70.5|34.0|64.0|54.5|60.8|
+|InternVL2 | 8B | 75.0 |62.0|83.5|40.5|69.5|96.0|72.0|29.5|58.0|53.0|88.5|39.5|83.0|97.0|51.0|78.5|65.0|33.0|48.0|67.0|64.5|
+|IXC2.5-OL | 7B  | 84.5| 81.0| 75.0| 46.0| 81.0| 92.0| 79.5| 36.5| 83.0| 47.0| 90.0| 60.5| 75.0, | 93.0| 58.0| 60.5| 74.0| 42.0| 53.0| 62.0 | 68.7|
+
+
+### Video benchmark **MMBench-Video**
+<details>
+  <summary>
+    <b>Inference Code</b>
+  </summary>
+
+
+
+We use the VLMEvalKit to eval MMBench-Video. Please refer to [VLMEvalKit](https://github.com/open-compass/VLMEvalKit/blob/main/docs/en/Quickstart.md).
+
+```bash
+# Replace the model_path of XComposer2d5 from internlm/internlm-xcomposer2d5-7b to internlm-xcomposer2d5-ol-7b/base in vlmeval/config.py
+torchrun --nproc-per-node=8 run.py --data MMBench-Video --model XComposer2d5 --nframe 64
+```
+
+</details>
+
+#### Results
+
+| Method                 | Params | CP    | FP-S  | FP-C  | HL    | LR    | AR    | RR    | CSR   | TP    | Overall  | 
+|------------------------|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|----------|
+| **Closed-source APIs** |
+|Claude 3.5 Sonnet | - | 1.57 | 1.39 | 1.07 | 1.40 | 1.13 | 1.70 | 1.48 | 1.54 | 1.04  | 1.38|
+|Gemini 1.0 Pro | - | 1.61 | 1.56 | 1.30 | 0.65  | 1.15 | 1.57 | 1.55 | 1.36 | 1.33  | 1.48|
+|Gemini 1.5 Pro | - | 1.99 | 2.04 | 1.70 | 1.90  | 1.98 | 2.02 | 1.92 | 1.78 | 1.63  | 1.94|
+|GPT-4V | - | 1.83 | 1.65 | 1.40 | 1.76 | 1.66  | 1.91 | 1.86 | 1.83 | 1.53  | 1.68|
+|GPT-4o | - | 2.23 | 2.24 | 2.01 | 1.90 | 2.19  | 2.12 | 2.17 | 1.94 | 1.97  | 2.15|
+| **Open-source APIs** |
+|MovieLLM | 7B  |  0.95 |0.82  |0.70 | 0.15 |0.52 |1.12 | 1.22 |0.54 |1.05 | 0.87|
+|LLaVA-OneVision | 72B  |  1.22 |1.07  |0.90 | 0.21| 0.76 |0.96 | 0.55 |0.81 |0.48 | 0.94|
+|PLLaVA | 7B  |  1.08 |1.06  |0.86 | 0.52 |0.64 |1.25 | 1.17 |0.98  |1.01 | 1.03|
+|ShareGPT4Video | 7B  |  1.20 |1.05 |1.00 | 0.32 |0.89 |1.06 | 1.19 |1.01|0.99 | 1.05|
+|VideoStreaming | 7B  |  1.38 |1.13 |0.8 | 0.32 |0.77 |1.27 | 1.11 |1.01|1.10 | 1.12|
+|LLaVA-NeXT-Video | 7B  |  1.35 |1.15 |0.97 | 0.58 |0.64 |1.38 | 1.30 |1.27|1.03 | 1.14|
+|VILA1.5 | 13B  | 1.51 |1.45 |1.26 | 0.24 |0.80 | 1.52 | 1.30 |1.40 |1.28 | 1.36|
+|InternVL2 | 8B  | 1.41 |1.37 |1.15 | 0.19 |0.90 | 1.34 | 1.38 |1.14 |1.00 | 1.26|
+|Qwen2-VL | 7B  | 1.63 |1.51 |1.19 | 0.55 | 1.16 |1.56 | 1.49 | 1.37 |1.21 | 1.44|
+|IXC2.5-OL | 7B  | 1.53 |1.61 |1.20 | 0.15 | 0.93 |1.44 | 1.57 | 1.30 |1.08 | 1.42|
 
 
 ## Citation
