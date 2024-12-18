@@ -31,7 +31,31 @@ docker run --rm --env CANDIDATE=$CANDIDATE \
 
 ### **Backend**
 
-The backend can be deployed on a local machine or a remote server. Start the backend with the following commands:
+The backend can be deployed on a local machine or a remote server. 
+
+1. Download the Model
+
+```shell
+cd InternLM-XComposer/InternLM-XComposer-2.5-OmniLive
+huggingface-cli download internlm/internlm-xcomposer2d5-ol-7b \
+  --local-dir internlm-xcomposer2d5-ol-7b \
+  --local-dir-use-symlinks False \
+  --resume-download
+```
+
+2. Get the merged lora model
+ 
+ ```shell
+python examples/merge_lora.py
+```
+
+3. Change the model path in the [start script](Backend/backend_ixc/start.sh)
+
+```shell
+export ROOT_DIR=$Your_Download_Model_Path
+```
+
+4. Start the backend with the modified start script:
 
 ```shell
 cd online_demo/Backend/backend_ixc

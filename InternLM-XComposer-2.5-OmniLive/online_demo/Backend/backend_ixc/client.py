@@ -543,7 +543,7 @@ class Client():
 
         self.websocket = websocket
 
-        mem_folder = f"{os.getenv('ROOT_DIR')}/RealTime/tmp/mem"
+        mem_folder = f"tmp/mem"
         if os.path.exists(mem_folder):
             shutil.rmtree(mem_folder)
         os.makedirs(mem_folder)

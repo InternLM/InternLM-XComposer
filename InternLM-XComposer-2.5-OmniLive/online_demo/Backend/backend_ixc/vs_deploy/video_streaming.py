@@ -336,7 +336,7 @@ class Model:
 
             #if self.sess.todo_task is not None:
             if vs_dict['query']:
-                text, mem_folder = vs_dict['query'], f"{os.getenv('ROOT_DIR')}/RealTime/tmp/mem"
+                text, mem_folder = vs_dict['query'], f"tmp/mem"
                 self.select_memory(text, mem_folder)
                 vs_dict['query'] = ''
                 vs_dict['query_finish'] = True

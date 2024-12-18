@@ -4,7 +4,7 @@ import gradio as gr
 
 
 def load():
-    root = '/app/RealTime/backend_ixc/tmp/mem'
+    root = 'tmp/mem'
     img_pth = torch.load(os.path.join(root, 'temp_lol_img.pth'))
     with open(os.path.join(root, 'prompt.txt')) as fd:
         text = fd.read()
