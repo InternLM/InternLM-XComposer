@@ -129,8 +129,26 @@ Please refer to [infer_llm_with_memory.py](examples/infer_llm_with_memory.py).
 
 
 ## Interactive Demo Deploy
+Select one of the two deployment options for the demo. The second option excludes the need for an SRS Server but lacks support for real-time interruption.
+
+
+<details>
+  <summary>
+    <b>SRS Server + Frontend based on JavaScript + Backend with FastAPI</b>
+  </summary>
 
 Please refer to [Demo Setup Guide](online_demo/README.md) for guidelines.
+</details>
+
+
+
+<details>
+  <summary>
+    <b>Frontend based on Gradio + Backend with FastAPI</b>
+  </summary>
+
+Please refer to [Gradio Demo Setup Guide](online_demo_gradio/README.md) for guidelines.
+</details>
 
 
 ## Evaluation

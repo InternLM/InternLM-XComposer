@@ -129,8 +129,26 @@ print(response)
 
 ## 交互 Demo 部署
 
-请参考 [Demo Setup Guide](online_demo/README.md).
+从以下两种部署方案种选择一种部署Demo，第二种方案不需要SRS Server, 但不支持实时打断
 
+
+<details>
+  <summary>
+    <b>SRS Server + 基于JavaScript的前端 + 基于FastAPI的后端</b>
+  </summary>
+
+请参考 [Demo Setup Guide](online_demo/README.md).
+</details>
+
+
+
+<details>
+  <summary>
+    <b>基于Gradio的前端 + 基于FastAPI的后端</b>
+  </summary>
+
+请参考 [Gradio Demo Setup Guide](online_demo_gradio/README.md).
+</details>
 
 ## 评测
 
