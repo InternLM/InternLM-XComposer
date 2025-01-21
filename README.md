@@ -28,6 +28,10 @@
 
 <br>
 
+## 🔥🔥🔥 **InternLM-XComposer2.5-Reward**
+
+We release **InternLM-XComposer2.5-Reward**, a simple yet effective multi-modal reward model. Please refer to the [project page](InternLM-XComposer-2.5-Reward) for details.
+
 ## 🔥🔥🔥 **InternLM-XComposer2.5-OmniLive**
 
 We release **InternLM-XComposer2.5-OmniLive**, a comprehensive multimodal system for long-term streaming video and audio interactions. Please refer to the [project page](InternLM-XComposer-2.5-OmniLive) for details.
@@ -35,6 +39,8 @@ We release **InternLM-XComposer2.5-OmniLive**, a comprehensive multimodal system
 <br>
 
 ## Multimodal Projects of Our Team
+> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.xxxxx): **A Simple Yet Effective Multi-Modal Reward Model**
+
 > [**InternLM-XComposer-2.5-OmniLive**](): **A Specialized Generalist Multimodal System for Streaming Video and Audio Interactions**
 
 > [**InternLM-XComposer-2.5**](https://arxiv.org/pdf/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
@@ -89,6 +95,7 @@ Please refer to [Technical Report](https://arxiv.org/abs/2407.03320)  for more d
 Please refer to [Chinese Demo](./README_CN.md#demo) for the demo of the Chinese version.
 
 ## News and Updates
+- `2024.12.12` 🎉🎉🎉 [InternLM-XComposer2.5-7B-Reward](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward) is publicly available.
 - `2024.12.12` 🎉🎉🎉 [InternLM-XComposer2.5-OmniLive-7B](https://huggingface.co/internlm/internlm-xcomposer2d5-ol-7b) is publicly available.
 - `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for finetuning and inference.
 - `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) supports InternLM-XComposer2.5-7B for 4 bit quantization and inference.
@@ -497,6 +504,15 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 ## Citation
 
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
+
+```BibTeX
+@article{internlmxcomposer2_5_Reward,
+      title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
+      author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2501.xxxxx},
+      year={2024}
+}
+```
 
 ```BibTeX
 @article{internlmxcomposer2_5_OL,
