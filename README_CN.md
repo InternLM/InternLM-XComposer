@@ -28,7 +28,13 @@
 
 <br>
 
+## 🔥🔥🔥 **浦语·灵笔2.5-Reward**
+
+我们开源了 **浦语·灵笔2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a>, 一个简单但是有效的多模态奖励模型。更多细节请参考 [项目主页](InternLM-XComposer-2.5-Reward).
+
 ## 本仓库包括的多模态项目
+> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.xxxxx): **A Simple Yet Effective Multi-Modal Reward Model**
+
 > [**InternLM-XComposer2.5**](https://arxiv.org/abs/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
 
 > [**InternLM-XComposer2-<img src="./assets/4k.png" width="25px">**](https://github.com/InternLM/InternLM-XComposer): **A Pioneering Large Vision-Language Model Handling Resolutions from 336 Pixels to 4K HD**
@@ -85,6 +91,7 @@ https://github.com/InternLM/InternLM-XComposer/assets/22662425/0a2b475b-3f74-4f4
 [Youtube Video](https://youtu.be/8tYpiQNOJww)
 
 ## 更新消息
+- `2024.12.12` 🎉🎉🎉 我们开源了[InternLM-XComposer2.5-7B-Reward](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward).
 - `2024.07.15` 🎉🎉🎉 [ModelScope Swift](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) 支持了InternLM-XComposer2.5-7B的微调和推理.
 - `2024.07.15` 🎉🎉🎉 [LMDepoly](https://github.com/InternLM/lmdeploy/blob/main/docs/en/multi_modal/xcomposer2d5.md) 支持了InternLM-XComposer2.5-7B 的4-bit量化和推理.
 - `2024.07.15` 🎉🎉🎉 我们开源了4-Bit量化模型[InternLM-XComposer2.5-7B-4bit](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-4bit).
@@ -477,6 +484,16 @@ python gradio_demo/gradio_demo_composition.py
 ## 引用
 
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)
+
+```BibTeX
+@article{internlmxcomposer2_5_reward,
+      title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
+      author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
+      journal={arXiv preprint arXiv:2501.12368},
+      year={2025}
+}
+```
+
 ```BibTeX
 @article{internlmxcomposer2_5,
       title={InternLM-XComposer-2.5: A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output}, 
