@@ -7,7 +7,7 @@
 
 
 <div align="center">
-        浦语·灵笔 2.5 Reward <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b-reward"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ 浦语·灵笔 2.5 Reward 技术报告 <a href="https://arxiv.org/abs/2501.xxxx">  📄 </a>  
+        浦语·灵笔 2.5 Reward <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a> <a href="https://modelscope.cn/models/Shanghai_AI_Laboratory/internlm-xcomposer2d5-7b-reward"><img src="../assets/modelscope_logo.png" width="20px"></a> &nbsp｜ 浦语·灵笔 2.5 Reward 技术报告 <a href="https://arxiv.org/abs/2501.12368">  📄 </a>  
  
 
 [English](./README.md) | [简体中文](./README_CN.md)
@@ -102,11 +102,11 @@ print("rank_res: ", rank_res)  # lower index means higher score
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)
 
 ```BibTeX
-@article{internlmxcomposer2_5_Reward,
+@article{internlmxcomposer2_5_reward,
       title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
       author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
-      journal={arXiv preprint arXiv:2501.xxxxx},
-      year={2024}
+      journal={arXiv preprint arXiv:2501.12368},
+      year={2025}
 }
 ```
 
