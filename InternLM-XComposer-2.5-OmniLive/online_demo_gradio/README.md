@@ -40,3 +40,8 @@ Upon starting the frontend, click `Push Video`, wait for the video snapshot to d
 <p align="center">
     <img src="UI.jpg" width="1000"/>
 </p>
+
+
+### Static Web Gradio Demo
+
+We also provide static web gradio demo [here](webdemo.py)
