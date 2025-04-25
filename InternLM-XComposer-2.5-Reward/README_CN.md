@@ -97,6 +97,10 @@ print("rank_res: ", rank_res)  # lower index means higher score
 # >>> rank_res:  [0, 1]  
 ```
 
+## 评测
+
+我们在 `./evaluation` 目录下提供了评测代码, 包括 [VL-RewardBench](https://huggingface.co/datasets/MMInstruction/VL-RewardBench), [RewardBench](https://huggingface.co/datasets/allenai/reward-bench), 和 [RM-Bench](https://github.com/THU-KEG/RM-Bench)..
+
 ## 引用
 
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)

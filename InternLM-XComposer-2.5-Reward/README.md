@@ -95,8 +95,12 @@ print("compare_res: ", compare_res)
 with torch.autocast(device_type='cuda', dtype=torch.float16):
     rank_res = model.rank([chat_1, chat_2], [image, image], hd_num=hd_num)
 print("rank_res: ", rank_res)  # lower index means higher score
-# >>> rank_res:  [0, 1]  
+# >>> rank_res:  [0, 1] 
 ```
+
+## Evaluaton
+
+We provide the evaluation code in `./evaluation` directory, including [VL-RewardBench](https://huggingface.co/datasets/MMInstruction/VL-RewardBench), [RewardBench](https://huggingface.co/datasets/allenai/reward-bench), and [RM-Bench](https://github.com/THU-KEG/RM-Bench).
 
 ## Citation
 
