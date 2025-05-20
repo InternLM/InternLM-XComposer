@@ -2,7 +2,7 @@
     <img src="assets/logo_cn.png" width="650"/>
 </p>
 <p align="center">
-    <b><font size="6"> 浦语·灵笔 2.5 Reward</font></b>
+    <b><font size="6">浦语·灵笔 2.5 Reward (IXC-2.5-Reward), ACL 2025 Findings</font></b>
 </p>
 
 
@@ -23,6 +23,11 @@
 </p>
 
 <br>
+
+## 更新消息
+- `2025.05` 🎉🎉🎉 [InternLM-XComposer2.5-7B-Reward](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward) 被 [ACL 2025 Findings](https://2025.aclweb.org/) 录用。 维也纳见！
+- `2025.05` 🎉🎉🎉 我们开源了 [InternLM-XComposer2.5-7B-Reward](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward) 的[训练代码](./training) 。
+- `2025.04` 🎉🎉🎉 我们开源了 [InternLM-XComposer2.5-7B-Reward](https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward) 的[评测代码](./evaluation)，包括 [VL-RewardBench](https://huggingface.co/datasets/MMInstruction/VL-RewardBench), [RewardBench](https://huggingface.co/datasets/allenai/reward-bench), 和 [RM-Bench](https://github.com/THU-KEG/RM-Bench)
 
 ## 环境要求
 
@@ -106,10 +111,10 @@ print("rank_res: ", rank_res)  # lower index means higher score
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)
 
 ```BibTeX
-@article{internlmxcomposer2_5_reward,
+@inproceedings{internlmxcomposer2_5_reward,
       title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
       author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
-      journal={arXiv preprint arXiv:2501.12368},
+      booktitle={Findings of ACL},
       year={2025}
 }
 ```

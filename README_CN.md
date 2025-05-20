@@ -30,7 +30,7 @@
 
 ## 🔥🔥🔥 **浦语·灵笔2.5-Reward**
 
-我们开源了 **浦语·灵笔2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a>, 一个简单但是有效的多模态奖励模型。更多细节请参考 [项目主页](InternLM-XComposer-2.5-Reward).
+我们开源了 **浦语·灵笔2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a> (IXC-2.5-Reward, ACL 2025 Findings), 一个简单但是有效的多模态奖励模型。我们开源了训练代码，测试代码和部分训练数据。更多细节请参考 [项目主页](InternLM-XComposer-2.5-Reward).
 
 ## 本仓库包括的多模态项目
 > [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.xxxxx): **A Simple Yet Effective Multi-Modal Reward Model**
@@ -486,10 +486,10 @@ python gradio_demo/gradio_demo_composition.py
 如果你觉得我们模型/代码/技术报告对你有帮助，请给我 ⭐ 和 引用 📝，谢谢 :)
 
 ```BibTeX
-@article{internlmxcomposer2_5_reward,
+@inproceedings{internlmxcomposer2_5_reward,
       title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
       author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
-      journal={arXiv preprint arXiv:2501.12368},
+      booktitle={Findings of ACL},
       year={2025}
 }
 ```

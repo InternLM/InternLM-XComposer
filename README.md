@@ -30,7 +30,7 @@
 
 ## 🔥🔥🔥 **InternLM-XComposer2.5-Reward**
 
-We release **InternLM-XComposer2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a>, a simple yet effective multi-modal reward model. Please refer to the [project page](InternLM-XComposer-2.5-Reward) for details.
+We release **InternLM-XComposer2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a> (IXC-2.5-Reward, ACL 2025 Findings), a simple yet effective multi-modal reward model, including training code, evaluation scripts, and parts of the traininig data. Please refer to the [project page](InternLM-XComposer-2.5-Reward) for details.
 
 ## 🔥🔥🔥 **InternLM-XComposer2.5-OmniLive**
 
@@ -506,10 +506,10 @@ The user guidance of UI demo is given in [HERE](demo_asset/demo.md). If you wish
 If you find our models / code / papers useful in your research, please consider giving ⭐ and citations 📝, thx :)
 
 ```BibTeX
-@article{internlmxcomposer2_5_reward,
+@inproceedings{internlmxcomposer2_5_reward,
       title={InternLM-XComposer2.5-Reward: A Simple Yet Effective Multi-Modal Reward Model}, 
       author={Yuhang Zang and Xiaoyi Dong and Pan Zhang and Yuhang Cao and Ziyu Liu and Shengyuan Ding and Shenxi Wu and Yubo Ma and Haodong Duan and Wenwei Zhang and Kai Chen and Dahua Lin and Jiaqi Wang},
-      journal={arXiv preprint arXiv:2501.12368},
+      booktitle={Findings of ACL},
       year={2025}
 }
 ```

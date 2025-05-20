@@ -24,7 +24,7 @@ deepspeed==0.12.3
 
 We provide three examples illustrating three different formats of fine-tuning data:
 
-- `data/only_text_example.json`: text only, on images
+- `data/only_text_example.json`: text only, no images
 - `data/single_turn_single_image_example.json`：single turn, single image conversation
 - `data/multi_turn_multi_images_example.json` : multi turn, multi images conversation
 
