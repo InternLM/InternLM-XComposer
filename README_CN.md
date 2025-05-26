@@ -33,7 +33,7 @@
 我们开源了 **浦语·灵笔2.5-Reward** <a href="https://huggingface.co/internlm/internlm-xcomposer2d5-7b-reward">🤗</a> (IXC-2.5-Reward, ACL 2025 Findings), 一个简单但是有效的多模态奖励模型。我们开源了训练代码，测试代码和部分训练数据。更多细节请参考 [项目主页](InternLM-XComposer-2.5-Reward).
 
 ## 本仓库包括的多模态项目
-> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.xxxxx): **A Simple Yet Effective Multi-Modal Reward Model**
+> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.12368): **A Simple Yet Effective Multi-Modal Reward Model**
 
 > [**InternLM-XComposer2.5**](https://arxiv.org/abs/2407.03320): **A Versatile Large Vision Language Model Supporting Long-Contextual Input and Output**
 

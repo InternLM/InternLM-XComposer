@@ -39,7 +39,7 @@ We release **InternLM-XComposer2.5-OmniLive**, a comprehensive multimodal system
 <br>
 
 ## Multimodal Projects of Our Team
-> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.xxxxx): **A Simple Yet Effective Multi-Modal Reward Model**
+> [**InternLM-XComposer-2.5-Reward**](https://arxiv.org/pdf/2501.12368): **A Simple Yet Effective Multi-Modal Reward Model**
 
 > [**InternLM-XComposer-2.5-OmniLive**](): **A Specialized Generalist Multimodal System for Streaming Video and Audio Interactions**
 
