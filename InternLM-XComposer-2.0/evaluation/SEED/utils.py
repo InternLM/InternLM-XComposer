@@ -6,7 +6,14 @@ import numpy as np
 import torchvision
 from PIL import Image
 import re
-pattern = re.compile(r'[A-D]')
+pattern = re.compile(r'[A-E]')
+
+
+def choice_letter(output_text):
+    res = pattern.findall(output_text)
+    if len(res) == 0:
+        return ''
+    return res[0]
 
 class SeedDataset(Dataset):
     def __init__(self,
@@ -93,7 +100,4 @@ def model_gen( model, text, images, need_bos=True):
         output_token = output_token[1:]
     output_text = model.tokenizer.decode(output_token, add_special_tokens=False)
     output_text = output_text.split('[UNUSED_TOKEN_145]')[0]
-    res = pattern.findall(output_text)
-    if len(res) == 0:
-        print('Error:', output_text); res = 'E'
-    return res[0]
+    return choice_letter(output_text)
